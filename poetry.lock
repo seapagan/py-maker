@@ -1073,18 +1073,22 @@ version = "13.4.2"
 description = "Render rich text, tables, progress bars, syntax highlighting, markdown and more to the terminal"
 optional = false
 python-versions = ">=3.7.0"
-files = [
-    {file = "rich-13.4.2-py3-none-any.whl", hash = "sha256:8f87bc7ee54675732fa66a05ebfe489e27264caeeff3728c945d25971b6485ec"},
-    {file = "rich-13.4.2.tar.gz", hash = "sha256:d653d6bccede5844304c605d5aac802c7cf9621efd700b46c7ec2b51ea914898"},
-]
+files = []
+develop = false
 
 [package.dependencies]
 markdown-it-py = ">=2.2.0"
-pygments = ">=2.13.0,<3.0.0"
-typing-extensions = {version = ">=4.0.0,<5.0", markers = "python_version < \"3.9\""}
+pygments = "^2.13.0"
+typing-extensions = {version = ">=4.0.0, <5.0", markers = "python_version < \"3.9\""}
 
 [package.extras]
 jupyter = ["ipywidgets (>=7.5.1,<9)"]
+
+[package.source]
+type = "git"
+url = "https://github.com/seapagan/rich.git"
+reference = "case-insensitive-prompt-choices"
+resolved_reference = "3430909031e89bb0d9da16376d7cb91b16ecf341"
 
 [[package]]
 name = "setuptools"
@@ -1353,4 +1357,4 @@ testing = ["big-O", "flake8 (<5)", "jaraco.functools", "jaraco.itertools", "more
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.8.1,<4.0"
-content-hash = "9fbb75fcc7fbd22f1622b2a6013b1bf9e0fce43eae952d751e0f2479df11e88d"
+content-hash = "81dd8778de4f3ee9852a2a5164af159fdf9abb22ced412ee7885026763f0d51e"

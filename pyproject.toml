@@ -18,7 +18,7 @@ pymaker = "py_maker.main:app"
 [tool.poetry.dependencies]
 python = ">=3.8.1,<4.0"
 typer = {extras = ["all"], version = "^0.9.0"}
-rich = "^13.4.2"
+rich = {git = "https://github.com/seapagan/rich.git", rev = "case-insensitive-prompt-choices"}
 jinja2 = "^3.1.2"
 gitpython = "^3.1.31"
 tomli = "^2.0.1"

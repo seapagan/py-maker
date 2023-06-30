@@ -4,38 +4,13 @@ from pathlib import Path
 
 import typer
 from rich import print  # plylint: disable=W0622
-from rich.prompt import Confirm, Prompt, PromptBase
+from rich.prompt import Confirm, Prompt
 
 from py_maker.commands.helpers import (
     get_author_and_email_from_git,
     get_title,
     license_names,
 )
-
-
-class CaseInsensitivePrompt(PromptBase[str]):
-    """Overload the PromptBase class.
-
-    We want the the 'choice' option to be case-insensitive.
-    """
-
-    response_type = str
-
-    def check_choice(self, value: str) -> bool:
-        """Check value is in the list of valid choices.
-
-        Args:
-            value (str): Value entered by user.
-
-        Returns:
-            bool: True if choice was valid, otherwise False.
-        """
-        assert self.choices is not None
-
-        return value.strip().lower() in [
-            choice.lower() for choice in self.choices
-        ]
-
 
 app = typer.Typer()
 
@@ -61,10 +36,11 @@ def new(
     )
     app_author = Prompt.ask("Author Name?", default=git_author)
     app_email = Prompt.ask("Author Email?", default=git_email)
-    app_licence = CaseInsensitivePrompt.ask(
+    app_licence = Prompt.ask(
         "Application License?",
         choices=license_names,
         default="MIT",
+        case_insensitive=True,
     )
 
     print(
