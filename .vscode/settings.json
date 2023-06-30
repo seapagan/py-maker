@@ -17,7 +17,8 @@
     "**/*.html": "html",
     "**/requirements{/**,*}.{txt,in}": "pip-requirements",
     "**/templates/**/*": "django-txt",
-    "**/templates/**/*.html": "jinja-html"
+    "**/templates/**/*.html": "jinja-html",
+    "**/*.tpl": "jinja"
   },
   "files.eol": "\n",
   "files.exclude": {
