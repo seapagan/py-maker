@@ -1,0 +1,26 @@
+{
+  "[python]": {
+    "editor.codeActionsOnSave": {
+      "source.organizeImports": true
+    },
+    "editor.formatOnPaste": false,
+    "editor.formatOnSaveMode": "file"
+  },
+  "editor.formatOnSave": true,
+  "emmet.triggerExpansionOnTab": true,
+  "files.eol": "\n",
+  "files.exclude": {
+    "**/__pycache__": true
+  },
+  "git.alwaysSignOff": true,
+  "git.enableCommitSigning": true,
+  "isort.args": ["--profile", "black", "--src=${workspaceFolder}"],
+  "isort.check": true,
+  "python.formatting.blackArgs": ["--line-length=80"],
+  "python.formatting.provider": "black",
+  "python.languageServer": "Pylance",
+  "python.linting.flake8Args": ["--max-line-length=80"],
+  "python.linting.flake8Enabled": true,
+  "neocopyrighter.author.copyrightHolderNames": ["Grant Ramsay"],
+  "neocopyrighter.automation.automaticallyCopyrightFiles": false
+}
