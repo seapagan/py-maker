@@ -1,4 +1,7 @@
-# Basic Python project shell <!-- omit in toc -->
+# Py-Maker <!-- omit in toc -->
+
+**This is currently a clone of my Python template, work in progress to convert
+it to an installable app.**
 
 This repository is a template for a basic Python project using
 [Poetry](https://python-poetry.org/), with assorted Linting and Testing

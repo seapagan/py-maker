@@ -8,17 +8,14 @@
 # Please leave the above information intact if you use this template.
 
 [tool.poetry]
-name = "dev-setup"
+name = "py-maker"
 version = "0.1.0"
-description = "A bare-bones Poetry setup including Dev tools"
+description = "A command line app to create a Python project skeleton."
 authors = ["Grant Ramsay <seapagan@gmail.com>"]
 readme = "README.md"
 license = "MIT"
 
-# you can remove this next line if you don't want to publish to PyPI, or your
-# project is not an installable package.
-# Otherise, rename the 'app' directory to your package name
-packages = [{include = "app"}]
+packages = [{include = "py_maker"}]
 
 [tool.poetry.dependencies]
 python = ">=3.8.1,<4.0"
