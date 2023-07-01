@@ -37,7 +37,7 @@
   "python.linting.enabled": true,
   "python.linting.flake8Args": ["--max-line-length=80"],
   "python.linting.flake8Enabled": true,
-  "python.linting.mypyEnabled": false,
+  "python.linting.mypyEnabled": true,
   "python.linting.pydocstyleArgs": ["--convention=google"],
   "python.linting.pylintArgs": [],
   "python.linting.pylintEnabled": false,
