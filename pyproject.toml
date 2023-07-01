@@ -22,6 +22,7 @@ rich = {git = "https://github.com/seapagan/rich.git", rev = "case-insensitive-pr
 jinja2 = "^3.1.2"
 gitpython = "^3.1.31"
 tomli = "^2.0.1"
+pydantic = "^2.0"
 
 [build-system]
 requires = ["poetry-core"]
