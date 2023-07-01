@@ -1,8 +1,4 @@
-"""Helper functions for the CLI commands.""" ""
-import re
-
-from git.config import GitConfigParser
-
+"""Some constants needed for the rest of the App."""
 LICENCES: list[dict[str, str]] = [
     {"name": "None", "url": ""},
     {"name": "Apache2", "url": "https://opensource.org/licenses/Apache-2.0"},
@@ -17,18 +13,3 @@ LICENCES: list[dict[str, str]] = [
 ]
 
 license_names: list[str] = [license["name"] for license in LICENCES]
-
-
-def get_title(location) -> str:
-    """Get the title for the application."""
-    return re.sub("[_-]", " ", location).title() if location != "." else ""
-
-
-def get_author_and_email_from_git() -> tuple[str, str]:
-    """Get the author name and email from git."""
-    config = GitConfigParser()
-
-    return (
-        str(config.get_value("user", "name", None)),
-        str(config.get_value("user", "email", None)),
-    )
