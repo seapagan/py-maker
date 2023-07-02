@@ -1,15 +1,24 @@
 """Class to encapsulate the application."""
+import importlib.resources as pkg_resources
 import os
 import re
 import sys
 from pathlib import Path, PurePath
 
 from git.config import GitConfigParser
+from jinja2 import Environment, FileSystemLoader
 from rich import print
 from rich.prompt import Confirm, Prompt
 
-from py_maker.constants import license_names
-from py_maker.schema import ProjectSettings, ProjectValues
+# from py_maker import template
+from py_maker.constants import (
+    dynamic_file_list,
+    license_names,
+    new_dir_list,
+    static_file_list,
+)
+from py_maker.schema import ProjectValues
+from py_maker.template import dynamic, licenses, static
 
 
 class PyMaker:
@@ -63,6 +72,70 @@ class PyMaker:
         )
 
     # ------------------------------------------------------------------------ #
+    #                   create the project skeleton folders.                   #
+    # ------------------------------------------------------------------------ #
+    def create_folders(self) -> None:
+        """Create the folders for the project."""
+        try:
+            os.mkdir(self.choices.project_dir)
+            for new_dir in new_dir_list:
+                os.mkdir(self.choices.project_dir / new_dir)
+        except FileExistsError:
+            print(
+                f"\n[red]  -> Error: Directory '{self.choices.project_dir}' "
+                "already exists.\n"
+            )
+            sys.exit(2)
+        except PermissionError:
+            print(
+                "\n[red]  -> Error: Permission denied creating directory "
+                f"'{self.choices.project_dir}'\n"
+            )
+            sys.exit(3)
+
+    # ------------------------------------------------------------------------ #
+    #             Copy the template files to the project directory.            #
+    # ------------------------------------------------------------------------ #
+    def copy_template_files(self) -> None:
+        """Copy the template files to the project directory."""
+        static_dir = pkg_resources.files(static)
+        dynamic_dir = pkg_resources.files(dynamic)
+        licenses_dir = pkg_resources.files(licenses)
+
+        # ----------------------- testing functionality ---------------------- #
+        # tmp_dir = pkg_resources.files(template)
+
+        # for dir_path, dir_names, file_names in os.walk(str(tmp_dir)):
+        #     print(dir_path, dir_names, file_names)
+
+        license_env = Environment(loader=FileSystemLoader(str(licenses_dir)))
+        dynamic_env = Environment(loader=FileSystemLoader(str(dynamic_dir)))
+
+        print(f"Template Dir: {static_dir}", type(static_dir))
+        # copy the static files first.
+        for file in static_file_list:
+            with pkg_resources.as_file(static_dir / file) as src:
+                dst = Path(self.choices.project_dir) / file
+                dst.write_text(src.read_text())
+
+        # copy the license file next.
+        license_template = license_env.get_template(
+            f"{self.choices.license}.jinja"
+        )
+        dst = Path(self.choices.project_dir) / "LICENSE.txt"
+        dst.write_text(
+            license_template.render(author=self.choices.author, year="2021")
+        )
+
+        # now the dynamic files.
+        for file in dynamic_file_list:
+            template = dynamic_env.get_template(file)
+            dst = Path(self.choices.project_dir) / Path(file).with_suffix("")
+            dst.write_text(
+                template.render(self.choices.model_dump(), slug=self.location)
+            )
+
+    # ------------------------------------------------------------------------ #
     #             The main application loop is on the .run()method.            #
     # ------------------------------------------------------------------------ #
     def run(self) -> None:
@@ -80,6 +153,9 @@ class PyMaker:
             "Name of the Application?",
             default=self.get_title(PurePath(self.choices.project_dir).name),
         )
+        self.choices.description = Prompt.ask(
+            "Description of the Application?",
+        )
         self.choices.author = Prompt.ask("Author Name?", default=git_author)
 
         self.choices.email = Prompt.ask("Author Email?", default=git_email)
@@ -95,22 +171,5 @@ class PyMaker:
             print("\n[red]Aborting![/red]")
             sys.exit(0)
 
-        try:
-            os.mkdir(self.choices.project_dir)
-        except FileExistsError:
-            print(
-                f"\n[red]  -> Error: Directory '{self.choices.project_dir}' "
-                "already exists.\n"
-            )
-            sys.exit(2)
-        except PermissionError:
-            print(
-                "\n[red]  -> Error: Permission denied creating directory "
-                f"'{self.choices.project_dir}'\n"
-            )
-            sys.exit(3)
-
-        # print(self.choices.model_dump_json(indent=2))
-
-        # settings: ProjectSettings = ProjectSettings(**self.choices.model_dump())
-        # print(settings.model_dump_json(indent=2))
+        self.create_folders()
+        self.copy_template_files()

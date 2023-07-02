@@ -14,3 +14,15 @@ LICENCES: list[dict[str, str]] = [
 ]
 
 license_names: list[str] = [license["name"] for license in LICENCES]
+
+static_file_list: list[str] = [
+    ".gitignore",
+    ".markdownlint.json",
+    ".pre-commit-config.yaml",
+]
+dynamic_file_list: list[str] = [
+    "README.md.jinja",
+    "pyproject.toml.jinja",
+]
+
+new_dir_list: list[str] = ["app", "tests"]
