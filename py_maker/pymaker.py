@@ -8,7 +8,7 @@ from rich import print
 from rich.prompt import Confirm, Prompt
 
 from py_maker.constants import license_names
-from py_maker.schema import ProjectValues
+from py_maker.schema import ProjectSettings, ProjectValues
 
 
 class PyMaker:
@@ -18,6 +18,13 @@ class PyMaker:
         """Initialize the PyMaker class."""
         self.choices: ProjectValues = ProjectValues()
         self.location: str = location
+
+        if len(Path(self.location).parts) > 1:
+            self.header()
+            print(
+                "[red]  -> Error: Location must be a single directory name.\n"
+            )
+            sys.exit(1)
 
     def confirm_values(self) -> bool:
         """Confirm the values entered by the user."""
@@ -86,3 +93,8 @@ class PyMaker:
             # User chose not to continue
             print("\n[red]Aborting![/red]")
             sys.exit(0)
+
+        # print(self.choices.model_dump_json(indent=2))
+
+        # settings: ProjectSettings = ProjectSettings(**self.choices.model_dump())
+        # print(settings.model_dump_json(indent=2))
