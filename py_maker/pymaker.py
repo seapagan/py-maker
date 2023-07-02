@@ -1,4 +1,5 @@
 """Class to encapsulate the application."""
+import os
 import re
 import sys
 from pathlib import Path, PurePath
@@ -19,10 +20,12 @@ class PyMaker:
         self.choices: ProjectValues = ProjectValues()
         self.location: str = location
 
+        self.header()
+
         if len(Path(self.location).parts) > 1:
-            self.header()
             print(
-                "[red]  -> Error: Location must be a single directory name.\n"
+                "[red]  -> Error: Location must be a single directory name, "
+                "and is relative to the current direcotry.\n"
             )
             sys.exit(1)
 
@@ -64,8 +67,6 @@ class PyMaker:
     # ------------------------------------------------------------------------ #
     def run(self) -> None:
         """The main entry point for the application."""
-        self.header()
-
         self.choices.project_dir = Path.cwd() / self.location
 
         print(
@@ -93,6 +94,21 @@ class PyMaker:
             # User chose not to continue
             print("\n[red]Aborting![/red]")
             sys.exit(0)
+
+        try:
+            os.mkdir(self.choices.project_dir)
+        except FileExistsError:
+            print(
+                f"\n[red]  -> Error: Directory '{self.choices.project_dir}' "
+                "already exists.\n"
+            )
+            sys.exit(2)
+        except PermissionError:
+            print(
+                "\n[red]  -> Error: Permission denied creating directory "
+                f"'{self.choices.project_dir}'\n"
+            )
+            sys.exit(3)
 
         # print(self.choices.model_dump_json(indent=2))
 
