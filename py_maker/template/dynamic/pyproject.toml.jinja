@@ -6,6 +6,8 @@ authors = ["{{ author }} <{{ email }}>"]
 readme = "README.md"
 license = "{{ license }}"
 
+packages = [{ include = "app" }]
+
 [tool.poetry.urls]
 # customize the below URLs to point to your own GitHub repo. These will be
 # shown on [Pypi.org](https://pypi.org/) if you are creating a public package.
