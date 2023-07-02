@@ -4,11 +4,19 @@ from pathlib import Path
 from pydantic import BaseModel
 
 
-class ProjectValues(BaseModel):
-    """Class to define the values schema."""
+class ProjectSettings(BaseModel):
+    """Base Settings schema for the application."""
 
-    project_dir: Path = Path("")
-    name: str = ""
     author: str = ""
     email: str = ""
     license: str = ""
+
+
+class ProjectValues(ProjectSettings):
+    """Class to define the values schema.
+
+    Extends the ProjectSettings schema.
+    """
+
+    project_dir: Path = Path("")
+    name: str = ""
