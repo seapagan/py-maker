@@ -111,14 +111,13 @@ class PyMaker:
         license_env = Environment(loader=FileSystemLoader(str(licenses_dir)))
         dynamic_env = Environment(loader=FileSystemLoader(str(dynamic_dir)))
 
-        print(f"Template Dir: {static_dir}", type(static_dir))
         # copy the static files first.
         for file in static_file_list:
             with pkg_resources.as_file(static_dir / file) as src:
                 dst = Path(self.choices.project_dir) / file
                 dst.write_text(src.read_text())
 
-        # copy the license file next.
+        # generate the license file next.
         license_template = license_env.get_template(
             f"{self.choices.license}.jinja"
         )
@@ -127,7 +126,7 @@ class PyMaker:
             license_template.render(author=self.choices.author, year="2021")
         )
 
-        # now the dynamic files.
+        # now generate the dynamic files.
         for file in dynamic_file_list:
             template = dynamic_env.get_template(file)
             dst = Path(self.choices.project_dir) / Path(file).with_suffix("")
