@@ -1,0 +1,98 @@
+[tool.poetry]
+name = "{{ name }}"
+version = "0.1.0"
+description = "{{ description }}."
+authors = ["{{ author }} <{{ email }}>"]
+readme = "README.md"
+license = "{{ license }}"
+
+[tool.poetry.urls]
+# customize the below URLs to point to your own GitHub repo. These will be
+# shown on [Pypi.org](https://pypi.org/) if you are creating a public package.
+#"Pull Requests" = "https://github.com/seapagan/py-maker/pulls"
+#"Bug Tracker" = "https://github.com/seapagan/py-maker/issues"
+
+[tool.poetry.scripts]
+# replace with your own script name and entry point if you are creating a
+# command line tool.
+{{ slug }} = "app.main:app"
+
+[tool.poetry.dependencies]
+python = ">=3.9,<4.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+# Configure dev dependencies you can add or remove as needed
+[tool.poetry.group.dev.dependencies]
+# linting and security checks
+bandit = { extras = ["toml"], version = "^1.7.5" }
+black = "^23.3.0"
+flake8 = "^6.0.0"
+flake8-docstrings = "^1.7.0"
+flake8-pyproject = "^1.2.3"
+flake8-pytest-style = "^1.7.2"
+isort = "^5.12.0"
+pylint = "^2.17.2"
+pep8-naming = "^0.13.3"
+pre-commit = "^3.3.3"
+pydocstyle = "^6.3.0"
+
+# task runner
+poethepoet = "^0.20.0"
+
+# testing
+pytest = "^7.4.0"
+pytest-cov = "^4.0.0"
+pytest-xdist = "^3.2.1"
+pytest-sugar = "^0.9.7"
+pytest-randomly = "^3.12.0"
+pytest-reverse = "^1.6.0"
+pytest-asyncio = "^0.21.0"
+pytest-mock = "^3.11.1"
+mock = "^5.0.2"
+faker = "^18.11.2"
+mypy = "^1.4.1"
+
+# setup PoeThePoet tasks
+[tool.poe.tasks]
+pre = "pre-commit run --all-files"
+lint = "pylint **/*.py"
+
+# configure assorted tools and linters
+[tool.isort]
+profile = "black"
+
+[tool.black]
+line-length = 80
+exclude = '''
+/(
+    \.git
+  | \.mypy_cache
+  | \.tox
+  | venv
+  | \.venv
+  | _build
+  | build
+  | dist
+)/
+'''
+
+[tool.flake8]
+max-line-length = 80
+exclude = ["__init__.py", ".git"]
+extend-ignore=["E203", "W503"]
+docstring-convention = "google"
+
+[tool.bandit]
+exclude_dirs = []
+
+[tool.bandit.assert_used]
+skips = ['*_test.py', '*/test_*.py']
+
+[tool.pydocstyle]
+add-ignore = ["D104"]
+
+[tool.pytest.ini_options]
+filterwarnings = []
