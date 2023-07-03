@@ -1,11 +1,11 @@
 # Py-Maker <!-- omit in toc -->
 
-**This is currently a Work in Progress and will not yet produce complete usable
-output.**
-
 This is a command line tool to help you create new Python projects.  It will
 create a new directory for your project, initialise a git repository, create a
 virtual environment, and install some basic dependencies.
+
+More functionality will be added very shortly and the code will be refactored
+and cleaned up.
 
 - [Installation](#installation)
 - [Usage](#usage)
@@ -16,16 +16,26 @@ virtual environment, and install some basic dependencies.
 
 ## Installation
 
-Install the package using pip:
+It is probably better to install this package globally, rather than in a virtual
+environment, as it is intended to be used to create new projects.
+
+Install the package globally using pip:
 
 ```console
 $ pip install py-maker
 ```
 
-or even better, use Poetry:
+If you cannot install globally due to permissions, you can install it to your
+user install directory:
 
 ```console
-$ poetry add py-maker
+$ pip install --user py-maker
+```
+
+or use [pipx](https://pypa.github.io/pipx/)
+
+```console
+$ pipx install py-maker
 ```
 
 ## Usage
@@ -41,8 +51,16 @@ needed to get you started quickly:
 
 1) Copy the template files into the new directory
 2) Initialise a git repository
-3) Run `poetry install` to create a virtual environment and install the
-   dependencies.
+3) Commit the boilerplate to Git
+
+You should now change into the new directory, install dependencies and activate
+the virtual environment:
+
+```console
+$ cd <project-folder>
+$ poetry install
+$ poetry shell
+```
 
 ### Customise
 
