@@ -84,7 +84,8 @@ class PyMaker:
         """Create the folders for the project."""
         try:
             print("--> Creating project folders ... ", end="")
-            os.mkdir(self.choices.project_dir)
+            if self.location != ".":
+                os.mkdir(self.choices.project_dir)
             for new_dir in new_dir_list:
                 os.mkdir(self.choices.project_dir / new_dir)
             print("[green]Done[/green]")
@@ -145,7 +146,8 @@ class PyMaker:
                 )
                 dst.write_text(
                     template_file.render(
-                        self.choices.model_dump(), slug=self.location
+                        self.choices.model_dump(),
+                        slug=self.choices.project_dir.name,
                     )
                 )
 
@@ -205,6 +207,17 @@ See the [bold][green]README.md[/green][/bold] file for more information.
         """Entry point for the application."""
         self.choices.project_dir = Path.cwd() / self.location
 
+        # ensure that the chosen location is empty.
+        if (
+            self.choices.project_dir.exists()
+            and len(os.listdir(self.choices.project_dir)) > 0
+        ):
+            print(
+                "\n[red]Error: The chosen folder is not empty. "
+                "Please specify a different location.[/red]\n"
+            )
+            sys.exit(4)
+
         print(
             "[green]Creating a new project at[/green] "
             f"{self.choices.project_dir}\n"
@@ -235,6 +248,7 @@ See the [bold][green]README.md[/green][/bold] file for more information.
             sys.exit(0)
 
         print()
+
         self.create_folders()
         self.copy_template_files()
         self.create_git_repo()
