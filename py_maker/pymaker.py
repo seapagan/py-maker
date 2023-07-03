@@ -3,6 +3,7 @@ import importlib.resources as pkg_resources
 import os
 import re
 import sys
+from datetime import datetime
 from pathlib import Path, PurePath
 
 from git.config import GitConfigParser
@@ -71,15 +72,22 @@ class PyMaker:
             str(config.get_value("user", "email", None)),
         )
 
+    @staticmethod
+    def get_current_year() -> str:
+        """Get the current year."""
+        return str(datetime.now().year)
+
     # ------------------------------------------------------------------------ #
     #                   create the project skeleton folders.                   #
     # ------------------------------------------------------------------------ #
     def create_folders(self) -> None:
         """Create the folders for the project."""
         try:
+            print("--> Creating project folders ... ", end="")
             os.mkdir(self.choices.project_dir)
             for new_dir in new_dir_list:
                 os.mkdir(self.choices.project_dir / new_dir)
+            print("[green]Done[/green]")
         except FileExistsError:
             print(
                 f"\n[red]  -> Error: Directory '{self.choices.project_dir}' "
@@ -100,57 +108,101 @@ class PyMaker:
         """Copy the template files to the project directory."""
         template_dir = pkg_resources.files(template)
 
-        # ------------------- copy the static files first. ------------------- #
-        for file in static_file_list:
-            with pkg_resources.as_file(template_dir / "static" / file) as src:
-                dst = Path(self.choices.project_dir) / file
-                dst.write_text(src.read_text())
+        try:
+            print("--> Copying template files ... ", end="")
+            # ----------------- copy the static files first. ----------------- #
+            for file in static_file_list:
+                with pkg_resources.as_file(
+                    template_dir / "static" / file
+                ) as src:
+                    dst = Path(self.choices.project_dir) / file
+                    dst.write_text(src.read_text())
 
-        # ------------------ generate the license file next. ----------------- #
-        license_env = Environment(
-            loader=FileSystemLoader(str(template_dir / "licenses"))
-        )
-        license_template = license_env.get_template(
-            f"{self.choices.license}.jinja"
-        )
-        dst = Path(self.choices.project_dir) / "LICENSE.txt"
-        dst.write_text(
-            license_template.render(author=self.choices.author, year="2021")
-        )
-
-        # ------------------ now generate the dynamic files. ----------------- #
-        dynamic_env = Environment(
-            loader=FileSystemLoader(str(template_dir / "dynamic"))
-        )
-        for file in dynamic_file_list:
-            template_file = dynamic_env.get_template(file)
-            dst = Path(self.choices.project_dir) / Path(file).with_suffix("")
+            # ---------------- generate the license file next. --------------- #
+            license_env = Environment(
+                loader=FileSystemLoader(str(template_dir / "licenses")),
+                autoescape=True,
+            )
+            license_template = license_env.get_template(
+                f"{self.choices.license}.jinja"
+            )
+            dst = Path(self.choices.project_dir) / "LICENSE.txt"
             dst.write_text(
-                template_file.render(
-                    self.choices.model_dump(), slug=self.location
+                license_template.render(
+                    author=self.choices.author, year=self.get_current_year()
                 )
             )
 
-        # ----------------- finally populate the app folder. ----------------- #
-        for file in ["main.py", "__init__.py"]:
-            with pkg_resources.as_file(template_dir / "app" / file) as src:
-                dst = Path(self.choices.project_dir) / "app" / file
-                dst.write_text(src.read_text())
+            # ---------------- now generate the dynamic files. --------------- #
+            dynamic_env = Environment(
+                loader=FileSystemLoader(str(template_dir / "dynamic")),
+                autoescape=True,
+            )
+            for file in dynamic_file_list:
+                template_file = dynamic_env.get_template(file)
+                dst = Path(self.choices.project_dir) / Path(file).with_suffix(
+                    ""
+                )
+                dst.write_text(
+                    template_file.render(
+                        self.choices.model_dump(), slug=self.location
+                    )
+                )
+
+            # --------------- finally populate the app folder. --------------- #
+            for file in ["main.py", "__init__.py"]:
+                with pkg_resources.as_file(template_dir / "app" / file) as src:
+                    dst = Path(self.choices.project_dir) / "app" / file
+                    dst.write_text(src.read_text())
+            print("[green]Done[/green]")
+        except Exception as e:
+            print("Error: ", e)
 
     # ------------------------------------------------------------------------ #
     #                create the git repository for the project.                #
     # ------------------------------------------------------------------------ #
     def create_git_repo(self) -> None:
-        """Create a Git reposiotry for the project and add the first commit."""
-        repo = Repo.init(self.choices.project_dir)
-        repo.index.add(repo.untracked_files)
-        repo.index.commit("Initial Commit")
+        """Create a Git repository for the project and add the first commit."""
+        try:
+            print("--> Creating Git repository ... ", end="")
+            repo = Repo.init(self.choices.project_dir)
+            repo.index.add(repo.untracked_files)
+            repo.index.commit("Initial Commit")
+            print("[green]Done[/green]")
+        except Exception as e:
+            print("Error: ", e)
+
+    # ------------------------------------------------------------------------ #
+    #                       display post-process messages                      #
+    # ------------------------------------------------------------------------ #
+    def post_process(self) -> None:
+        """Display steps to be carried out after the project is created.
+
+        Currently just prints messages on what to do next.
+        """
+        output = f"""
+[green]--> Project created successfully.[/green]
+
+[bold]Next steps:[/bold]
+
+    1) Change to the project directory:
+    2) Install the dependencies (creates a virtual environment):
+        'poetry install'
+    3) Activate the virtual environment:
+        'poetry shell'
+    4) Run the application:
+        '{self.location}'
+    5) Code!
+
+See the [bold][green]README.md[/green][/bold] file for more information.
+        """
+        print(output)
 
     # ------------------------------------------------------------------------ #
     #             The main application loop is on the .run()method.            #
     # ------------------------------------------------------------------------ #
     def run(self) -> None:
-        """The main entry point for the application."""
+        """Entry point for the application."""
         self.choices.project_dir = Path.cwd() / self.location
 
         print(
@@ -182,6 +234,9 @@ class PyMaker:
             print("\n[red]Aborting![/red]")
             sys.exit(0)
 
+        print()
         self.create_folders()
         self.copy_template_files()
         self.create_git_repo()
+
+        self.post_process()
