@@ -6,6 +6,7 @@ import sys
 from pathlib import Path, PurePath
 
 from git.config import GitConfigParser
+from git.repo import Repo
 from jinja2 import Environment, FileSystemLoader
 from rich import print
 from rich.prompt import Confirm, Prompt
@@ -137,6 +138,15 @@ class PyMaker:
                 dst.write_text(src.read_text())
 
     # ------------------------------------------------------------------------ #
+    #                create the git repository for the project.                #
+    # ------------------------------------------------------------------------ #
+    def create_git_repo(self) -> None:
+        """Create a Git reposiotry for the project and add the first commit."""
+        repo = Repo.init(self.choices.project_dir)
+        repo.index.add(repo.untracked_files)
+        repo.index.commit("Initial Commit")
+
+    # ------------------------------------------------------------------------ #
     #             The main application loop is on the .run()method.            #
     # ------------------------------------------------------------------------ #
     def run(self) -> None:
@@ -174,3 +184,4 @@ class PyMaker:
 
         self.create_folders()
         self.copy_template_files()
+        self.create_git_repo()
