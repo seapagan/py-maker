@@ -17,7 +17,8 @@
     "**/*.html": "html",
     "**/requirements{/**,*}.{txt,in}": "pip-requirements",
     "**/templates/**/*": "django-txt",
-    "**/templates/**/*.html": "jinja-html"
+    "**/templates/**/*.html": "jinja-html",
+    "**/*.tpl": "jinja"
   },
   "files.eol": "\n",
   "files.exclude": {
@@ -36,7 +37,7 @@
   "python.linting.enabled": true,
   "python.linting.flake8Args": ["--max-line-length=80"],
   "python.linting.flake8Enabled": true,
-  "python.linting.mypyEnabled": false,
+  "python.linting.mypyEnabled": true,
   "python.linting.pydocstyleArgs": ["--convention=google"],
   "python.linting.pylintArgs": [],
   "python.linting.pylintEnabled": false,

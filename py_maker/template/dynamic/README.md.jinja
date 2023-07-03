@@ -1,0 +1,57 @@
+# {{ name }}
+
+This repository is a template for a basic Python project using
+[Poetry](https://python-poetry.org/), with assorted Linting and Testing
+libraries installed as standard. It also uses
+[pre-commit](https://pre-commit.com/).
+
+## Development setup
+
+Install the dependencies using Poetry:
+
+```console
+$ poetry install
+```
+
+Then, activate the virtual environment:
+
+```console
+$ poetry shell
+```
+
+### Customise
+
+The `pyproject.toml` file is set up to use `App` as the main source directory,
+which is the default for this template, you can change this to whatever you
+require, just remember to update the `pyproject.toml` file to match.
+
+### Linting
+
+This repo uses [flake8](https://flake8.pycqa.org/en/latest/) for linting and
+[Black](https://black.readthedocs.io/en/stable/) for formatting.
+[Mypy](http://mypy-lang.org/) is installed for type checking.
+[isort](https://pycqa.github.io/isort/) and [Pylint](https://pylint.org/) are
+also installed as standard.
+
+### Pre-commit
+
+There is a [pre-commit](https://pre-commit.com/) configuration provided to run
+some checks on the code before it is committed.  This is a great tool to help
+keep your code clean.
+
+To install pre-commit, run the following command from inside your venv:
+
+```console
+$ pre-commit install
+pre-commit installed at .git/hooks/pre-commit
+```
+
+## License
+
+This project is licensed under the terms of the {{ license }} license.
+
+## Credits
+
+The original Python boilerplate for this package was created using
+[Pymaker](https://github.com/seapagan/py-maker) by [Grant
+Ramsay](https://github.com/seapagan)

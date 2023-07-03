@@ -1,34 +1,32 @@
 [tool.poetry]
-name = "py-maker"
+name = "{{ name }}"
 version = "0.1.0"
-description = "A command line app to create a Python project skeleton."
-authors = ["Grant Ramsay <seapagan@gmail.com>"]
+description = "{{ description }}."
+authors = ["{{ author }} <{{ email }}>"]
 readme = "README.md"
-license = "MIT"
+license = "{{ license }}"
 
-packages = [{include = "py_maker"}]
+packages = [{ include = "app" }]
 
 [tool.poetry.urls]
-"Pull Requests" = "https://github.com/seapagan/py-maker/pulls"
-"Bug Tracker" = "https://github.com/seapagan/py-maker/issues"
+# customize the below URLs to point to your own GitHub repo. These will be
+# shown on [Pypi.org](https://pypi.org/) if you are creating a public package.
+#"Pull Requests" = "https://github.com/seapagan/py-maker/pulls"
+#"Bug Tracker" = "https://github.com/seapagan/py-maker/issues"
 
 [tool.poetry.scripts]
-pymaker = "py_maker.main:app"
+# replace with your own script name and entry point if you are creating a
+# command line tool.
+{{ slug }} = "app.main:app"
 
 [tool.poetry.dependencies]
 python = ">=3.9,<4.0"
-typer = {extras = ["all"], version = "^0.9.0"}
-rich = {git = "https://github.com/seapagan/rich.git", rev = "case-insensitive-prompt-choices"}
-jinja2 = "^3.1.2"
-gitpython = "^3.1.31"
-tomli = "^2.0.1"
-pydantic = "^2.0"
 
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
 
-# Configure dev dependencies
+# Configure dev dependencies you can add or remove as needed
 [tool.poetry.group.dev.dependencies]
 # linting and security checks
 bandit = { extras = ["toml"], version = "^1.7.5" }
@@ -57,9 +55,9 @@ pytest-asyncio = "^0.21.0"
 pytest-mock = "^3.11.1"
 mock = "^5.0.2"
 faker = "^18.11.2"
+mypy = "^1.4.1"
 
 # setup PoeThePoet tasks
-mypy = "^1.4.1"
 [tool.poe.tasks]
 pre = "pre-commit run --all-files"
 lint = "pylint **/*.py"
