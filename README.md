@@ -9,6 +9,7 @@ and cleaned up.
 
 - [Installation](#installation)
 - [Usage](#usage)
+  - [Task Runner](#task-runner)
   - [Customise](#customise)
   - [Linting](#linting)
   - [Pre-commit](#pre-commit)
@@ -62,9 +63,34 @@ $ poetry install
 $ poetry shell
 ```
 
+Now, you can start developing :)
+
+### Task Runner
+
+The task-runner [Poe the Poet](https://github.com/nat-n/poethepoet) is installed
+as a development dependency which allows us to run simple tasks (similar to npm
+`scripts`).
+
+These are run (from within the virtual environment) using the `poe` command and
+then the script name, for example:
+
+```console
+$ poe pre
+```
+
+You can define your own, but there are 5 specific ones provided with the script.
+
+- `pre` : Run `pre-commit run --all-files`
+- `pylint`: Run Pylint on all Python files in the project.
+- `mypy` = Run MyPy type-checker on all Python files in the project.
+- `flake8` = Run Flake8 linter on all Python files in the project.
+- `black` = Run Black code formatter on all Python files in the project.
+
+- `lint` = Runs pylint, mypy, flake8 and black in sequence
+
 ### Customise
 
-The `pyproject.toml` file is set up to use `App` as the main source directory,
+The `pyproject.toml` file is set up to use `app` as the main source directory,
 which is the default for this template, you can change this to whatever you
 require, just remember to update the `pyproject.toml` file to match.
 

@@ -9,7 +9,7 @@ from pathlib import Path, PurePath
 from git.config import GitConfigParser
 from git.repo import Repo
 from jinja2 import Environment, FileSystemLoader
-from rich import print
+from rich import print  # pylint: disable=W0622
 from rich.prompt import Confirm, Prompt
 
 from py_maker import template
@@ -117,7 +117,7 @@ class PyMaker:
                     template_dir / "static" / file
                 ) as src:
                     dst = Path(self.choices.project_dir) / file
-                    dst.write_text(src.read_text())
+                    dst.write_text(src.read_text(encoding="UTF-8"))
 
             # ---------------- generate the license file next. --------------- #
             license_env = Environment(
@@ -155,10 +155,10 @@ class PyMaker:
             for file in ["main.py", "__init__.py"]:
                 with pkg_resources.as_file(template_dir / "app" / file) as src:
                     dst = Path(self.choices.project_dir) / "app" / file
-                    dst.write_text(src.read_text())
+                    dst.write_text(src.read_text(encoding="UTF-8"))
             print("[green]Done[/green]")
-        except Exception as e:
-            print("Error: ", e)
+        except Exception as exc:
+            print("Error: ", exc)
 
     # ------------------------------------------------------------------------ #
     #                create the git repository for the project.                #
@@ -171,8 +171,8 @@ class PyMaker:
             repo.index.add(repo.untracked_files)
             repo.index.commit("Initial Commit")
             print("[green]Done[/green]")
-        except Exception as e:
-            print("Error: ", e)
+        except Exception as exc:
+            print("Error: ", exc)
 
     # ------------------------------------------------------------------------ #
     #                       display post-process messages                      #

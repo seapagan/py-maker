@@ -62,7 +62,11 @@ faker = "^18.11.2"
 mypy = "^1.4.1"
 [tool.poe.tasks]
 pre = "pre-commit run --all-files"
-lint = "pylint **/*.py"
+pylint = "pylint **/*.py"
+mypy = "mypy **/*.py"
+flake8 = "flake8 **/*.py"
+black = "black **/*.py"
+lint = ["black","mypy","flake8","pylint"]
 
 # configure assorted tools and linters
 [tool.isort]

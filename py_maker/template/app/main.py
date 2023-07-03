@@ -7,12 +7,11 @@ Note that if you remove the 'App' class entirely, you will need to remove the
 """
 
 
-class App:
+class App:  # pylint: disable=too-few-public-methods
     """Main application class."""
 
     def __init__(self) -> None:
         """Initialize the application."""
-        pass
 
     def __call__(self) -> None:
         """Call the application."""

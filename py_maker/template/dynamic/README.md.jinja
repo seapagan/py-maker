@@ -1,9 +1,17 @@
-# {{ name }}
+# {{ name }} <!-- omit in toc -->
 
 This repository is a template for a basic Python project using
 [Poetry](https://python-poetry.org/), with assorted Linting and Testing
 libraries installed as standard. It also uses
 [pre-commit](https://pre-commit.com/).
+
+- [Development setup](#development-setup)
+  - [Task Runner](#task-runner)
+  - [Customise](#customise)
+  - [Linting](#linting)
+  - [Pre-commit](#pre-commit)
+- [License](#license)
+- [Credits](#credits)
 
 ## Development setup
 
@@ -18,6 +26,29 @@ Then, activate the virtual environment:
 ```console
 $ poetry shell
 ```
+
+### Task Runner
+
+The task-runner [Poe the Poet](https://github.com/nat-n/poethepoet) is installed
+as a development dependency which allows us to run simple tasks (similar to npm
+`scripts`).
+
+These are run (from within the virtual environment) using the `poe` command and
+then the script name, for example:
+
+```console
+$ poe pre
+```
+
+You can define your own, but there are 5 specific ones provided with the script.
+
+- `pre` : Run `pre-commit run --all-files`
+- `pylint`: Run Pylint on all Python files in the project.
+- `mypy` = Run MyPy type-checker on all Python files in the project.
+- `flake8` = Run Flake8 linter on all Python files in the project.
+- `black` = Run Black code formatter on all Python files in the project.
+
+- `lint` = Runs pylint, mypy, flake8 and black in sequence
 
 ### Customise
 
