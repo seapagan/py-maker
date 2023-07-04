@@ -7,18 +7,14 @@ from datetime import datetime
 from pathlib import Path, PurePath
 
 from git.config import GitConfigParser
+from git.exc import GitError
 from git.repo import Repo
 from jinja2 import Environment, FileSystemLoader
 from rich import print  # pylint: disable=W0622
 from rich.prompt import Confirm, Prompt
 
 from py_maker import template
-from py_maker.constants import (
-    dynamic_file_list,
-    license_names,
-    new_dir_list,
-    static_file_list,
-)
+from py_maker.constants import license_names
 from py_maker.schema import ProjectValues
 
 
@@ -46,7 +42,7 @@ class PyMaker:
             "settings :\n"
         )
 
-        padding: int = max([len(key) for key, _ in self.choices]) + 3
+        padding: int = max(len(key) for key, _ in self.choices) + 3
 
         for key, value in self.choices:
             print(f"{self.get_title(key).rjust(padding)} : [green]{value}")
@@ -81,13 +77,11 @@ class PyMaker:
     #                   create the project skeleton folders.                   #
     # ------------------------------------------------------------------------ #
     def create_folders(self) -> None:
-        """Create the folders for the project."""
+        """Create the root folder for the project."""
         try:
-            print("--> Creating project folders ... ", end="")
+            print("--> Creating project folder ... ", end="")
             if self.location != ".":
                 os.mkdir(self.choices.project_dir)
-            for new_dir in new_dir_list:
-                os.mkdir(self.choices.project_dir / new_dir)
             print("[green]Done[/green]")
         except FileExistsError:
             print(
@@ -106,26 +100,52 @@ class PyMaker:
     #             Copy the template files to the project directory.            #
     # ------------------------------------------------------------------------ #
     def copy_template_files(self) -> None:
-        """Copy the template files to the project directory."""
+        """Copy the template files to the project directory.
+
+        Any file that has the '.jinja' extension will be passed though the
+        template engine before copying. The extension will also be removed.
+
+        ie:
+        'README.md.jinja' is copied as 'README.md' after template substitution.
+        """
         template_dir = pkg_resources.files(template)
+        skip_dirs = ["__pycache__", "licenses"]
+        file_list = [
+            item.relative_to(template_dir)
+            for item in template_dir.rglob("*")  # type: ignore[attr-defined]
+            if set(item.parts).isdisjoint(skip_dirs)
+        ]
 
+        # set up Jinja environment
+        jinja_env = Environment(
+            loader=FileSystemLoader(str(template_dir)),
+            autoescape=True,
+        )
+
+        # ------------------------ copy all the files ------------------------ #
         try:
-            print("--> Copying template files ... ", end="")
-            # ----------------- copy the static files first. ----------------- #
-            for file in static_file_list:
-                with pkg_resources.as_file(
-                    template_dir / "static" / file
-                ) as src:
-                    dst = Path(self.choices.project_dir) / file
-                    dst.write_text(src.read_text(encoding="UTF-8"))
+            for item in file_list:
+                with pkg_resources.as_file(template_dir / item) as src:
+                    if src.is_dir():
+                        os.mkdir(self.choices.project_dir / item)
+                    elif src.suffix == ".jinja":
+                        jinja_template = jinja_env.get_template(str(item))
+                        dst = Path(self.choices.project_dir) / Path(
+                            item
+                        ).with_suffix("")
+                        dst.write_text(
+                            jinja_template.render(
+                                self.choices.model_dump(),
+                                slug=self.choices.project_dir.name,
+                            )
+                        )
+                    else:
+                        dst = Path(self.choices.project_dir) / item
+                        dst.write_text(src.read_text(encoding="UTF-8"))
 
-            # ---------------- generate the license file next. --------------- #
-            license_env = Environment(
-                loader=FileSystemLoader(str(template_dir / "licenses")),
-                autoescape=True,
-            )
-            license_template = license_env.get_template(
-                f"{self.choices.license}.jinja"
+            # ---------------- generate the license file next. ------------- #
+            license_template = jinja_env.get_template(
+                f"licenses/{self.choices.license}.jinja"
             )
             dst = Path(self.choices.project_dir) / "LICENSE.txt"
             dst.write_text(
@@ -133,32 +153,15 @@ class PyMaker:
                     author=self.choices.author, year=self.get_current_year()
                 )
             )
-
-            # ---------------- now generate the dynamic files. --------------- #
-            dynamic_env = Environment(
-                loader=FileSystemLoader(str(template_dir / "dynamic")),
-                autoescape=True,
+        except FileExistsError as exc:
+            print(f"\n[red]  -> {exc}")
+            sys.exit(2)
+        except PermissionError:
+            print(
+                "\n[red]  -> Error: Permission denied creating file or folder "
+                f"'{self.choices.project_dir}'\n"
             )
-            for file in dynamic_file_list:
-                template_file = dynamic_env.get_template(file)
-                dst = Path(self.choices.project_dir) / Path(file).with_suffix(
-                    ""
-                )
-                dst.write_text(
-                    template_file.render(
-                        self.choices.model_dump(),
-                        slug=self.choices.project_dir.name,
-                    )
-                )
-
-            # --------------- finally populate the app folder. --------------- #
-            for file in ["main.py", "__init__.py"]:
-                with pkg_resources.as_file(template_dir / "app" / file) as src:
-                    dst = Path(self.choices.project_dir) / "app" / file
-                    dst.write_text(src.read_text(encoding="UTF-8"))
-            print("[green]Done[/green]")
-        except Exception as exc:
-            print("Error: ", exc)
+            sys.exit(3)
 
     # ------------------------------------------------------------------------ #
     #                create the git repository for the project.                #
@@ -171,7 +174,7 @@ class PyMaker:
             repo.index.add(repo.untracked_files)
             repo.index.commit("Initial Commit")
             print("[green]Done[/green]")
-        except Exception as exc:
+        except GitError as exc:
             print("Error: ", exc)
 
     # ------------------------------------------------------------------------ #

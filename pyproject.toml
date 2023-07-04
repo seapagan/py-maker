@@ -68,7 +68,8 @@ pylint = "pylint **/*.py"
 mypy = "mypy **/*.py"
 flake8 = "flake8 **/*.py"
 black = "black **/*.py"
-lint = ["black","mypy","flake8","pylint"]
+try = "tryceratops **/*.py"
+lint = ["black","flake8","pylint","mypy", "try"]
 
 # configure assorted tools and linters
 [tool.isort]
