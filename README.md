@@ -20,23 +20,26 @@ and cleaned up.
 It is probably better to install this package globally, rather than in a virtual
 environment, as it is intended to be used to create new projects.
 
+Currently the package is NOT on pypi so you need to install directly from this
+repository:
+
 Install the package globally using pip:
 
 ```console
-$ pip install py-maker
+$ pip install git+https://github.com/seapagan/py-maker.git
 ```
 
 If you cannot install globally due to permissions, you can install it to your
 user install directory:
 
 ```console
-$ pip install --user py-maker
+$ pip install --user git+https://github.com/seapagan/py-maker.git
 ```
 
 or use [pipx](https://pypa.github.io/pipx/)
 
 ```console
-$ pipx install py-maker
+$ pipx install git+https://github.com/seapagan/py-maker.git
 ```
 
 ## Usage
