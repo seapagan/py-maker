@@ -88,8 +88,12 @@ You can define your own, but there are 5 specific ones provided with the script.
 - `mypy` = Run MyPy type-checker on all Python files in the project.
 - `flake8` = Run Flake8 linter on all Python files in the project.
 - `black` = Run Black code formatter on all Python files in the project.
+- `try` = Run Tryceratops linter on all Python files in the project.
 
 - `lint` = Runs pylint, mypy, flake8 and black in sequence
+
+These are defined in the `pyproject.toml` file in the `[tool.poe.tasks]`
+section. Take a look at this file if you want to add or remove tasks.
 
 ### Customise
 
@@ -99,11 +103,13 @@ require, just remember to update the `pyproject.toml` file to match.
 
 ### Linting
 
-The generated project includes [flake8](https://flake8.pycqa.org/en/latest/) for
-linting and [Black](https://black.readthedocs.io/en/stable/) for formatting.
+The generated project includes [flake8](https://flake8.pycqa.org/en/latest/)
+(with several plugins) for linting and
+[Black](https://black.readthedocs.io/en/stable/) for formatting.
 [Mypy](http://mypy-lang.org/) is installed for type checking.
-[isort](https://pycqa.github.io/isort/) and [Pylint](https://pylint.org/) are
-also installed as standard.
+[isort](https://pycqa.github.io/isort/),[Pylint](https://pylint.org/) and
+[tyrceratops](https://github.com/guilatrova/tryceratops) are also installed as
+standard.
 
 ### Pre-commit
 
