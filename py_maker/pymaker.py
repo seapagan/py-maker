@@ -176,6 +176,7 @@ class PyMaker:
             print("[green]Done[/green]")
         except GitError as exc:
             print("Error: ", exc)
+            sys.exit(5)
 
     # ------------------------------------------------------------------------ #
     #                       display post-process messages                      #

@@ -7,6 +7,7 @@ app = typer.Typer(
     pretty_exceptions_show_locals=False,
     add_completion=False,
     no_args_is_help=True,
+    rich_markup_mode="rich",
 )
 
 
