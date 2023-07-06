@@ -7,6 +7,7 @@ import sys
 from datetime import datetime
 from pathlib import Path, PurePath
 
+import rtoml
 from git.config import GitConfigParser
 from git.exc import GitError
 from git.repo import Repo
@@ -176,6 +177,16 @@ class PyMaker:
                 )
                 shutil.rmtree(Path(self.choices.project_dir) / "app")
                 # remove script setting from pyproject.toml
+                toml_file = rtoml.load(
+                    Path(self.choices.project_dir) / "pyproject.toml"
+                )
+                for key in ["packages", "urls", "scripts"]:
+                    del toml_file["tool"]["poetry"][key]
+                rtoml.dump(
+                    toml_file,
+                    Path(self.choices.project_dir) / "pyproject.toml",
+                    pretty=True,
+                )
         except OSError as exc:
             print(f"\n[red]  -> {exc}")
             sys.exit(2)
