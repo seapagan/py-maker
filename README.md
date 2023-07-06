@@ -61,10 +61,11 @@ You will be asked a series of questions to customise the new project.
 
 When it asks "Package Name?" you can choose two variants :
 
-1) If you wish a standard Python package that can optionally be uploaded to Pypi
-   then enter a package name here. Note that underscores ("_") must be used as
-   opposed to dashes ("-") to comply with Python package naming rules.
-2) enter '-' to instruct that you are not creating any sort of package, just a
+1) If you wish for a standard Python package that can optionally be uploaded to
+   <http://pypi.org>, enter a package name here. Note that underscores ("_")
+   must be used as opposed to dashes ("-") to comply with Python package naming
+   rules.
+2) Enter '-' to instruct the tool that you are not creating any package, just a
    standalone app, and then the `main.py` will just be placed in the project
    root.
 
