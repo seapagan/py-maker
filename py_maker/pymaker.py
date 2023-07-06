@@ -2,10 +2,12 @@
 import importlib.resources as pkg_resources
 import os
 import re
+import shutil
 import sys
 from datetime import datetime
 from pathlib import Path, PurePath
 
+import rtoml
 from git.config import GitConfigParser
 from git.exc import GitError
 from git.repo import Repo
@@ -34,6 +36,13 @@ class PyMaker:
                 "and is relative to the current direcotry.\n"
             )
             sys.exit(1)
+
+    def sanitize(self, input_str: str) -> str:
+        """Replace any dashes in the supplied string by underscores.
+
+        Python needs underscores in library names, not dashes.
+        """
+        return str(input_str).replace("-", "_")
 
     def confirm_values(self) -> bool:
         """Confirm the values entered by the user."""
@@ -94,7 +103,7 @@ class PyMaker:
                 "\n[red]  -> Error: Permission denied creating directory "
                 f"'{self.choices.project_dir}'\n"
             )
-            sys.exit(3)
+            sys.exit(2)
 
     # ------------------------------------------------------------------------ #
     #             Copy the template files to the project directory.            #
@@ -122,8 +131,8 @@ class PyMaker:
             autoescape=True,
         )
 
-        # ------------------------ copy all the files ------------------------ #
         try:
+            # ---------------------- copy all the files ---------------------- #
             for item in file_list:
                 with pkg_resources.as_file(template_dir / item) as src:
                     if src.is_dir():
@@ -153,15 +162,34 @@ class PyMaker:
                     author=self.choices.author, year=self.get_current_year()
                 )
             )
-        except FileExistsError as exc:
+
+            # ---------- rename or delete the 'app' dir if required ---------- #
+            if self.choices.package_name != "-":
+                os.rename(
+                    Path(self.choices.project_dir) / "app",
+                    Path(self.choices.project_dir) / self.choices.package_name,
+                )
+            else:
+                # move the main.py into the root project folder and delete app
+                os.rename(
+                    Path(self.choices.project_dir) / "app" / "main.py",
+                    Path(self.choices.project_dir / "main.py"),
+                )
+                shutil.rmtree(Path(self.choices.project_dir) / "app")
+                # remove script setting from pyproject.toml
+                toml_file = rtoml.load(
+                    Path(self.choices.project_dir) / "pyproject.toml"
+                )
+                for key in ["packages", "urls", "scripts"]:
+                    del toml_file["tool"]["poetry"][key]
+                rtoml.dump(
+                    toml_file,
+                    Path(self.choices.project_dir) / "pyproject.toml",
+                    pretty=True,
+                )
+        except OSError as exc:
             print(f"\n[red]  -> {exc}")
             sys.exit(2)
-        except PermissionError:
-            print(
-                "\n[red]  -> Error: Permission denied creating file or folder "
-                f"'{self.choices.project_dir}'\n"
-            )
-            sys.exit(3)
 
     # ------------------------------------------------------------------------ #
     #                create the git repository for the project.                #
@@ -176,7 +204,7 @@ class PyMaker:
             print("[green]Done[/green]")
         except GitError as exc:
             print("Error: ", exc)
-            sys.exit(5)
+            sys.exit(3)
 
     # ------------------------------------------------------------------------ #
     #                       display post-process messages                      #
@@ -232,6 +260,10 @@ See the [bold][green]README.md[/green][/bold] file for more information.
         self.choices.name = Prompt.ask(
             "Name of the Application?",
             default=self.get_title(PurePath(self.choices.project_dir).name),
+        )
+        self.choices.package_name = Prompt.ask(
+            "Package Name? (Use '-' for standalone script)",
+            default=self.sanitize(self.location),
         )
         self.choices.description = Prompt.ask(
             "Description of the Application?",

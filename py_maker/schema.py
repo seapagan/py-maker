@@ -8,6 +8,7 @@ class ProjectSettings(BaseModel):
     """Base Settings schema for the application."""
 
     description: str = ""
+    package_name: str = ""
     author: str = ""
     email: str = ""
     license: str = ""
