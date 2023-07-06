@@ -6,7 +6,7 @@ authors = ["{{ author }} <{{ email }}>"]
 readme = "README.md"
 license = "{{ license }}"
 
-packages = [{ include = "app" }]
+packages = [{ include = "{{ package_name }}" }]
 
 [tool.poetry.urls]
 # customize the below URLs to point to your own GitHub repo. These will be
@@ -15,9 +15,9 @@ packages = [{ include = "app" }]
 #"Bug Tracker" = "https://github.com/seapagan/py-maker/issues"
 
 [tool.poetry.scripts]
-# replace with your own script name and entry point if you are creating a
-# command line tool.
-{{ slug }} = "app.main:app"
+# rename "{{ slug }}" below to change the executable name. You can also
+# add more scripts if your package offers multiple commands.
+{{ slug }} = "{{ package_name }}.main:app"
 
 [tool.poetry.dependencies]
 python = ">=3.9,<4.0"
