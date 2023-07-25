@@ -6,7 +6,26 @@ authors = ["Grant Ramsay <seapagan@gmail.com>"]
 readme = "README.md"
 license = "MIT"
 
-packages = [{include = "py_maker"}]
+repository = "https://github.com/seapagan/py-maker"
+homepage = "https://seapagan.github.io/seapagan/py-maker"
+
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Environment :: Console",
+  "Intended Audience :: Developers",
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: OS Independent",
+  "Programming Language :: Python :: 3.8",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Topic :: Software Development",
+  "Topic :: Software Development :: Code Generators",
+  "Topic :: Utilities",
+]
+
+packages = [{ include = "py_maker" }]
 
 [tool.poetry.urls]
 "Pull Requests" = "https://github.com/seapagan/py-maker/pulls"
@@ -17,7 +36,7 @@ pymaker = "py_maker.main:app"
 
 [tool.poetry.dependencies]
 python = ">=3.9,<4.0"
-typer = {extras = ["all"], version = "^0.9.0"}
+typer = { extras = ["all"], version = "^0.9.0" }
 jinja2 = "^3.1.2"
 gitpython = "^3.1.32"
 tomli = "^2.0.1"
@@ -69,7 +88,7 @@ mypy = "mypy **/*.py"
 flake8 = "flake8 **/*.py"
 black = "black **/*.py"
 try = "tryceratops **/*.py"
-lint = ["black","flake8","pylint","mypy", "try"]
+lint = ["black", "flake8", "pylint", "mypy", "try"]
 
 # configure assorted tools and linters
 [tool.isort]
@@ -93,8 +112,8 @@ exclude = '''
 [tool.flake8]
 max-line-length = 80
 exclude = ["__init__.py", ".git"]
-extend-ignore=["E203", "W503"]
-extend-select=["TC", "TC1", "TRY"]
+extend-ignore = ["E203", "W503"]
+extend-select = ["TC", "TC1", "TRY"]
 docstring-convention = "google"
 type-checking-pydantic-enabled = true
 
