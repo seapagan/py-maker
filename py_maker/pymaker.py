@@ -14,10 +14,10 @@ from git.exc import GitError
 from git.repo import Repo
 from jinja2 import Environment, FileSystemLoader
 from rich import print  # pylint: disable=W0622
-from rich.prompt import Confirm, Prompt
 
 from py_maker import template
 from py_maker.constants import ExitErrors, license_names
+from py_maker.prompt import Confirm, Prompt
 from py_maker.schema import ProjectValues
 
 
@@ -277,7 +277,6 @@ See the [bold][green]README.md[/green][/bold] file for more information.
             "Application License?",
             choices=license_names,
             default="MIT",
-            case_insensitive=True,
         )
 
         if not self.confirm_values():
