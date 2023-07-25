@@ -14,3 +14,18 @@ LICENCES: list[dict[str, str]] = [
 ]
 
 license_names: list[str] = [license["name"] for license in LICENCES]
+
+
+class ExitErrors:
+    """Exit errors.
+
+    Error codes for the application.
+    """
+
+    LOCATION_ERROR = 1
+    DIRECTORY_EXISTS = 2
+    GIT_ERROR = 3
+    FOLDER_NOT_EMPTY = 4
+    PERMISSION_DENIED = 5
+    USER_ABORT = 6
+    OS_ERROR = 7
