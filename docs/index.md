@@ -1,4 +1,4 @@
-# Py-Maker
+# Python Project Generation Tool
 
 This is a command line tool to help you create new Python projects.  It will
 create a new directory for your project, initialise a git repository, create a

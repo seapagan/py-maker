@@ -10,18 +10,18 @@ each project you are creating.
 Install the package globally using pip:
 
 ```console
-$ pip install py-maker
+$ pip install pyproject-maker
 ```
 
 If you cannot install globally due to permissions, you can install it to your
 user install directory:
 
 ```console
-$ pip install --user py-maker
+$ pip install --user pyproject-maker
 ```
 
 or use [pipx](https://pypa.github.io/pipx/){:target="_blank"}
 
 ```console
-$ pipx install py-maker
+$ pipx install pyproject-maker
 ```

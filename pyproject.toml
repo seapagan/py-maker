@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "py-maker"
+name = "pyproject-maker"
 version = "0.2.0"
 description = "A command line app to create a Python project skeleton."
 authors = ["Grant Ramsay <seapagan@gmail.com>"]

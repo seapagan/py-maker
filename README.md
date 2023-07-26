@@ -1,4 +1,4 @@
-# Py-Maker <!-- omit in toc -->
+# Python Project Generation Tool <!-- omit in toc -->
 
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/7c86940f816b455ab171dc8126476849)](https://app.codacy.com/gh/seapagan/py-maker/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
 
@@ -22,26 +22,23 @@ and cleaned up.
 It is probably better to install this package globally, rather than in a virtual
 environment, as it is intended to be used to create new projects.
 
-Currently the package is NOT on pypi so you need to install directly from this
-repository:
-
 Install the package globally using pip:
 
 ```console
-$ pip install git+https://github.com/seapagan/py-maker.git
+$ pip install pyproject-maker
 ```
 
 If you cannot install globally due to permissions, you can install it to your
 user install directory:
 
 ```console
-$ pip install --user git+https://github.com/seapagan/py-maker.git
+$ pip install --user pyproject-maker
 ```
 
 or use [pipx](https://pypa.github.io/pipx/)
 
 ```console
-$ pipx install git+https://github.com/seapagan/py-maker.git
+$ pipx install pyproject-maker
 ```
 
 ## Usage
@@ -80,7 +77,7 @@ $ poetry install
 $ poetry shell
 ```
 
-Now, you can start developing :)
+Now, you can start developing :smile:
 
 ### Task Runner
 
