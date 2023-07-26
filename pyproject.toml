@@ -7,7 +7,7 @@ readme = "README.md"
 license = "MIT"
 
 repository = "https://github.com/seapagan/py-maker"
-homepage = "https://seapagan.github.io/seapagan/py-maker"
+homepage = "https://py-maker.seapagan.net"
 
 classifiers = [
   "Development Status :: 4 - Beta",
