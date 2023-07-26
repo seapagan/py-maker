@@ -1,0 +1,47 @@
+site_name: PyMaker
+site_url: https://pymaker.seapagan.net/
+
+theme:
+  name: material
+  palette:
+    primary: light-blue
+    accent: blue
+  features:
+    - navigation.footer
+    - navigation.expand
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/seapagan/py-maker
+    - icon: fontawesome/brands/twitter
+      link: https://twitter.com/gnramsay-dev
+
+copyright: © 2023 Grant Ramsay (Seapagan)
+
+plugins:
+  - search
+  - git-revision-date-localized
+  - mkdocstrings
+  - latest-git-tag
+  - minify:
+      minify_html: true
+      minify_css: true
+      minify_js: true
+      htmlmin_opts:
+        remove_comments: true
+        remove_empty_space: true
+
+repo_url: https://github.com/seapagan/py-maker
+repo_name: seapagan/fastapi-template
+
+markdown_extensions:
+  - admonition
+  - pymdownx.snippets
+  - pymdownx.superfences
+  - pymdownx.highlight:
+      linenums: false
+      auto_title: false
+  - attr_list
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg

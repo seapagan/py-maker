@@ -329,6 +329,16 @@ tomli = {version = "*", optional = true, markers = "python_full_version <= \"3.1
 toml = ["tomli"]
 
 [[package]]
+name = "csscompressor"
+version = "0.9.5"
+description = "A python port of YUI CSS Compressor"
+optional = false
+python-versions = "*"
+files = [
+    {file = "csscompressor-0.9.5.tar.gz", hash = "sha256:afa22badbcf3120a4f392e4d22f9fff485c044a1feda4a950ecc5eba9dd31a05"},
+]
+
+[[package]]
 name = "dill"
 version = "0.3.6"
 description = "serialize all of python"
@@ -544,6 +554,16 @@ files = [
 gitdb = ">=4.0.1,<5"
 
 [[package]]
+name = "htmlmin2"
+version = "0.1.13"
+description = "An HTML Minifier"
+optional = false
+python-versions = "*"
+files = [
+    {file = "htmlmin2-0.1.13-py3-none-any.whl", hash = "sha256:75609f2a42e64f7ce57dbff28a39890363bde9e7e5885db633317efbdf8c79a2"},
+]
+
+[[package]]
 name = "identify"
 version = "2.5.24"
 description = "File identification library for Python"
@@ -631,6 +651,16 @@ MarkupSafe = ">=2.0"
 
 [package.extras]
 i18n = ["Babel (>=2.7)"]
+
+[[package]]
+name = "jsmin"
+version = "3.0.1"
+description = "JavaScript minifier."
+optional = false
+python-versions = "*"
+files = [
+    {file = "jsmin-3.0.1.tar.gz", hash = "sha256:c0959a121ef94542e807a674142606f7e90214a2b3d1eb17300244bbb5cc2bfc"},
+]
 
 [[package]]
 name = "lazy-object-proxy"
@@ -917,6 +947,23 @@ files = [
     {file = "mkdocs_material_extensions-1.1.1-py3-none-any.whl", hash = "sha256:e41d9f38e4798b6617ad98ca8f7f1157b1e4385ac1459ca1e4ea219b556df945"},
     {file = "mkdocs_material_extensions-1.1.1.tar.gz", hash = "sha256:9c003da71e2cc2493d910237448c672e00cefc800d3d6ae93d2fc69979e3bd93"},
 ]
+
+[[package]]
+name = "mkdocs-minify-plugin"
+version = "0.7.0"
+description = "An MkDocs plugin to minify HTML, JS or CSS files prior to being written to disk"
+optional = false
+python-versions = ">=3.7"
+files = [
+    {file = "mkdocs-minify-plugin-0.7.0.tar.gz", hash = "sha256:8aaff5ed2d5edac786b389e854aea310d9ad3c3737c7743fedb233500ecc09d4"},
+    {file = "mkdocs_minify_plugin-0.7.0-py3-none-any.whl", hash = "sha256:6efb7143eff1c36d50b88d507084b7da83f359d99330b6c17b35a04a8526806a"},
+]
+
+[package.dependencies]
+csscompressor = ">=0.9.5"
+htmlmin2 = ">=0.1.13"
+jsmin = ">=3.0.1"
+mkdocs = ">=1.4.1"
 
 [[package]]
 name = "mkdocstrings"
@@ -2102,4 +2149,4 @@ testing = ["big-O", "flake8 (<5)", "jaraco.functools", "jaraco.itertools", "more
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.9,<4.0"
-content-hash = "ebd883f717c2b9c88baae9860e14042eca23996ea42f52f75d42ff64c455d624"
+content-hash = "2b1dcbb9661a279e023f990e992a3b78a2976e47edad33f2c1e1f77d15a79c5e"

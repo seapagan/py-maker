@@ -86,6 +86,7 @@ mkdocs-material = "^9.1.19"
 mkdocstrings = "^0.22.0"
 mkdocs-git-revision-date-localized-plugin = "^1.2.0"
 mkdocs-latest-git-tag-plugin = "^0.1.2"
+mkdocs-minify-plugin = "^0.7.0"
 
 [tool.poe.tasks]
 # setup PoeThePoet tasks
@@ -96,6 +97,11 @@ flake8 = "flake8 **/*.py"
 black = "black **/*.py"
 try = "tryceratops **/*.py"
 lint = ["black", "flake8", "pylint", "mypy", "try"]
+
+"docs:publish" = "mkdocs gh-deploy"
+"docs:build" = "mkdocs build"
+"docs:serve" = "mkdocs serve"
+"docs:serve:all" = "mkdocs serve -a 0.0.0.0:9000"
 
 # configure assorted tools and linters
 [tool.isort]
