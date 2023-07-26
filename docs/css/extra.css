@@ -1,0 +1,12 @@
+.task-list-item2 {
+  list-style-type: none;
+}
+
+.task-list-item input {
+  margin: 0 4px 0.25em -4px;
+  vertical-align: middle;
+}
+
+.md-nav--primary .md-nav__title {
+  display: none;
+}

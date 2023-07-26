@@ -1,5 +1,7 @@
 # Py-Maker <!-- omit in toc -->
 
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/7c86940f816b455ab171dc8126476849)](https://app.codacy.com/gh/seapagan/py-maker/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
+
 This is a command line tool to help you create new Python projects.  It will
 create a new directory for your project, initialise a git repository, create a
 virtual environment, and install some basic dependencies.

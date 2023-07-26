@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "py-maker"
-version = "0.1.0"
+version = "0.2.0"
 description = "A command line app to create a Python project skeleton."
 authors = ["Grant Ramsay <seapagan@gmail.com>"]
 readme = "README.md"
@@ -80,6 +80,14 @@ pytest-mock = "^3.11.1"
 mock = "^5.1.0"
 faker = "^19.2.0"
 
+# documentation
+mkdocs = "^1.4.3"
+mkdocs-material = "^9.1.19"
+mkdocstrings = "^0.22.0"
+mkdocs-git-revision-date-localized-plugin = "^1.2.0"
+mkdocs-latest-git-tag-plugin = "^0.1.2"
+mkdocs-minify-plugin = "^0.7.0"
+
 [tool.poe.tasks]
 # setup PoeThePoet tasks
 pre = "pre-commit run --all-files"
@@ -89,6 +97,11 @@ flake8 = "flake8 **/*.py"
 black = "black **/*.py"
 try = "tryceratops **/*.py"
 lint = ["black", "flake8", "pylint", "mypy", "try"]
+
+"docs:publish" = "mkdocs gh-deploy"
+"docs:build" = "mkdocs build"
+"docs:serve" = "mkdocs serve"
+"docs:serve:all" = "mkdocs serve -a 0.0.0.0:9000"
 
 # configure assorted tools and linters
 [tool.isort]

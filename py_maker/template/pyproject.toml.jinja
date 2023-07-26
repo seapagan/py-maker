@@ -60,7 +60,12 @@ mypy = "^1.4.1"
 # setup PoeThePoet tasks
 [tool.poe.tasks]
 pre = "pre-commit run --all-files"
-lint = "pylint **/*.py"
+pylint = "pylint **/*.py"
+mypy = "mypy **/*.py"
+flake8 = "flake8 **/*.py"
+black = "black **/*.py"
+try = "tryceratops **/*.py"
+lint = ["black", "flake8", "pylint", "mypy", "try"]
 
 # configure assorted tools and linters
 [tool.isort]
