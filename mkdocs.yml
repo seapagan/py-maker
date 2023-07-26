@@ -20,7 +20,8 @@ copyright: © 2023 Grant Ramsay (Seapagan)
 
 plugins:
   - search
-  - git-revision-date-localized
+  - git-revision-date-localized:
+      enable_creation_date: true
   - mkdocstrings
   - latest-git-tag
   - minify:
@@ -32,7 +33,7 @@ plugins:
         remove_empty_space: true
 
 repo_url: https://github.com/seapagan/py-maker
-repo_name: seapagan/fastapi-template
+repo_name: seapagan/py-maker
 
 markdown_extensions:
   - admonition
@@ -45,3 +46,13 @@ markdown_extensions:
   - pymdownx.emoji:
       emoji_index: !!python/name:materialx.emoji.twemoji
       emoji_generator: !!python/name:materialx.emoji.to_svg
+
+extra_css:
+  - css/extra.css
+
+nav:
+  - Home: index.md
+  - Installation: installation.md
+  - Quick Start: quick-start.md
+  - Task Runner: tasks.md
+  - License: license.md
