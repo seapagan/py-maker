@@ -1,5 +1,8 @@
 """Subclass the Prompt class from Rich to add a few features.
 
+I have a PR open to add these features to Rich, but until it is merged (if it is
+merged) I will use this subclass.
+
 Currently only makes the choices case-insensitive.
 """
 from rich.prompt import Confirm as RichConfirm
@@ -9,7 +12,7 @@ from rich.prompt import PromptType
 
 
 class Confirm(RichConfirm):
-    """Just so we can import it from the same place as IPrompt.
+    """Just so we can import it from the same place as our Prompt.
 
     Saves importing from the Rich library.
     """
