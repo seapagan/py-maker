@@ -119,21 +119,20 @@ class PyMaker:
         'README.md.jinja' is copied as 'README.md' after template substitution.
         """
         template_dir = pkg_resources.files(template)
-        skip_dirs = ["__pycache__", "licenses"]
+
+        skip_dirs = ["__pycache__"]
         file_list = [
             item.relative_to(template_dir)
             for item in template_dir.rglob("*")  # type: ignore[attr-defined]
             if set(item.parts).isdisjoint(skip_dirs)
         ]
 
-        # set up Jinja environment
-        jinja_env = Environment(
-            loader=FileSystemLoader(str(template_dir)),
-            autoescape=True,
-        )
-
         try:
             # ---------------------- copy all the files ---------------------- #
+            jinja_env = Environment(
+                loader=FileSystemLoader(str(template_dir)),
+                autoescape=True,
+            )
             for item in file_list:
                 with pkg_resources.as_file(template_dir / item) as src:
                     if src.is_dir():
@@ -154,8 +153,12 @@ class PyMaker:
                         dst.write_text(src.read_text(encoding="UTF-8"))
 
             # ---------------- generate the license file next. ------------- #
-            license_template = jinja_env.get_template(
-                f"licenses/{self.choices.license}.jinja"
+            license_env = Environment(
+                loader=FileSystemLoader(str(template_dir / "../licenses")),
+                autoescape=True,
+            )
+            license_template = license_env.get_template(
+                f"{self.choices.license}.jinja"
             )
             dst = self.choices.project_dir / "LICENSE.txt"
             dst.write_text(
