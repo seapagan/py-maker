@@ -8,3 +8,11 @@
 - Ask for more settings ie homepage, repo, etc. and add them to the generated
   `pyproject.toml` file (if the new project is likely to be uploaded to PyPI)
 - check manually entered package name to ensure no dashes.
+- add a flag to overwrite existing files if the directory exists. Make this
+  require confirmation. Alternately allow overwrite with confirmation if an
+  existing/populated directory is found. Add a force flag to skip confirmation.
+  I think DO NOT allow this when '.' is specified as this could be disastrous.
+- when creating a package project, quickly check PyPI to see if the package name
+  is already taken. If it is, either abort or ask the user if they want to
+  continue (making clear they will need to rename the package before it can be
+  uploaded).
