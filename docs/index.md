@@ -4,6 +4,8 @@ This is a command line tool to help you create new Python projects.  It will
 create a new directory for your project, initialise a git repository, create a
 virtual environment, and install some basic dependencies.
 
+Latest Version : {{ latest-git-tag }}
+
 ## Testing
 
 The generated project includes
