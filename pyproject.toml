@@ -80,6 +80,13 @@ pytest-mock = "^3.11.1"
 mock = "^5.1.0"
 faker = "^19.2.0"
 
+# documentation
+mkdocs = "^1.4.3"
+mkdocs-material = "^9.1.19"
+mkdocstrings = "^0.22.0"
+mkdocs-git-revision-date-localized-plugin = "^1.2.0"
+mkdocs-latest-git-tag-plugin = "^0.1.2"
+
 [tool.poe.tasks]
 # setup PoeThePoet tasks
 pre = "pre-commit run --all-files"
