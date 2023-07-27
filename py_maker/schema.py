@@ -1,5 +1,6 @@
 """Define some Pydantic schemas for the application."""
 from pathlib import Path
+from typing import Optional
 
 from pydantic import BaseModel
 
@@ -22,3 +23,4 @@ class ProjectValues(ProjectSettings):
 
     project_dir: Path = Path("")
     name: str = ""
+    standalone: Optional[bool] = False

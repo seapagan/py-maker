@@ -1,23 +1,24 @@
 [tool.poetry]
-name = "{{ name }}"
+name = "{{ slug }}"
 version = "0.1.0"
 description = "{{ description }}."
 authors = ["{{ author }} <{{ email }}>"]
 readme = "README.md"
 license = "{{ license }}"
 
+{% if not standalone %}
 packages = [{ include = "{{ package_name }}" }]
 
 [tool.poetry.urls]
 # customize the below URLs to point to your own GitHub repo. These will be
 # shown on [Pypi.org](https://pypi.org/) if you are creating a public package.
-#"Pull Requests" = "https://github.com/seapagan/py-maker/pulls"
-#"Bug Tracker" = "https://github.com/seapagan/py-maker/issues"
-
+"Pull Requests" = "https://github.com/seapagan/{{ slug }}/pulls"
+"Bug Tracker" = "https://github.com/seapagan/{{ slug }}/issues"
 [tool.poetry.scripts]
 # rename "{{ slug }}" below to change the executable name. You can also
 # add more scripts if your package offers multiple commands.
 {{ slug }} = "{{ package_name }}.main:app"
+{% endif %}
 
 [tool.poetry.dependencies]
 python = ">=3.9,<4.0"
