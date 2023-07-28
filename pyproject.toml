@@ -141,3 +141,7 @@ add-ignore = ["D104"]
 
 [tool.pytest.ini_options]
 filterwarnings = []
+
+[tool.coverage.run]
+# source = []
+omit = ["*/tests/*"]
