@@ -3,7 +3,6 @@
 Allows reading from a settings file and writing to it.
 """
 from dataclasses import dataclass, field
-from functools import lru_cache
 from pathlib import Path
 from typing import List
 
@@ -47,7 +46,6 @@ class Settings:
             and a not in self.ignore_list
             and not callable(getattr(self, a))
         }
-        print(attrs)
         rtoml.dump({"pymaker": attrs}, self.settings_path)
 
     def load(self):
@@ -68,11 +66,12 @@ class Settings:
         except AttributeError:
             return None
 
+    def set(self, key: str, value, autosave: bool = True):
+        """Set a setting by key and value.
 
-@lru_cache()
-def get_settings():
-    """Get the settings.
-
-    This is a read-only function that returns an instance of the settings class.
-    """
-    return Settings()
+        If autosave is True (the default), the settings will be saved to the
+        settings file each time it is called.
+        """
+        setattr(self, key, value)
+        if autosave:
+            self.save()
