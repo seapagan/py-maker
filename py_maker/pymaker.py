@@ -8,7 +8,6 @@ from datetime import datetime
 from pathlib import Path, PurePath
 from typing import Union
 
-import rtoml
 from git.config import GitConfigParser
 from git.exc import GitError
 from git.repo import Repo
@@ -132,6 +131,9 @@ class PyMaker:
             jinja_env = Environment(
                 loader=FileSystemLoader(str(template_dir)),
                 autoescape=True,
+                trim_blocks=True,
+                lstrip_blocks=True,
+                keep_trailing_newline=True,
             )
             for item in file_list:
                 with pkg_resources.as_file(template_dir / item) as src:
@@ -156,6 +158,7 @@ class PyMaker:
             license_env = Environment(
                 loader=FileSystemLoader(str(template_dir / "../licenses")),
                 autoescape=True,
+                keep_trailing_newline=True,
             )
             license_template = license_env.get_template(
                 f"{self.choices.license}.jinja"
@@ -178,17 +181,6 @@ class PyMaker:
                     Path(self.choices.project_dir / "main.py")
                 )
                 shutil.rmtree(self.choices.project_dir / "app")
-                # remove script setting from pyproject.toml
-                toml_file = rtoml.load(
-                    Path(self.choices.project_dir) / "pyproject.toml"
-                )
-                for key in ["packages", "urls", "scripts"]:
-                    del toml_file["tool"]["poetry"][key]
-                rtoml.dump(
-                    toml_file,
-                    Path(self.choices.project_dir) / "pyproject.toml",
-                    pretty=True,
-                )
         except OSError as exc:
             print(f"\n[red]  -> {exc}")
             sys.exit(ExitErrors.OS_ERROR)
@@ -281,6 +273,9 @@ See the [bold][green]README.md[/green][/bold] file for more information.
             choices=license_names,
             default="MIT",
         )
+
+        if self.choices.package_name == "-":
+            self.choices.standalone = True
 
         if not self.confirm_values():
             # User chose not to continue
