@@ -42,6 +42,7 @@ gitpython = "^3.1.32"
 tomli = "^2.0.1"
 pydantic = "^2.1"
 rich = "^13.4.2"
+pydantic-settings = "^2.0.2"
 
 [build-system]
 requires = ["poetry-core"]
