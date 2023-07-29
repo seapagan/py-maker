@@ -4,11 +4,9 @@ import os
 import re
 import shutil
 import sys
-from datetime import datetime
 from pathlib import Path, PurePath
 from typing import Union
 
-from git.config import GitConfigParser
 from git.exc import GitError
 from git.repo import Repo
 from jinja2 import Environment, FileSystemLoader
@@ -16,6 +14,7 @@ from rich import print  # pylint: disable=W0622
 
 from py_maker import template
 from py_maker.constants import ExitErrors, license_names
+from py_maker.helpers import get_author_and_email_from_git, get_current_year
 from py_maker.prompt import Confirm, Prompt
 from py_maker.schema import ProjectValues
 
@@ -66,21 +65,6 @@ class PyMaker:
     def header() -> None:
         """Print a header for the application."""
         print("[bold]PyMaker[/bold] - Generate a Python project skeleton.\n")
-
-    @staticmethod
-    def get_author_and_email_from_git() -> tuple[str, str]:
-        """Get the author name and email from git."""
-        config = GitConfigParser()
-
-        return (
-            str(config.get_value("user", "name", None)),
-            str(config.get_value("user", "email", None)),
-        )
-
-    @staticmethod
-    def get_current_year() -> str:
-        """Get the current year."""
-        return str(datetime.now().year)
 
     # ------------------------------------------------------------------------ #
     #                   create the project skeleton folders.                   #
@@ -166,7 +150,7 @@ class PyMaker:
             dst = self.choices.project_dir / "LICENSE.txt"
             dst.write_text(
                 license_template.render(
-                    author=self.choices.author, year=self.get_current_year()
+                    author=self.choices.author, year=get_current_year()
                 )
             )
 
@@ -249,7 +233,7 @@ See the [bold][green]README.md[/green][/bold] file for more information.
             f"{self.choices.project_dir}\n"
         )
 
-        git_author, git_email = self.get_author_and_email_from_git()
+        git_author, git_email = get_author_and_email_from_git()
 
         self.choices.name = Prompt.ask(
             "Name of the Application?",
