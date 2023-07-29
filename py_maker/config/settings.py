@@ -8,6 +8,9 @@ from typing import List
 
 import rtoml
 
+from py_maker.helpers import get_author_and_email_from_git
+from py_maker.prompt import Prompt
+
 
 @dataclass
 class Settings:
@@ -75,3 +78,16 @@ class Settings:
         setattr(self, key, value)
         if autosave:
             self.save()
+
+
+def get_user_settings():
+    """Ask the user for their settings and save to the settings file.
+
+    We read the user's name and email from git, and use that as the default,
+    letting them change it if they want.
+    """
+    git_author, git_email = get_author_and_email_from_git()
+    default = Settings()
+
+    default.user_name = Prompt.ask("Author Name?", default=git_author)
+    default.user_email = Prompt.ask("Author Email?", default=git_email)
