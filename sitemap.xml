@@ -2,27 +2,32 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://pymaker.seapagan.net/</loc>
-         <lastmod>2023-07-26</lastmod>
+         <lastmod>2023-07-30</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://pymaker.seapagan.net/configuration/</loc>
+         <lastmod>2023-07-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://pymaker.seapagan.net/installation/</loc>
-         <lastmod>2023-07-26</lastmod>
+         <lastmod>2023-07-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://pymaker.seapagan.net/license/</loc>
-         <lastmod>2023-07-26</lastmod>
+         <lastmod>2023-07-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://pymaker.seapagan.net/quick-start/</loc>
-         <lastmod>2023-07-26</lastmod>
+         <lastmod>2023-07-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://pymaker.seapagan.net/tasks/</loc>
-         <lastmod>2023-07-26</lastmod>
+         <lastmod>2023-07-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
 </urlset>
