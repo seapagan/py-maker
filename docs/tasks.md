@@ -1,9 +1,9 @@
 # Task Runner
 
 The task-runner [Poe the
-Poet](https://github.com/nat-n/poethepoet){:target="_blank"} is installed as a
-development dependency which allows us to run simple tasks (similar to npm
-`scripts`).
+Poet](https://github.com/nat-n/poethepoet){:target="_blank"} is installed in the
+new project as a development dependency which allows us to run simple tasks
+(similar to npm `scripts`).
 
 These are run (from within the virtual environment) using the `poe` command and
 then the script name, for example:

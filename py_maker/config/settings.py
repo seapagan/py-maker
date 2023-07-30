@@ -23,7 +23,6 @@ class Settings:
             "settings_folder",
             "settings_path",
             "ignore_list",
-            "schema_version",
         ]
     )
     settings_folder: Path = Path.home() / ".pymaker"
