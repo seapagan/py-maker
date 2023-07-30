@@ -196,7 +196,7 @@ class PyMaker:
         Currently just prints messages on what to do next.
         """
         output = f"""
-[green]--> Project created successfully.[/green]
+--> [green]Project created successfully.[/green]
 
 [bold]Next steps:[/bold]
 

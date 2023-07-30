@@ -92,7 +92,7 @@ class Settings:
         git_author, git_email = get_author_and_email_from_git()
 
         print(
-            "-> [green]Settings file is missing, creating now. "
+            "--> [green]Settings file is missing, creating now. "
             "Please confirm defaults:\n"
         )
 
@@ -105,4 +105,4 @@ class Settings:
         )
 
         self.save()
-        print("\n-> [green]Settings file saved.\n")
+        print("\n--> [green]Settings file saved.\n")
