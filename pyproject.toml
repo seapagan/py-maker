@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "pyproject-maker"
-version = "0.2.1"
+version = "0.3.0"
 description = "A command line app to create a Python project skeleton."
 authors = ["Grant Ramsay <seapagan@gmail.com>"]
 readme = "README.md"
@@ -87,6 +87,8 @@ mkdocstrings = "^0.22.0"
 mkdocs-git-revision-date-localized-plugin = "^1.2.0"
 mkdocs-latest-git-tag-plugin = "^0.1.2"
 mkdocs-minify-plugin = "^0.7.0"
+pymdown-extensions = "^10.1"
+pygments = "^2.15.1"
 
 [tool.poe.tasks]
 # setup PoeThePoet tasks
@@ -141,3 +143,7 @@ add-ignore = ["D104"]
 
 [tool.pytest.ini_options]
 filterwarnings = []
+
+[tool.coverage.run]
+# source = []
+omit = ["*/tests/*"]

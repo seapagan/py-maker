@@ -1,5 +1,7 @@
 # Quick Start
 
+## Create a new project
+
 To create a new project, run the following command:
 
 ```console
@@ -25,6 +27,8 @@ The App will then run the steps needed to get you started quickly:
 
 You will be asked a series of questions to customise the new project.
 
+## Choose a package name and description
+
 When it asks "Package Name?" you can choose two variants :
 
 1. **If you are creating a standard Python package** that can optionally be
@@ -35,6 +39,8 @@ When it asks "Package Name?" you can choose two variants :
    library, enter '-' for the package name. In this case the `main.py` will just
    be placed in the project root and no package folder will be created or
    referenced.
+
+## Start developing
 
 You should now change into the new directory, install dependencies and activate
 the virtual environment:
@@ -47,7 +53,7 @@ $ poetry shell
 
 Now, you can start developing :smile:
 
-Example run :
+## Example run
 
 ```console
 $ pymaker new test-project

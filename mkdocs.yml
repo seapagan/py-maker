@@ -54,5 +54,6 @@ nav:
   - Home: index.md
   - Installation: installation.md
   - Quick Start: quick-start.md
+  - Configuration: configuration.md
   - Task Runner: tasks.md
   - License: license.md

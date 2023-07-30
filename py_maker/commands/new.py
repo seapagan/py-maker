@@ -3,7 +3,7 @@ import typer
 
 from py_maker.pymaker import PyMaker
 
-app = typer.Typer()
+app = typer.Typer(no_args_is_help=True)
 
 
 @app.callback(invoke_without_command=True)
