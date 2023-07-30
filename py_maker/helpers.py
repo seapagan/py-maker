@@ -9,8 +9,8 @@ def get_author_and_email_from_git() -> tuple[str, str]:
     config = GitConfigParser()
 
     return (
-        str(config.get_value("user", "name", None)),
-        str(config.get_value("user", "email", None)),
+        str(config.get_value("user", "name", "")),
+        str(config.get_value("user", "email", "")),
     )
 
 
