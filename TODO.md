@@ -16,3 +16,6 @@
   is already taken. If it is, either abort or ask the user if they want to
   continue (making clear they will need to rename the package before it can be
   uploaded).
+- option to dump the default template files to a local directory so they can be
+  edited and used as custom templates, optionally dumping to the
+  `~/.pymaker/templates` folder overwriting existing customizations.
