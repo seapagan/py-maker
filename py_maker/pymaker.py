@@ -15,7 +15,7 @@ from rich import print  # pylint: disable=W0622
 from py_maker import template
 from py_maker.config.settings import Settings
 from py_maker.constants import ExitErrors, license_names
-from py_maker.helpers import get_current_year
+from py_maker.helpers import get_current_year, header
 from py_maker.prompt import Confirm, Prompt
 from py_maker.schema import ProjectValues
 
@@ -28,7 +28,7 @@ class PyMaker:
         self.choices: ProjectValues = ProjectValues()
         self.location: str = location
 
-        self.header()
+        header()
 
         self.settings = Settings()
 
@@ -63,11 +63,6 @@ class PyMaker:
     def get_title(self, key: str) -> str:
         """Get the title for the application."""
         return re.sub("[_-]", " ", key).title() if key != "." else ""
-
-    @staticmethod
-    def header() -> None:
-        """Print a header for the application."""
-        print("[bold]PyMaker[/bold] - Generate a Python project skeleton.\n")
 
     # ------------------------------------------------------------------------ #
     #                   create the project skeleton folders.                   #
@@ -251,11 +246,11 @@ See the [bold][green]README.md[/green][/bold] file for more information.
             "Description of the Application?",
         )
         self.choices.author = Prompt.ask(
-            "Author Name?", default=self.settings.user_name
+            "Author Name?", default=self.settings.author_name
         )
 
         self.choices.email = Prompt.ask(
-            "Author Email?", default=self.settings.user_email
+            "Author Email?", default=self.settings.author_email
         )
         self.choices.license = Prompt.ask(
             "Application License?",

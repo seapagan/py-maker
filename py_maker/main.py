@@ -1,7 +1,7 @@
 """Main application entry point."""
 import typer
 
-from py_maker.commands import new
+from py_maker.commands import config, new
 
 app = typer.Typer(
     pretty_exceptions_show_locals=False,
@@ -11,7 +11,10 @@ app = typer.Typer(
 )
 
 
-app.add_typer(new.app, name="new")
+app.add_typer(new.app, name="new", help="Create a new Python project.")
+app.add_typer(
+    config.app, name="config", help="Show or change the Configuration."
+)
 
 if __name__ == "__main__":
     app()

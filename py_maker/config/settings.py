@@ -4,13 +4,13 @@ Allows reading from a settings file and writing to it.
 """
 from dataclasses import dataclass, field
 from pathlib import Path
-from typing import List
+from typing import Dict, List
 
 import rtoml
 from rich import print  # pylint: disable=redefined-builtin
 
 from py_maker.constants import license_names
-from py_maker.helpers import get_author_and_email_from_git
+from py_maker.helpers import get_author_and_email_from_git, show_table
 from py_maker.prompt import Prompt
 
 
@@ -24,6 +24,7 @@ class Settings:
             "settings_folder",
             "settings_path",
             "ignore_list",
+            "schema_version",
         ]
     )
     settings_folder: Path = Path.home() / ".pymaker"
@@ -31,31 +32,33 @@ class Settings:
 
     # define our settings
     schema_version: str = "1.0"
-    user_name: str = ""
-    user_email: str = ""
+    author_name: str = ""
+    author_email: str = ""
     default_license: str = ""
 
     def __post_init__(self):
         """Create the settings folder if it doesn't exist."""
         if not self.settings_folder.exists():
             self.settings_folder.mkdir(parents=True)
-            self.settings_path.touch()
-            self.get_user_settings()
+            self.get_user_settings(missing=True)
 
         self.load()
 
-    def save(self):
-        """Save the settings to the settings file."""
-        attrs = {
+    def get_attrs(self) -> Dict[str, str]:
+        """Return a dictionary of our setting values."""
+        return {
             a: getattr(self, a)
             for a in dir(self)
             if not a.startswith("__")
             and a not in self.ignore_list
             and not callable(getattr(self, a))
         }
-        rtoml.dump({"pymaker": attrs}, self.settings_path)
 
-    def load(self):
+    def save(self) -> None:
+        """Save the settings to the settings file."""
+        rtoml.dump({"pymaker": self.get_attrs()}, self.settings_path)
+
+    def load(self) -> None:
         """Load the settings from the settings file."""
         try:
             settings = rtoml.load(self.settings_path)
@@ -83,7 +86,7 @@ class Settings:
         if autosave:
             self.save()
 
-    def get_user_settings(self):
+    def get_user_settings(self, missing: bool = False) -> None:
         """Ask the user for their settings and save to the settings file.
 
         We read the user's name and email from git, and use that as the default,
@@ -91,18 +94,38 @@ class Settings:
         """
         git_author, git_email = get_author_and_email_from_git()
 
-        print(
-            "--> [green]Settings file is missing, creating now. "
-            "Please confirm defaults:\n"
-        )
+        if missing:
+            print(
+                "--> [green]Settings file is missing, creating now. "
+                "Please confirm defaults:\n"
+            )
 
-        self.user_name = Prompt.ask("Author Name?", default=git_author)
-        self.user_email = Prompt.ask("Author Email?", default=git_email)
+        self.author_name = Prompt.ask(
+            "Author Name?",
+            default=git_author if missing else self.author_name,
+        )
+        self.author_email = Prompt.ask(
+            "Author Email?",
+            default=git_email if missing else self.author_email,
+        )
         self.default_license = Prompt.ask(
             "Application License?",
             choices=license_names,
-            default="MIT",
+            default="MIT" if missing else self.default_license,
         )
 
         self.save()
         print("\n--> [green]Settings file saved.\n")
+
+    def list_settings(self) -> Dict[str, str]:
+        """Return a dictionary of settings."""
+        return self.get_attrs()
+
+    def change_settings(self) -> None:
+        """Allow the user to change settings."""
+        show_table(self.list_settings())
+
+        print("\n--> [green]Enter new settings:\n")
+        self.get_user_settings()
+
+        self.save()
