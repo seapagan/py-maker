@@ -7,7 +7,9 @@ from pathlib import Path
 from typing import List
 
 import rtoml
+from rich import print  # pylint: disable=redefined-builtin
 
+from py_maker.constants import license_names
 from py_maker.helpers import get_author_and_email_from_git
 from py_maker.prompt import Prompt
 
@@ -28,6 +30,7 @@ class Settings:
     settings_path: Path = settings_folder / "config.toml"
 
     # define our settings
+    schema_version: str = "1.0"
     user_name: str = ""
     user_email: str = ""
     default_license: str = ""
@@ -37,6 +40,7 @@ class Settings:
         if not self.settings_folder.exists():
             self.settings_folder.mkdir(parents=True)
             self.settings_path.touch()
+            self.get_user_settings()
 
         self.load()
 
@@ -79,15 +83,26 @@ class Settings:
         if autosave:
             self.save()
 
+    def get_user_settings(self):
+        """Ask the user for their settings and save to the settings file.
 
-def get_user_settings():
-    """Ask the user for their settings and save to the settings file.
+        We read the user's name and email from git, and use that as the default,
+        letting them change it if they want.
+        """
+        git_author, git_email = get_author_and_email_from_git()
 
-    We read the user's name and email from git, and use that as the default,
-    letting them change it if they want.
-    """
-    git_author, git_email = get_author_and_email_from_git()
-    default = Settings()
+        print(
+            "-> [green]Settings file is missing, creating now. "
+            "Please confirm defaults:\n"
+        )
 
-    default.user_name = Prompt.ask("Author Name?", default=git_author)
-    default.user_email = Prompt.ask("Author Email?", default=git_email)
+        self.user_name = Prompt.ask("Author Name?", default=git_author)
+        self.user_email = Prompt.ask("Author Email?", default=git_email)
+        self.default_license = Prompt.ask(
+            "Application License?",
+            choices=license_names,
+            default="MIT",
+        )
+
+        self.save()
+        print("\n-> [green]Settings file saved.\n")
