@@ -18,7 +18,6 @@ from py_maker.prompt import Prompt
 class Settings:
     """The main settings class."""
 
-    # settings file path
     ignore_list: List = field(
         default_factory=lambda: [
             "settings_folder",
