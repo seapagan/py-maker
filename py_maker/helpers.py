@@ -1,11 +1,17 @@
 """Helpers for the config module."""
+from __future__ import annotations
+
+import re
 from datetime import datetime
-from typing import Dict
+from typing import TYPE_CHECKING, Dict, Union
 
 from git.config import GitConfigParser
 from rich import print  # pylint: disable=redefined-builtin
 from rich.console import Console
 from rich.table import Table
+
+if TYPE_CHECKING:
+    from pathlib import Path
 
 
 def get_author_and_email_from_git() -> tuple[str, str]:
@@ -16,6 +22,22 @@ def get_author_and_email_from_git() -> tuple[str, str]:
         str(config.get_value("user", "name", "")),
         str(config.get_value("user", "email", "")),
     )
+
+
+def sanitize(input_str: Union[str, Path]) -> str:
+    """Replace any dashes in the supplied string by underscores.
+
+    Python needs underscores in library names, not dashes.
+    """
+    return str(input_str).replace("-", "_")
+
+
+def get_title(key: str) -> str:
+    """Get a 'titlized' version of the supplied string.
+
+    This removes dashes or underscore and titlizes each word.
+    """
+    return re.sub("[_-]", " ", key).title() if key != "." else ""
 
 
 def pretty_attrib(attr: str) -> str:

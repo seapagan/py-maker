@@ -1,11 +1,9 @@
 """Class to encapsulate the application."""
 import importlib.resources as pkg_resources
 import os
-import re
 import shutil
 import sys
 from pathlib import Path, PurePath
-from typing import Union
 
 from git.exc import GitError
 from git.repo import Repo
@@ -15,7 +13,7 @@ from rich import print  # pylint: disable=W0622
 from py_maker import template
 from py_maker.config.settings import Settings
 from py_maker.constants import ExitErrors, license_names
-from py_maker.helpers import get_current_year, header
+from py_maker.helpers import get_current_year, get_title, header, sanitize
 from py_maker.prompt import Confirm, Prompt
 from py_maker.schema import ProjectValues
 
@@ -39,13 +37,6 @@ class PyMaker:
             )
             sys.exit(ExitErrors.LOCATION_ERROR)
 
-    def sanitize(self, input_str: Union[str, Path]) -> str:
-        """Replace any dashes in the supplied string by underscores.
-
-        Python needs underscores in library names, not dashes.
-        """
-        return str(input_str).replace("-", "_")
-
     def confirm_values(self) -> bool:
         """Confirm the values entered by the user."""
         print(
@@ -56,13 +47,9 @@ class PyMaker:
         padding: int = max(len(key) for key, _ in self.choices) + 3
 
         for key, value in self.choices:
-            print(f"{self.get_title(key).rjust(padding)} : [green]{value}")
+            print(f"{get_title(key).rjust(padding)} : [green]{value}")
 
         return Confirm.ask("\nIs this correct?", default=True)
-
-    def get_title(self, key: str) -> str:
-        """Get the title for the application."""
-        return re.sub("[_-]", " ", key).title() if key != "." else ""
 
     # ------------------------------------------------------------------------ #
     #                   create the project skeleton folders.                   #
@@ -233,14 +220,14 @@ See the [bold][green]README.md[/green][/bold] file for more information.
 
         self.choices.name = Prompt.ask(
             "Name of the Application?",
-            default=self.get_title(PurePath(self.choices.project_dir).name),
+            default=get_title(PurePath(self.choices.project_dir).name),
         )
-        pk_name = self.sanitize(self.location)
+        pk_name = sanitize(self.location)
         self.choices.package_name = Prompt.ask(
             "Package Name? (Use '-' for standalone script)",
             default=pk_name
             if pk_name != "."
-            else self.sanitize(self.choices.project_dir.name),
+            else sanitize(self.choices.project_dir.name),
         )
         self.choices.description = Prompt.ask(
             "Description of the Application?",
