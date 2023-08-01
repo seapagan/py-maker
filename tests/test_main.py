@@ -14,6 +14,7 @@ def test_app():
 
 
 def test_new():
-    """Test the new command with no arguments gives error."""
+    """Test the new command with no arguments shows help."""
     result = runner.invoke(app, ["new"])
-    assert result.exit_code == 2
+    assert result.exit_code == 0
+    assert "--help" in result.stdout
