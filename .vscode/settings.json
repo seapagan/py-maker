@@ -39,7 +39,11 @@
   "python.linting.flake8Enabled": true,
   "python.linting.mypyEnabled": true,
   "python.linting.pydocstyleArgs": ["--convention=google"],
-  "python.linting.pylintArgs": [],
+  "python.linting.pylintArgs": [
+    "--load-plugins",
+    "pylint_pydantic",
+    "pylint-pytest"
+  ],
   "python.linting.pylintEnabled": false,
   "python.pythonPath": "./.venv/bin/python",
   "isort.args": ["--profile", "black", "--src=${workspaceFolder}"],
