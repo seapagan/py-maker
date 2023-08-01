@@ -1,9 +1,12 @@
 """Class to encapsulate the application."""
+from __future__ import annotations
+
 import importlib.resources as pkg_resources
 import os
 import shutil
 import sys
 from pathlib import Path, PurePath
+from typing import TYPE_CHECKING
 
 from git.exc import GitError
 from git.repo import Repo
@@ -16,6 +19,9 @@ from py_maker.constants import ExitErrors, license_names
 from py_maker.helpers import get_current_year, get_title, header, sanitize
 from py_maker.prompt import Confirm, Prompt
 from py_maker.schema import ProjectValues
+
+if TYPE_CHECKING:
+    from importlib.resources.abc import Traversable
 
 
 class PyMaker:
@@ -33,7 +39,7 @@ class PyMaker:
         if len(Path(self.location).parts) > 1:
             print(
                 "[red]  -> Error: Location must be a single directory name, "
-                "and is relative to the current direcotry.\n"
+                "and is relative to the current directory.\n"
             )
             sys.exit(ExitErrors.LOCATION_ERROR)
 
@@ -77,7 +83,46 @@ class PyMaker:
     # ------------------------------------------------------------------------ #
     #             Copy the template files to the project directory.            #
     # ------------------------------------------------------------------------ #
-    def copy_template_files(self) -> None:
+    def copy_files(self, template_dir: Traversable, file_list: list[str]):
+        """Copy the template files to the project directory.
+
+        Expand the jinja templates before copying.
+        """
+        jinja_env = Environment(
+            loader=FileSystemLoader(str(template_dir)),
+            autoescape=True,
+            trim_blocks=True,
+            lstrip_blocks=True,
+            keep_trailing_newline=True,
+        )
+        for item in file_list:
+            with pkg_resources.as_file(template_dir / item) as src:
+                if src.is_dir():
+                    Path(self.choices.project_dir / item).mkdir()
+                elif src.suffix == ".jinja":
+                    jinja_template = jinja_env.get_template(str(item))
+                    dst = self.choices.project_dir / Path(item).with_suffix("")
+                    dst.write_text(
+                        jinja_template.render(
+                            self.choices.model_dump(),
+                            slug=self.choices.project_dir.name,
+                        )
+                    )
+                else:
+                    dst = self.choices.project_dir / item
+                    dst.write_text(src.read_text(encoding="UTF-8"))
+
+    def get_file_list(self, skip_dirs, template_dir):
+        """Return a list of files to be copied to the project directory."""
+        file_list = [
+            item.relative_to(template_dir)
+            for item in template_dir.rglob("*")  # type: ignore
+            if set(item.parts).isdisjoint(skip_dirs)
+        ]
+
+        return file_list
+
+    def generate_template(self) -> None:
         """Copy the template files to the project directory.
 
         Any file that has the '.jinja' extension will be passed though the
@@ -86,42 +131,19 @@ class PyMaker:
         ie:
         'README.md.jinja' is copied as 'README.md' after template substitution.
         """
-        template_dir = pkg_resources.files(template)
-
         skip_dirs = ["__pycache__"]
-        file_list = [
-            item.relative_to(template_dir)
-            for item in template_dir.rglob("*")  # type: ignore[attr-defined]
-            if set(item.parts).isdisjoint(skip_dirs)
-        ]
 
         try:
-            # ---------------------- copy all the files ---------------------- #
-            jinja_env = Environment(
-                loader=FileSystemLoader(str(template_dir)),
-                autoescape=True,
-                trim_blocks=True,
-                lstrip_blocks=True,
-                keep_trailing_newline=True,
-            )
-            for item in file_list:
-                with pkg_resources.as_file(template_dir / item) as src:
-                    if src.is_dir():
-                        Path(self.choices.project_dir / item).mkdir()
-                    elif src.suffix == ".jinja":
-                        jinja_template = jinja_env.get_template(str(item))
-                        dst = self.choices.project_dir / Path(item).with_suffix(
-                            ""
-                        )
-                        dst.write_text(
-                            jinja_template.render(
-                                self.choices.model_dump(),
-                                slug=self.choices.project_dir.name,
-                            )
-                        )
-                    else:
-                        dst = self.choices.project_dir / item
-                        dst.write_text(src.read_text(encoding="UTF-8"))
+            # ---------------- copy the default template files --------------- #
+            template_dir = pkg_resources.files(template)
+            file_list = self.get_file_list(skip_dirs, template_dir)
+            self.copy_files(template_dir, file_list)
+
+            # --------- copy the custom template files if they exist --------- #
+            custom_template_dir = Path(Path.home() / ".pymaker" / "template")
+            if custom_template_dir.exists():
+                file_list = self.get_file_list(skip_dirs, custom_template_dir)
+                self.copy_files(custom_template_dir, file_list)  # type: ignore
 
             # ---------------- generate the license file next. ------------- #
             license_env = Environment(
@@ -256,7 +278,7 @@ See the [bold][green]README.md[/green][/bold] file for more information.
         print()
 
         self.create_folders()
-        self.copy_template_files()
+        self.generate_template()
         self.create_git_repo()
 
         self.post_process()

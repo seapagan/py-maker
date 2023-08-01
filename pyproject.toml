@@ -133,6 +133,7 @@ extend-ignore = ["E203", "W503"]
 extend-select = ["TC", "TC1", "TRY"]
 docstring-convention = "google"
 type-checking-pydantic-enabled = true
+classmethod-decorators = ["classmethod", "validator"]
 
 [tool.bandit]
 exclude_dirs = []
@@ -146,6 +147,7 @@ extension-pkg-whitelist = "pydantic"
 
 [tool.pylint.DESIGN]
 exclude-too-few-public-methods = "pydantic"
+max-attributes = 10
 
 [tool.pydocstyle]
 add-ignore = ["D104"]
