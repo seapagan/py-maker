@@ -10,7 +10,7 @@ from rich import print  # pylint: disable=redefined-builtin
 from rich.console import Console
 from rich.table import Table
 
-if TYPE_CHECKING:
+if TYPE_CHECKING:  # pragma: no cover
     from pathlib import Path
 
 

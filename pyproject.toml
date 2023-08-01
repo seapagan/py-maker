@@ -153,7 +153,9 @@ max-attributes = 10
 add-ignore = ["D104"]
 
 [tool.pytest.ini_options]
+addopts = ["--cov", "--cov-report", "term-missing", "--cov-report", "html"]
 filterwarnings = []
+mock_use_standalone_module = true
 
 [tool.coverage.run]
 # source = []
