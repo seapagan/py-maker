@@ -3,7 +3,7 @@ from __future__ import annotations
 
 import re
 from datetime import datetime
-from typing import TYPE_CHECKING, Dict, Union
+from typing import TYPE_CHECKING, Dict, List, Union
 
 from git.config import GitConfigParser
 from rich import print  # pylint: disable=redefined-builtin
@@ -11,6 +11,7 @@ from rich.console import Console
 from rich.table import Table
 
 if TYPE_CHECKING:  # pragma: no cover
+    from importlib.resources.abc import Traversable
     from pathlib import Path
 
 
@@ -22,6 +23,19 @@ def get_author_and_email_from_git() -> tuple[str, str]:
         str(config.get_value("user", "name", "")),
         str(config.get_value("user", "email", "")),
     )
+
+
+def get_file_list(template_dir: Union[Traversable, Path]):
+    """Return a list of files to be copied to the project directory."""
+    skip_dirs: List = ["__pycache__"]
+
+    file_list: List[str] = [
+        item.relative_to(template_dir)  # type: ignore
+        for item in template_dir.rglob("*")  # type: ignore
+        if set(item.parts).isdisjoint(skip_dirs)
+    ]
+
+    return file_list
 
 
 def sanitize(input_str: Union[str, Path]) -> str:

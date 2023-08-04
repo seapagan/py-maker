@@ -16,7 +16,13 @@ from rich import print  # pylint: disable=W0622
 from py_maker import template
 from py_maker.config.settings import Settings
 from py_maker.constants import ExitErrors, license_names
-from py_maker.helpers import get_current_year, get_title, header, sanitize
+from py_maker.helpers import (
+    get_current_year,
+    get_file_list,
+    get_title,
+    header,
+    sanitize,
+)
 from py_maker.prompt import Confirm, Prompt
 from py_maker.schema import ProjectValues
 
@@ -95,13 +101,13 @@ class PyMaker:
             lstrip_blocks=True,
             keep_trailing_newline=True,
         )
-        for item in file_list:
-            with pkg_resources.as_file(template_dir / item) as src:
+        for file in file_list:
+            with pkg_resources.as_file(template_dir / file) as src:
                 if src.is_dir():
-                    Path(self.choices.project_dir / item).mkdir()
+                    Path(self.choices.project_dir / file).mkdir()
                 elif src.suffix == ".jinja":
-                    jinja_template = jinja_env.get_template(str(item))
-                    dst = self.choices.project_dir / Path(item).with_suffix("")
+                    jinja_template = jinja_env.get_template(str(file))
+                    dst = self.choices.project_dir / Path(file).with_suffix("")
                     dst.write_text(
                         jinja_template.render(
                             self.choices.model_dump(),
@@ -109,18 +115,8 @@ class PyMaker:
                         )
                     )
                 else:
-                    dst = self.choices.project_dir / item
+                    dst = self.choices.project_dir / file
                     dst.write_text(src.read_text(encoding="UTF-8"))
-
-    def get_file_list(self, skip_dirs, template_dir):
-        """Return a list of files to be copied to the project directory."""
-        file_list = [
-            item.relative_to(template_dir)
-            for item in template_dir.rglob("*")  # type: ignore
-            if set(item.parts).isdisjoint(skip_dirs)
-        ]
-
-        return file_list
 
     def generate_template(self) -> None:
         """Copy the template files to the project directory.
@@ -131,18 +127,18 @@ class PyMaker:
         ie:
         'README.md.jinja' is copied as 'README.md' after template substitution.
         """
-        skip_dirs = ["__pycache__"]
+        # skip_dirs: List = ["__pycache__"]
 
         try:
             # ---------------- copy the default template files --------------- #
             template_dir = pkg_resources.files(template)
-            file_list = self.get_file_list(skip_dirs, template_dir)
+            file_list = get_file_list(template_dir)
             self.copy_files(template_dir, file_list)
 
             # --------- copy the custom template files if they exist --------- #
             custom_template_dir = Path(Path.home() / ".pymaker" / "template")
             if custom_template_dir.exists():
-                file_list = self.get_file_list(skip_dirs, custom_template_dir)
+                file_list = get_file_list(custom_template_dir)
                 self.copy_files(custom_template_dir, file_list)  # type: ignore
 
             # ---------------- generate the license file next. ------------- #
