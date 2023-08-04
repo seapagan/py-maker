@@ -1,6 +1,6 @@
 # TODO List
 
-- Add testing with [Pytest](https://pytest.org)
+- Add testing with [Pytest](https://pytest.org) (`IN PROGRESS`)
 - Add option to generate a skeleton MkDocs website for the new project
 - Ask for more settings ie homepage, repo, etc. and add them to the generated
   `pyproject.toml` file (if the new project is likely to be uploaded to PyPI)
@@ -16,3 +16,9 @@
 - option to dump the default template files to a local directory so they can be
   edited and used as custom templates, optionally dumping to the
   `~/.pymaker/templates` folder overwriting existing customizations.
+- add some form of 'extra packages' command line option and config setting to
+  automatically add extra packages to the generated `pyproject.toml` file.
+- add cmd line options to specify the project name, author, etc. so the user
+  doesn't have to enter them manually.
+- add a command line option to specify the project type so the user doesn't have
+  to enter it manually.
