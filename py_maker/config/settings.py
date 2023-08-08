@@ -36,7 +36,7 @@ class Settings:
     author_name: str = ""
     author_email: str = ""
     default_license: str = ""
-    no_default_template: str = "No"
+    use_default_template: bool = True
     template_folder: str = ""
 
     def __post_init__(self):

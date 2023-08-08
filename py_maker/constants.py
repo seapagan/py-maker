@@ -31,3 +31,4 @@ class ExitErrors(IntEnum):
     PERMISSION_DENIED = 5
     USER_ABORT = 6
     OS_ERROR = 7
+    INVALID_ACTION = 8
