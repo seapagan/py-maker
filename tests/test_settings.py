@@ -24,7 +24,7 @@ def test_settings():
         settings = Settings(settings_path=settings_path)
 
         # Test that the default settings are correct
-        assert settings.schema_version == "1.0"
+        assert settings.schema_version == "none"
         assert settings.author_name == ""
         assert settings.author_email == ""
         assert settings.default_license == ""
