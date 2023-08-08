@@ -63,6 +63,7 @@ def dump(
         if set_default:
             s = Settings()
             s.template_folder = str(output_folder)
+            s.use_default_template = False
             s.save()
 
     except OSError as err:
