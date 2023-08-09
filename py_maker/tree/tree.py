@@ -5,7 +5,7 @@ Heavily influenced by the example in Rich.tree documentation.
 import os
 import pathlib
 
-from rich import print  # noqa: W0622
+from rich import print  # pylint: disable=W0622
 from rich.filesize import decimal
 from rich.markup import escape
 from rich.text import Text
