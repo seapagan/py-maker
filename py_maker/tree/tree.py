@@ -18,6 +18,7 @@ from rich.tree import Tree
 class Path(pathlib.Path):
     """Path class with additional methods."""
 
+    # pylint: disable-next=no-member, protected-access
     _flavour = type(pathlib.Path())._flavour  # type: ignore
 
     def expand(self):

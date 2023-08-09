@@ -99,7 +99,7 @@ mypy = "mypy **/*.py"
 flake8 = "flake8 **/*.py"
 black = "black **/*.py"
 try = "tryceratops **/*.py"
-lint = ["black", "flake8", "pylint", "mypy", "try"]
+lint = ["black", "flake8", "mypy", "try", "pylint"]
 
 "docs:publish" = "mkdocs gh-deploy"
 "docs:build" = "mkdocs build"

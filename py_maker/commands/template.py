@@ -66,9 +66,9 @@ def dump(
             settings.use_default_template = False
             settings.save()
 
-    except OSError as err:
-        print(f"\n[red]  -> Error dumping template:[/red] {err}")
-        typer.Exit(ExitErrors.OS_ERROR)
+    except OSError as exc:
+        print(f"\n[red]  -> Error dumping template:[/red] {exc}")
+        raise typer.Exit(ExitErrors.OS_ERROR) from exc
 
 
 @app.command()
@@ -95,4 +95,4 @@ def default(action: str) -> None:
             f"[red]  -> Invalid action:[/red] {action}\n"
             f"[red]  -> Action must be either:[/red] enable or disable"
         )
-        typer.Exit(ExitErrors.INVALID_ACTION)
+        raise typer.Exit(ExitErrors.INVALID_ACTION)
