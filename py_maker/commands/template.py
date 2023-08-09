@@ -61,10 +61,10 @@ def dump(
             f"\n[green]Set default template folder to:[/green] {output_folder}?"
         )
         if set_default:
-            s = Settings()
-            s.template_folder = str(output_folder)
-            s.use_default_template = False
-            s.save()
+            settings = Settings()
+            settings.template_folder = str(output_folder)
+            settings.use_default_template = False
+            settings.save()
 
     except OSError as err:
         print(f"\n[red]  -> Error dumping template:[/red] {err}")
@@ -78,17 +78,17 @@ def default(action: str) -> None:
     [b]action[/b] can be either [b]enable[/b] or [b]disable[/b].
     """
     header()
-    s = Settings()
+    settings = Settings()
     if action == "enable":
-        s.use_default_template = True
-        s.save()
+        settings.use_default_template = True
+        settings.save()
         print(
             f"[green]  -> Default template folder enabled:[/green] "
-            f"{s.template_folder}"
+            f"{settings.template_folder}"
         )
     elif action == "disable":
-        s.use_default_template = False
-        s.save()
+        settings.use_default_template = False
+        settings.save()
         print("[green]  -> Default template folder disabled[/green]")
     else:
         print(
