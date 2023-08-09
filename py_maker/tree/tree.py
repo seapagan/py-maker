@@ -2,7 +2,8 @@
 
 Heavily influenced by the example in Rich.tree documentation.
 """
-from pathlib import Path
+import os
+import pathlib
 
 from rich import print
 from rich.filesize import decimal
@@ -11,12 +12,25 @@ from rich.text import Text
 from rich.tree import Tree
 
 
+# create a subclass of pathlib.Path which has an extra method 'expand'. This
+# method will expand environment variables and user home directory, and in all
+# cases return an absolute path.
+class Path(pathlib.Path):
+    """Path class with additional methods."""
+
+    _flavour = type(pathlib.Path())._flavour  # type: ignore
+
+    def expand(self):
+        """Fully expand and resolve the Path given environment variables."""
+        return Path(os.path.expandvars(self)).expanduser().resolve()
+
+
 class FileTree:
     """Display a directory tree using Rich."""
 
     def __init__(self, directory: Path) -> None:
         """Initialize the FileTree class."""
-        self.directory: Path = Path(directory).expanduser().resolve()
+        self.directory: Path = Path(directory).expand()  # type: ignore
 
         if not self.directory.is_dir():
             raise NotADirectoryError(f"{self.directory} is not a directory.")
