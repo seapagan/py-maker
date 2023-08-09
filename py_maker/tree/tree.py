@@ -48,7 +48,7 @@ class FileTree:
         """Print a directory tree to the console."""
         tree = Tree(
             f":open_file_folder: [link file://{self.directory}]"
-            "{self.directory}",
+            f"{self.directory}",
             guide_style="bright_blue",
         )
         self.walk_directory(self.directory, tree)
