@@ -2,8 +2,7 @@
 
 Heavily influenced by the example in Rich.tree documentation.
 """
-
-import pathlib
+from pathlib import Path
 
 from rich import print
 from rich.filesize import decimal
@@ -15,15 +14,26 @@ from rich.tree import Tree
 class FileTree:
     """Display a directory tree using Rich."""
 
-    def __init__(self, directory: pathlib.Path) -> None:
+    def __init__(self, directory: Path) -> None:
         """Initialize the FileTree class."""
-        self.directory = directory
+        self.directory: Path = Path(directory).expanduser().resolve()
 
-    def walk_directory(self, directory: pathlib.Path, tree: Tree) -> None:
+        if not self.directory.is_dir():
+            raise NotADirectoryError(f"{self.directory} is not a directory.")
+
+    def walk_directory(self, directory: Path, tree: Tree) -> None:
         """Recursively build a Tree with directory contents."""
         # Sort dirs first then by filename
+        try:
+            paths = sorted(
+                directory.iterdir(),
+                key=lambda path: (path.is_file(), path.name.lower()),
+            )
+        except PermissionError:
+            # Skip directories that the user does not have permission to access
+            return
         paths = sorted(
-            pathlib.Path(directory).iterdir(),
+            Path(directory).iterdir(),
             key=lambda path: (path.is_file(), path.name.lower()),
         )
         for path in paths:
