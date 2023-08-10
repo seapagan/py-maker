@@ -35,7 +35,7 @@ class Settings:
     schema_version: str = "none"
     author_name: str = ""
     author_email: str = ""
-    default_license: str = ""
+    default_license: str = "None"
     use_default_template: bool = True
 
     # cant use Pathlike here as it breaks rtoml

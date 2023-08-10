@@ -143,20 +143,21 @@ class PyMaker:
                 self.copy_files(custom_template_dir, file_list)  # type: ignore
 
             # ---------------- generate the license file next. ------------- #
-            license_env = Environment(
-                loader=FileSystemLoader(str(template_dir / "../licenses")),
-                autoescape=True,
-                keep_trailing_newline=True,
-            )
-            license_template = license_env.get_template(
-                f"{self.choices.license}.jinja"
-            )
-            dst = self.choices.project_dir / "LICENSE.txt"
-            dst.write_text(
-                license_template.render(
-                    author=self.choices.author, year=get_current_year()
+            if self.choices.license != "None":
+                license_env = Environment(
+                    loader=FileSystemLoader(str(template_dir / "../licenses")),
+                    autoescape=True,
+                    keep_trailing_newline=True,
                 )
-            )
+                license_template = license_env.get_template(
+                    f"{self.choices.license}.jinja"
+                )
+                dst = self.choices.project_dir / "LICENSE.txt"
+                dst.write_text(
+                    license_template.render(
+                        author=self.choices.author, year=get_current_year()
+                    )
+                )
 
             # ---------- rename or delete the 'app' dir if required ---------- #
             if self.choices.package_name != "-":
