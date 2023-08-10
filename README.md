@@ -124,6 +124,9 @@ The `pyproject.toml` file is set up to use `app` as the main source directory,
 which is the default for this template, you can change this to whatever you
 require, just remember to update the `pyproject.toml` file to match.
 
+You can also modify the template used to generate the new project. Check the
+documentation at <https://py-maker.seapagan.net/> for more details.
+
 ### Linting
 
 The generated project includes [flake8](https://flake8.pycqa.org/en/latest/)
