@@ -1,4 +1,4 @@
-# The 'Default' Template
+# The Internal Template
 
 By default, the generated application will have a basic template that you can
 use to get started, this template is stored inside the package itself. It will

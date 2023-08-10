@@ -1,9 +1,8 @@
 # Adding or Modifying files in the template
 
-If you always wish to add or change specific files in the template, you can do
-so by adding them to the `~/.pymaker/template` folder. The files (and folders)
-in this folder will be copied to the root of the project when the template is
-generated.
+If you wish to add or change specific files in the template, you can do so by
+adding them to the `~/.pymaker/template` folder. The files (and folders) in this
+folder will be copied to the root of the project when the template is generated.
 
 Files in this global template folder will override any files in the default
 template, so you can for example change the `README.md` file, add to the

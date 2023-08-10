@@ -56,7 +56,7 @@ nav:
   - Quick Start: quick-start.md
   - Configuration: configuration.md
   - Templates:
-      - Default Template: template/default.md
+      - Internal Template: template/internal.md
       - Modifying: template/modify.md
       - Replacing: template/replace.md
   - Task Runner: tasks.md

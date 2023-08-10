@@ -45,7 +45,7 @@ def dump(
 
         if any(output_folder.iterdir()) and not Confirm.ask(
             f"[red]The output folder:[/red] {output_folder} "
-            f"[red]is not empty, do you want to continue?[/red]",
+            "[red]is not empty, do you want to continue?[/red]",
             default=False,
         ):
             raise typer.Exit(ExitErrors.USER_ABORT)  # noqa TRY301
@@ -102,7 +102,7 @@ def default(action: str) -> None:
         settings.use_default_template = True
         settings.save()
         print(
-            f"[green]  -> Default template folder enabled:[/green] "
+            "[green]  -> Default template folder enabled:[/green] "
             f"{settings.template_folder}"
         )
     elif action == "disable":
@@ -112,7 +112,7 @@ def default(action: str) -> None:
     else:
         print(
             f"[red]  -> Invalid action:[/red] {action}\n"
-            f"[red]  -> Action must be either:[/red] enable or disable"
+            "[red]  -> Action must be either:[/red] enable or disable"
         )
         raise typer.Exit(ExitErrors.INVALID_ACTION)
 
@@ -135,7 +135,7 @@ def set_template():
     settings.save()
 
     print(
-        f"[green]  -> Template folder set to:[/green] "
+        "[green]  -> Template folder set to:[/green] "
         f"{settings.template_folder}"
     )
     print(
@@ -165,7 +165,7 @@ def reset_template():
     settings.template_folder = str(Path.home() / ".pymaker" / "template")
     settings.save()
     print(
-        f"[green]  -> Template folder reset to:[/green] "
+        "[green]  -> Template folder reset to:[/green] "
         f"{settings.template_folder}"
     )
     print(
