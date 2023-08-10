@@ -16,6 +16,7 @@ More functionality will be added very shortly and the code will be refactored
 and cleaned up.
 
 - [Installation](#installation)
+- [Documentation](#documentation)
 - [Usage](#usage)
   - [Task Runner](#task-runner)
   - [Customise](#customise)
@@ -46,6 +47,11 @@ or use [pipx](https://pypa.github.io/pipx/)
 ```console
 $ pipx install pyproject-maker
 ```
+
+## Documentation
+
+Full documentation for this project with usage examples is available at
+<https://py-maker.seapagan.net/>
 
 ## Usage
 

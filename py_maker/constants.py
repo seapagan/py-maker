@@ -1,4 +1,6 @@
 """Some constants needed for the rest of the App."""
+from enum import IntEnum
+
 LICENCES: list[dict[str, str]] = [
     {"name": "None", "url": ""},
     {"name": "Apache2", "url": "https://opensource.org/licenses/Apache-2.0"},
@@ -16,7 +18,7 @@ LICENCES: list[dict[str, str]] = [
 license_names: list[str] = [license["name"] for license in LICENCES]
 
 
-class ExitErrors:
+class ExitErrors(IntEnum):
     """Exit errors.
 
     Error codes for the application.
@@ -29,3 +31,4 @@ class ExitErrors:
     PERMISSION_DENIED = 5
     USER_ABORT = 6
     OS_ERROR = 7
+    INVALID_ACTION = 8

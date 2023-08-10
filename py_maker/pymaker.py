@@ -1,11 +1,12 @@
 """Class to encapsulate the application."""
+from __future__ import annotations
+
 import importlib.resources as pkg_resources
 import os
-import re
 import shutil
 import sys
 from pathlib import Path, PurePath
-from typing import Union
+from typing import TYPE_CHECKING
 
 from git.exc import GitError
 from git.repo import Repo
@@ -15,9 +16,18 @@ from rich import print  # pylint: disable=W0622
 from py_maker import template
 from py_maker.config.settings import Settings
 from py_maker.constants import ExitErrors, license_names
-from py_maker.helpers import get_current_year, header
+from py_maker.helpers import (
+    get_current_year,
+    get_file_list,
+    get_title,
+    header,
+    sanitize,
+)
 from py_maker.prompt import Confirm, Prompt
 from py_maker.schema import ProjectValues
+
+if TYPE_CHECKING:
+    from importlib.resources.abc import Traversable
 
 
 class PyMaker:
@@ -35,16 +45,9 @@ class PyMaker:
         if len(Path(self.location).parts) > 1:
             print(
                 "[red]  -> Error: Location must be a single directory name, "
-                "and is relative to the current direcotry.\n"
+                "and is relative to the current directory.\n"
             )
             sys.exit(ExitErrors.LOCATION_ERROR)
-
-    def sanitize(self, input_str: Union[str, Path]) -> str:
-        """Replace any dashes in the supplied string by underscores.
-
-        Python needs underscores in library names, not dashes.
-        """
-        return str(input_str).replace("-", "_")
 
     def confirm_values(self) -> bool:
         """Confirm the values entered by the user."""
@@ -56,13 +59,9 @@ class PyMaker:
         padding: int = max(len(key) for key, _ in self.choices) + 3
 
         for key, value in self.choices:
-            print(f"{self.get_title(key).rjust(padding)} : [green]{value}")
+            print(f"{get_title(key).rjust(padding)} : [green]{value}")
 
         return Confirm.ask("\nIs this correct?", default=True)
-
-    def get_title(self, key: str) -> str:
-        """Get the title for the application."""
-        return re.sub("[_-]", " ", key).title() if key != "." else ""
 
     # ------------------------------------------------------------------------ #
     #                   create the project skeleton folders.                   #
@@ -90,7 +89,36 @@ class PyMaker:
     # ------------------------------------------------------------------------ #
     #             Copy the template files to the project directory.            #
     # ------------------------------------------------------------------------ #
-    def copy_template_files(self) -> None:
+    def copy_files(self, template_dir: Traversable, file_list: list[str]):
+        """Copy the template files to the project directory.
+
+        Expand the jinja templates before copying.
+        """
+        jinja_env = Environment(
+            loader=FileSystemLoader(str(template_dir)),
+            autoescape=True,
+            trim_blocks=True,
+            lstrip_blocks=True,
+            keep_trailing_newline=True,
+        )
+        for file in file_list:
+            with pkg_resources.as_file(template_dir / file) as src:
+                if src.is_dir():
+                    Path(self.choices.project_dir / file).mkdir()
+                elif src.suffix == ".jinja":
+                    jinja_template = jinja_env.get_template(str(file))
+                    dst = self.choices.project_dir / Path(file).with_suffix("")
+                    dst.write_text(
+                        jinja_template.render(
+                            self.choices.model_dump(),
+                            slug=self.choices.project_dir.name,
+                        )
+                    )
+                else:
+                    dst = self.choices.project_dir / file
+                    dst.write_text(src.read_text(encoding="UTF-8"))
+
+    def generate_template(self) -> None:
         """Copy the template files to the project directory.
 
         Any file that has the '.jinja' extension will be passed though the
@@ -99,58 +127,37 @@ class PyMaker:
         ie:
         'README.md.jinja' is copied as 'README.md' after template substitution.
         """
-        template_dir = pkg_resources.files(template)
-
-        skip_dirs = ["__pycache__"]
-        file_list = [
-            item.relative_to(template_dir)
-            for item in template_dir.rglob("*")  # type: ignore[attr-defined]
-            if set(item.parts).isdisjoint(skip_dirs)
-        ]
+        # skip_dirs: List = ["__pycache__"]
 
         try:
-            # ---------------------- copy all the files ---------------------- #
-            jinja_env = Environment(
-                loader=FileSystemLoader(str(template_dir)),
-                autoescape=True,
-                trim_blocks=True,
-                lstrip_blocks=True,
-                keep_trailing_newline=True,
-            )
-            for item in file_list:
-                with pkg_resources.as_file(template_dir / item) as src:
-                    if src.is_dir():
-                        Path(self.choices.project_dir / item).mkdir()
-                    elif src.suffix == ".jinja":
-                        jinja_template = jinja_env.get_template(str(item))
-                        dst = self.choices.project_dir / Path(item).with_suffix(
-                            ""
-                        )
-                        dst.write_text(
-                            jinja_template.render(
-                                self.choices.model_dump(),
-                                slug=self.choices.project_dir.name,
-                            )
-                        )
-                    else:
-                        dst = self.choices.project_dir / item
-                        dst.write_text(src.read_text(encoding="UTF-8"))
+            # ---------------- copy the default template files --------------- #
+            template_dir = pkg_resources.files(template)
+            if self.settings.use_default_template:
+                file_list = get_file_list(template_dir)
+                self.copy_files(template_dir, file_list)
+
+            # --------- copy the custom template files if they exist --------- #
+            custom_template_dir = Path(self.settings.template_folder)
+            if custom_template_dir.exists():
+                file_list = get_file_list(custom_template_dir)
+                self.copy_files(custom_template_dir, file_list)  # type: ignore
 
             # ---------------- generate the license file next. ------------- #
-            license_env = Environment(
-                loader=FileSystemLoader(str(template_dir / "../licenses")),
-                autoescape=True,
-                keep_trailing_newline=True,
-            )
-            license_template = license_env.get_template(
-                f"{self.choices.license}.jinja"
-            )
-            dst = self.choices.project_dir / "LICENSE.txt"
-            dst.write_text(
-                license_template.render(
-                    author=self.choices.author, year=get_current_year()
+            if self.choices.license != "None":
+                license_env = Environment(
+                    loader=FileSystemLoader(str(template_dir / "../licenses")),
+                    autoescape=True,
+                    keep_trailing_newline=True,
                 )
-            )
+                license_template = license_env.get_template(
+                    f"{self.choices.license}.jinja"
+                )
+                dst = self.choices.project_dir / "LICENSE.txt"
+                dst.write_text(
+                    license_template.render(
+                        author=self.choices.author, year=get_current_year()
+                    )
+                )
 
             # ---------- rename or delete the 'app' dir if required ---------- #
             if self.choices.package_name != "-":
@@ -233,14 +240,14 @@ See the [bold][green]README.md[/green][/bold] file for more information.
 
         self.choices.name = Prompt.ask(
             "Name of the Application?",
-            default=self.get_title(PurePath(self.choices.project_dir).name),
+            default=get_title(PurePath(self.choices.project_dir).name),
         )
-        pk_name = self.sanitize(self.location)
+        pk_name = sanitize(self.location)
         self.choices.package_name = Prompt.ask(
             "Package Name? (Use '-' for standalone script)",
             default=pk_name
             if pk_name != "."
-            else self.sanitize(self.choices.project_dir.name),
+            else sanitize(self.choices.project_dir.name),
         )
         self.choices.description = Prompt.ask(
             "Description of the Application?",
@@ -269,7 +276,7 @@ See the [bold][green]README.md[/green][/bold] file for more information.
         print()
 
         self.create_folders()
-        self.copy_template_files()
+        self.generate_template()
         self.create_git_repo()
 
         self.post_process()

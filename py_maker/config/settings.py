@@ -29,10 +29,17 @@ class Settings:
     settings_path: Path = settings_folder / "config.toml"
 
     # define our settings
-    schema_version: str = "1.0"
+    # the schema_version is used to track changes to the settings file but will
+    # be unused until we have a stable release. Expect the schema layout to
+    # change at any time unitl then!
+    schema_version: str = "none"
     author_name: str = ""
     author_email: str = ""
-    default_license: str = ""
+    default_license: str = "None"
+    use_default_template: bool = True
+
+    # cant use Pathlike here as it breaks rtoml
+    template_folder: str = str(settings_path / "template")
 
     def __post_init__(self):
         """Create the settings folder if it doesn't exist."""

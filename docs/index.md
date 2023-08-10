@@ -26,6 +26,15 @@ type checking. [isort](https://pycqa.github.io/isort/){:target="_blank"},
 [tyrceratops](https://github.com/guilatrova/tryceratops){:target="_blank"} are
 also installed as standard.
 
+## Customize the generated project
+
+You can add extra or edited files to the generated project by adding them to the
+`~/.pymaker/template` directory.  The files in this directory will be copied
+into the generated project, overwriting any existing files with the same name.
+
+It is also possible to dump the whole template into this folder or the current
+folder so full customization and even removal of files is possible.
+
 ## Pre-commit
 
 The generated project uses [pre-commit](https://pre-commit.com/) to run some

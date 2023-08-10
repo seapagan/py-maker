@@ -55,5 +55,10 @@ nav:
   - Installation: installation.md
   - Quick Start: quick-start.md
   - Configuration: configuration.md
+  - Templates:
+      - Internal Template: template/internal.md
+      - Modifying: template/modify.md
+      - Replacing: template/replace.md
   - Task Runner: tasks.md
+  - Future Plans: future-plans.md
   - License: license.md
