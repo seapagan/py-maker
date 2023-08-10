@@ -117,8 +117,8 @@ def default(action: str) -> None:
         raise typer.Exit(ExitErrors.INVALID_ACTION)
 
 
-@app.command()
-def set():
+@app.command(name="set")
+def set_template():
     """Set the template folder to the current directory.
 
     The [i]'Use Default Template'[/i] setting [b][red]will not be changed[/b].
@@ -146,8 +146,8 @@ def set():
     )
 
 
-@app.command()
-def reset():
+@app.command(name="reset")
+def reset_template():
     """Reset the template folder to the default.
 
     This is currrently [b]~/.pymaker/template[/b].
