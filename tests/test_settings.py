@@ -1,5 +1,4 @@
 """Tests for the Settings class.""" ""
-import os
 import tempfile
 from pathlib import Path
 
@@ -15,7 +14,7 @@ def test_settings():
     with tempfile.TemporaryDirectory() as tmpdir:
         # Set the settings folder to the temporary directory
         settings_folder = Path(tmpdir) / ".pymaker"
-        os.makedirs(settings_folder)
+        settings_folder.mkdir()
 
         # Set the settings path to the temporary directory
         settings_path = settings_folder / "config.toml"

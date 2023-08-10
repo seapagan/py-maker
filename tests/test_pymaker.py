@@ -2,7 +2,6 @@
 
 These tests are not complete.
 """
-import os
 import shutil
 from collections.abc import Iterator  # noqa: TC003
 from pathlib import Path
@@ -36,7 +35,7 @@ def test_pymaker(test_project_dir) -> PyMaker:
 def test_create_folders(test_pymaker):
     """Test that the create_folders method creates the project directory."""
     test_pymaker.create_folders()
-    assert os.path.isdir(test_pymaker.choices.project_dir)
+    assert test_pymaker.choices.project_dir.is_dir()
 
 
 def test_copy_files(test_pymaker: PyMaker):
