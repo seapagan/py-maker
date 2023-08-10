@@ -39,7 +39,7 @@ class Settings:
     use_default_template: bool = True
 
     # cant use Pathlike here as it breaks rtoml
-    template_folder: str = str(settings_path / "template")
+    template_folder: str = str(settings_folder / "template")
 
     def __post_init__(self):
         """Create the settings folder if it doesn't exist."""
