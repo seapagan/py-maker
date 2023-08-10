@@ -27,7 +27,7 @@ the user can override these.
 
 You can list the current configuration with the command:
 
-```
+```ini
 $ pymaker config show
 ```
 
