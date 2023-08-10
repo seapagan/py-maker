@@ -39,9 +39,16 @@ def dump(
     try:
         if not local:
             output_folder = Path.home() / ".pymaker" / "template"
-        else:
-            output_folder = Path.cwd() / "template"
             output_folder.mkdir(parents=True, exist_ok=True)
+        else:
+            output_folder = Path.cwd()
+
+        if any(output_folder.iterdir()) and not Confirm.ask(
+            f"[red]The output folder:[/red] {output_folder} "
+            f"[red]is not empty, do you want to continue?[/red]",
+            default=False,
+        ):
+            raise typer.Exit(ExitErrors.USER_ABORT)  # noqa TRY301
 
         file_list = get_file_list(template_source)
 
@@ -58,12 +65,21 @@ def dump(
         print(f"[green]  -> Template files dumped to:[/green] {output_folder}")
 
         set_default = Confirm.ask(
-            f"\n[green]Set default template folder to:[/green] {output_folder}?"
+            f"\n[green]Set the template folder to:[/green] {output_folder}?",
+            default=True,
         )
+
         if set_default:
+            print("[green]  -> Template folder set[/green]")
             settings = Settings()
             settings.template_folder = str(output_folder)
-            settings.use_default_template = False
+
+            if Confirm.ask(
+                "[green]Disable the default template folder?", default=False
+            ):
+                print("[green]  -> Default template folder disabled[/green]")
+                settings.use_default_template = False
+
             settings.save()
 
     except OSError as exc:
@@ -73,9 +89,12 @@ def dump(
 
 @app.command()
 def default(action: str) -> None:
-    """Enable or disable the default template folder.
+    """Enable or disable using the INTERNAL templates.
 
     [b]action[/b] can be either [b]enable[/b] or [b]disable[/b].
+
+    [b]enable[/b] will enable the internal template
+    [b]disable[/b] will disable the internal template folder
     """
     header()
     settings = Settings()
@@ -96,3 +115,62 @@ def default(action: str) -> None:
             f"[red]  -> Action must be either:[/red] enable or disable"
         )
         raise typer.Exit(ExitErrors.INVALID_ACTION)
+
+
+@app.command()
+def set():
+    """Set the template folder to the current directory.
+
+    The [i]'Use Default Template'[/i] setting [b][red]will not be changed[/b].
+    """
+    header()
+    if not Confirm.ask(
+        "[red]Are you sure you want to set the template folder to the "
+        "current folder?[/red]",
+        default=False,
+    ):
+        raise typer.Exit(ExitErrors.USER_ABORT)
+    settings = Settings()
+    settings.template_folder = str(Path.cwd())
+    settings.save()
+
+    print(
+        f"[green]  -> Template folder set to:[/green] "
+        f"{settings.template_folder}"
+    )
+    print(
+        "[yellow]  -> The 'Use Default Template' setting has not been "
+        "changed.\n"
+        "[yellow]     You can change this with the '[b][i]pymaker template "
+        "default'[/i][/b] command.\n"
+    )
+
+
+@app.command()
+def reset():
+    """Reset the template folder to the default.
+
+    This is currrently [b]~/.pymaker/template[/b].
+    The [i]'Use Default Template'[/i] setting [b][red]will not be changed[/b].
+    """
+    header()
+    if not Confirm.ask(
+        "[red]Are you sure you want to reset the template folder to the "
+        "default?[/red]",
+        default=False,
+    ):
+        raise typer.Exit(ExitErrors.USER_ABORT)
+
+    settings = Settings()
+    settings.template_folder = str(Path.home() / ".pymaker" / "template")
+    settings.save()
+    print(
+        f"[green]  -> Template folder reset to:[/green] "
+        f"{settings.template_folder}"
+    )
+    print(
+        "[yellow]  -> The 'Use Default Template' setting has not been "
+        "changed.\n"
+        "[yellow]     You can change this with the '[b][i]pymaker template "
+        "default'[/i][/b] command.\n"
+    )
