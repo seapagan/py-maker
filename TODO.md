@@ -1,5 +1,7 @@
 # TODO List
 
+## General
+
 - Add testing with [Pytest](https://pytest.org) (`IN PROGRESS`)
 - Add option to generate a skeleton MkDocs website for the new project
 - Ask for more settings ie homepage, repo, etc. and add them to the generated
