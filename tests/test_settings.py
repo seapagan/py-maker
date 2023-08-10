@@ -26,7 +26,7 @@ def test_settings():
         assert settings.schema_version == "none"
         assert settings.author_name == ""
         assert settings.author_email == ""
-        assert settings.default_license == ""
+        assert settings.default_license == "None"
 
         # Test that we can set and get a setting
         settings.set("author_name", test_author)
