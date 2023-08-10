@@ -14,6 +14,8 @@ author_email = "user@server.com"
 author_name = "Python User"
 default_license = "MIT"
 schema_version = "1.0" # for internal use, generally don't change this
+template_folder = "/home/user/.pymaker/template"
+use_default_template = true
 ```
 
 If this file does not exist, it will be created on first run. The app will ask
