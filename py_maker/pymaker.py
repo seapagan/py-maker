@@ -137,7 +137,7 @@ class PyMaker:
                 self.copy_files(template_dir, file_list)
 
             # --------- copy the custom template files if they exist --------- #
-            custom_template_dir = Path(Path.home() / ".pymaker" / "template")
+            custom_template_dir = Path(self.settings.template_folder)
             if custom_template_dir.exists():
                 file_list = get_file_list(custom_template_dir)
                 self.copy_files(custom_template_dir, file_list)  # type: ignore
