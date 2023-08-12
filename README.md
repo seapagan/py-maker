@@ -8,12 +8,13 @@ Badge](https://app.codacy.com/project/badge/Grade/7c86940f816b455ab171dc81264768
 ![PyPI - License](https://img.shields.io/pypi/l/pyproject-maker)
 ![PyPI - Downloads](https://img.shields.io/pypi/dw/pyproject-maker?logo=pypi)
 
-This is a command line tool to help you create new Python projects.  It will
-create a new directory for your project, initialise a git repository, create a
-virtual environment, and install some basic dependencies.
+A fully customizable Python application to bootstrap Poetry-based boilerplate
+for you to start developing your Python applications quicker! Includes linting
+and Pytest libraries.
 
-More functionality will be added very shortly and the code will be refactored
-and cleaned up.
+It will create a new directory for your project (or use the current directory),
+initialise a git repository, create a virtual environment, and install some
+basic dependencies for Testing, Linting and more.
 
 - [Installation](#installation)
 - [Documentation](#documentation)
