@@ -4,13 +4,14 @@
 [![Codacy
 Badge](https://app.codacy.com/project/badge/Grade/7c86940f816b455ab171dc8126476849)](https://app.codacy.com/gh/seapagan/py-maker/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
 [![CodeQL](https://github.com/seapagan/py-maker/actions/workflows/codeql.yml/badge.svg)](https://github.com/seapagan/py-maker/actions/workflows/codeql.yml)
-[![pages-build-deployment](https://github.com/seapagan/py-maker/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/seapagan/py-maker/actions/workflows/pages/pages-build-deployment)
 ![PyPI - License](https://img.shields.io/pypi/l/pyproject-maker)
 ![PyPI - Downloads](https://img.shields.io/pypi/dw/pyproject-maker?logo=pypi)
+[![Downloads](https://static.pepy.tech/personalized-badge/pyproject-maker?period=total&units=international_system&left_color=black&right_color=green&left_text=Total%20Downloads)](https://pepy.tech/project/pyproject-maker)
 
-A fully customizable Python application to bootstrap Poetry-based boilerplate
-for you to start developing your Python applications quicker! Includes linting
-and Pytest libraries.
+A fully customizable Python application to bootstrap
+[Poetry](https://python-poetry.org/)-based boilerplate for you to start
+developing your Python applications quicker! Includes linting and Pytest
+libraries.
 
 It will create a new directory for your project (or use the current directory),
 initialise a git repository, create a virtual environment, and install some
@@ -27,7 +28,7 @@ basic dependencies for Testing, Linting and more.
 
 ## Installation
 
-It is probably better to install this package globally, rather than in a virtual
+It is best to install this package globally, rather than in a virtual
 environment, as it is intended to be used to create new projects.
 
 Install the package globally using pip:
@@ -43,7 +44,7 @@ user install directory:
 $ pip install --user pyproject-maker
 ```
 
-or use [pipx](https://pypa.github.io/pipx/)
+or use [pipx](https://pypa.github.io/pipx/) (recommended)
 
 ```console
 $ pipx install pyproject-maker
@@ -65,19 +66,19 @@ $ pymaker new <project-folder>
 This will create a new directory with the name you provide, and run the steps
 needed to get you started quickly:
 
-1) Copy the template files into the new directory
-2) Initialise a git repository
-3) Commit the boilerplate to Git
+1. Copy the template files into the new directory
+2. Initialise a git repository
+3. Commit the boilerplate to Git
 
 You will be asked a series of questions to customise the new project.
 
 When it asks "Package Name?" you can choose two variants :
 
-1) If you wish for a standard Python package that can optionally be uploaded to
+1. If you wish for a standard Python package that can optionally be uploaded to
    <http://pypi.org>, enter a package name here. Note that underscores ("_")
    must be used as opposed to dashes ("-") to comply with Python package naming
    rules.
-2) Enter '-' to instruct the tool that you are not creating any package, just a
+2. Enter '-' to instruct the tool that you are not creating any package, just a
    standalone app, and then the `main.py` will just be placed in the project
    root.
 
@@ -121,12 +122,14 @@ section. Take a look at this file if you want to add or remove tasks.
 
 ### Customise
 
-The `pyproject.toml` file is set up to use `app` as the main source directory,
-which is the default for this template, you can change this to whatever you
-require, just remember to update the `pyproject.toml` file to match.
+The `pyproject.toml` file is set up to use the to put the code in a sub-folder
+with the same name as chosen for the 'Package Name'. You can change this to
+whatever you require, just remember to update the `pyproject.toml` file to
+match.
 
-You can also modify the template used to generate the new project. Check the
-documentation at <https://py-maker.seapagan.net/> for more details.
+You can also modify the template used to generate the new project.
+
+Check the documentation at <https://py-maker.seapagan.net/> for more details.
 
 ### Linting
 
