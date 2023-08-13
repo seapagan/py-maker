@@ -31,6 +31,8 @@
   plugin, and a config setting to specify using this plugin always.
 - add config  and CLI options to enable/disable creating a `git` repo, disable
   adding `test` or `linting` packages etc (expand for any future options).
+- include an optional `vscode` settings file in the generated project, optimized
+  for python projects. This could include recommended extensions.
 
 ## Documentation
 
