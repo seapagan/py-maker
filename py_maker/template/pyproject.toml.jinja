@@ -45,6 +45,7 @@ pylint-pytest = "^1.1.2"
 pep8-naming = "^0.13.3"
 pre-commit = "^3.3.3"
 pydocstyle = "^6.3.0"
+pymarkdownlnt = "^0.9.12"
 mypy = "^1.4.1"
 tryceratops = "^2.3.2"
 
@@ -71,6 +72,7 @@ mypy = "mypy **/*.py"
 flake8 = "flake8 **/*.py"
 black = "black **/*.py"
 try = "tryceratops **/*.py"
+markdown = "pymarkdown scan **/*.md"
 lint = ["black", "flake8", "pylint", "mypy", "try"]
 
 # configure assorted tools and linters
@@ -125,3 +127,6 @@ mock_use_standalone_module = true
 [tool.coverage.run]
 # source = []
 omit = ["*/tests/*"]
+
+[tool.pymarkdown]
+plugins.md014.enabled = false
