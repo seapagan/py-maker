@@ -53,7 +53,7 @@ build-backend = "poetry.core.masonry.api"
 bandit = { extras = ["toml"], version = "^1.7.5" }
 black = "^23.7.0"
 flake8 = "^6.0.0"
-flake8-docstrings = "^1.7.0"
+flake8-pydocstyle = "^0.2.2"
 flake8-pyproject = "^1.2.3"
 flake8-pytest-style = "^1.7.2"
 flake8-type-checking = "^2.4.1"
@@ -65,6 +65,7 @@ pylint-pytest = "^1.1.2"
 pep8-naming = "^0.13.3"
 pre-commit = "^3.3.3"
 pydocstyle = "^6.3.0"
+pymarkdownlnt = "^0.9.12"
 mypy = "^1.4.1"
 tryceratops = "^2.3.2"
 
@@ -102,6 +103,7 @@ mypy = "mypy **/*.py"
 flake8 = "flake8 **/*.py"
 black = "black **/*.py"
 try = "tryceratops **/*.py"
+markdown = "pymarkdown scan **/*.md"
 lint = ["black", "flake8", "mypy", "try", "pylint"]
 
 "docs:publish" = "mkdocs gh-deploy"
@@ -162,3 +164,6 @@ mock_use_standalone_module = true
 [tool.coverage.run]
 # source = []
 omit = ["*/tests/*"]
+
+[tool.pymarkdown]
+plugins.md014.enabled = false

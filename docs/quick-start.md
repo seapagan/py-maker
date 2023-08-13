@@ -63,7 +63,7 @@ Creating a new project at /home/bathroom/test-project
 
 Name of the Application? (Test Project):
 Package Name? (Use '-' for standalone script) (test_project):
-Description of the Application?: An amazing Bigly test project. better than you've ever seen before!
+Description of the Application?: An amazing Bigly test project.
 Author Name? (Orange Tango):
 Author Email? (bigly@spraytan.org):
 Application License? [None/Apache2/BSD3/BSD2/GPL2/GPL3/LGPL/MIT/MPL2/CDDL/EPL2] (MIT):

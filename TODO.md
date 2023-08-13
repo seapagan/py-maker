@@ -25,6 +25,14 @@
 - add a command to the CLI template command to show the template files as a
   tree, marking whether each file/folder is from the internal templates or the
   user's templates.
+- add some sort of 'plugin' functionality where we can specify modified/extra
+  files to be added to the generated project. This would also add a command line
+  flag (ie `--django`, `--pydantic` or `--fastapi` or whatever) to use that
+  plugin, and a config setting to specify using this plugin always.
+- add config  and CLI options to enable/disable creating a `git` repo, disable
+  adding `test` or `linting` packages etc (expand for any future options).
+- include an optional `vscode` settings file in the generated project, optimized
+  for python projects. This could include recommended extensions.
 
 ## Documentation
 
