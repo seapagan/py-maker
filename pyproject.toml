@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "pyproject-maker"
-version = "0.4.2"
+version = "0.4.3"
 description = "A command line app to create a Python project skeleton."
 authors = ["Grant Ramsay <seapagan@gmail.com>"]
 readme = "README.md"
