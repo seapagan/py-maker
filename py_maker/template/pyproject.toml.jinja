@@ -29,11 +29,11 @@ build-backend = "poetry.core.masonry.api"
 
 # Configure dev dependencies you can add or remove as needed
 [tool.poetry.group.dev.dependencies]
-# linting, type-checking and security checks
+ linting, type-checking and security checks
 bandit = { extras = ["toml"], version = "^1.7.5" }
 black = "^23.7.0"
 flake8 = "^6.0.0"
-flake8-docstrings = "^1.7.0"
+flake8-pydocstyle = "^0.2.2"
 flake8-pyproject = "^1.2.3"
 flake8-pytest-style = "^1.7.2"
 flake8-type-checking = "^2.4.1"
@@ -98,7 +98,6 @@ exclude = ["__init__.py", ".git"]
 extend-ignore=["E203", "W503"]
 extend-select = ["TC", "TC1", "TRY"]
 docstring-convention = "google"
-type-checking-pydantic-enabled = true
 classmethod-decorators = ["classmethod", "validator"]
 
 [tool.bandit]
