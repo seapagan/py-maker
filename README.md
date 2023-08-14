@@ -17,12 +17,14 @@ It will create a new directory for your project (or use the current directory),
 initialise a git repository, create a virtual environment, and install some
 basic dependencies for Testing, Linting and more.
 
+Full documentation for this project with usage examples is available at
+<https://py-maker.seapagan.net/>
+
 - [Installation](#installation)
-- [Documentation](#documentation)
 - [Usage](#usage)
-  - [Task Runner](#task-runner)
-  - [Customise](#customise)
   - [Linting](#linting)
+  - [Customise](#customise)
+  - [Task Runner](#task-runner)
   - [Pre-commit](#pre-commit)
 - [License](#license)
 
@@ -49,11 +51,6 @@ or use [pipx](https://pypa.github.io/pipx/) (recommended)
 ```console
 $ pipx install pyproject-maker
 ```
-
-## Documentation
-
-Full documentation for this project with usage examples is available at
-<https://py-maker.seapagan.net/>
 
 ## Usage
 
@@ -93,6 +90,27 @@ $ poetry shell
 
 Now, you can start developing :smile:
 
+### Linting
+
+The generated project includes [flake8](https://flake8.pycqa.org/en/latest/)
+(with several plugins) for linting and
+[Black](https://black.readthedocs.io/en/stable/) for formatting.
+[Mypy](http://mypy-lang.org/) is installed for type checking.
+[isort](https://pycqa.github.io/isort/),[Pylint](https://pylint.org/) and
+[tyrceratops](https://github.com/guilatrova/tryceratops) are also installed as
+standard.
+
+### Customise
+
+The `pyproject.toml` file is set up to use the to put the code in a sub-folder
+with the same name as chosen for the 'Package Name'. You can change this to
+whatever you require, just remember to update the `pyproject.toml` file to
+match.
+
+You can also modify the template used to generate the new project.
+
+Check the documentation at <https://py-maker.seapagan.net/> for more details.
+
 ### Task Runner
 
 The task-runner [Poe the Poet](https://github.com/nat-n/poethepoet) is installed
@@ -106,7 +124,7 @@ then the script name, for example:
 $ poe pre
 ```
 
-You can define your own, but there are 5 specific ones provided with the script.
+You can define your own, but there are 8 specific ones provided with the script.
 
 - `pre` : Run `pre-commit run --all-files`
 - `pylint`: Run Pylint on all Python files in the project.
@@ -114,32 +132,12 @@ You can define your own, but there are 5 specific ones provided with the script.
 - `flake8` = Run Flake8 linter on all Python files in the project.
 - `black` = Run Black code formatter on all Python files in the project.
 - `try` = Run Tryceratops linter on all Python files in the project.
+- `markdown` = Run pymarkdown on all markdown files in the project.
 
-- `lint` = Runs pylint, mypy, flake8 and black in sequence
+- `lint` = Runs black, flake8, mypy, try, and pylint in sequence
 
 These are defined in the `pyproject.toml` file in the `[tool.poe.tasks]`
 section. Take a look at this file if you want to add or remove tasks.
-
-### Customise
-
-The `pyproject.toml` file is set up to use the to put the code in a sub-folder
-with the same name as chosen for the 'Package Name'. You can change this to
-whatever you require, just remember to update the `pyproject.toml` file to
-match.
-
-You can also modify the template used to generate the new project.
-
-Check the documentation at <https://py-maker.seapagan.net/> for more details.
-
-### Linting
-
-The generated project includes [flake8](https://flake8.pycqa.org/en/latest/)
-(with several plugins) for linting and
-[Black](https://black.readthedocs.io/en/stable/) for formatting.
-[Mypy](http://mypy-lang.org/) is installed for type checking.
-[isort](https://pycqa.github.io/isort/),[Pylint](https://pylint.org/) and
-[tyrceratops](https://github.com/guilatrova/tryceratops) are also installed as
-standard.
 
 ### Pre-commit
 
