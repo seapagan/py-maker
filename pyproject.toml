@@ -70,7 +70,7 @@ mypy = "^1.4.1"
 tryceratops = "^2.3.2"
 
 # task runner
-poethepoet = "^0.21.1"
+poethepoet = ">=0.21.1,<0.23.0"
 
 # testing
 pytest = "^7.4.0"
