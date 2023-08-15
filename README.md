@@ -96,16 +96,16 @@ The generated project includes [flake8](https://flake8.pycqa.org/en/latest/)
 (with several plugins) for linting and
 [Black](https://black.readthedocs.io/en/stable/) for formatting.
 [Mypy](http://mypy-lang.org/) is installed for type checking.
-[isort](https://pycqa.github.io/isort/),[Pylint](https://pylint.org/) and
+[isort](https://pycqa.github.io/isort/), [Pylint](https://pylint.org/) and
 [tyrceratops](https://github.com/guilatrova/tryceratops) are also installed as
 standard.
 
 ### Customise
 
-The `pyproject.toml` file is set up to use the to put the code in a sub-folder
-with the same name as chosen for the 'Package Name'. You can change this to
-whatever you require, just remember to update the `pyproject.toml` file to
-match.
+For a 'package' project, the `pyproject.toml` file is set up to put the code in
+a sub-folder with the same name as chosen for the 'Package Name'. You can change
+this to whatever you require, just remember to update the `pyproject.toml` file
+to match.
 
 You can also modify the template used to generate the new project.
 
