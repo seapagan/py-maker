@@ -13,6 +13,7 @@ class ProjectSettings(BaseModel):
     author: str = ""
     email: str = ""
     license: str = ""
+    use_mkdocs: Optional[bool] = False
 
 
 class ProjectValues(ProjectSettings):

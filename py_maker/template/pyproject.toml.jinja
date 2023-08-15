@@ -29,7 +29,7 @@ build-backend = "poetry.core.masonry.api"
 
 # Configure dev dependencies you can add or remove as needed
 [tool.poetry.group.dev.dependencies]
- linting, type-checking and security checks
+# linting, type-checking and security checks
 bandit = { extras = ["toml"], version = "^1.7.5" }
 black = "^23.7.0"
 flake8 = "^6.0.0"
@@ -63,6 +63,16 @@ pytest-asyncio = "^0.21.1"
 pytest-mock = "^3.11.1"
 mock = "^5.1.0"
 faker = "^19.2.0"
+
+{% if use_mkdocs %}
+# documentation
+mkdocs = "^1.4.3"
+mkdocs-autorefs = "^0.5.0"
+mkdocs-material = "^9.1.19"
+mkdocs-minify-plugin = "^0.7.0"
+pymdown-extensions = "^10.1"
+pygments = "^2.15.1"
+{% endif %}
 
 # setup PoeThePoet tasks
 [tool.poe.tasks]
