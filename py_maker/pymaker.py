@@ -268,6 +268,10 @@ See the [bold][green]README.md[/green][/bold] file for more information.
         if self.choices.package_name == "-":
             self.choices.standalone = True
 
+        self.choices.use_mkdocs = Confirm.ask(
+            "Use MkDocs for documentation?", default=True
+        )
+
         if not self.confirm_values():
             # User chose not to continue
             print("\n[red]Aborting![/red]")

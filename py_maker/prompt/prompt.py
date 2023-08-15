@@ -17,6 +17,10 @@ class Confirm(RichConfirm):
     Saves importing from the Rich library.
     """
 
+    def __init__(self, *args, **kwargs):
+        """Call the original constructor."""
+        super().__init__(*args, **kwargs)
+
 
 class Prompt(RichPrompt):
     """Override the Prompt class to make choices case-insensitive."""
