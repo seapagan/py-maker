@@ -108,8 +108,8 @@ lint = ["black", "flake8", "mypy", "try", "pylint"]
 
 "docs:publish" = "mkdocs gh-deploy"
 "docs:build" = "mkdocs build"
-"docs:serve" = "mkdocs serve"
-"docs:serve:all" = "mkdocs serve -a 0.0.0.0:9000"
+"docs:serve" = "mkdocs serve -w TODO.md"
+"docs:serve:all" = "mkdocs serve -w TODO.md -a 0.0.0.0:9000"
 
 # configure assorted tools and linters
 [tool.isort]

@@ -1,9 +1,13 @@
-# TODO List
+# Future Plans
+
+The below is a list of things I'd like to add to the project in the future, and
+is kinda a 'work list' for me.
+
+Everything below will be implemented and are in no particular order or
+importance.
 
 ## General
 
-- Add testing with [Pytest](https://pytest.org) (`IN PROGRESS`)
-- Add option to generate a skeleton MkDocs website for the new project
 - Ask for more settings ie homepage, repo, etc. and add them to the generated
   `pyproject.toml` file (if the new project is likely to be uploaded to PyPI)
 - check manually entered package name to ensure no dashes.
@@ -29,12 +33,23 @@
   files to be added to the generated project. This would also add a command line
   flag (ie `--django`, `--pydantic` or `--fastapi` or whatever) to use that
   plugin, and a config setting to specify using this plugin always.
-- add config  and CLI options to enable/disable creating a `git` repo, disable
-  adding `test` or `linting` packages etc (expand for any future options).
+- add CLI options to enable/disable creating a `git` repo, disable adding `test`
+  or `linting` packages etc (expand for any future options). These should also
+  be added to the config file. Settings in the config would have the values
+  'yes', 'no' or 'ask' (default). CLI values overwrite config values.
 - include an optional `vscode` settings file in the generated project, optimized
   for python projects. This could include recommended extensions.
+- add a CLI option to accept all defaults when generating a project.
+- Ask if we should run `poetry install` after generating the project. At this
+  time we can also generate the MkDocs site if requested.
+- after creating the MkDocs boilerplate (if requested), change the config to use
+  the `material` theme and add the `pymdown-extensions` plugin.
 
 ## Documentation
 
 - Add usage examples and perhaps a walk-through to the documentation. Maybe
   with a YouTube video?
+
+## Testing
+
+- Add testing with [Pytest](https://pytest.org) (`IN PROGRESS`)
