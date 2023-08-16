@@ -4,6 +4,7 @@ from __future__ import annotations
 import importlib.resources as pkg_resources
 import os
 import shutil
+import subprocess  # nosec
 import sys
 from pathlib import Path, PurePath
 from typing import TYPE_CHECKING
@@ -203,7 +204,7 @@ class PyMaker:
 [bold]Next steps:[/bold]
 
     1) Change to the project directory:
-    2) Install the dependencies (creates a virtual environment):
+    2) Install the dependencies if not done (creates a virtual environment):
         'poetry install'
     3) Activate the virtual environment:
         'poetry shell'
@@ -292,5 +293,16 @@ See the [bold][green]README.md[/green][/bold] file for more information.
         self.create_folders()
         self.generate_template()
         self.create_git_repo()
+
+        # run poetry install if required
+        if Confirm.ask("\nShould I Run 'poetry install' now?", default=True):
+            os.chdir(self.choices.project_dir)
+            subprocess.run(["poetry", "install"], check=True)  # nosec
+
+            if self.choices.use_mkdocs:
+                print("\n--> Creating MkDocs project")
+                subprocess.run(  # nosec
+                    ["poetry", "run", "mkdocs", "new", "."], check=True
+                )
 
         self.post_process()
