@@ -215,6 +215,20 @@ See the [bold][green]README.md[/green][/bold] file for more information.
         """
         print(output)
 
+    def get_sanitized_package_name(self, pk_name: str) -> str:
+        """Return a sanitized package name from user input."""
+        while True:
+            name = Prompt.ask(
+                "Package Name? (Use '-' for standalone script)",
+                default=pk_name
+                if pk_name != "."
+                else sanitize(self.choices.project_dir.name),
+            )
+            if "-" not in name:
+                break
+            print("\n[red]Error: Package name cannot contain dashes [/red]\n")
+        return name
+
     # ------------------------------------------------------------------------ #
     #             The main application loop is on the .run()method.            #
     # ------------------------------------------------------------------------ #
@@ -243,12 +257,8 @@ See the [bold][green]README.md[/green][/bold] file for more information.
             default=get_title(PurePath(self.choices.project_dir).name),
         )
         pk_name = sanitize(self.location)
-        self.choices.package_name = Prompt.ask(
-            "Package Name? (Use '-' for standalone script)",
-            default=pk_name
-            if pk_name != "."
-            else sanitize(self.choices.project_dir.name),
-        )
+        self.choices.package_name = self.get_sanitized_package_name(pk_name)
+
         self.choices.description = Prompt.ask(
             "Description of the Application?",
         )

@@ -43,7 +43,7 @@ def sanitize(input_str: Union[str, Path]) -> str:
 
     Python needs underscores in library names, not dashes.
     """
-    return str(input_str).replace("-", "_")
+    return re.sub(r"[-_.]+", "_", str(input_str))
 
 
 def get_title(key: str) -> str:
@@ -51,7 +51,7 @@ def get_title(key: str) -> str:
 
     This removes dashes or underscore and titlizes each word.
     """
-    return re.sub("[_-]", " ", key).title() if key != "." else ""
+    return re.sub(r"[-_.]+", " ", key).title() if key != "." else ""
 
 
 def pretty_attrib(attr: str) -> str:

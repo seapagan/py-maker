@@ -10,7 +10,6 @@ importance.
 
 - Ask for more settings ie homepage, repo, etc. and add them to the generated
   `pyproject.toml` file (if the new project is likely to be uploaded to PyPI)
-- check manually entered package name to ensure no dashes.
 - add a flag to overwrite existing files if the directory exists. Make this
   require confirmation. Alternately allow overwrite with confirmation if an
   existing/populated directory is found. Add a force flag to skip confirmation.
