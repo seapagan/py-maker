@@ -38,8 +38,6 @@ importance.
 - include an optional `vscode` settings file in the generated project, optimized
   for python projects. This could include recommended extensions.
 - add a CLI option to accept all defaults when generating a project.
-- after creating the MkDocs boilerplate (if requested), change the config to use
-  the `material` theme and add the `pymdown-extensions` plugin.
 
 ## Documentation
 

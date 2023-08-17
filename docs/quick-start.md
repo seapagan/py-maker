@@ -40,6 +40,13 @@ When it asks "Package Name?" you can choose two variants :
    be placed in the project root and no package folder will be created or
    referenced.
 
+## Choose to create an MkDocs site or not
+
+If you answer "y" to the question "Use MkDocs for documentation?", then the app
+will create a new MkDocs site in the `docs` folder, and will add the
+`mkdocs-material` theme to the `mkdocs.yml` file along with a few other useful
+plugins and markdown extensions.
+
 ## Command line options
 
 There are a few command line options that can be used to customise the build
