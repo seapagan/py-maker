@@ -39,6 +39,8 @@ importance.
 
 - refactor the `PyMaker` class as its getting a bit messy. Maybe split it into
   multiple classes with specific responsibilities.
+- sort out the nested `if/else` statements in
+  `PyMaker.get_sanitized_package_name`.
 
 ## Documentation
 
