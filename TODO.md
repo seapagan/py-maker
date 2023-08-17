@@ -38,7 +38,6 @@ importance.
   (default). CLI values overwrite config values.
 - include an optional `vscode` settings file in the generated project, optimized
   for python projects. This could include recommended extensions.
-- add a CLI option to accept all defaults when generating a project.
 
 ## Documentation
 

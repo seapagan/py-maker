@@ -11,6 +11,9 @@ app = typer.Typer(no_args_is_help=True)
 @app.callback(invoke_without_command=True)
 def new(
     location: str = typer.Argument(..., help="Where to create the project."),
+    accept_defaults: bool = typer.Option(
+        False, "--yes", "-y", help="Accept all defaults."
+    ),
     no_git: bool = typer.Option(
         False, "--no-git", help="Don't Initialize a git repository."
     ),
@@ -26,6 +29,7 @@ def new(
         "no_git": no_git,
         "no_test": no_test,
         "no_lint": no_lint,
+        "accept_defaults": accept_defaults,
     }
 
     if " " in location:

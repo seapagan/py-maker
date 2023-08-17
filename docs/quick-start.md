@@ -51,6 +51,10 @@ plugins and markdown extensions.
 
 There are a few command line options that can be used to customise the build
 
+### `-y` or `--yes`
+
+Accept all defaults and do not ask any questions.
+
 ### `--no-git`
 
 This will skip the step of initialising a git repository.

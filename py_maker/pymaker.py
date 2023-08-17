@@ -265,48 +265,62 @@ See the [bold][green]README.md[/green][/bold] file for more information.
             f"{self.choices.project_dir}\n"
         )
 
-        self.choices.name = Prompt.ask(
-            "Name of the Application?",
-            default=get_title(PurePath(self.choices.project_dir).name),
-        )
-        pk_name = sanitize(self.location)
-        self.choices.package_name = self.get_sanitized_package_name(pk_name)
+        if self.options["accept_defaults"]:
+            self.choices.name = get_title(
+                PurePath(self.choices.project_dir).name
+            )
+            self.choices.package_name = sanitize(self.choices.project_dir.name)
+            self.choices.description = ""
+            self.choices.author = self.settings.author_name
+            self.choices.email = self.settings.author_email
+            self.choices.license = self.settings.default_license
+            self.choices.standalone = False
+            self.choices.use_mkdocs = True
+        else:
+            self.choices.name = Prompt.ask(
+                "Name of the Application?",
+                default=get_title(PurePath(self.choices.project_dir).name),
+            )
+            pk_name = sanitize(self.location)
+            self.choices.package_name = self.get_sanitized_package_name(pk_name)
 
-        self.choices.description = Prompt.ask(
-            "Description of the Application?",
-        )
-        self.choices.author = Prompt.ask(
-            "Author Name?", default=self.settings.author_name
-        )
+            self.choices.description = Prompt.ask(
+                "Description of the Application?",
+            )
+            self.choices.author = Prompt.ask(
+                "Author Name?", default=self.settings.author_name
+            )
 
-        self.choices.email = Prompt.ask(
-            "Author Email?", default=self.settings.author_email
-        )
-        self.choices.license = Prompt.ask(
-            "Application License?",
-            choices=license_names,
-            default=self.settings.default_license,
-        )
+            self.choices.email = Prompt.ask(
+                "Author Email?", default=self.settings.author_email
+            )
+            self.choices.license = Prompt.ask(
+                "Application License?",
+                choices=license_names,
+                default=self.settings.default_license,
+            )
 
-        if self.choices.package_name == "-":
-            self.choices.standalone = True
+            if self.choices.package_name == "-":
+                self.choices.standalone = True
 
-        self.choices.use_mkdocs = Confirm.ask(
-            "Use MkDocs for documentation?", default=True
-        )
+            self.choices.use_mkdocs = Confirm.ask(
+                "Use MkDocs for documentation?", default=True
+            )
 
-        if not self.confirm_values():
-            # User chose not to continue
-            print("\n[red]Aborting![/red]")
-            sys.exit(ExitErrors.USER_ABORT)
+            if not self.confirm_values():
+                # User chose not to continue
+                print("\n[red]Aborting![/red]")
+                sys.exit(ExitErrors.USER_ABORT)
 
-        print()
+            print()
 
         self.create_folders()
         self.generate_template()
 
         # run poetry install if required
-        if Confirm.ask("\nShould I Run 'poetry install' now?", default=True):
+        if self.options["accept_defaults"] or Confirm.ask(
+            "\nShould I Run 'poetry install' now?", default=True
+        ):
             os.chdir(self.choices.project_dir)
             subprocess.run(["poetry", "install"], check=True)  # nosec
 
