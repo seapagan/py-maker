@@ -19,8 +19,9 @@ def test_get_author_and_email_from_git():
 def test_sanitize():
     """Test the Sanitize function."""
     assert sanitize("my-project-name") == "my_project_name"
-    assert sanitize("my-project-name-1.0") == "my_project_name_1.0"
+    assert sanitize("my-project-name-1.0") == "my_project_name_1_0"
     assert sanitize("my_project_name") == "my_project_name"
+    assert sanitize("my_____project_name....end") == "my_project_name_end"
 
 
 def test_get_title():
