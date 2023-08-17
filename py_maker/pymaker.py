@@ -3,10 +3,12 @@ from __future__ import annotations
 
 import importlib.resources as pkg_resources
 import os
+import re
 import shutil
+import subprocess  # nosec
 import sys
 from pathlib import Path, PurePath
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Dict
 
 from git.exc import GitError
 from git.repo import Repo
@@ -15,7 +17,7 @@ from rich import print  # pylint: disable=W0622
 
 from py_maker import template
 from py_maker.config.settings import Settings
-from py_maker.constants import ExitErrors, license_names
+from py_maker.constants import ExitErrors, license_names, mkdocs_config
 from py_maker.helpers import (
     get_current_year,
     get_file_list,
@@ -33,10 +35,11 @@ if TYPE_CHECKING:
 class PyMaker:
     """PyMaker class."""
 
-    def __init__(self, location: str) -> None:
+    def __init__(self, location: str, options: Dict[str, bool]) -> None:
         """Initialize the PyMaker class."""
         self.choices: ProjectValues = ProjectValues()
         self.location: str = location
+        self.options: Dict[str, bool] = options
 
         header()
 
@@ -112,6 +115,7 @@ class PyMaker:
                         jinja_template.render(
                             self.choices.model_dump(),
                             slug=self.choices.project_dir.name,
+                            options=self.options,
                         )
                     )
                 else:
@@ -170,6 +174,10 @@ class PyMaker:
                     Path(self.choices.project_dir / "main.py")
                 )
                 shutil.rmtree(self.choices.project_dir / "app")
+
+            # ----------- remove the 'test' folder if not required ----------- #
+            if self.options["no_test"]:
+                shutil.rmtree(self.choices.project_dir / "tests")
         except OSError as exc:
             print(f"\n[red]  -> {exc}")
             sys.exit(ExitErrors.OS_ERROR)
@@ -179,8 +187,10 @@ class PyMaker:
     # ------------------------------------------------------------------------ #
     def create_git_repo(self) -> None:
         """Create a Git repository for the project and add the first commit."""
+        if self.options["no_git"]:
+            return
         try:
-            print("--> Creating Git repository ... ", end="")
+            print("\n--> Creating Git repository ... ", end="")
             repo = Repo.init(self.choices.project_dir)
             repo.index.add(repo.untracked_files)
             repo.index.commit("Initial Commit")
@@ -203,7 +213,7 @@ class PyMaker:
 [bold]Next steps:[/bold]
 
     1) Change to the project directory:
-    2) Install the dependencies (creates a virtual environment):
+    2) Install the dependencies if not done (creates a virtual environment):
         'poetry install'
     3) Activate the virtual environment:
         'poetry shell'
@@ -215,8 +225,25 @@ See the [bold][green]README.md[/green][/bold] file for more information.
         """
         print(output)
 
+    def get_sanitized_package_name(self, pk_name: str) -> str:
+        """Return a sanitized package name from user input."""
+        while True:
+            name = Prompt.ask(
+                "Package Name? (Use '-' for standalone script)",
+                default=pk_name
+                if pk_name != "."
+                else sanitize(self.choices.project_dir.name),
+            )
+            if not re.search(r"[- .]", name):
+                break
+            print(
+                "\n[red]Error: Package name cannot contain dashes, dots or "
+                "spaces. Please use Underscores if required.\n"
+            )
+        return name
+
     # ------------------------------------------------------------------------ #
-    #             The main application loop is on the .run()method.            #
+    #             The main application loop is on the .run() method.           #
     # ------------------------------------------------------------------------ #
     def run(self) -> None:
         """Entry point for the application."""
@@ -238,49 +265,74 @@ See the [bold][green]README.md[/green][/bold] file for more information.
             f"{self.choices.project_dir}\n"
         )
 
-        self.choices.name = Prompt.ask(
-            "Name of the Application?",
-            default=get_title(PurePath(self.choices.project_dir).name),
-        )
-        pk_name = sanitize(self.location)
-        self.choices.package_name = Prompt.ask(
-            "Package Name? (Use '-' for standalone script)",
-            default=pk_name
-            if pk_name != "."
-            else sanitize(self.choices.project_dir.name),
-        )
-        self.choices.description = Prompt.ask(
-            "Description of the Application?",
-        )
-        self.choices.author = Prompt.ask(
-            "Author Name?", default=self.settings.author_name
-        )
+        if self.options["accept_defaults"]:
+            self.choices.name = get_title(
+                PurePath(self.choices.project_dir).name
+            )
+            self.choices.package_name = sanitize(self.choices.project_dir.name)
+            self.choices.description = ""
+            self.choices.author = self.settings.author_name
+            self.choices.email = self.settings.author_email
+            self.choices.license = self.settings.default_license
+            self.choices.standalone = False
+            self.choices.use_mkdocs = True
+        else:
+            self.choices.name = Prompt.ask(
+                "Name of the Application?",
+                default=get_title(PurePath(self.choices.project_dir).name),
+            )
+            pk_name = sanitize(self.location)
+            self.choices.package_name = self.get_sanitized_package_name(pk_name)
 
-        self.choices.email = Prompt.ask(
-            "Author Email?", default=self.settings.author_email
-        )
-        self.choices.license = Prompt.ask(
-            "Application License?",
-            choices=license_names,
-            default=self.settings.default_license,
-        )
+            self.choices.description = Prompt.ask(
+                "Description of the Application?",
+            )
+            self.choices.author = Prompt.ask(
+                "Author Name?", default=self.settings.author_name
+            )
 
-        if self.choices.package_name == "-":
-            self.choices.standalone = True
+            self.choices.email = Prompt.ask(
+                "Author Email?", default=self.settings.author_email
+            )
+            self.choices.license = Prompt.ask(
+                "Application License?",
+                choices=license_names,
+                default=self.settings.default_license,
+            )
 
-        self.choices.use_mkdocs = Confirm.ask(
-            "Use MkDocs for documentation?", default=True
-        )
+            if self.choices.package_name == "-":
+                self.choices.standalone = True
 
-        if not self.confirm_values():
-            # User chose not to continue
-            print("\n[red]Aborting![/red]")
-            sys.exit(ExitErrors.USER_ABORT)
+            self.choices.use_mkdocs = Confirm.ask(
+                "Use MkDocs for documentation?", default=True
+            )
 
-        print()
+            if not self.confirm_values():
+                # User chose not to continue
+                print("\n[red]Aborting![/red]")
+                sys.exit(ExitErrors.USER_ABORT)
+
+            print()
 
         self.create_folders()
         self.generate_template()
-        self.create_git_repo()
 
+        # run poetry install if required
+        if self.options["accept_defaults"] or Confirm.ask(
+            "\nShould I Run 'poetry install' now?", default=True
+        ):
+            os.chdir(self.choices.project_dir)
+            subprocess.run(["poetry", "install"], check=True)  # nosec
+
+            if self.choices.use_mkdocs:
+                print("\n--> Creating MkDocs project")
+                subprocess.run(  # nosec
+                    ["poetry", "run", "mkdocs", "new", "."], check=True
+                )
+                # now copy the custom mkdocs.yml file
+                (self.choices.project_dir / "mkdocs.yml").write_text(
+                    mkdocs_config.format(name=self.choices.name)
+                )
+
+        self.create_git_repo()
         self.post_process()

@@ -35,10 +35,48 @@ When it asks "Package Name?" you can choose two variants :
    uploaded to **PyPI**, enter a package name here. Note that underscores ("_")
    must be used as opposed to dashes ("-") to comply with Python package naming
    rules. Default is the project folder name with underscores replacing dashes.
-2. **For a stand-alone tool** that will not ne uploaded to PyPI, or is not a
+2. **For a stand-alone tool** that will not be uploaded to PyPI, or is not a
    library, enter '-' for the package name. In this case the `main.py` will just
    be placed in the project root and no package folder will be created or
    referenced.
+
+## Choose to create an MkDocs site or not
+
+If you answer "y" to the question "Use MkDocs for documentation?", then the app
+will create a new MkDocs site in the `docs` folder, and will add the
+`mkdocs-material` theme to the `mkdocs.yml` file along with a few other useful
+plugins and markdown extensions.
+
+## Command line options
+
+There are a few command line options that can be used to customise the build
+
+### `-y` or `--yes`
+
+Accept all defaults and do not ask any questions.
+
+### `--no-git`
+
+This will skip the step of initialising a git repository.
+
+### `--no-test`
+
+This will skip the step of creating a test directory, and will not add the
+`pytest` dependency or any related plugins to the `pyproject.toml` file.
+
+### `--no-lint`
+
+This will skip adding any linting dependencies to the `pyproject.toml` file, nor
+will it add any linting configuration options or related tasks.
+
+## Run `poetry install` automatically
+
+You will be asked if you want to run `poetry install` automatically. This will
+create a virtual environment and install the dependencies, plus also create a
+bare `MkDocs` site and configuration. This is the recommended option.
+
+You will still need to run `poetry shell` to activate the virtual environment
+from inside the new project folder.
 
 ## Start developing
 
@@ -47,7 +85,7 @@ the virtual environment:
 
 ```console
 $ cd <project-folder>
-$ poetry install
+$ poetry install # if not done automatically already
 $ poetry shell
 ```
 
@@ -56,45 +94,75 @@ Now, you can start developing :smile:
 ## Example run
 
 ```console
-$ pymaker new test-project
+$ pymaker new secret-docs
 PyMaker - Generate a Python project skeleton.
 
-Creating a new project at /home/bathroom/test-project
+Creating a new project at /home/bathroom/secret-docs
 
-Name of the Application? (Test Project):
-Package Name? (Use '-' for standalone script) (test_project):
-Description of the Application?: An amazing Bigly test project.
-Author Name? (Orange Tango):
-Author Email? (bigly@spraytan.org):
+Name of the Application? (Secret Docs):
+Package Name? (Use '-' for standalone script) (secret_docs):
+Description of the Application?: Store all the Bigly amount of secret documents
+I have in the bathroom
+
+Author Name? (): Orange Tango
+Author Email? (): bigly@straytan.org
 Application License? [None/Apache2/BSD3/BSD2/GPL2/GPL3/LGPL/MIT/MPL2/CDDL/EPL2] (MIT):
+Use MkDocs for documentation? [y/n] (y):
 
 Creating a New Python app with the below settings :
 
-    Description : An amazing Bigly test project. better than you've ever seen before!
-   Package Name : test_project
+    Description : Store all the Bigly amount of secret documents I have in the
+                  bathroom
+   Package Name : secret_docs
          Author : Orange Tango
-          Email : bigly@spraytan.org
+          Email : bigly@straytan.org
         License : MIT
-    Project Dir : /home/bathroom/test-project
-           Name : Test Project
+     Use Mkdocs : True
+    Project Dir : /home/bathroom/secret-docs
+           Name : Secret Docs
+     Standalone : False
 
-Is this correct? [y/n] (y): y
+Is this correct? [y/n] (y):
 
 --> Creating project folder ... Done
+
+Should I Run 'poetry install' now? [y/n] (y):
+Creating virtualenv secret-docs in /home/bathroom/secret-docs/.venv
+Updating dependencies
+Resolving dependencies... (11.6s)
+
+Package operations: 103 installs, 1 update, 0 removals
+
+  • Installing lazy-object-proxy (1.9.0)
+  • Installing six (1.16.0)
+
+            <snippy snip>
+
+  • Installing pytest-xdist (3.3.1)
+  • Installing tryceratops (2.3.2)
+
+Writing lock file
+
+Installing the current project: secret-docs (0.1.0)
+
+--> Creating MkDocs project
+INFO    -  Writing config file: ./mkdocs.yml
+INFO    -  Writing initial docs: ./docs/index.md
+
 --> Creating Git repository ... Done
 
 --> Project created successfully.
 
 Next steps:
 
-    1) Change to the project directory:
-    2) Install the dependencies (creates a virtual environment):
-        'poetry install'
-    3) Activate the virtual environment:
-        'poetry shell'
-    4) Run the application:
-        'test-project'
-    5) Code!
+1. Change to the project directory:
+2. Install the dependencies if not done (creates a virtual environment):
+  'poetry install'
+3. Activate the virtual environment:
+  'poetry shell'
+4. Run the application:
+  'secret-docs'
+5. Code!
 
 See the README.md file for more information.
 ```

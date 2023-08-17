@@ -32,3 +32,35 @@ class ExitErrors(IntEnum):
     USER_ABORT = 6
     OS_ERROR = 7
     INVALID_ACTION = 8
+
+
+mkdocs_config = """
+site_name: {name}
+
+# default to using the material theme
+theme:
+  name: material
+
+# default plugins here are to minify the html, css and js plus enable the search
+# plugin. Adjust to your liking.
+plugins:
+  - search
+  - minify:
+      minify_html: true
+      minify_css: true
+      minify_js: true
+      htmlmin_opts:
+        remove_comments: true
+        remove_empty_space: true
+
+# edit these MARKDOWN extensions to your liking
+markdown_extensions:
+  - admonition
+  - pymdownx.snippets
+  - pymdownx.superfences
+  - pymdownx.highlight
+  - attr_list
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
+"""

@@ -46,8 +46,9 @@ $ pymaker template reset
 ## Choose to use the Default Template or not
 
 Running the `dump` command will give you the option to disable the default
-template completely and ONLY use the exported template. You can also do this (or
-revert back to the default template) by running the following command:
+template completely and ONLY use the exported (or custom) template. You can also
+do this (or revert back to the default template) by running the following
+command:
 
 ```console
 $ pymaker template default <enable|disable>

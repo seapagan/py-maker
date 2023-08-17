@@ -9,12 +9,11 @@ importance.
 ## General
 
 - Ask for more settings ie homepage, repo, etc. and add them to the generated
-  `pyproject.toml` file (if the new project is likely to be uploaded to PyPI)
-- check manually entered package name to ensure no dashes.
+  `pyproject.toml` file (if the new project is not standalone).
 - add a flag to overwrite existing files if the directory exists. Make this
   require confirmation. Alternately allow overwrite with confirmation if an
   existing/populated directory is found. Add a force flag to skip confirmation.
-  I think DO NOT allow this when '.' is specified as this could be disastrous.
+  `I think DO NOT allow this when '.' is specified as this could be disastrous`.
 - when creating a package project, quickly check PyPI to see if the package name
   is already taken. If it is, either abort or ask the user if they want to
   continue (making clear they will need to rename the package before it can be
@@ -22,7 +21,8 @@ importance.
 - add some form of 'extra packages' command line option and config setting to
   automatically add extra packages to the generated `pyproject.toml` file.
 - add cmd line options to specify the project name, author, etc. so the user
-  doesn't have to enter them manually.
+  doesn't have to enter them manually. `Not sure if this is needed once we add
+  the CLI paramaters to the config file. May be useful for automation though`.
 - add a command line option to specify the project type so the user doesn't have
   to enter it manually. ie `--standalone` or `--package`(latter is default and
   wouldn't need to be specified).
@@ -33,17 +33,16 @@ importance.
   files to be added to the generated project. This would also add a command line
   flag (ie `--django`, `--pydantic` or `--fastapi` or whatever) to use that
   plugin, and a config setting to specify using this plugin always.
-- add CLI options to enable/disable creating a `git` repo, disable adding `test`
-  or `linting` packages etc (expand for any future options). These should also
-  be added to the config file. Settings in the config would have the values
-  'yes', 'no' or 'ask' (default). CLI values overwrite config values.
+- add the CLI options to enable/disable creating a `git` repo,etc to the config
+  file. Settings in the config would have the values 'yes', 'no' or 'ask'
+  (default). CLI values overwrite config values.
 - include an optional `vscode` settings file in the generated project, optimized
   for python projects. This could include recommended extensions.
-- add a CLI option to accept all defaults when generating a project.
-- Ask if we should run `poetry install` after generating the project. At this
-  time we can also generate the MkDocs site if requested.
-- after creating the MkDocs boilerplate (if requested), change the config to use
-  the `material` theme and add the `pymdown-extensions` plugin.
+
+## Code Quality
+
+- refactor the `PyMaker` class as its getting a bit messy. Maybe split it into
+  multiple classes with specific responsibilities.
 
 ## Documentation
 

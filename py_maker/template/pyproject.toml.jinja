@@ -29,6 +29,7 @@ build-backend = "poetry.core.masonry.api"
 
 # Configure dev dependencies you can add or remove as needed
 [tool.poetry.group.dev.dependencies]
+{% if not options.no_lint %}
 # linting, type-checking and security checks
 bandit = { extras = ["toml"], version = "^1.7.5" }
 black = "^23.7.0"
@@ -48,10 +49,12 @@ pydocstyle = "^6.3.0"
 pymarkdownlnt = "^0.9.12"
 mypy = "^1.4.1"
 tryceratops = "^2.3.2"
+{% endif %}
 
 # task runner
 poethepoet = "^0.21.1"
 
+{% if not options.no_test %}
 # testing
 pytest = "^7.4.0"
 pytest-cov = "^4.0.0"
@@ -63,6 +66,7 @@ pytest-asyncio = "^0.21.1"
 pytest-mock = "^3.11.1"
 mock = "^5.1.0"
 faker = "^19.2.0"
+{% endif %}
 
 {% if use_mkdocs %}
 # documentation
@@ -77,6 +81,7 @@ pygments = "^2.15.1"
 # setup PoeThePoet tasks
 [tool.poe.tasks]
 pre = "pre-commit run --all-files"
+{% if not options.no_lint %}
 pylint = "pylint **/*.py"
 mypy = "mypy **/*.py"
 flake8 = "flake8 **/*.py"
@@ -129,6 +134,11 @@ max-attributes = 10
 [tool.pydocstyle]
 add-ignore = ["D104"]
 
+[tool.pymarkdown]
+plugins.md014.enabled = false
+{% endif %}
+
+{% if not options.no_test %}
 [tool.pytest.ini_options]
 addopts = ["--cov", "--cov-report", "term-missing", "--cov-report", "html"]
 filterwarnings = []
@@ -137,6 +147,4 @@ mock_use_standalone_module = true
 [tool.coverage.run]
 # source = []
 omit = ["*/tests/*"]
-
-[tool.pymarkdown]
-plugins.md014.enabled = false
+{% endif %}
