@@ -1,6 +1,6 @@
 """Create a new project."""
 import typer
-from rich import print  # noqa: F401
+from rich import print  # pylint: disable=W0622
 
 from py_maker.constants import ExitErrors
 from py_maker.pymaker import PyMaker
