@@ -1,6 +1,8 @@
 """Test the helpers module.""" ""
+import requests
 
 from py_maker.helpers import (
+    exists_on_pypi,
     get_author_and_email_from_git,
     get_current_year,
     get_title,
@@ -41,3 +43,21 @@ def test_get_current_year():
     """Test the get_current_year function."""
     assert get_current_year().isdigit()
     assert len(get_current_year()) == 4
+
+
+def test_exists_on_pypi_returns_true(mocker):
+    mock_get = mocker.patch.object(requests, "get")
+    mock_get.return_value.status_code = 200
+    assert exists_on_pypi("requests") is True
+
+
+def test_exists_on_pypi_returns_false(mocker):
+    mock_get = mocker.patch.object(requests, "get")
+    mock_get.return_value.status_code = 404
+    assert exists_on_pypi("nonexistent_package") is False
+
+
+def test_exists_on_pypi_returns_false_on_timeout(mocker):
+    mock_get = mocker.patch.object(requests, "get")
+    mock_get.side_effect = requests.exceptions.Timeout
+    assert exists_on_pypi("nonexistent_package") is False

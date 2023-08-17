@@ -5,6 +5,7 @@ import re
 from datetime import datetime
 from typing import TYPE_CHECKING, Dict, List, Union
 
+import requests
 from git.config import GitConfigParser
 from rich import print  # pylint: disable=redefined-builtin
 from rich.console import Console
@@ -84,3 +85,17 @@ def show_table(settings: Dict[str, str]):
     for key, value in settings.items():
         table.add_row(pretty_attrib(key), str(value))
     console.print(table)
+
+
+def exists_on_pypi(package_name: str) -> bool:
+    """Check if the package name is available on PyPI.
+
+    Return True if the package name already exists on PyPI, False otherwise.
+    Timeout after 5 seconds, which also returns False.
+    """
+    url = f"https://pypi.org/pypi/{package_name}/json"
+    try:
+        response = requests.get(url, timeout=5)
+    except requests.exceptions.Timeout:
+        return False
+    return response.status_code == 200

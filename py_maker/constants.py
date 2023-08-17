@@ -34,7 +34,7 @@ class ExitErrors(IntEnum):
     INVALID_ACTION = 8
 
 
-mkdocs_config = """
+MKDOCS_CONFIG = """
 site_name: {name}
 
 # default to using the material theme

@@ -95,6 +95,9 @@ mkdocstrings = "^0.22.0"
 pymdown-extensions = "^10.1"
 pygments = "^2.15.1"
 
+# typing stubs
+types-requests = "^2.31.0.2"
+
 [tool.poe.tasks]
 # setup PoeThePoet tasks
 pre = "pre-commit run --all-files"

@@ -17,8 +17,9 @@ from rich import print  # pylint: disable=W0622
 
 from py_maker import template
 from py_maker.config.settings import Settings
-from py_maker.constants import ExitErrors, license_names, mkdocs_config
+from py_maker.constants import MKDOCS_CONFIG, ExitErrors, license_names
 from py_maker.helpers import (
+    exists_on_pypi,
     get_current_year,
     get_file_list,
     get_title,
@@ -235,11 +236,17 @@ See the [bold][green]README.md[/green][/bold] file for more information.
                 else sanitize(self.choices.project_dir.name),
             )
             if not re.search(r"[- .]", name):
-                break
-            print(
-                "\n[red]Error: Package name cannot contain dashes, dots or "
-                "spaces. Please use Underscores if required.\n"
-            )
+                if exists_on_pypi(name):
+                    print(
+                        "\n[red]Error: Package name already exists on PyPI.\n"
+                    )
+                else:
+                    break
+            else:
+                print(
+                    "\n[red]Error: Package name cannot contain dashes, dots or "
+                    "spaces. Please use Underscores if required.\n"
+                )
         return name
 
     # ------------------------------------------------------------------------ #
@@ -331,7 +338,7 @@ See the [bold][green]README.md[/green][/bold] file for more information.
                 )
                 # now copy the custom mkdocs.yml file
                 (self.choices.project_dir / "mkdocs.yml").write_text(
-                    mkdocs_config.format(name=self.choices.name)
+                    MKDOCS_CONFIG.format(name=self.choices.name)
                 )
 
         self.create_git_repo()
