@@ -3,11 +3,12 @@ from __future__ import annotations
 
 import importlib.resources as pkg_resources
 import os
+import re
 import shutil
 import subprocess  # nosec
 import sys
 from pathlib import Path, PurePath
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Dict
 
 from git.exc import GitError
 from git.repo import Repo
@@ -34,10 +35,11 @@ if TYPE_CHECKING:
 class PyMaker:
     """PyMaker class."""
 
-    def __init__(self, location: str) -> None:
+    def __init__(self, location: str, options: Dict[str, bool]) -> None:
         """Initialize the PyMaker class."""
         self.choices: ProjectValues = ProjectValues()
         self.location: str = location
+        self.options: Dict[str, bool] = options
 
         header()
 
@@ -113,6 +115,7 @@ class PyMaker:
                         jinja_template.render(
                             self.choices.model_dump(),
                             slug=self.choices.project_dir.name,
+                            options=self.options,
                         )
                     )
                 else:
@@ -171,6 +174,10 @@ class PyMaker:
                     Path(self.choices.project_dir / "main.py")
                 )
                 shutil.rmtree(self.choices.project_dir / "app")
+
+            # ----------- remove the 'test' folder if not required ----------- #
+            if self.options["no_test"]:
+                shutil.rmtree(self.choices.project_dir / "tests")
         except OSError as exc:
             print(f"\n[red]  -> {exc}")
             sys.exit(ExitErrors.OS_ERROR)
@@ -180,8 +187,10 @@ class PyMaker:
     # ------------------------------------------------------------------------ #
     def create_git_repo(self) -> None:
         """Create a Git repository for the project and add the first commit."""
+        if self.options["no_git"]:
+            return
         try:
-            print("--> Creating Git repository ... ", end="")
+            print("\n--> Creating Git repository ... ", end="")
             repo = Repo.init(self.choices.project_dir)
             repo.index.add(repo.untracked_files)
             repo.index.commit("Initial Commit")
@@ -225,13 +234,16 @@ See the [bold][green]README.md[/green][/bold] file for more information.
                 if pk_name != "."
                 else sanitize(self.choices.project_dir.name),
             )
-            if "-" not in name:
+            if not re.search(r"[- .]", name):
                 break
-            print("\n[red]Error: Package name cannot contain dashes [/red]\n")
+            print(
+                "\n[red]Error: Package name cannot contain dashes, dots or "
+                "spaces. Please use Underscores if required.\n"
+            )
         return name
 
     # ------------------------------------------------------------------------ #
-    #             The main application loop is on the .run()method.            #
+    #             The main application loop is on the .run() method.           #
     # ------------------------------------------------------------------------ #
     def run(self) -> None:
         """Entry point for the application."""
@@ -292,7 +304,6 @@ See the [bold][green]README.md[/green][/bold] file for more information.
 
         self.create_folders()
         self.generate_template()
-        self.create_git_repo()
 
         # run poetry install if required
         if Confirm.ask("\nShould I Run 'poetry install' now?", default=True):
@@ -305,4 +316,5 @@ See the [bold][green]README.md[/green][/bold] file for more information.
                     ["poetry", "run", "mkdocs", "new", "."], check=True
                 )
 
+        self.create_git_repo()
         self.post_process()

@@ -22,7 +22,7 @@ def test_project_dir(tmp_path_factory) -> Iterator[Path]:
 @pytest.fixture()
 def test_pymaker(test_project_dir) -> PyMaker:
     """Create a PyMaker instance for testing."""
-    pymaker = PyMaker(location="test_project")
+    pymaker = PyMaker(location="test_project", options={})
     pymaker.choices.name = "test_project"
     pymaker.choices.author = "Test Author"
     pymaker.choices.email = "test@example.com"
