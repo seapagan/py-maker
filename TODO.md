@@ -14,10 +14,6 @@ importance.
   require confirmation. Alternately allow overwrite with confirmation if an
   existing/populated directory is found. Add a force flag to skip confirmation.
   `I think DO NOT allow this when '.' is specified as this could be disastrous`.
-- when creating a package project, quickly check PyPI to see if the package name
-  is already taken. If it is, either abort or ask the user if they want to
-  continue (making clear they will need to rename the package before it can be
-  uploaded).
 - add some form of 'extra packages' command line option and config setting to
   automatically add extra packages to the generated `pyproject.toml` file.
 - add cmd line options to specify the project name, author, etc. so the user

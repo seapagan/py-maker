@@ -235,11 +235,22 @@ See the [bold][green]README.md[/green][/bold] file for more information.
                 if pk_name != "."
                 else sanitize(self.choices.project_dir.name),
             )
+            # note: not happy with this nested if/else, but it works for now.
+            # will fix during the next refactor.
             if not re.search(r"[- .]", name):
                 if exists_on_pypi(name):
                     print(
-                        "\n[red]Error: Package name already exists on PyPI.\n"
+                        "\n[red]Warning: Package name already exists on PyPI."
                     )
+                    confirm = Confirm.ask(
+                        "Do you want to use it anyway?", default=False
+                    )
+                    if confirm:
+                        print(
+                            "\n[red]Warning: Using an existing package name "
+                            "will mean it [b]cannot be uploaded to PyPI.\n"
+                        )
+                        break
                 else:
                     break
             else:

@@ -34,11 +34,16 @@ When it asks "Package Name?" you can choose two variants :
 1. **If you are creating a standard Python package** that can optionally be
    uploaded to **PyPI**, enter a package name here. Note that underscores ("_")
    must be used as opposed to dashes ("-") to comply with Python package naming
-   rules. Default is the project folder name with underscores replacing dashes.
+   rules. Default is the project folder name with underscores replacing dashes,
+   spaces or dots.
 2. **For a stand-alone tool** that will not be uploaded to PyPI, or is not a
    library, enter '-' for the package name. In this case the `main.py` will just
    be placed in the project root and no package folder will be created or
    referenced.
+
+For option 1 above, the App will check if the package name is available on PyPI
+or if it has already been used. In the latter case, you will be asked to choose
+another name.
 
 ## Choose to create an MkDocs site or not
 
