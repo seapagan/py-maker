@@ -39,6 +39,11 @@ importance.
 - include an optional `vscode` settings file in the generated project, optimized
   for python projects. This could include recommended extensions.
 
+## Code Quality
+
+- refactor the `PyMaker` class as its getting a bit messy. Maybe split it into
+  multiple classes with specific responsibilities.
+
 ## Documentation
 
 - Add usage examples and perhaps a walk-through to the documentation. Maybe
