@@ -17,7 +17,7 @@ from rich import print  # pylint: disable=W0622
 
 from py_maker import template
 from py_maker.config.settings import Settings
-from py_maker.constants import ExitErrors, license_names
+from py_maker.constants import ExitErrors, license_names, mkdocs_config
 from py_maker.helpers import (
     get_current_year,
     get_file_list,
@@ -314,6 +314,10 @@ See the [bold][green]README.md[/green][/bold] file for more information.
                 print("\n--> Creating MkDocs project")
                 subprocess.run(  # nosec
                     ["poetry", "run", "mkdocs", "new", "."], check=True
+                )
+                # now copy the custom mkdocs.yml file
+                (self.choices.project_dir / "mkdocs.yml").write_text(
+                    mkdocs_config.format(name=self.choices.name)
                 )
 
         self.create_git_repo()
