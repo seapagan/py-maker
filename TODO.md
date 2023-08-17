@@ -13,7 +13,7 @@ importance.
 - add a flag to overwrite existing files if the directory exists. Make this
   require confirmation. Alternately allow overwrite with confirmation if an
   existing/populated directory is found. Add a force flag to skip confirmation.
-  I think DO NOT allow this when '.' is specified as this could be disastrous.
+  `I think DO NOT allow this when '.' is specified as this could be disastrous`.
 - when creating a package project, quickly check PyPI to see if the package name
   is already taken. If it is, either abort or ask the user if they want to
   continue (making clear they will need to rename the package before it can be
@@ -21,7 +21,8 @@ importance.
 - add some form of 'extra packages' command line option and config setting to
   automatically add extra packages to the generated `pyproject.toml` file.
 - add cmd line options to specify the project name, author, etc. so the user
-  doesn't have to enter them manually.
+  doesn't have to enter them manually. `Not sure if this is needed once we add
+  the CLI paramaters to the config file. May be useful for automation though`.
 - add a command line option to specify the project type so the user doesn't have
   to enter it manually. ie `--standalone` or `--package`(latter is default and
   wouldn't need to be specified).
