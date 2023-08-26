@@ -68,7 +68,7 @@ mock = "^5.1.0"
 faker = "^19.2.0"
 {% endif %}
 
-{% if use_mkdocs %}
+{% if not options.no_docs %}
 # documentation
 mkdocs = "^1.4.3"
 mkdocs-autorefs = "^0.5.0"

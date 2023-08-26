@@ -20,7 +20,7 @@ def test_settings():
         settings_path = settings_folder / "config.toml"
 
         # Create a new Settings object with the temporary settings path
-        settings = Settings(settings_path=settings_path)
+        settings = Settings(settings_file=settings_path)
 
         # Test that the default settings are correct
         assert settings.schema_version == "none"
@@ -38,5 +38,5 @@ def test_settings():
         assert loaded_settings["pymaker"]["author_name"] == test_author
 
         # Test that we can load the settings from the file
-        settings2 = Settings(settings_path=settings_path)
+        settings2 = Settings(settings_file=settings_path)
         assert settings2.get("author_name") == test_author

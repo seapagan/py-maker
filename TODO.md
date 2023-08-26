@@ -18,7 +18,7 @@ importance.
   automatically add extra packages to the generated `pyproject.toml` file.
 - add cmd line options to specify the project name, author, etc. so the user
   doesn't have to enter them manually. `Not sure if this is needed once we add
-  the CLI paramaters to the config file. May be useful for automation though`.
+  the CLI parameters to the config file. May be useful for automation though`.
 - add a command line option to specify the project type so the user doesn't have
   to enter it manually. ie `--standalone` or `--package`(latter is default and
   wouldn't need to be specified).
@@ -29,11 +29,12 @@ importance.
   files to be added to the generated project. This would also add a command line
   flag (ie `--django`, `--pydantic` or `--fastapi` or whatever) to use that
   plugin, and a config setting to specify using this plugin always.
-- add the CLI options to enable/disable creating a `git` repo,etc to the config
-  file. Settings in the config would have the values 'yes', 'no' or 'ask'
-  (default). CLI values overwrite config values.
+- modify boolean settings in the config to have the values 'yes', 'no' or 'ask'?
+  This will be a bit lower priority and not sure if it's worth it.
 - include an optional `vscode` settings file in the generated project, optimized
   for python projects. This could include recommended extensions.
+- add inverse options for CLI flags ie `--no-git` has a corresponding `--git`
+  flag. Allows easier enabling/disabling of options without changing the config
 
 ## Code Quality
 

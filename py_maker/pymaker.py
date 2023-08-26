@@ -293,7 +293,6 @@ See the [bold][green]README.md[/green][/bold] file for more information.
             self.choices.email = self.settings.author_email
             self.choices.license = self.settings.default_license
             self.choices.standalone = False
-            self.choices.use_mkdocs = True
         else:
             self.choices.name = Prompt.ask(
                 "Name of the Application?",
@@ -321,10 +320,6 @@ See the [bold][green]README.md[/green][/bold] file for more information.
             if self.choices.package_name == "-":
                 self.choices.standalone = True
 
-            self.choices.use_mkdocs = Confirm.ask(
-                "Use MkDocs for documentation?", default=True
-            )
-
             if not self.confirm_values():
                 # User chose not to continue
                 print("\n[red]Aborting![/red]")
@@ -342,7 +337,7 @@ See the [bold][green]README.md[/green][/bold] file for more information.
             os.chdir(self.choices.project_dir)
             subprocess.run(["poetry", "install"], check=True)  # nosec
 
-            if self.choices.use_mkdocs:
+            if not self.options["no_docs"]:
                 print("\n--> Creating MkDocs project")
                 subprocess.run(  # nosec
                     ["poetry", "run", "mkdocs", "new", "."], check=True
