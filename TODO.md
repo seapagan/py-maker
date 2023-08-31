@@ -8,8 +8,6 @@ importance.
 
 ## General
 
-- Ask for more settings ie homepage, repo, etc. and add them to the generated
-  `pyproject.toml` file (if the new project is not standalone).
 - add a flag to overwrite existing files if the directory exists. Make this
   require confirmation. Alternately allow overwrite with confirmation if an
   existing/populated directory is found. Add a force flag to skip confirmation.

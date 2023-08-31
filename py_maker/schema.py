@@ -24,3 +24,6 @@ class ProjectValues(ProjectSettings):
     project_dir: Path = Path("")
     name: str = ""
     standalone: Optional[bool] = False
+
+    homepage: Optional[str] = None
+    repository: Optional[str] = None

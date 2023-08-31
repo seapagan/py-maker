@@ -235,6 +235,7 @@ See the [bold][green]README.md[/green][/bold] file for more information.
             )
             # a single '-' is ok as it means a standalone script.
             if name == "-":
+                self.choices.standalone = True
                 break
 
             # note: not happy with this nested if/else, but it works for now.
@@ -302,6 +303,19 @@ See the [bold][green]README.md[/green][/bold] file for more information.
             )
             pk_name = sanitize(self.location)
             self.choices.package_name = self.get_sanitized_package_name(pk_name)
+
+            # if this is not a standalone script, ask for more details, useful
+            # for PypI uploads.
+            if not self.choices.standalone:
+                self.choices.homepage = Prompt.ask("Homepage URL?", default="")
+
+                self.choices.repository = Prompt.ask(
+                    "Repository URL?",
+                    default=(
+                        "https://github.com/your_user_name/"
+                        f"{self.choices.package_name}"
+                    ),
+                )
 
             self.choices.description = Prompt.ask(
                 "Description of the Application?",
