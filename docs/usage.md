@@ -87,8 +87,8 @@ Add MkDocs and some plugins to the `pyproject.toml` file. Default is `True`
 unless `include_mkdocs = false` is set in the config file or `--no-docs` is
 passed on the command line.
 
-This will also add a customized `mkdocs.yml` file and create a new default
-MkDocs site in the `docs` folder.
+If you choose to run `poetry` automatically, this will also add a customized
+`mkdocs.yml` file and create a new default MkDocs site in the `docs` folder.
 
 ## Run `poetry install` automatically
 
