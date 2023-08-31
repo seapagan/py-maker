@@ -1,4 +1,4 @@
-# Quick Start
+# Using PyMaker
 
 ## Create a new project
 
@@ -54,25 +54,41 @@ plugins and markdown extensions.
 
 ## Command line options
 
-There are a few command line options that can be used to customise the build
+There are a few command line options that can be used to customise the build.
+Command line options override any settings in the config file.
+
+For example, if `use_git = false` is set in the config file, then passing
+`--git` on the command line will override this and initialise a Git repository.
 
 ### `-y` or `--yes`
 
 Accept all defaults and do not ask any questions.
 
-### `--no-git`
+### `--git` / `--no-git`
 
-This will skip the step of initialising a git repository.
+Initialise a Git repository. Default is `True` unless `use_git = false` is set in
+the config file or `--no-git` is passed on the command line.
 
-### `--no-test`
+### `--test` / `--no-test`
 
-This will skip the step of creating a test directory, and will not add the
-`pytest` dependency or any related plugins to the `pyproject.toml` file.
+Create a test directory and add the `pytest` dependency plus a few related
+plugins to the `pyproject.toml` file. Default is `True` unless `include_testing
+= false` is set in the config file or `--no-test` is passed on the command line.
 
-### `--no-lint`
+### `--lint` / `--no-lint`
 
-This will skip adding any linting dependencies to the `pyproject.toml` file, nor
-will it add any linting configuration options or related tasks.
+Add linting dependencies and configuration to the `pyproject.toml` file. Default
+is `True` unless `include_linters = false` is set in the config file or
+`--no-lint` is passed on the command line.
+
+### `--docs` / `--no-docs`
+
+Add MkDocs and some plugins to the `pyproject.toml` file. Default is `True`
+unless `include_mkdocs = false` is set in the config file or `--no-docs` is
+passed on the command line.
+
+If you choose to run `poetry` automatically, this will also add a customized
+`mkdocs.yml` file and create a new default MkDocs site in the `docs` folder.
 
 ## Run `poetry install` automatically
 
@@ -110,9 +126,8 @@ Description of the Application?: Store all the Bigly amount of secret documents
 I have in the bathroom
 
 Author Name? (): Orange Tango
-Author Email? (): bigly@straytan.org
+Author Email? (): bigly@spraytan.org
 Application License? [None/Apache2/BSD3/BSD2/GPL2/GPL3/LGPL/MIT/MPL2/CDDL/EPL2] (MIT):
-Use MkDocs for documentation? [y/n] (y):
 
 Creating a New Python app with the below settings :
 
@@ -122,7 +137,6 @@ Creating a New Python app with the below settings :
          Author : Orange Tango
           Email : bigly@straytan.org
         License : MIT
-     Use Mkdocs : True
     Project Dir : /home/bathroom/secret-docs
            Name : Secret Docs
      Standalone : False
@@ -161,12 +175,12 @@ INFO    -  Writing initial docs: ./docs/index.md
 Next steps:
 
 1. Change to the project directory:
-2. Install the dependencies if not done (creates a virtual environment):
-  'poetry install'
+2. Install the dependencies if not done above (creates a virtual environment):
+  $ poetry install
 3. Activate the virtual environment:
-  'poetry shell'
+  $ poetry shell
 4. Run the application:
-  'secret-docs'
+  $ secret-docs
 5. Code!
 
 See the README.md file for more information.
