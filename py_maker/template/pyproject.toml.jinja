@@ -9,11 +9,14 @@ license = "{{ license }}"
 {% if not standalone %}
 packages = [{ include = "{{ package_name }}" }]
 
+homepage = "{{ homepage }}"
+repository = "{{ repository }}"
+
 [tool.poetry.urls]
 # customize the below URLs to point to your own GitHub repo. These will be
 # shown on [Pypi.org](https://pypi.org/) if you are creating a public package.
-"Pull Requests" = "https://github.com/seapagan/{{ slug }}/pulls"
-"Bug Tracker" = "https://github.com/seapagan/{{ slug }}/issues"
+"Pull Requests" = "{{ repository }}/pulls"
+"Bug Tracker" = "{{ repository }}/issues"
 
 [tool.poetry.scripts]
 # rename "{{ slug }}" below to change the executable name. You can also
