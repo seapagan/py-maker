@@ -233,6 +233,10 @@ See the [bold][green]README.md[/green][/bold] file for more information.
                 if pk_name != "."
                 else sanitize(self.choices.project_dir.name),
             )
+            # a single '-' is ok as it means a standalone script.
+            if name == "-":
+                break
+
             # note: not happy with this nested if/else, but it works for now.
             # will fix during the next refactor.
             if not re.search(r"[- .]", name):
