@@ -53,7 +53,7 @@ extra_css:
 nav:
   - Home: index.md
   - Installation: installation.md
-  - Quick Start: quick-start.md
+  - Usage: usage.md
   - Configuration: configuration.md
   - Templates:
       - Internal Template: template/internal.md

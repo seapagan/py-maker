@@ -1,4 +1,4 @@
-# Quick Start
+# Using PyMaker
 
 ## Create a new project
 
@@ -54,25 +54,41 @@ plugins and markdown extensions.
 
 ## Command line options
 
-There are a few command line options that can be used to customise the build
+There are a few command line options that can be used to customise the build.
+Command line options override any settings in the config file.
+
+For example, if `use_git = false` is set in the config file, then passing
+`--git` on the command line will override this and initialise a Git repository.
 
 ### `-y` or `--yes`
 
 Accept all defaults and do not ask any questions.
 
-### `--no-git`
+### `--git` / `--no-git`
 
-This will skip the step of initialising a git repository.
+Initialise a Git repository. Default is `True` unless `use_git = false` is set in
+the config file or `--no-git` is passed on the command line.
 
-### `--no-test`
+### `--test` / `--no-test`
 
-This will skip the step of creating a test directory, and will not add the
-`pytest` dependency or any related plugins to the `pyproject.toml` file.
+Create a test directory and add the `pytest` dependency plus a few related
+plugins to the `pyproject.toml` file. Default is `True` unless `include_testing
+= false` is set in the config file or `--no-test` is passed on the command line.
 
-### `--no-lint`
+### `--lint` / `--no-lint`
 
-This will skip adding any linting dependencies to the `pyproject.toml` file, nor
-will it add any linting configuration options or related tasks.
+Add linting dependencies and configuration to the `pyproject.toml` file. Default
+is `True` unless `include_linters = false` is set in the config file or
+`--no-lint` is passed on the command line.
+
+### `--docs` / `--no-docs`
+
+Add MkDocs and some plugins to the `pyproject.toml` file. Default is `True`
+unless `include_mkdocs = false` is set in the config file or `--no-docs` is
+passed on the command line.
+
+This will also add a customized `mkdocs.yml` file and create a new default
+MkDocs site in the `docs` folder.
 
 ## Run `poetry install` automatically
 
