@@ -33,8 +33,6 @@ importance.
   This will be a bit lower priority and not sure if it's worth it.
 - include an optional `vscode` settings file in the generated project, optimized
   for python projects. This could include recommended extensions.
-- add inverse options for CLI flags ie `--no-git` has a corresponding `--git`
-  flag. Allows easier enabling/disabling of options without changing the config
 
 ## Code Quality
 

@@ -132,8 +132,6 @@ class PyMaker:
         ie:
         'README.md.jinja' is copied as 'README.md' after template substitution.
         """
-        # skip_dirs: List = ["__pycache__"]
-
         try:
             # ---------------- copy the default template files --------------- #
             template_dir = pkg_resources.files(template)
@@ -177,7 +175,7 @@ class PyMaker:
                 shutil.rmtree(self.choices.project_dir / "app")
 
             # ----------- remove the 'test' folder if not required ----------- #
-            if self.options["no_test"]:
+            if not self.options["test"]:
                 shutil.rmtree(self.choices.project_dir / "tests")
         except OSError as exc:
             print(f"\n[red]  -> {exc}")
@@ -188,7 +186,7 @@ class PyMaker:
     # ------------------------------------------------------------------------ #
     def create_git_repo(self) -> None:
         """Create a Git repository for the project and add the first commit."""
-        if self.options["no_git"]:
+        if not self.options["git"]:
             return
         try:
             print("\n--> Creating Git repository ... ", end="")
@@ -337,7 +335,7 @@ See the [bold][green]README.md[/green][/bold] file for more information.
             os.chdir(self.choices.project_dir)
             subprocess.run(["poetry", "install"], check=True)  # nosec
 
-            if not self.options["no_docs"]:
+            if self.options["docs"]:
                 print("\n--> Creating MkDocs project")
                 subprocess.run(  # nosec
                     ["poetry", "run", "mkdocs", "new", "."], check=True

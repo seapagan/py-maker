@@ -1,4 +1,6 @@
 """Create a new project."""
+from typing import Annotated, Optional
+
 import typer
 from rich import print  # pylint: disable=W0622
 
@@ -12,29 +14,31 @@ settings = Settings()
 
 @app.callback(invoke_without_command=True)
 def new(
-    location: str = typer.Argument(..., help="Where to create the project."),
-    accept_defaults: bool = typer.Option(
-        False, "--yes", "-y", help="Accept all defaults."
-    ),
-    no_git: bool = typer.Option(
-        False, "--no-git", help="Don't Initialize a git repository."
-    ),
-    no_test: bool = typer.Option(
-        False, "--no-test", help="Don't add testing libraries."
-    ),
-    no_lint: bool = typer.Option(
-        False, "--no-lint", help="Don't add linting libraries."
-    ),
-    no_docs: bool = typer.Option(
-        False, "--no-docs", help="Don't add the MkDocs boilerplate."
-    ),
+    location: Annotated[
+        str, typer.Argument(..., help="Where to create the project.")
+    ],
+    accept_defaults: Annotated[
+        bool, typer.Option("--yes", "-y", help="Accept all defaults.")
+    ] = False,
+    git: Annotated[
+        Optional[bool], typer.Option(help="Initialize a git repository.")
+    ] = None,
+    test: Annotated[
+        Optional[bool], typer.Option(help="Add testing libraries.")
+    ] = None,
+    lint: Annotated[
+        Optional[bool], typer.Option(help="Add linting libraries.")
+    ] = None,
+    docs: Annotated[
+        Optional[bool], typer.Option(help="Add the MkDocs boilerplate.")
+    ] = None,
 ) -> None:
     """Create a new Python project."""
     options = {
-        "no_git": no_git or not settings.use_git,
-        "no_test": no_test or not settings.include_testing,
-        "no_lint": no_lint or not settings.include_linters,
-        "no_docs": no_docs or not settings.include_mkdocs,
+        "git": settings.use_git if git is None else git,
+        "test": settings.include_testing if test is None else test,
+        "lint": settings.include_linters if lint is None else lint,
+        "docs": settings.include_mkdocs if docs is None else docs,
         "accept_defaults": accept_defaults,
     }
 
