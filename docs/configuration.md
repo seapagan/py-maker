@@ -13,15 +13,19 @@ example of this file is:
 author_email = "user@server.com"
 author_name = "Python User"
 default_license = "MIT"
+include_linters = true
+include_mkdocs = false
+include_testing = true
 schema_version = "1.0" # for internal use, generally don't change this
 template_folder = "/home/user/.pymaker/template"
 use_default_template = true
+use_git = true
 ```
 
 If this file does not exist, it will be created on first run. The app will ask
-for the values of these fields. For `author_name` and `author_email` it will try
-to use the current git user name and email if they are set as defaults, though
-the user can override these.
+for the values of `author_name`, `author_email` and `default_license`. For
+`author_name` and `author_email` it will try to use the current git user name
+and email if they are set as defaults, though the user can override these.
 
 ## View configuration
 
@@ -40,5 +44,5 @@ these defaults at any time using the command:
 $ pymaker config change
 ```
 
-The latter command will prompt you for the values of the fields, and then update
-the configuration file.
+The latter command will prompt you for the values of Author name, email and
+default License, and then update the configuration file.
