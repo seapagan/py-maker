@@ -126,9 +126,8 @@ Description of the Application?: Store all the Bigly amount of secret documents
 I have in the bathroom
 
 Author Name? (): Orange Tango
-Author Email? (): bigly@straytan.org
+Author Email? (): bigly@spraytan.org
 Application License? [None/Apache2/BSD3/BSD2/GPL2/GPL3/LGPL/MIT/MPL2/CDDL/EPL2] (MIT):
-Use MkDocs for documentation? [y/n] (y):
 
 Creating a New Python app with the below settings :
 
@@ -138,7 +137,6 @@ Creating a New Python app with the below settings :
          Author : Orange Tango
           Email : bigly@straytan.org
         License : MIT
-     Use Mkdocs : True
     Project Dir : /home/bathroom/secret-docs
            Name : Secret Docs
      Standalone : False
@@ -177,12 +175,12 @@ INFO    -  Writing initial docs: ./docs/index.md
 Next steps:
 
 1. Change to the project directory:
-2. Install the dependencies if not done (creates a virtual environment):
-  'poetry install'
+2. Install the dependencies if not done above (creates a virtual environment):
+  $ poetry install
 3. Activate the virtual environment:
-  'poetry shell'
+  $ poetry shell
 4. Run the application:
-  'secret-docs'
+  $ secret-docs
 5. Code!
 
 See the README.md file for more information.
