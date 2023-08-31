@@ -15,22 +15,29 @@ settings = Settings()
 @app.callback(invoke_without_command=True)
 def new(
     location: Annotated[
-        str, typer.Argument(..., help="Where to create the project.")
+        str,
+        typer.Argument(
+            ..., help="Where to create the project.", show_default=False
+        ),
     ],
     accept_defaults: Annotated[
         bool, typer.Option("--yes", "-y", help="Accept all defaults.")
     ] = False,
     git: Annotated[
-        Optional[bool], typer.Option(help="Initialize a git repository.")
+        Optional[bool],
+        typer.Option(help="Initialize a git repository.", show_default=False),
     ] = None,
     test: Annotated[
-        Optional[bool], typer.Option(help="Add testing libraries.")
+        Optional[bool],
+        typer.Option(help="Add testing libraries.", show_default=False),
     ] = None,
     lint: Annotated[
-        Optional[bool], typer.Option(help="Add linting libraries.")
+        Optional[bool],
+        typer.Option(help="Add linting libraries.", show_default=False),
     ] = None,
     docs: Annotated[
-        Optional[bool], typer.Option(help="Add the MkDocs boilerplate.")
+        Optional[bool],
+        typer.Option(help="Add the MkDocs boilerplate.", show_default=False),
     ] = None,
 ) -> None:
     """Create a new Python project."""
