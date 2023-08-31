@@ -14,6 +14,7 @@ packages = [{ include = "{{ package_name }}" }]
 # shown on [Pypi.org](https://pypi.org/) if you are creating a public package.
 "Pull Requests" = "https://github.com/seapagan/{{ slug }}/pulls"
 "Bug Tracker" = "https://github.com/seapagan/{{ slug }}/issues"
+
 [tool.poetry.scripts]
 # rename "{{ slug }}" below to change the executable name. You can also
 # add more scripts if your package offers multiple commands.
@@ -29,7 +30,7 @@ build-backend = "poetry.core.masonry.api"
 
 # Configure dev dependencies you can add or remove as needed
 [tool.poetry.group.dev.dependencies]
-{% if not options.no_lint %}
+{% if options.lint %}
 # linting, type-checking and security checks
 bandit = { extras = ["toml"], version = "^1.7.5" }
 black = "^23.7.0"
@@ -54,7 +55,7 @@ tryceratops = "^2.3.2"
 # task runner
 poethepoet = "^0.21.1"
 
-{% if not options.no_test %}
+{% if options.test %}
 # testing
 pytest = "^7.4.0"
 pytest-cov = "^4.0.0"
@@ -68,7 +69,7 @@ mock = "^5.1.0"
 faker = "^19.2.0"
 {% endif %}
 
-{% if use_mkdocs %}
+{% if options.docs %}
 # documentation
 mkdocs = "^1.4.3"
 mkdocs-autorefs = "^0.5.0"
@@ -81,7 +82,7 @@ pygments = "^2.15.1"
 # setup PoeThePoet tasks
 [tool.poe.tasks]
 pre = "pre-commit run --all-files"
-{% if not options.no_lint %}
+{% if options.lint %}
 pylint = "pylint **/*.py"
 mypy = "mypy **/*.py"
 flake8 = "flake8 **/*.py"
@@ -138,7 +139,7 @@ add-ignore = ["D104"]
 plugins.md014.enabled = false
 {% endif %}
 
-{% if not options.no_test %}
+{% if options.test %}
 [tool.pytest.ini_options]
 addopts = ["--cov", "--cov-report", "term-missing", "--cov-report", "html"]
 filterwarnings = []

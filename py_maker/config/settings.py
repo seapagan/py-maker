@@ -21,22 +21,26 @@ class Settings:
     ignore_list: List = field(
         default_factory=lambda: [
             "settings_folder",
-            "settings_path",
+            "settings_file",
             "ignore_list",
         ]
     )
     settings_folder: Path = Path.home() / ".pymaker"
-    settings_path: Path = settings_folder / "config.toml"
+    settings_file: Path = settings_folder / "config.toml"
 
     # define our settings
     # the schema_version is used to track changes to the settings file but will
     # be unused until we have a stable release. Expect the schema layout to
-    # change at any time unitl then!
+    # change at any time until then!
     schema_version: str = "none"
     author_name: str = ""
     author_email: str = ""
     default_license: str = "None"
     use_default_template: bool = True
+    use_git: bool = True
+    include_mkdocs: bool = True
+    include_testing: bool = True
+    include_linters: bool = True
 
     # cant use Pathlike here as it breaks rtoml
     template_folder: str = str(settings_folder / "template")
@@ -45,6 +49,7 @@ class Settings:
         """Create the settings folder if it doesn't exist."""
         if not self.settings_folder.exists():
             self.settings_folder.mkdir(parents=True)
+        if not self.settings_file.exists():
             self.get_user_settings(missing=True)
 
         self.load()
@@ -61,12 +66,12 @@ class Settings:
 
     def save(self) -> None:
         """Save the settings to the settings file."""
-        rtoml.dump({"pymaker": self.get_attrs()}, self.settings_path)
+        rtoml.dump({"pymaker": self.get_attrs()}, self.settings_file)
 
     def load(self) -> None:
         """Load the settings from the settings file."""
         try:
-            settings = rtoml.load(self.settings_path)
+            settings = rtoml.load(self.settings_file)
         except FileNotFoundError:
             self.save()
             return
