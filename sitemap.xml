@@ -26,12 +26,12 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://pymaker.seapagan.net/quick-start/</loc>
+         <loc>https://pymaker.seapagan.net/tasks/</loc>
          <lastmod>2023-08-31</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://pymaker.seapagan.net/tasks/</loc>
+         <loc>https://pymaker.seapagan.net/usage/</loc>
          <lastmod>2023-08-31</lastmod>
          <changefreq>daily</changefreq>
     </url>
