@@ -1,19 +1,24 @@
 """Helpers for the config module."""
 from __future__ import annotations
 
+import os
 import re
+import sys
 from datetime import datetime
+from pathlib import Path
 from typing import TYPE_CHECKING, Dict, List, Union
 
 import requests
+import tomli
 from git.config import GitConfigParser
 from rich import print  # pylint: disable=redefined-builtin
 from rich.console import Console
 from rich.table import Table
 
+from py_maker.constants import ExitErrors
+
 if TYPE_CHECKING:  # pragma: no cover
     from importlib.resources.abc import Traversable
-    from pathlib import Path
 
 
 def get_author_and_email_from_git() -> tuple[str, str]:
@@ -99,3 +104,24 @@ def exists_on_pypi(package_name: str) -> bool:
     except requests.exceptions.Timeout:
         return False
     return response.status_code == 200
+
+
+def get_toml_path() -> Path:
+    """Return the full path of the pyproject.toml."""
+    script_dir = Path(os.path.dirname(os.path.realpath(__name__)))
+
+    return script_dir / "pyproject.toml"
+
+
+def get_api_version() -> str:
+    """Return the API version from the pyproject.toml file."""
+    try:
+        with get_toml_path().open("rb") as file:
+            config = tomli.load(file)
+            version = config["tool"]["poetry"]["version"]
+
+            return version
+
+    except (KeyError, OSError) as exc:
+        print(f"Problem getting the Version : {exc}")
+        sys.exit(ExitErrors.OS_ERROR)

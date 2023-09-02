@@ -1,7 +1,11 @@
 """Main application entry point."""
+from typing import Optional
+
 import typer
+from rich import print  # pylint: disable=redefined-builtin
 
 from py_maker.commands import config, new, template
+from py_maker.helpers import get_api_version
 
 app = typer.Typer(
     pretty_exceptions_show_locals=False,
@@ -9,6 +13,22 @@ app = typer.Typer(
     no_args_is_help=True,
     rich_markup_mode="rich",
 )
+
+
+@app.callback(invoke_without_command=True)
+def main(
+    version: Optional[bool] = typer.Option(
+        None, "-v", "--version", is_eager=True
+    )
+):
+    """Generate a Python project skeleton."""
+    if version:
+        print(
+            "\n[green]PyMaker - Generate a Python project skeleton."
+            f"\n[/green]Version: {get_api_version()}; "
+            "\u00a9 Grant Ramsay 2023\n"
+        )
+        raise typer.Exit()
 
 
 app.add_typer(new.app, name="new", help="Create a new Python project.")
