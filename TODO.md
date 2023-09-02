@@ -27,10 +27,15 @@ importance.
   files to be added to the generated project. This would also add a command line
   flag (ie `--django`, `--pydantic` or `--fastapi` or whatever) to use that
   plugin, and a config setting to specify using this plugin always.
-- modify boolean settings in the config to have the values 'yes', 'no' or 'ask'?
-  This will be a bit lower priority and not sure if it's worth it.
 - include an optional `vscode` settings file in the generated project, optimized
   for python projects. This could include recommended extensions.
+
+## Back Burner
+
+These are ideas that I may or may not implement. They are here for reference.
+
+- modify boolean settings in the config to have the values 'yes', 'no' or 'ask'?
+  This will be a bit lower priority and not sure if it's worth it.
 
 ## Code Quality
 
