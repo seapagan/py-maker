@@ -1518,13 +1518,13 @@ pytest = ">=4.6"
 
 [[package]]
 name = "pymarkdownlnt"
-version = "0.9.13.3"
+version = "0.9.13.4"
 description = "A GitHub Flavored Markdown compliant Markdown linter."
 optional = false
 python-versions = ">=3.8.0"
 files = [
-    {file = "pymarkdownlnt-0.9.13.3-py3-none-any.whl", hash = "sha256:bde53ac8d977e64a63ac3f42e364f7ac2d823a252b0884b35cc3b4fcc4b884bf"},
-    {file = "pymarkdownlnt-0.9.13.3.tar.gz", hash = "sha256:d75dcdcf24254c0d8318b483989739e799a76ff1ff80840a5d38648794db9ff0"},
+    {file = "pymarkdownlnt-0.9.13.4-py3-none-any.whl", hash = "sha256:f2c07c7d6d978bcf4bf9618f299f277926cefcc780c484076ca8da34e87bea58"},
+    {file = "pymarkdownlnt-0.9.13.4.tar.gz", hash = "sha256:a8dbe8622877dd383969b53722a3aa26f91351823f58330f65d5cdd4982878a6"},
 ]
 
 [package.dependencies]
