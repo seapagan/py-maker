@@ -42,6 +42,7 @@ tomli = "^2.0.1"
 pydantic = "^2.1"
 rich = "^13.4.2"
 rtoml = "^0.9.0"
+requests = "^2.31.0"
 
 [build-system]
 requires = ["poetry-core"]
