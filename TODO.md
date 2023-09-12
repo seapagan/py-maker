@@ -29,6 +29,17 @@ importance.
   plugin, and a config setting to specify using this plugin always.
 - include an optional `vscode` settings file in the generated project, optimized
   for python projects. This could include recommended extensions.
+- add CONTRIBUTING.md and CODE_OF_CONDUCT.md files to the generated project.
+  Perhaps add AUTHORS.md and CHANGELOG.md skeletons as well.
+- add template GitHub workflows for CI/CD, testing, etc. 'Dependabot' config as
+  standard would be nice as well. CodeQL or is that too much (I do use it in
+  most of my repos)?
+- add templates for GitHub issues and pull requests.
+- add a default dockerfile? Maybe a docker-compose file as well?
+- take a look at the release-drafter GitHub action and see if worth using.
+- add the `actions/stale` action to the generated project.
+- option to install the pre-commit hooks in the generated project and autoupdate
+  to the latest version.
 
 ## Back Burner
 
