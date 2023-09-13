@@ -42,6 +42,10 @@ class PyMaker:
         self.location: str = location
         self.options: Dict[str, bool] = options
 
+        # this will be updated if we run 'poetry install' later, so other stages
+        # that need to know if poetry has been run can check this flag.
+        self.poetry_is_run = False
+
         header()
 
         self.settings = Settings()
@@ -352,6 +356,7 @@ See the [bold][green]README.md[/green][/bold] file for more information.
         ):
             os.chdir(self.choices.project_dir)
             subprocess.run(["poetry", "install"], check=True)  # nosec
+            self.poetry_is_run = True
 
             if self.options["docs"]:
                 print("\n--> Creating MkDocs project")
@@ -363,17 +368,25 @@ See the [bold][green]README.md[/green][/bold] file for more information.
                     MKDOCS_CONFIG.format(name=self.choices.name)
                 )
 
-            if Confirm.ask(
+        self.create_git_repo()
+
+        if self.poetry_is_run and (
+            self.options["accept_defaults"]
+            or Confirm.ask(
                 "\nDo you want to install and update the [bold]"
                 "pre-commit[/bold] hooks?",
                 default=True,
-            ):
-                subprocess.run(
-                    ["poetry", "run", "pre-commit", "install"], check=True
-                )  # nosec
-                subprocess.run(
-                    ["poetry", "run", "pre-commit", "autoupdate"], check=True
-                )  # nosec
+            )
+        ):
+            print("\n--> Install and Update pre-commit hooks")
+            os.chdir(self.choices.project_dir)
+            subprocess.run(
+                ["poetry", "run", "pre-commit", "install"],
+                check=True,
+            )  # nosec
+            subprocess.run(
+                ["poetry", "run", "pre-commit", "autoupdate"],
+                check=True,
+            )  # nosec
 
-        self.create_git_repo()
         self.post_process()
