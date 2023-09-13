@@ -61,4 +61,5 @@ nav:
       - Replacing: template/replace.md
   - Task Runner: tasks.md
   - Future Plans: future-plans.md
+  - Changelog: changelog.md
   - License: license.md
