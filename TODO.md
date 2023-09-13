@@ -29,7 +29,7 @@ importance.
   plugin, and a config setting to specify using this plugin always.
 - include an optional `vscode` settings file in the generated project, optimized
   for python projects. This could include recommended extensions.
-- add CONTRIBUTING.md and CODE_OF_CONDUCT.md files to the generated project.
+- add CONTRIBUTING.md file to the generated project.
   Perhaps add AUTHORS.md and CHANGELOG.md skeletons as well.
 - add template GitHub workflows for CI/CD, testing, etc. CodeQL or is that too
   much (I do use it in most of my repos)?
