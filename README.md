@@ -26,6 +26,7 @@ Full documentation for this project with usage examples is available at
   - [Customise](#customise)
   - [Task Runner](#task-runner)
   - [Pre-commit](#pre-commit)
+- [GitHub Actions and Configuration](#github-actions-and-configuration)
 - [License](#license)
 
 ## Installation
@@ -151,6 +152,15 @@ To install pre-commit, run the following command from inside your venv:
 $ pre-commit install
 pre-commit installed at .git/hooks/pre-commit
 ```
+
+## GitHub Actions and Configuration
+
+By default the generated project includes a GitHub Actions workflow to run
+[Dependabot](https://dependabot.com/) to keep your dependencies up to date.
+There are also standard templates for Pull Request and Issues.
+
+The plan is to add more workflows in the future, for example running tests and
+more.
 
 ## License
 

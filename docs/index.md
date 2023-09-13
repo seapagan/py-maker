@@ -37,9 +37,10 @@ folder so full customization and even removal of files is possible.
 
 ## Pre-commit
 
-The generated project uses [pre-commit](https://pre-commit.com/) to run some
-checks on the code before it is committed.  This is a great tool to help keep
-your code clean.
+The generated project uses
+[pre-commit](https://pre-commit.com/){:target="_blank"} to run some checks on
+the code before it is committed.  This is a great tool to help keep your code
+clean.
 
 To install pre-commit, run the following command from inside your venv:
 
@@ -47,3 +48,13 @@ To install pre-commit, run the following command from inside your venv:
 $ pre-commit install
 pre-commit installed at .git/hooks/pre-commit
 ```
+
+## GitHub Actions and Configuration
+
+By default the generated project includes a GitHub Actions workflow to run
+[Dependabot](https://dependabot.com/){:target="_blank"} to keep your
+dependencies up to date. There are also standard templates for Pull Request and
+Issues.
+
+The plan is to add more workflows in the future, for example running tests and
+more.
