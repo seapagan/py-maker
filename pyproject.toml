@@ -30,6 +30,7 @@ packages = [{ include = "py_maker" }]
 [tool.poetry.urls]
 "Pull Requests" = "https://github.com/seapagan/py-maker/pulls"
 "Bug Tracker" = "https://github.com/seapagan/py-maker/issues"
+"Changelog" = "https://github.com/seapagan/py-maker/blob/main/CHANGELOG.md"
 
 [tool.poetry.scripts]
 pymaker = "py_maker.main:app"
