@@ -58,3 +58,11 @@ Issues.
 
 The plan is to add more workflows in the future, for example running tests and
 more.
+
+## Community related files
+
+To aid in community building, the generated project includes a `CODE_OF_CONDUCT`
+file.  This is based on the [Contributor
+Covenant](https://www.contributor-covenant.org/){:target="_blank"} standard.
+
+Future releases will include `CONTRIBUTING` and `AUTHORS` files.
