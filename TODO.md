@@ -38,10 +38,10 @@ importance.
 - add the `actions/stale` action to the generated project.
 - option to install the pre-commit hooks in the generated project and autoupdate
   to the latest version.
-- add CLI option to generate the CHANGELOG.md file from the git history, using
-  `git_changelog_generator`. This would take the GitHub Key from the config file
-  if wanted. Note that without the Key, the GitHub API is rate limited to 50
-  requests per hour which is not usualy usable unless you have a very small
+- add CLI command to generate the CHANGELOG.md file from the git history, using
+  `github_changelog_generator`. This would take the GitHub Key from the config
+  file if wanted. Note that without the Key, the GitHub API is rate limited to
+  50 requests per hour which is not usualy usable unless you have a very small
   project with few commits.
 
 ## Back Burner
