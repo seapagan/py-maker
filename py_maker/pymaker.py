@@ -363,5 +363,17 @@ See the [bold][green]README.md[/green][/bold] file for more information.
                     MKDOCS_CONFIG.format(name=self.choices.name)
                 )
 
+            if Confirm.ask(
+                "\nDo you want to install and update the [bold]"
+                "pre-commit[/bold] hooks?",
+                default=True,
+            ):
+                subprocess.run(
+                    ["poetry", "run", "pre-commit", "install"], check=True
+                )  # nosec
+                subprocess.run(
+                    ["poetry", "run", "pre-commit", "autoupdate"], check=True
+                )  # nosec
+
         self.create_git_repo()
         self.post_process()
