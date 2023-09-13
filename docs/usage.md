@@ -45,13 +45,6 @@ For option 1 above, the App will check if the package name is available on PyPI
 or if it has already been used. In the latter case, you will be asked to choose
 another name.
 
-## Choose to create an MkDocs site or not
-
-If you answer "y" to the question "Use MkDocs for documentation?", then the app
-will create a new MkDocs site in the `docs` folder, and will add the
-`mkdocs-material` theme to the `mkdocs.yml` file along with a few other useful
-plugins and markdown extensions.
-
 ## Command line options
 
 There are a few command line options that can be used to customise the build.
@@ -89,6 +82,7 @@ passed on the command line.
 
 If you choose to run `poetry` automatically, this will also add a customized
 `mkdocs.yml` file and create a new default MkDocs site in the `docs` folder.
+Some useful plugins are also installed and added to the `mkdocs.yml` file.
 
 ## Run `poetry install` automatically
 
