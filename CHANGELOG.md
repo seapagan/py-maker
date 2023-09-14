@@ -1,5 +1,19 @@
 # Changelog
 
+## [v0.6.0](https://github.com/seapagan/py-maker/tree/v0.6.0) (2023-09-14)
+
+[Full Changelog](https://github.com/seapagan/py-maker/compare/v0.5.1...v0.6.0)
+
+**Implemented enhancements:**
+
+- Auto install and update 'pre commit' [\#88](https://github.com/seapagan/py-maker/pull/88) ([seapagan](https://github.com/seapagan))
+- add code of conduct to project and the template [\#87](https://github.com/seapagan/py-maker/pull/87) ([seapagan](https://github.com/seapagan))
+- Add Github templates to the default output template [\#86](https://github.com/seapagan/py-maker/pull/86) ([seapagan](https://github.com/seapagan))
+
+**Merged pull requests:**
+
+- build\(deps\): bump actions/stale from 5 to 8 [\#89](https://github.com/seapagan/py-maker/pull/89) ([dependabot[bot]](https://github.com/apps/dependabot))
+
 ## [v0.5.1](https://github.com/seapagan/py-maker/tree/v0.5.1) (2023-09-12)
 
 [Full Changelog](https://github.com/seapagan/py-maker/compare/v0.5.0...v0.5.1)
@@ -42,6 +56,7 @@
 **Implemented enhancements:**
 
 - Ask for homepage & repository if not standalone [\#61](https://github.com/seapagan/py-maker/pull/61) ([seapagan](https://github.com/seapagan))
+- update template toml and pre-commit deps [\#58](https://github.com/seapagan/py-maker/pull/58) ([seapagan](https://github.com/seapagan))
 - override config options from command line [\#55](https://github.com/seapagan/py-maker/pull/55) ([seapagan](https://github.com/seapagan))
 - check PyPI for existing packages [\#46](https://github.com/seapagan/py-maker/pull/46) ([seapagan](https://github.com/seapagan))
 
@@ -55,7 +70,6 @@
 
 **Merged pull requests:**
 
-- update template toml and pre-commit deps [\#58](https://github.com/seapagan/py-maker/pull/58) ([seapagan](https://github.com/seapagan))
 - Bump mkdocs-material from 9.2.3 to 9.2.6 [\#57](https://github.com/seapagan/py-maker/pull/57) ([dependabot[bot]](https://github.com/apps/dependabot))
 - Bump pymdown-extensions from 10.1 to 10.2.1 [\#56](https://github.com/seapagan/py-maker/pull/56) ([dependabot[bot]](https://github.com/apps/dependabot))
 - Bump pymdown-extensions from 10.1 to 10.2 [\#54](https://github.com/seapagan/py-maker/pull/54) ([dependabot[bot]](https://github.com/apps/dependabot))
