@@ -377,6 +377,7 @@ See the [bold][green]README.md[/green][/bold] file for more information.
         if (
             self.poetry_is_run
             and self.git_is_run
+            and self.settings.install_pre_commit
             and (
                 self.options["accept_defaults"]
                 or Confirm.ask(
@@ -388,14 +389,14 @@ See the [bold][green]README.md[/green][/bold] file for more information.
         ):
             print("\n--> Install and Update pre-commit hooks")
             os.chdir(self.choices.project_dir)
-            subprocess.run(
+            subprocess.run(  # nosec
                 ["poetry", "run", "pre-commit", "install"],
                 check=True,
-            )  # nosec
-            subprocess.run(
+            )
+            subprocess.run(  # nosec
                 ["poetry", "run", "pre-commit", "autoupdate"],
                 check=True,
-            )  # nosec
+            )
         else:
             print(
                 """\n  [red]Warning: pre-commit hooks not installed or updated.
