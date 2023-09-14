@@ -41,6 +41,7 @@ class Settings:
     include_mkdocs: bool = True
     include_testing: bool = True
     include_linters: bool = True
+    install_pre_commit: bool = True
 
     # cant use Pathlike here as it breaks rtoml
     template_folder: str = str(settings_folder / "template")

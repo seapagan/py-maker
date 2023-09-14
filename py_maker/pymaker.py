@@ -42,6 +42,11 @@ class PyMaker:
         self.location: str = location
         self.options: Dict[str, bool] = options
 
+        # this will be updated if we run 'poetry install' later, so other stages
+        # that need to know if poetry has been run can check this flag.
+        self.poetry_is_run = False
+        self.git_is_run = False
+
         header()
 
         self.settings = Settings()
@@ -194,6 +199,7 @@ class PyMaker:
             repo.index.add(repo.untracked_files)
             repo.index.commit("Initial Commit")
             print("[green]Done[/green]")
+            self.git_is_run = True
         except GitError as exc:
             print("Error: ", exc)
             sys.exit(ExitErrors.GIT_ERROR)
@@ -352,6 +358,7 @@ See the [bold][green]README.md[/green][/bold] file for more information.
         ):
             os.chdir(self.choices.project_dir)
             subprocess.run(["poetry", "install"], check=True)  # nosec
+            self.poetry_is_run = True
 
             if self.options["docs"]:
                 print("\n--> Creating MkDocs project")
@@ -364,4 +371,48 @@ See the [bold][green]README.md[/green][/bold] file for more information.
                 )
 
         self.create_git_repo()
+
+        # install and update pre-commit hooks IF poetry and git are run.
+        # this would fail without either of them.
+        if (
+            self.poetry_is_run
+            and self.git_is_run
+            and self.settings.install_pre_commit
+            and (
+                self.options["accept_defaults"]
+                or Confirm.ask(
+                    "\nDo you want to install and update the [bold]"
+                    "pre-commit[/bold] hooks?",
+                    default=True,
+                )
+            )
+        ):
+            print("\n--> Install and Update pre-commit hooks")
+            os.chdir(self.choices.project_dir)
+            subprocess.run(  # nosec
+                ["poetry", "run", "pre-commit", "install"],
+                check=True,
+            )
+            subprocess.run(  # nosec
+                ["poetry", "run", "pre-commit", "autoupdate"],
+                check=True,
+            )
+        else:
+            print(
+                """\n  [red]Warning: pre-commit hooks not installed or updated.
+
+[/red]  pre-commit needs both 'poetry install' and 'git init' to be run.
+  Once this is done, you can install and update the pre-commit hooks later by
+  running:
+
+  [bold]$ poetry run pre-commit install[/bold]
+
+  and
+
+  [bold]$ poetry run pre-commit autoupdate[/bold]
+
+  Note that this is totally [bold]optional, but recommended.
+                """
+            )
+
         self.post_process()
