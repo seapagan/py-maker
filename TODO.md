@@ -12,8 +12,6 @@ importance.
   require confirmation. Alternately allow overwrite with confirmation if an
   existing/populated directory is found. Add a force flag to skip confirmation.
   `I think DO NOT allow this when '.' is specified as this could be disastrous`.
-- add some form of 'extra packages' command line option and config setting to
-  automatically add extra packages to the generated `pyproject.toml` file.
 - add cmd line options to specify the project name, author, etc. so the user
   doesn't have to enter them manually. `Not sure if this is needed once we add
   the CLI parameters to the config file. May be useful for automation though`.
@@ -36,8 +34,6 @@ importance.
 - add a default dockerfile? Maybe a docker-compose file as well?
 - take a look at the release-drafter GitHub action and see if worth using.
 - add the `actions/stale` action to the generated project.
-- option to install the pre-commit hooks in the generated project and autoupdate
-  to the latest version.
 - add CLI command to generate the CHANGELOG.md file from the git history, using
   `github_changelog_generator`. This would take the GitHub Key from the config
   file if wanted. Note that without the Key, the GitHub API is rate limited to
@@ -50,6 +46,8 @@ These are ideas that I may or may not implement. They are here for reference.
 
 - modify boolean settings in the config to have the values 'yes', 'no' or 'ask'?
   This will be a bit lower priority and not sure if it's worth it.
+- add some form of 'extra packages' command line option and config setting to
+  automatically add extra packages to the generated `pyproject.toml` file.
 
 ## Code Quality
 
