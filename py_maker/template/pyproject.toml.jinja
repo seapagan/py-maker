@@ -93,7 +93,16 @@ black = "black **/*.py"
 try = "tryceratops **/*.py"
 markdown = "pymarkdown scan **/*.md"
 lint = ["black", "flake8", "pylint", "mypy", "try"]
+{% endif %}
 
+{% if options.docs %}
+"docs:publish" = "mkdocs gh-deploy"
+"docs:build" = "mkdocs build"
+"docs:serve" = "mkdocs serve -w TODO.md -w CHANGELOG.md"
+"docs:serve:all" = "mkdocs serve -w TODO.md -w CHANGELOG.md -a 0.0.0.0:9000"
+{% endif %}
+
+{% if options.lint %}
 # configure assorted tools and linters
 [tool.isort]
 profile = "black"
