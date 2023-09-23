@@ -1,5 +1,13 @@
 # Changelog
 
+## [Unreleased](https://github.com/seapagan/py-maker/tree/HEAD)
+
+[Full Changelog](https://github.com/seapagan/py-maker/compare/v0.6.0...HEAD)
+
+**Documentation:**
+
+- Remove dependency spam from changelog [\#97](https://github.com/seapagan/py-maker/pull/97) ([seapagan](https://github.com/seapagan))
+
 ## [v0.6.0](https://github.com/seapagan/py-maker/tree/v0.6.0) (2023-09-14)
 
 [Full Changelog](https://github.com/seapagan/py-maker/compare/v0.5.1...v0.6.0)
