@@ -146,3 +146,13 @@ class Settings:
         self.get_user_settings()
 
         self.save()
+
+    def change_token(self) -> None:
+        """Allow the user to add a GitHub PAT."""
+        print("--> [green]Enter a GitHub Personal Access Token:\n")
+        self.github_token = Prompt.ask(
+            "Github Token?",
+            default=self.github_token,
+        )
+
+        self.save()
