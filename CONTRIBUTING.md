@@ -10,15 +10,6 @@ new feature or would like to report a bug, please open a new issue.
 We also welcome contributions to the documentation. If you find any errors or
 would like to suggest improvements, please open a new issue or submit a pull
 
-- [Prerequisites](#prerequisites)
-- [Getting Started](#getting-started)
-- [Install Dependencies](#install-dependencies)
-- [Install Git Pre-Commit hooks](#install-git-pre-commit-hooks)
-- [Run pre-commit manually](#run-pre-commit-manually)
-- [Testing](#testing)
-- [Guidelines](#guidelines)
-- [Contact](#contact)
-
 ## Prerequisites
 
 - Since this is a [Python](https://www.python.org/) project, you will need to have
