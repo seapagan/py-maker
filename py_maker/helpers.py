@@ -88,7 +88,10 @@ def show_table(settings: Dict[str, str]):
     table.add_column("Value")
 
     for key, value in settings.items():
-        table.add_row(pretty_attrib(key), str(value))
+        if "token" not in key:
+            table.add_row(pretty_attrib(key), str(value))
+        else:
+            table.add_row(pretty_attrib(key), "********")
     console.print(table)
 
 

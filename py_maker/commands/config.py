@@ -21,3 +21,11 @@ def change() -> None:
     header()
     settings = Settings()
     settings.change_settings()
+
+
+@app.command()
+def token() -> None:
+    """Change the current configuration."""
+    header()
+    settings = Settings()
+    settings.change_token()

@@ -35,7 +35,8 @@ class Settings:
     schema_version: str = "none"
     author_name: str = ""
     author_email: str = ""
-    github_username: Optional[str] = "<your github username>"
+    github_username: Optional[str] = ""
+    github_token: Optional[str] = ""
     default_license: str = "None"
     use_default_template: bool = True
     use_git: bool = True
@@ -143,5 +144,15 @@ class Settings:
 
         print("\n--> [green]Enter new settings:\n")
         self.get_user_settings()
+
+        self.save()
+
+    def change_token(self) -> None:
+        """Allow the user to add a GitHub PAT."""
+        print("--> [green]Enter a GitHub Personal Access Token:\n")
+        self.github_token = Prompt.ask(
+            "Github Token?",
+            default=self.github_token,
+        )
 
         self.save()

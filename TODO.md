@@ -37,8 +37,11 @@ importance.
 - add CLI command to generate the CHANGELOG.md file from the git history, using
   `github_changelog_generator`. This would take the GitHub Key from the config
   file if wanted. Note that without the Key, the GitHub API is rate limited to
-  50 requests per hour which is not usualy usable unless you have a very small
+  50 requests per hour which is not usually usable unless you have a very small
   project with few commits.
+- update the POE tasks to add help text to each task.
+- automatically create the new GitHub repository from the CLI. This would
+  require the GitHub API key to be in the config file.
 
 ## Back Burner
 
