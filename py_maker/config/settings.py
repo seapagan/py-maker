@@ -35,7 +35,8 @@ class Settings:
     schema_version: str = "none"
     author_name: str = ""
     author_email: str = ""
-    github_username: Optional[str] = "<your github username>"
+    github_username: Optional[str] = ""
+    github_token: Optional[str] = ""
     default_license: str = "None"
     use_default_template: bool = True
     use_git: bool = True
