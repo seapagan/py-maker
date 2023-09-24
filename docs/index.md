@@ -66,7 +66,7 @@ file.  This is based on the [Contributor
 Covenant](https://www.contributor-covenant.org/){:target="_blank"} standard.
 
 For information on how to contribute to the project, see the `CONTRIBUTING.md`
-file in the root of the repository on [on this website](/contributing/)
+file in the root of the repository on [on this website](contributing.md)
 
 Future releases will include other Community related files (for example an
 `AUTHORS` file if the project gets enough contributors to warrant it!).
