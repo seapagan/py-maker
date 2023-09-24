@@ -315,10 +315,15 @@ See the [bold][green]README.md[/green][/bold] file for more information.
             if not self.choices.standalone:
                 self.choices.homepage = Prompt.ask("Homepage URL?", default="")
 
+                github_username = (
+                    self.settings.github_username
+                    if self.settings.github_username
+                    else "<your GitHub username>"
+                )
                 self.choices.repository = Prompt.ask(
                     "Repository URL?",
                     default=(
-                        "https://github.com/your_user_name/"
+                        f"https://github.com/{github_username}/"
                         f"{re.sub(r'[_.]+', '-', self.choices.package_name)}"
                     ),
                 )

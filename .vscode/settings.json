@@ -55,5 +55,6 @@
   "python.testing.pytestArgs": ["tests"],
   "python.testing.pytestEnabled": true,
   "python.testing.unittestEnabled": false,
-  "ruff.organizeImports": false
+  "ruff.organizeImports": false,
+  "ruff.fixAll": false
 }
