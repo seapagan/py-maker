@@ -5,7 +5,7 @@ import typer
 from rich import print  # pylint: disable=redefined-builtin
 
 from py_maker.commands import config, new, template
-from py_maker.helpers import get_api_version
+from py_maker.helpers import get_app_version
 
 app = typer.Typer(
     pretty_exceptions_show_locals=False,
@@ -25,7 +25,7 @@ def main(
     if version:
         print(
             "\n[green]PyMaker - Generate a Python project skeleton."
-            f"\n[/green]Version: {get_api_version()}; "
+            f"\n[/green]Version: {get_app_version()}; "
             "\u00a9 Grant Ramsay 2023\n"
         )
         raise typer.Exit()
