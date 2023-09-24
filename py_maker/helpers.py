@@ -113,7 +113,7 @@ def get_toml_path() -> Path:
     return script_dir / "pyproject.toml"
 
 
-def get_api_version() -> str:
+def get_app_version() -> str:
     """Return the API version from the pyproject.toml file."""
     try:
         with get_toml_path().open("rb") as file:
