@@ -13,6 +13,7 @@ example of this file is:
 author_email = "user@server.com"
 author_name = "Python User"
 default_license = "MIT"
+github_username = "githubuser"
 include_linters = true
 include_mkdocs = true
 include_testing = true
@@ -35,6 +36,7 @@ The following options are available for configuring Py-Maker:
 - `author_email`: The email address of the author.
 - `author_name`: The name of the author.
 - `default_license`: The default license to use for the project.
+- `github_username`: The GitHub username of the author [optional].
 - `include_linters`: Whether to include linters in the project.
 - `include_mkdocs`: Whether to include MkDocs in the project.
 - `include_testing`: Whether to include testing in the project.
