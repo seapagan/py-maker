@@ -4,7 +4,7 @@ Allows reading from a settings file and writing to it.
 """
 from dataclasses import dataclass, field
 from pathlib import Path
-from typing import Dict, List
+from typing import Dict, List, Optional
 
 import rtoml
 from rich import print  # pylint: disable=redefined-builtin
@@ -35,6 +35,7 @@ class Settings:
     schema_version: str = "none"
     author_name: str = ""
     author_email: str = ""
+    github_username: Optional[str] = "<your github username>"
     default_license: str = "None"
     use_default_template: bool = True
     use_git: bool = True
@@ -118,6 +119,10 @@ class Settings:
         self.author_email = Prompt.ask(
             "Author Email?",
             default=git_email if missing else self.author_email,
+        )
+        self.github_username = Prompt.ask(
+            "Github Username? \[optional]",  # noqa W605 # type: ignore
+            default="" if missing else self.github_username,
         )
         self.default_license = Prompt.ask(
             "Application License?",
