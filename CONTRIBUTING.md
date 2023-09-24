@@ -111,6 +111,11 @@ There is a POE task that will run this and update the changelog file.
 $ poe changelog
 ```
 
+you also need to add a GitHub Personal Access Token to the config file. See the
+section in the
+[Documentation](http://127.0.0.1:8000/configuration/#add-a-github-personal-access-token)
+for information.
+
 **However, you should NOT include a change to the `CHANGELOG.md` file in your
 Pull Requests. This will be handled by the maintainers when a new release is
 made.**
