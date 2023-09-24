@@ -16,6 +16,11 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://pymaker.seapagan.net/contributing/</loc>
+         <lastmod>2023-09-24</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://pymaker.seapagan.net/future-plans/</loc>
          <lastmod>2023-09-24</lastmod>
          <changefreq>daily</changefreq>
