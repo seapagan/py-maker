@@ -6,6 +6,7 @@
 
 **Implemented enhancements:**
 
+- add optional  github\_token setting [\#106](https://github.com/seapagan/py-maker/pull/106) ([seapagan](https://github.com/seapagan))
 - store and use GitHub username [\#104](https://github.com/seapagan/py-maker/pull/104) ([seapagan](https://github.com/seapagan))
 
 **Documentation:**
