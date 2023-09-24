@@ -117,6 +117,9 @@ lint = ["black", "flake8", "mypy", "try", "pylint"]
 "docs:serve" = "mkdocs serve -w TODO.md -w CHANGELOG.md -w CONTRIBUTING.md"
 "docs:serve:all" = "mkdocs serve -w TODO.md -w CHANGELOG.md -w CONTRIBUTING.md -a 0.0.0.0:9000"
 
+# this needs the Ruby utility below installed.
+changelog = "github_changelog_generator -u seapagan -p py-maker"
+
 # configure assorted tools and linters
 [tool.isort]
 profile = "black"
