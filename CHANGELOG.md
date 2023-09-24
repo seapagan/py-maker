@@ -8,6 +8,10 @@
 
 - store and use GitHub username [\#104](https://github.com/seapagan/py-maker/pull/104) ([seapagan](https://github.com/seapagan))
 
+**Documentation:**
+
+- Add MkDocs Tasks to the Documentation [\#105](https://github.com/seapagan/py-maker/pull/105) ([seapagan](https://github.com/seapagan))
+
 **Merged pull requests:**
 
 - adjust suggested git repo name [\#103](https://github.com/seapagan/py-maker/pull/103) ([seapagan](https://github.com/seapagan))
