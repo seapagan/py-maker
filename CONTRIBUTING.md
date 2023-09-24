@@ -99,6 +99,22 @@ If you add any new features, please add tests for them. This will help us to
 ensure that the code is working as expected and will prevent any regressions.
 *Currently we are not enforcing this until we have better coverage of the code.*
 
+## Changelog
+
+The changelog is automatically generated, so please do not edit it manually.
+
+For information, it is generated using a **Ruby** gem called [GitHub Changelog
+Generator](https://github.com/github-changelog-generator/github-changelog-generator).
+There is a POE task that will run this and update the changelog file.
+
+```console
+$ poe changelog
+```
+
+**However, you should NOT include a change to the `CHANGELOG.md` file in your
+Pull Requests. This will be handled by the maintainers when a new release is
+made.**
+
 ## Guidelines
 
 Here are some guidelines to follow when contributing to Py-Maker:
