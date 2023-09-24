@@ -27,6 +27,7 @@ Full documentation for this project with usage examples is available at
   - [Task Runner](#task-runner)
   - [Pre-commit](#pre-commit)
 - [GitHub Actions and Configuration](#github-actions-and-configuration)
+- [Contributing to Py-Maker](#contributing-to-py-maker)
 - [License](#license)
 
 ## Installation
@@ -161,6 +162,34 @@ There are also standard templates for Pull Request and Issues.
 
 The plan is to add more workflows in the future, for example running tests and
 more.
+
+## Contributing to Py-Maker
+
+All contributions, bug reports, bug fixes, documentation improvements,
+enhancements, and ideas are welcome.
+
+A detailed overview on how to contribute can be found in the **[contributing
+guide](CONTRIBUTING.md)** and on the
+[website](http://py-maker.seapagan.net/contributing/).
+
+If you are simply looking to start working with the codebase, navigate to the
+[GitHub "issues" tab](https://github.com/seapagan/py-maker/issues) and start
+looking through interesting issues. There may be issues listed under
+[documentation](https://github.com/seapagan/py-maker/issues?labels=documentation&sort=updated&state=open)
+and [good first
+issue](https://github.com/seapagan/py-maker/issues?labels=good+first+issue&sort=updated&state=open)
+where you could start out.
+
+You can also triage issues which may include reproducing bug reports, or asking
+for vital information such as version numbers or reproduction instructions.
+
+Maybe through using Py-Maker you have an idea of your own or are looking for
+something in the documentation and thinking ‘this can be improved’...you can do
+something about it!
+
+As contributors and maintainers to this project, you are expected to abide by
+our code of conduct. More information can be found at: [Contributor Code of
+Conduct](https://github.com/seapagan/py-maker/blob/main/CODE_OF_CONDUCT.md)
 
 ## License
 

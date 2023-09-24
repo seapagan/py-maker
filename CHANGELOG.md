@@ -11,6 +11,7 @@
 
 **Documentation:**
 
+- Add a contributing guide [\#109](https://github.com/seapagan/py-maker/pull/109) ([seapagan](https://github.com/seapagan))
 - Add MkDocs Tasks to the Documentation [\#105](https://github.com/seapagan/py-maker/pull/105) ([seapagan](https://github.com/seapagan))
 
 **Merged pull requests:**
