@@ -15,6 +15,7 @@ would like to suggest improvements, please open a new issue or submit a pull
 - [Install Dependencies](#install-dependencies)
 - [Install Git Pre-Commit hooks](#install-git-pre-commit-hooks)
 - [Run pre-commit manually](#run-pre-commit-manually)
+- [Testing](#testing)
 - [Guidelines](#guidelines)
 - [Contact](#contact)
 
@@ -95,12 +96,32 @@ You can run these checks manually on all staged files using the below command :
 poe pre
 ```
 
+## Testing
+
+We are using [pytest](https://docs.pytest.org/) for testing.
+
+At the moment the test framework is set up but we only have minimal tests. We
+will be adding more tests as we go along - and most definitely welcome any
+contributions to this area!
+
+If you add any new features, please add tests for them. This will help us to
+ensure that the code is working as expected and will prevent any regressions.
+*Currently we are not enforcing this until we have better coverage of the code.*
+
 ## Guidelines
 
 Here are some guidelines to follow when contributing to [project name]:
 
 - Follow the [PEP 8](https://www.python.org/dev/peps/pep-0008/) style guide. The
-  pre-commit hooks will check for this.
+  pre-commit hooks will check for this. [Black](https://black.readthedocs.io/)
+  is installed and this is the format we are using.
+- Try to have no linting errors or warnings. The pre-commit hooks will check for
+  this also. [Flake8](https://flake8.pycqa.org/en/latest/) is installed and
+  there are a few other linters that are run as well.
+- [MyPy](https://mypy.readthedocs.io/en/stable/) is installed and we are using
+  type hints. Please try to add type hints to your code. If you see any areas of
+  the code that are missing type hints, please feel free to open a PR and add
+  them 😁!
 - Write clear and concise commit messages.
 - Write tests for your code.
 - Make sure your code passes all tests before submitting a pull request.
@@ -109,10 +130,15 @@ Here are some guidelines to follow when contributing to [project name]:
 - Use [GitHub issues](https://github.com/seapagan/py-maker/issues) to report
   bugs or suggest new features.
 
+If you are using VSCode, there is a config file in the `.vscode` folder that
+will help you to follow these guidelines. You may need to install some
+extensions to get the most out of it. I'll add a list of recommended extensions
+here soon. The `Python` one is a must though.
+
 ## Contact
 
 If you have any questions or need help with contributing, please contact me
-<seapagan@gmail.com>. You can also use the [GitHub
+**@seapagan** on GitHub. You can also use the [GitHub
 Discussions](https://github.com/seapagan/py-maker/discussions) feature.
 
 Happy contributing!
