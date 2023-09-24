@@ -319,7 +319,7 @@ See the [bold][green]README.md[/green][/bold] file for more information.
                     "Repository URL?",
                     default=(
                         "https://github.com/your_user_name/"
-                        f"{self.choices.package_name}"
+                        f"{re.sub(r'[_.]+', '-', self.choices.package_name)}"
                     ),
                 )
 
