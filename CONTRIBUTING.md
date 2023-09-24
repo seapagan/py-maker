@@ -110,7 +110,7 @@ ensure that the code is working as expected and will prevent any regressions.
 
 ## Guidelines
 
-Here are some guidelines to follow when contributing to [project name]:
+Here are some guidelines to follow when contributing to Py-Maker:
 
 - Follow the [PEP 8](https://www.python.org/dev/peps/pep-0008/) style guide. The
   pre-commit hooks will check for this. [Black](https://black.readthedocs.io/)
