@@ -65,4 +65,8 @@ To aid in community building, the generated project includes a `CODE_OF_CONDUCT`
 file.  This is based on the [Contributor
 Covenant](https://www.contributor-covenant.org/){:target="_blank"} standard.
 
-Future releases will include `CONTRIBUTING` and `AUTHORS` files.
+For information on how to contribute to the project, see the `CONTRIBUTING.md`
+file in the root of the repository on [on this website](/contributing/)
+
+Future releases will include other Community related files (for example an
+`AUTHORS` file if the project gets enough contributors to warrant it!).
