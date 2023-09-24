@@ -173,3 +173,4 @@ omit = ["*/tests/*"]
 
 [tool.pymarkdown]
 plugins.md014.enabled = false
+plugins.md046.enabled = false
