@@ -12,6 +12,7 @@
 
 **Documentation:**
 
+- Adjust and clarify some docs [\#114](https://github.com/seapagan/py-maker/pull/114) ([seapagan](https://github.com/seapagan))
 - Add a contributing guide [\#109](https://github.com/seapagan/py-maker/pull/109) ([seapagan](https://github.com/seapagan))
 - Add a POE Task to automatically create and update the CHANGELOG.md [\#107](https://github.com/seapagan/py-maker/pull/107) ([seapagan](https://github.com/seapagan))
 - Add MkDocs Tasks to the Documentation [\#105](https://github.com/seapagan/py-maker/pull/105) ([seapagan](https://github.com/seapagan))
