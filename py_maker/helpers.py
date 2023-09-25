@@ -33,7 +33,7 @@ def get_author_and_email_from_git() -> tuple[str, str]:
 
 def get_file_list(template_dir: Union[Traversable, Path]) -> List[str]:
     """Return a list of files to be copied to the project directory."""
-    skip_dirs: List = ["__pycache__"]
+    skip_dirs: List[str] = ["__pycache__"]
 
     file_list: List[str] = [
         item.relative_to(template_dir)  # type: ignore
@@ -134,7 +134,7 @@ def get_app_version() -> str:
         try:
             with toml_path.open("rb") as file:
                 config = tomli.load(file)
-                version = config["tool"]["poetry"]["version"]
+                version: str = config["tool"]["poetry"]["version"]
 
                 return version
 

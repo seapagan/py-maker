@@ -50,7 +50,7 @@
   "python.analysis.indexing": true,
   "python.analysis.stubPath": "/home/seapagan/stubs",
   "python.analysis.typeCheckingMode": "basic",
-  "python.languageServer": "Pylance",
+  "python.languageServer": "None",
   "python.pythonPath": "./.venv/bin/python",
   "python.testing.pytestArgs": ["tests"],
   "python.testing.pytestEnabled": true,

@@ -152,7 +152,7 @@ class PyMaker:
             custom_template_dir = Path(self.settings.template_folder)
             if custom_template_dir.exists():
                 file_list = get_file_list(custom_template_dir)
-                self.copy_files(custom_template_dir, file_list)  # type: ignore
+                self.copy_files(custom_template_dir, file_list)
 
             # ---------------- generate the license file next. ------------- #
             if self.choices.license != "None":

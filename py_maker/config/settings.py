@@ -4,7 +4,7 @@ Allows reading from a settings file and writing to it.
 """
 from dataclasses import dataclass, field
 from pathlib import Path
-from typing import Dict, List, Optional
+from typing import Any, Dict, List, Optional
 
 import rtoml
 from rich import print  # pylint: disable=redefined-builtin
@@ -18,7 +18,7 @@ from py_maker.prompt import Prompt
 class Settings:
     """The main settings class."""
 
-    ignore_list: List = field(
+    ignore_list: List[str] = field(
         default_factory=lambda: [
             "settings_folder",
             "settings_file",
@@ -82,7 +82,7 @@ class Settings:
         for key, value in settings["pymaker"].items():
             setattr(self, key, value)
 
-    def get(self, key: str) -> Optional[str]:
+    def get(self, key: str) -> Any:
         """Get a setting by key."""
         try:
             return getattr(self, key)
