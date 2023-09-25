@@ -25,6 +25,7 @@
 
 **Merged pull requests:**
 
+- improve typing across the package [\#115](https://github.com/seapagan/py-maker/pull/115) ([seapagan](https://github.com/seapagan))
 - adjust suggested git repo name [\#103](https://github.com/seapagan/py-maker/pull/103) ([seapagan](https://github.com/seapagan))
 
 ## [v0.6.2](https://github.com/seapagan/py-maker/tree/v0.6.2) (2023-09-24)
