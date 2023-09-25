@@ -115,7 +115,7 @@ lint = ["black", "flake8", "mypy", "try", "pylint"]
 # special MyPy task to check for missing type annotations
 # we don't want to enforce full typing yet on the 'mypy' task, but still do want
 # to check for missing annotations at intervals.
-typing = "mypy --disallow-untyped-defs --disallow-untyped-calls --disallow-untyped-decorators  **/*.py"
+typing = "mypy --strict  **/*.py"
 
 "docs:publish" = "mkdocs gh-deploy"
 "docs:build" = "mkdocs build"
