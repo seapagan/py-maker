@@ -55,5 +55,6 @@ $ pymaker template default <enable|disable>
 ```
 
 `enable` will enable the default template, and `disable` will disable it. Please
-note that any custom templates you have created will still be used, and will
-overwrite the default template if they have the same file name.
+note that any custom templates you have created will be used regardless, and
+will overwrite the default template (if enabled) if they have the same file
+name.

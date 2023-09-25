@@ -1,10 +1,23 @@
 # Python Project Generation Tool
 
-This is a command line tool to help you create new Python projects.  It will
-create a new directory for your project, initialise a git repository, create a
-virtual environment, and install some basic dependencies.
+[![Codacy
+Badge](https://app.codacy.com/project/badge/Grade/7c86940f816b455ab171dc8126476849)](https://app.codacy.com/gh/seapagan/py-maker/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
+[![CodeQL](https://github.com/seapagan/py-maker/actions/workflows/codeql.yml/badge.svg)](https://github.com/seapagan/py-maker/actions/workflows/codeql.yml)
+![PyPI - License](https://img.shields.io/pypi/l/pyproject-maker)
+[![Downloads](https://static.pepy.tech/personalized-badge/pyproject-maker?period=week&units=international_system&left_color=black&right_color=green&left_text=Weekly%20Downloads)](https://pepy.tech/project/pyproject-maker)
+[![Downloads](https://static.pepy.tech/personalized-badge/pyproject-maker?period=total&units=international_system&left_color=black&right_color=green&left_text=Total%20Downloads)](https://pepy.tech/project/pyproject-maker)
 
-Latest Version : {{ latest-git-tag }}
+A fully customizable Python application to bootstrap
+[Poetry](https://python-poetry.org/){:target="_blank"}-based boilerplate for you
+to start developing your Python applications quicker! Includes linting and
+Pytest libraries.
+
+It will create a new directory for your project (or use the current directory),
+initialise a git repository, create a virtual environment, and install some
+basic dependencies for Testing, Linting and more.
+
+Latest Version : [{{ latest-git-tag
+}}](https://pypi.org/project/pyproject-maker/){:target="_blank"}
 
 ## Testing
 
@@ -61,12 +74,14 @@ more.
 
 ## Community related files
 
-To aid in community building, the generated project includes a `CODE_OF_CONDUCT`
-file.  This is based on the [Contributor
+To aid in community building, the generated project includes a
+`CODE_OF_CONDUCT.md` file.  This is based on the [Contributor
 Covenant](https://www.contributor-covenant.org/){:target="_blank"} standard.
 
-For information on how to contribute to the project, see the `CONTRIBUTING.md`
-file in the root of the repository on [on this website](contributing.md)
-
 Future releases will include other Community related files (for example an
-`AUTHORS` file if the project gets enough contributors to warrant it!).
+`AUTHORS` and `CONTRIBUTING` file.).
+
+## Contributing to this Project
+
+For information on how to contribute to the project, see the `CONTRIBUTING.md`
+file in the root of the repository or [on this website](contributing.md)

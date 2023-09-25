@@ -24,3 +24,8 @@ The dependency management is handled by
   imports.
 - [pre-commit](https://pre-commit.com/){:target="_blank"} for running checks
   before committing code.
+
+It also contains several tasks for running the tests, linting, formatting and
+more. These use the [Poe The
+Poet](https://poethepoet.natn.io/){:targer="_blank"} Poetry extension see [Task
+Runner](../tasks.md) for more information.
