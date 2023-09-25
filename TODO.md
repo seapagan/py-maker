@@ -15,9 +15,6 @@ importance.
 - add cmd line options to specify the project name, author, etc. so the user
   doesn't have to enter them manually. `Not sure if this is needed once we add
   the CLI parameters to the config file. May be useful for automation though`.
-- add a command line option to specify the project type so the user doesn't have
-  to enter it manually. ie `--standalone` or `--package`(latter is default and
-  wouldn't need to be specified).
 - add a command to the CLI template command to show the template files as a
   tree, marking whether each file/folder is from the internal templates or the
   user's templates.

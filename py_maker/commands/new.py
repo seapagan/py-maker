@@ -39,6 +39,15 @@ def new(
         Optional[bool],
         typer.Option(help="Add the MkDocs boilerplate.", show_default=False),
     ] = None,
+    standalone: Annotated[
+        Optional[bool],
+        typer.Option(
+            "--standalone",
+            "-s",
+            help="Create a standalone project, not a package.",
+            show_default=False,
+        ),
+    ] = False,
 ) -> None:
     """Create a new Python project."""
     options = {
@@ -47,6 +56,7 @@ def new(
         "lint": settings.include_linters if lint is None else lint,
         "docs": settings.include_mkdocs if docs is None else docs,
         "accept_defaults": accept_defaults,
+        "standalone": standalone,
     }
 
     if " " in location:

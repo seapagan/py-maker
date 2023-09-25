@@ -39,7 +39,8 @@ When it asks "Package Name?" you can choose two variants :
 2. **For a stand-alone tool** that will not be uploaded to PyPI, or is not a
    library, enter '-' for the package name. In this case the `main.py` will just
    be placed in the project root and no package folder will be created or
-   referenced.
+   referenced. You can also specify `--standalone` on the command line to skip
+    this question.
 
 For option 1 above, the App will check if the package name is available on PyPI
 or if it has already been used. In the latter case, you will be asked to choose
@@ -83,6 +84,13 @@ passed on the command line.
 If you choose to run `poetry` automatically, this will also add a customized
 `mkdocs.yml` file and create a new default MkDocs site in the `docs` folder.
 Some useful plugins are also installed and added to the `mkdocs.yml` file.
+
+### `--standalone`
+
+Generate a stand-alone script instead of a package. This will place the
+`main.py` file in the project root and not create a package folder. This is
+useful for creating a single script that can be run from the command line.
+this is equivalent to entering `-` for the package name.
 
 ## Run `poetry install` automatically
 
