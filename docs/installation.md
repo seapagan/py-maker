@@ -20,7 +20,7 @@ user install directory:
 $ pip install --user pyproject-maker
 ```
 
-or use [pipx](https://pypa.github.io/pipx/){:target="_blank"}
+or use [pipx](https://pypa.github.io/pipx/){:target="_blank"} (recommended method)
 
 ```console
 $ pipx install pyproject-maker

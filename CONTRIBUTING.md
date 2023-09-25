@@ -63,8 +63,8 @@ $ poetry shell
 ```
 
 From here you can start working on the project. If you are using an IDE such as
-VSCode or PyCharm, you can set the Python interpreter to the one in the virtual
-environment.
+VSCode or PyCharm, you can set the use their Python interpreter setting to use
+the virtual environment that has just been created.
 
 ## Install Git Pre-Commit hooks
 

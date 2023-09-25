@@ -8,49 +8,54 @@ importance.
 
 ## General
 
-- add a flag to overwrite existing files if the directory exists. Make this
+- Add a flag to overwrite existing files if the directory exists. Make this
   require confirmation. Alternately allow overwrite with confirmation if an
   existing/populated directory is found. Add a force flag to skip confirmation.
   `I think DO NOT allow this when '.' is specified as this could be disastrous`.
-- add cmd line options to specify the project name, author, etc. so the user
+- Add cmd line options to specify the project name, author, etc. so the user
   doesn't have to enter them manually. `Not sure if this is needed once we add
   the CLI parameters to the config file. May be useful for automation though`.
-- add a command to the CLI template command to show the template files as a
+- Add a command to the CLI template command to show the template files as a
   tree, marking whether each file/folder is from the internal templates or the
   user's templates.
-- add some sort of 'plugin' functionality where we can specify modified/extra
-  files to be added to the generated project. This would also add a command line
-  flag (ie `--django`, `--pydantic` or `--fastapi` or whatever) to use that
-  plugin, and a config setting to specify using this plugin always. Plugins
-  could be built-in (provided with the package) or user-defined (in the user's
+- Implement a 'plugin' functionality where we can specify modified/extra files
+  to be added to the generated project. This would also add a command line flag
+  (ie `--django`, `--pydantic` or `--fastapi` or whatever) to use that plugin,
+  and a config setting to specify using this plugin always. Plugins could be
+  built-in (provided with the package) or user-defined (in the user's
   `/pymaker/plugins` folder or installable via pip). Have a config setting to
   specify which plugins are enabled.
-- include an optional `vscode` settings file in the generated project, optimized
+- Include an optional `vscode` settings file in the generated project, optimized
   for python projects. This could include recommended extensions.
 - Perhaps add AUTHORS.md skeleton.
-- add template GitHub workflows for CI/CD, testing, etc. CodeQL or is that too
+- Add template GitHub workflows for CI/CD, testing, etc. CodeQL or is that too
   much (I do use it in most of my repos)?
-- add a default dockerfile? Maybe a docker-compose file as well?
-- take a look at the release-drafter GitHub action and see if worth using.
-- add the `actions/stale` action to the generated project.
-- update the POE tasks to add help text to each task.
-- automatically create the new GitHub repository from the CLI. This would
-  require the GitHub API key to be in the config file.
+- Add a default dockerfile? Maybe a docker-compose file as well?
+- Add the `actions/stale` action to the generated project.
+- Update the POE tasks to add help text to each task.
+- Automatically create the new GitHub repository from the CLI. This would
+  require the GitHub API key to be in the config file. The package
+  [`PyGithub`](https://github.com/PyGithub/PyGithub) would probably be useful
+  for this.
+- Update the `config` CLI command to allow editing of the config file (open in
+  the default editor?). Also enable setting/flipping individual config settings
+  from the command line.
 
 ## Back Burner
 
 These are ideas that I may or may not implement. They are here for reference.
 
-- modify boolean settings in the config to have the values 'yes', 'no' or 'ask'?
+- Modify boolean settings in the config to have the values 'yes', 'no' or 'ask'?
   This will be a bit lower priority and not sure if it's worth it.
-- add some form of 'extra packages' command line option and config setting to
+- Add some form of 'extra packages' command line option and config setting to
   automatically add extra packages to the generated `pyproject.toml` file.
+- Take a look at the release-drafter GitHub action and see if worth using.
 
 ## Code Quality
 
-- refactor the `PyMaker` class as its getting a bit messy. Maybe split it into
+- Refactor the `PyMaker` class as its getting a bit messy. Maybe split it into
   multiple classes with specific responsibilities.
-- sort out the nested `if/else` statements in
+- Sort out the nested `if/else` statements in
   `PyMaker.get_sanitized_package_name`.
 
 ## Documentation

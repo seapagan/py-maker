@@ -2,18 +2,18 @@
 
 ## Configuration file
 
-This app needs minimal configuration, currently just storing defaults for the
-`author_name`, `author_email` and `default_license`. This is stored in a
-configuration file in a sub-folder of the user's home directory. By default (and
-currently the only option) this file is stored in `~/.pymaker/config.toml`. An
-example of this file is:
+This app needs minimal configuration, most options default to `True`. The
+configuration is stored in a `TOML` file in a sub-folder of the user's
+home directory. By default (and currently the only option) this file is stored
+in `~/.pymaker/config.toml`. An example of this file is:
 
 ```toml
 [pymaker]
 author_email = "user@server.com"
 author_name = "Python User"
 default_license = "MIT"
-github_username = "githubuser"
+github_username = "githubuser" # optional
+github_token = "ghp_1234567890abcdefghij" # optional
 include_linters = true
 include_mkdocs = true
 include_testing = true
@@ -25,9 +25,10 @@ use_git = true
 ```
 
 If this file does not exist, it will be created on first run. The app will ask
-for the values of `author_name`, `author_email` and `default_license`. For
-`author_name` and `author_email` it will try to use the current git user name
-and email if they are set as defaults, though the user can override these.
+for the values of `author_name`, `author_email`, `default_license` and
+`github_username`. For `author_name` and `author_email` it will try to use the
+current global git user name and email if they are set as defaults, though the
+user can override these.
 
 ## Configuration options
 
@@ -37,18 +38,28 @@ The following options are available for configuring Py-Maker:
 - `author_name`: The name of the author.
 - `default_license`: The default license to use for the project.
 - `github_username`: The GitHub username of the author [optional].
-- `include_linters`: Whether to include linters in the project.
-- `include_mkdocs`: Whether to include MkDocs in the project.
-- `include_testing`: Whether to include testing in the project.
-- `install_pre_commit`: Whether to install pre-commit hooks.
-- `schema_version`: The version of the configuration schema.
+- `github_token`: The GitHub Personal Access Token of the author [optional]. See
+  [below](#add-a-github-personal-access-token) for more information.
+- `include_linters`: Whether to include linters in the project, defaults to
+  **`true`**
+- `include_mkdocs`: Whether to include MkDocs in the project, defaults to
+  **`true`**
+- `include_testing`: Whether to include testing in the project, defaults to
+  **`true`**
+- `install_pre_commit`: Whether to install pre-commit hooks, defaults to
+  **`true`**
+- `schema_version`: The version of the configuration schema. **This should not
+  be modified by hand**.
 - `template_folder`: The path to the template folder.
-- `use_default_template`: Whether to use the default template.
-- `use_git`: Whether to use Git for version control.
+- `use_default_template`: Whether to use the default template, defaults to
+  **`true`**
+- `use_git`: Whether to use Git for version control, defaults to
+  **`true`**
 
-All of the boolean options are set to `true` by default. The `template_folder`
-is set to the default template folder, which is `~/.pymaker/template`. The
-`schema_version` is for internal use, and should not be changed by the user.
+All of the boolean options are set to **`true`** by default. The
+`template_folder` is set to the default template folder, which is
+`~/.pymaker/template`. The `schema_version` is for internal use, and should not
+be changed by the user.
 
 ## View configuration
 
@@ -67,8 +78,9 @@ these defaults at any time using the command:
 $ pymaker config change
 ```
 
-The latter command will prompt you for the values of Author name, email and
-default License, and then update the configuration file.
+The latter command will prompt you for the values of `Author name`, `Author
+Email`, `Default License` and `GitHub Username`, then update the configuration
+file.
 
 ## Add a GitHub Personal Access Token
 
@@ -94,9 +106,9 @@ change the token at any time by running the same command again.
 
     This shouldnt ever happen since the file is stored in the user's home
     directory, but it is worth mentioning. If you didn't choose any extra
-    permissions, then the worst that can happen is that someone can use your token
-    to create a new repository. This token is READ-ONLY, so it can't be used to do
-    anything malicious, but it is still a good idea to keep it secret.
+    permissions, then the worst that can happen is that someone can use your
+    token to create a new repository. This token is READ-ONLY, so it can't be
+    used to do anything malicious, but it is still a good idea to keep it secret.
 
 ## Manually editing the configuration file
 
