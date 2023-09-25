@@ -8,7 +8,7 @@ import shutil
 import subprocess  # nosec
 import sys
 from pathlib import Path, PurePath
-from typing import TYPE_CHECKING, Dict
+from typing import TYPE_CHECKING, Dict, Union
 
 from git.exc import GitError
 from git.repo import Repo
@@ -36,11 +36,13 @@ if TYPE_CHECKING:
 class PyMaker:
     """PyMaker class."""
 
-    def __init__(self, location: str, options: Dict[str, bool]) -> None:
+    def __init__(
+        self, location: str, options: Dict[str, Union[bool, None]]
+    ) -> None:
         """Initialize the PyMaker class."""
         self.choices: ProjectValues = ProjectValues()
         self.location: str = location
-        self.options: Dict[str, bool] = options
+        self.options: Dict[str, Union[bool, None]] = options
 
         # this will be updated if we run 'poetry install' later, so other stages
         # that need to know if poetry has been run can check this flag.
