@@ -6,7 +6,7 @@ from typer.testing import CliRunner
 from py_maker.commands.config import app
 
 
-def test_show_config():
+def test_show_config() -> None:
     """Test the show command."""
     runner = CliRunner()
     with patch("py_maker.config.settings.Settings.get_attrs") as mock_get_attrs:
@@ -19,7 +19,7 @@ def test_show_config():
         assert "value2" in result.stdout
 
 
-def test_change_config():
+def test_change_config() -> None:
     """Test the change command."""
     runner = CliRunner()
     with patch(
