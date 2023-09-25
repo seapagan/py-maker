@@ -7,7 +7,7 @@ import rtoml
 from py_maker.config.settings import Settings
 
 
-def test_settings():
+def test_settings() -> None:
     """Test that the Settings class works as expected."""
     test_author = "John Doe"
     # Create a temporary directory to store the settings file

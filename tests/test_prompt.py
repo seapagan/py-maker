@@ -4,7 +4,7 @@ import pytest
 from py_maker.prompt import InvalidResponse, Prompt
 
 
-def test_prompt_check_choice():
+def test_prompt_check_choice() -> None:
     """Test that check_choice is case-insensitive."""
     prompt = Prompt(
         "What is your favorite color?", choices=["Red", "Green", "Blue"]
@@ -14,7 +14,7 @@ def test_prompt_check_choice():
     assert not prompt.check_choice("yellow")
 
 
-def test_prompt_process_response():
+def test_prompt_process_response() -> None:
     """Test that process_response returns the original choice.
 
     Even if the users types it in a different case, it should always return

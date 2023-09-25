@@ -4,7 +4,7 @@ Allows reading from a settings file and writing to it.
 """
 from dataclasses import dataclass, field
 from pathlib import Path
-from typing import Dict, List, Optional
+from typing import Any, Dict, List, Optional
 
 import rtoml
 from rich import print  # pylint: disable=redefined-builtin
@@ -18,7 +18,7 @@ from py_maker.prompt import Prompt
 class Settings:
     """The main settings class."""
 
-    ignore_list: List = field(
+    ignore_list: List[str] = field(
         default_factory=lambda: [
             "settings_folder",
             "settings_file",
@@ -48,7 +48,7 @@ class Settings:
     # cant use Pathlike here as it breaks rtoml
     template_folder: str = str(settings_folder / "template")
 
-    def __post_init__(self):
+    def __post_init__(self) -> None:
         """Create the settings folder if it doesn't exist."""
         if not self.settings_folder.exists():
             self.settings_folder.mkdir(parents=True)
@@ -82,14 +82,14 @@ class Settings:
         for key, value in settings["pymaker"].items():
             setattr(self, key, value)
 
-    def get(self, key: str):
+    def get(self, key: str) -> Any:
         """Get a setting by key."""
         try:
             return getattr(self, key)
         except AttributeError:
             return None
 
-    def set(self, key: str, value, autosave: bool = True):
+    def set(self, key: str, value: str, autosave: bool = True) -> None:
         """Set a setting by key and value.
 
         If autosave is True (the default), the settings will be saved to the

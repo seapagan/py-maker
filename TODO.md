@@ -40,6 +40,7 @@ importance.
 - Update the `config` CLI command to allow editing of the config file (open in
   the default editor?). Also enable setting/flipping individual config settings
   from the command line.
+- convert all TOML code from `tomli` to `rtoml` which is better and faster
 
 ## Back Burner
 

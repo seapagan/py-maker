@@ -1,5 +1,5 @@
 """Create a new project."""
-from typing import Annotated, Optional
+from typing import Annotated, Dict, Optional, Union
 
 import typer
 from rich import print  # pylint: disable=W0622
@@ -50,7 +50,7 @@ def new(
     ] = False,
 ) -> None:
     """Create a new Python project."""
-    options = {
+    options: Dict[str, Union[bool, None]] = {
         "git": settings.use_git if git is None else git,
         "test": settings.include_testing if test is None else test,
         "lint": settings.include_linters if lint is None else lint,

@@ -5,6 +5,8 @@ merged) I will use this subclass.
 
 Currently only makes the choices case-insensitive.
 """
+from typing import Any
+
 from rich.prompt import Confirm as RichConfirm
 from rich.prompt import InvalidResponse
 from rich.prompt import Prompt as RichPrompt
@@ -17,7 +19,7 @@ class Confirm(RichConfirm):
     Saves importing from the Rich library.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args: Any, **kwargs: Any) -> None:
         """Call the original constructor."""
         super().__init__(*args, **kwargs)
 

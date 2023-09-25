@@ -21,7 +21,7 @@ class Path(pathlib.Path):
     # pylint: disable-next=no-member, protected-access
     _flavour = type(pathlib.Path())._flavour  # type: ignore
 
-    def expand(self):
+    def expand(self) -> pathlib.Path:
         """Fully expand and resolve the Path given environment variables."""
         return Path(os.path.expandvars(self)).expanduser().resolve()
 
