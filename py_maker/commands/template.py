@@ -118,7 +118,7 @@ def default(action: str) -> None:
 
 
 @app.command(name="set")
-def set_template():
+def set_template() -> None:
     """Set the template folder to the current directory.
 
     The [i]'Use Default Template'[/i] setting [b][red]will not be changed[/b].
@@ -147,7 +147,7 @@ def set_template():
 
 
 @app.command(name="reset")
-def reset_template():
+def reset_template() -> None:
     """Reset the template folder to the default.
 
     This is currrently [b]~/.pymaker/template[/b].

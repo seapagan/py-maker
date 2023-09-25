@@ -31,7 +31,7 @@ def get_author_and_email_from_git() -> tuple[str, str]:
     )
 
 
-def get_file_list(template_dir: Union[Traversable, Path]):
+def get_file_list(template_dir: Union[Traversable, Path]) -> List[str]:
     """Return a list of files to be copied to the project directory."""
     skip_dirs: List = ["__pycache__"]
 
@@ -75,7 +75,7 @@ def header() -> None:
     print("[bold]PyMaker[/bold] - Generate a Python project skeleton.\n")
 
 
-def show_table(settings: Dict[str, str]):
+def show_table(settings: Dict[str, str]) -> None:
     """Show User data in a tabulated format."""
     console = Console()
     table = Table(

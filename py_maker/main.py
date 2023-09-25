@@ -20,7 +20,7 @@ def main(
     version: Optional[bool] = typer.Option(
         None, "-v", "--version", is_eager=True
     )
-):
+) -> None:
     """Generate a Python project skeleton."""
     if version:
         print(

@@ -17,7 +17,7 @@ class Confirm(RichConfirm):
     Saves importing from the Rich library.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         """Call the original constructor."""
         super().__init__(*args, **kwargs)
 

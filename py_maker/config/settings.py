@@ -48,7 +48,7 @@ class Settings:
     # cant use Pathlike here as it breaks rtoml
     template_folder: str = str(settings_folder / "template")
 
-    def __post_init__(self):
+    def __post_init__(self) -> None:
         """Create the settings folder if it doesn't exist."""
         if not self.settings_folder.exists():
             self.settings_folder.mkdir(parents=True)
@@ -82,14 +82,14 @@ class Settings:
         for key, value in settings["pymaker"].items():
             setattr(self, key, value)
 
-    def get(self, key: str):
+    def get(self, key: str) -> Optional[str]:
         """Get a setting by key."""
         try:
             return getattr(self, key)
         except AttributeError:
             return None
 
-    def set(self, key: str, value, autosave: bool = True):
+    def set(self, key: str, value: str, autosave: bool = True) -> None:
         """Set a setting by key and value.
 
         If autosave is True (the default), the settings will be saved to the

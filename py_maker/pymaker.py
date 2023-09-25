@@ -100,7 +100,9 @@ class PyMaker:
     # ------------------------------------------------------------------------ #
     #             Copy the template files to the project directory.            #
     # ------------------------------------------------------------------------ #
-    def copy_files(self, template_dir: Traversable, file_list: list[str]):
+    def copy_files(
+        self, template_dir: Traversable, file_list: list[str]
+    ) -> None:
         """Copy the template files to the project directory.
 
         Expand the jinja templates before copying.
@@ -277,7 +279,7 @@ See the [bold][green]README.md[/green][/bold] file for more information.
     # ------------------------------------------------------------------------ #
     #              accept all the default values for the project.              #
     # ------------------------------------------------------------------------ #
-    def accept_defaults(self):
+    def accept_defaults(self) -> None:
         """Accept the default values for the project."""
         self.choices.name = get_title(PurePath(self.choices.project_dir).name)
         self.choices.package_name = sanitize(self.choices.project_dir.name)
@@ -286,7 +288,7 @@ See the [bold][green]README.md[/green][/bold] file for more information.
         self.choices.email = self.settings.author_email
         self.choices.license = self.settings.default_license
 
-    def get_input(self):
+    def get_input(self) -> None:
         """Get the user input for the project."""
         self.choices.name = Prompt.ask(
             "Name of the Application?",
@@ -339,7 +341,7 @@ See the [bold][green]README.md[/green][/bold] file for more information.
     # ------------------------------------------------------------------------ #
     #                     run 'poetry install' if required.                    #
     # ------------------------------------------------------------------------ #
-    def run_poetry(self):
+    def run_poetry(self) -> None:
         """Run poetry install if required.
 
         We also create the MkDocs project if enabled.
@@ -364,7 +366,7 @@ See the [bold][green]README.md[/green][/bold] file for more information.
     # ------------------------------------------------------------------------ #
     #            optionally install and update the pre-commit hooks            #
     # ------------------------------------------------------------------------ #
-    def install_precommit(self):
+    def install_precommit(self) -> None:
         """Install pre-commit hooks - IF poetry and git are run.
 
         This would fail without either of them.
