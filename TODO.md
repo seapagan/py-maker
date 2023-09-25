@@ -24,11 +24,13 @@ importance.
 - add some sort of 'plugin' functionality where we can specify modified/extra
   files to be added to the generated project. This would also add a command line
   flag (ie `--django`, `--pydantic` or `--fastapi` or whatever) to use that
-  plugin, and a config setting to specify using this plugin always.
+  plugin, and a config setting to specify using this plugin always. Plugins
+  could be built-in (provided with the package) or user-defined (in the user's
+  `/pymaker/plugins` folder or installable via pip). Have a config setting to
+  specify which plugins are enabled.
 - include an optional `vscode` settings file in the generated project, optimized
   for python projects. This could include recommended extensions.
-- add CONTRIBUTING.md file to the generated project.
-  Perhaps add AUTHORS.md and CHANGELOG.md skeletons as well.
+- Perhaps add AUTHORS.md skeleton.
 - add template GitHub workflows for CI/CD, testing, etc. CodeQL or is that too
   much (I do use it in most of my repos)?
 - add a default dockerfile? Maybe a docker-compose file as well?
