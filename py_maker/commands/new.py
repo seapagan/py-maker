@@ -48,6 +48,18 @@ def new(
             show_default=False,
         ),
     ] = False,
+    bare: Annotated[
+        Optional[bool],
+        typer.Option(
+            "--bare",
+            "-b",
+            help=(
+                "Create a basic project, without any testing, "
+                "docs, linting or Git repository."
+            ),
+            show_default=False,
+        ),
+    ] = False,
 ) -> None:
     """Create a new Python project."""
     options: Dict[str, Union[bool, None]] = {
@@ -57,6 +69,7 @@ def new(
         "docs": settings.include_mkdocs if docs is None else docs,
         "accept_defaults": accept_defaults,
         "standalone": standalone,
+        "bare": bare,
     }
 
     if " " in location:
