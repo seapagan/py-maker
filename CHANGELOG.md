@@ -1,11 +1,12 @@
 # Changelog
 
-## [Unreleased](https://github.com/seapagan/py-maker/tree/HEAD)
+## [0.7.0](https://github.com/seapagan/py-maker/tree/0.7.0) (2023-10-01)
 
-[Full Changelog](https://github.com/seapagan/py-maker/compare/v0.6.2...HEAD)
+[Full Changelog](https://github.com/seapagan/py-maker/compare/v0.6.2...0.7.0)
 
 **Implemented enhancements:**
 
+- implement 'config edit' command [\#124](https://github.com/seapagan/py-maker/pull/124) ([seapagan](https://github.com/seapagan))
 - add '--bare' option [\#123](https://github.com/seapagan/py-maker/pull/123) ([seapagan](https://github.com/seapagan))
 - Add '--standalone' CLI flag [\#113](https://github.com/seapagan/py-maker/pull/113) ([seapagan](https://github.com/seapagan))
 - add optional  github\_token setting [\#106](https://github.com/seapagan/py-maker/pull/106) ([seapagan](https://github.com/seapagan))
