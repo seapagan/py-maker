@@ -92,6 +92,13 @@ Generate a stand-alone script instead of a package. This will place the
 useful for creating a single script that can be run from the command line.
 this is equivalent to entering `-` for the package name.
 
+### `--bare`
+
+Generate a project **without** Testing, linting or documentation libraries and
+configurations. It will also **NOT** initialise a Git repository. Currently
+there is no config file option to do this automatically, you must use the
+command line option.
+
 ## Run `poetry install` automatically
 
 You will be asked if you want to run `poetry install` automatically. This will
