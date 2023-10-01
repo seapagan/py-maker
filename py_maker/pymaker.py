@@ -448,6 +448,12 @@ See the [bold][green]README.md[/green][/bold] file for more information.
         else:
             self.get_input()
 
+        if self.options["bare"]:
+            self.options["test"] = False
+            self.options["lint"] = False
+            self.options["docs"] = False
+            self.options["git"] = False
+
         self.create_folders()
         self.generate_template()
 
