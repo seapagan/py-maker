@@ -6,6 +6,7 @@
 
 **Implemented enhancements:**
 
+- add '--bare' option [\#123](https://github.com/seapagan/py-maker/pull/123) ([seapagan](https://github.com/seapagan))
 - Add '--standalone' CLI flag [\#113](https://github.com/seapagan/py-maker/pull/113) ([seapagan](https://github.com/seapagan))
 - add optional  github\_token setting [\#106](https://github.com/seapagan/py-maker/pull/106) ([seapagan](https://github.com/seapagan))
 - store and use GitHub username [\#104](https://github.com/seapagan/py-maker/pull/104) ([seapagan](https://github.com/seapagan))
@@ -19,6 +20,9 @@
 
 **Dependency Updates:**
 
+- build\(deps\): bump pydantic from 2.3.0 to 2.4.2 [\#122](https://github.com/seapagan/py-maker/pull/122) ([dependabot[bot]](https://github.com/apps/dependabot))
+- build\(deps-dev\): bump types-requests from 2.31.0.4 to 2.31.0.6 [\#120](https://github.com/seapagan/py-maker/pull/120) ([dependabot[bot]](https://github.com/apps/dependabot))
+- build\(deps-dev\): bump pylint from 2.17.5 to 2.17.6 [\#119](https://github.com/seapagan/py-maker/pull/119) ([dependabot[bot]](https://github.com/apps/dependabot))
 - build\(deps-dev\): bump types-requests from 2.31.0.3 to 2.31.0.4 [\#112](https://github.com/seapagan/py-maker/pull/112) ([dependabot[bot]](https://github.com/apps/dependabot))
 - build\(deps-dev\): bump mkdocs-material from 9.4.0 to 9.4.2 [\#111](https://github.com/seapagan/py-maker/pull/111) ([dependabot[bot]](https://github.com/apps/dependabot))
 - build\(deps-dev\): bump poethepoet from 0.22.1 to 0.23.0 [\#110](https://github.com/seapagan/py-maker/pull/110) ([dependabot[bot]](https://github.com/apps/dependabot))
