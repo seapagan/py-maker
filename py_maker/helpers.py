@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import re
+import shutil
 import sys
 from datetime import datetime
 from importlib import metadata, resources
@@ -149,3 +150,8 @@ def get_app_version() -> str:
         except metadata.PackageNotFoundError as exc:
             print(f"Problem getting the Version : {exc}")
             sys.exit(ExitErrors.OS_ERROR)
+
+
+def check_cmd_exists(cmd: str) -> bool:
+    """Check if the supplied shell command exists."""
+    return shutil.which(cmd) is not None
