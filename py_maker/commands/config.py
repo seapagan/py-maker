@@ -29,3 +29,11 @@ def token() -> None:
     header()
     settings = Settings()
     settings.change_token()
+
+
+@app.command(name="edit")
+def edit_config() -> None:
+    """Open the Configuration file in the default editor."""
+    header()
+    settings = Settings()
+    settings.edit_config()

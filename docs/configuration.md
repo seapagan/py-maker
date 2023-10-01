@@ -65,9 +65,25 @@ be changed by the user.
 
 You can list the current configuration with the command:
 
-```ini
+```console
 $ pymaker config show
 ```
+
+## Edit the configuration file
+
+You can edit the configuration file with the command:
+
+```console
+$ pymaker config edit
+```
+
+This will open the configuration file in your default editor. Under linux it
+will try to use `xdg-open` to open the file, and if that fails, it will try to
+use a few different editors until it finds one that works. Under Windows and Mac
+it will try to use the default editor.
+
+You may also edit the configuration file manually, by default it is stored in
+`~/.pymaker/config.toml`.
 
 ## Set configuration
 

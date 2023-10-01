@@ -2,6 +2,9 @@
 
 Allows reading from a settings file and writing to it.
 """
+import os
+import platform
+import subprocess  # nosec
 from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any, Dict, List, Optional
@@ -156,3 +159,30 @@ class Settings:
         )
 
         self.save()
+
+    def edit_config(self) -> None:
+        """Open the default editor to edit the settings file."""
+        if platform.system() == "Windows":  # Windows
+            os.startfile(self.settings_file)  # nosec
+        elif platform.system() == "Darwin":  # macOS
+            subprocess.call(["open", self.settings_file])  # nosec
+        else:  # Linux
+            # we will loop through a list of editors until we find one that
+            # exists on the system.
+            editor_list: List[str] = [
+                "xdg-open",
+                "sensible-editor",
+                "nano",
+                "vi",  # if all else fails 🤣
+            ]
+            for editor in editor_list:
+                try:
+                    subprocess.call([editor, self.settings_file])  # nosec
+                    break
+                except FileNotFoundError:
+                    pass
+            else:
+                print(
+                    "--> [red]No editor found. Please edit the settings file "
+                    "manually.\n"
+                )
