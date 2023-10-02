@@ -11,6 +11,11 @@
 - build\(deps-dev\): bump types-requests from 2.31.0.6 to 2.31.0.7 [\#126](https://github.com/seapagan/py-maker/pull/126) ([dependabot[bot]](https://github.com/apps/dependabot))
 - build\(deps-dev\): bump poethepoet from 0.23.0 to 0.24.0 [\#125](https://github.com/seapagan/py-maker/pull/125) ([dependabot[bot]](https://github.com/apps/dependabot))
 
+**Merged pull requests:**
+
+- migrate tomli lib to rtoml [\#131](https://github.com/seapagan/py-maker/pull/131) ([seapagan](https://github.com/seapagan))
+- Add help to poe tasks [\#130](https://github.com/seapagan/py-maker/pull/130) ([seapagan](https://github.com/seapagan))
+
 ## [v0.7.0](https://github.com/seapagan/py-maker/tree/v0.7.0) (2023-10-01)
 
 [Full Changelog](https://github.com/seapagan/py-maker/compare/v0.6.2...v0.7.0)
