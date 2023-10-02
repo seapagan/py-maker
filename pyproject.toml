@@ -101,29 +101,30 @@ pygments = "^2.15.1"
 # typing stubs
 types-requests = "^2.31.0.2"
 
+# setup 'PoeThePoet' tasks
 [tool.poe.tasks]
-# setup PoeThePoet tasks
-pre = "pre-commit run --all-files"
-pylint = "pylint **/*.py"
-mypy = "mypy **/*.py"
-flake8 = "flake8 **/*.py"
-black = "black **/*.py"
-try = "tryceratops **/*.py"
-markdown = "pymarkdown scan **/*.md"
-lint = ["black", "flake8", "mypy", "try", "pylint"]
+pre.cmd = "pre-commit run --all-files"
+pylint.cmd = "pylint **/*.py"
+mypy.cmd = "mypy **/*.py"
+flake8.cmd = "flake8 **/*.py"
+black.cmd = "black **/*.py"
+try.cmd = "tryceratops **/*.py"
+markdown.cmd = "pymarkdown scan **/*.md"
+lint.sequence = ["black", "flake8", "mypy", "try", "pylint"]
 
 # special MyPy task to check for missing type annotations
 # we don't want to enforce full typing yet on the 'mypy' task, but still do want
 # to check for missing annotations at intervals.
-typing = "mypy --strict  **/*.py"
+"mypy:strict".cmd = "mypy --strict  **/*.py"
 
-"docs:publish" = "mkdocs gh-deploy"
-"docs:build" = "mkdocs build"
-"docs:serve" = "mkdocs serve -w TODO.md -w CHANGELOG.md -w CONTRIBUTING.md"
-"docs:serve:all" = "mkdocs serve -w TODO.md -w CHANGELOG.md -w CONTRIBUTING.md -a 0.0.0.0:9000"
+# tasks to deal with documentation
+"docs:publish".cmd = "mkdocs gh-deploy"
+"docs:build".cmd = "mkdocs build"
+"docs:serve".cmd = "mkdocs serve -w TODO.md -w CHANGELOG.md -w CONTRIBUTING.md"
+"docs:serve:all".cmd = "mkdocs serve -w TODO.md -w CHANGELOG.md -w CONTRIBUTING.md -a 0.0.0.0:9000"
 
-# this needs the Ruby utility below installed.
-changelog = "github_changelog_generator -u seapagan -p py-maker"
+# Generate a CHANGELOG.md - this needs the Ruby utility below installed.
+changelog.cmd = "github_changelog_generator -u seapagan -p py-maker"
 
 # configure assorted tools and linters
 [tool.isort]
