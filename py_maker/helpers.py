@@ -10,7 +10,7 @@ from pathlib import Path
 from typing import TYPE_CHECKING, Dict, List, Union
 
 import requests
-import tomli
+import rtoml
 from git.config import GitConfigParser
 from rich import print  # pylint: disable=redefined-builtin
 from rich.console import Console
@@ -133,16 +133,13 @@ def get_app_version() -> str:
     if toml_path.exists():
         # we are locally developing the package
         try:
-            with toml_path.open("rb") as file:
-                config = tomli.load(file)
-                version: str = config["tool"]["poetry"]["version"]
-
-                return version
-
+            config = rtoml.load(toml_path)
+            version: str = config["tool"]["poetry"]["version"]
         except (KeyError, OSError) as exc:
             print(f"Problem getting the Version : {exc}")
             sys.exit(ExitErrors.OS_ERROR)
-
+        else:
+            return version
     else:
         # if we are here then the package must be installed not local dev
         try:
