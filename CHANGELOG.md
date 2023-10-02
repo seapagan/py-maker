@@ -1,8 +1,19 @@
 # Changelog
 
-## [0.7.0](https://github.com/seapagan/py-maker/tree/0.7.0) (2023-10-01)
+## [Unreleased](https://github.com/seapagan/py-maker/tree/HEAD)
 
-[Full Changelog](https://github.com/seapagan/py-maker/compare/v0.6.2...0.7.0)
+[Full Changelog](https://github.com/seapagan/py-maker/compare/v0.7.0...HEAD)
+
+**Dependency Updates:**
+
+- build\(deps\): bump rich from 13.5.3 to 13.6.0 [\#128](https://github.com/seapagan/py-maker/pull/128) ([dependabot[bot]](https://github.com/apps/dependabot))
+- build\(deps-dev\): bump pylint from 2.17.6 to 2.17.7 [\#127](https://github.com/seapagan/py-maker/pull/127) ([dependabot[bot]](https://github.com/apps/dependabot))
+- build\(deps-dev\): bump types-requests from 2.31.0.6 to 2.31.0.7 [\#126](https://github.com/seapagan/py-maker/pull/126) ([dependabot[bot]](https://github.com/apps/dependabot))
+- build\(deps-dev\): bump poethepoet from 0.23.0 to 0.24.0 [\#125](https://github.com/seapagan/py-maker/pull/125) ([dependabot[bot]](https://github.com/apps/dependabot))
+
+## [v0.7.0](https://github.com/seapagan/py-maker/tree/v0.7.0) (2023-10-01)
+
+[Full Changelog](https://github.com/seapagan/py-maker/compare/v0.6.2...v0.7.0)
 
 **Implemented enhancements:**
 
