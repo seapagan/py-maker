@@ -33,14 +33,12 @@ importance.
 - Add a default dockerfile? Maybe a docker-compose file as well- Both for this
   project and for the generated projects?
 - Add the `actions/stale` action to the generated project.
-- Update the POE tasks to add help text to each task.
 - Automatically create the new GitHub repository from the CLI. This would
   require the GitHub API key to be in the config file. The package
   [`PyGithub`](https://github.com/PyGithub/PyGithub) would probably be useful
   for this.
 - Update the `config` CLI command to enable setting/flipping individual config
   settings from the command line.
-- convert all TOML code from `tomli` to `rtoml` which is better and faster
 
 ## Back Burner
 
