@@ -104,27 +104,41 @@ types-requests = "^2.31.0.2"
 # setup 'PoeThePoet' tasks
 [tool.poe.tasks]
 pre.cmd = "pre-commit run --all-files"
+pre.help = "Run pre-commit checks"
 pylint.cmd = "pylint **/*.py"
+pylint.help = "Run pylint checks"
 mypy.cmd = "mypy **/*.py"
+mypy.help = "Run mypy checks"
 flake8.cmd = "flake8 **/*.py"
+flake8.help = "Run flake8 checks"
 black.cmd = "black **/*.py"
+black.help = "Check and format code with black"
 try.cmd = "tryceratops **/*.py"
+try.help = "Run tryceratops checks"
 markdown.cmd = "pymarkdown scan **/*.md"
+markdown.help = "Run markdown checks"
 lint.sequence = ["black", "flake8", "mypy", "try", "pylint"]
+lint.help = "Run all linting checks"
 
 # special MyPy task to check for missing type annotations
 # we don't want to enforce full typing yet on the 'mypy' task, but still do want
 # to check for missing annotations at intervals.
 "mypy:strict".cmd = "mypy --strict  **/*.py"
+"mypy:strict".help = "Run mypy checks with strict type checking"
 
 # tasks to deal with documentation
 "docs:publish".cmd = "mkdocs gh-deploy"
+"docs:publish".help = "Publish documentation to GitHub Pages"
 "docs:build".cmd = "mkdocs build"
+"docs:build".help = "Build documentation locally to './site' folder"
 "docs:serve".cmd = "mkdocs serve -w TODO.md -w CHANGELOG.md -w CONTRIBUTING.md"
+"docs:serve".help = "Serve documentation locally"
 "docs:serve:all".cmd = "mkdocs serve -w TODO.md -w CHANGELOG.md -w CONTRIBUTING.md -a 0.0.0.0:9000"
+"docs:serve:all".help = "Serve documentation locally on all interfaces"
 
 # Generate a CHANGELOG.md - this needs the Ruby utility below installed.
 changelog.cmd = "github_changelog_generator -u seapagan -p py-maker"
+changelog.help = "Generate a CHANGELOG.md file"
 
 # configure assorted tools and linters
 [tool.isort]
