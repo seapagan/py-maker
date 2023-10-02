@@ -84,22 +84,34 @@ pygments = "^2.15.1"
 
 # setup PoeThePoet tasks
 [tool.poe.tasks]
-pre = "pre-commit run --all-files"
+pre.cmd = "pre-commit run --all-files"
+pre.help = "Run pre-commit checks"
 {% if options.lint %}
-pylint = "pylint **/*.py"
-mypy = "mypy **/*.py"
-flake8 = "flake8 **/*.py"
-black = "black **/*.py"
-try = "tryceratops **/*.py"
-markdown = "pymarkdown scan **/*.md"
-lint = ["black", "flake8", "pylint", "mypy", "try"]
+pylint.cmd = "pylint **/*.py"
+pylint.help = "Run pylint checks"
+mypy.cmd = "mypy **/*.py"
+mypy.help = "Run mypy checks"
+flake8.cmd = "flake8 **/*.py"
+flake8.help = "Run flake8 checks"
+black.cmd = "black **/*.py"
+black.help = "Check and format code with black"
+try.cmd = "tryceratops **/*.py"
+try.help = "Run tryceratops checks"
+markdown.cmd = "pymarkdown scan **/*.md"
+markdown.help = "Run markdown checks"
+lint.sequence = ["black", "flake8", "mypy", "try", "pylint"]
+lint.help = "Run all linting checks"
 {% endif %}
 
 {% if options.docs %}
-"docs:publish" = "mkdocs gh-deploy"
-"docs:build" = "mkdocs build"
-"docs:serve" = "mkdocs serve -w TODO.md -w CHANGELOG.md"
-"docs:serve:all" = "mkdocs serve -w TODO.md -w CHANGELOG.md -a 0.0.0.0:9000"
+"docs:publish".cmd = "mkdocs gh-deploy"
+"docs:publish".help = "Publish documentation to GitHub Pages"
+"docs:build".cmd = "mkdocs build"
+"docs:build".help = "Build documentation locally to './site' folder"
+"docs:serve".cmd = "mkdocs serve -w TODO.md -w CHANGELOG.md -w CONTRIBUTING.md"
+"docs:serve".help = "Serve documentation locally"
+"docs:serve:all".cmd = "mkdocs serve -w TODO.md -w CHANGELOG.md -w CONTRIBUTING.md -a 0.0.0.0:9000"
+"docs:serve:all".help = "Serve documentation locally on all interfaces"
 {% endif %}
 
 {% if options.lint %}
