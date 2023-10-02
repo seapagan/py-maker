@@ -28,11 +28,8 @@ importance.
 - Include an optional `vscode` settings file in the generated project, optimized
   for python projects. This could include recommended extensions.
 - Perhaps add AUTHORS.md skeleton.
-- Add template GitHub workflows for CI/CD, testing, etc. CodeQL or is that too
-  much (I do use it in most of my repos)?
 - Add a default dockerfile? Maybe a docker-compose file as well- Both for this
   project and for the generated projects?
-- Add the `actions/stale` action to the generated project.
 - Automatically create the new GitHub repository from the CLI. This would
   require the GitHub API key to be in the config file. The package
   [`PyGithub`](https://github.com/PyGithub/PyGithub) would probably be useful
@@ -49,6 +46,9 @@ These are ideas that I may or may not implement. They are here for reference.
 - Add some form of 'extra packages' command line option and config setting to
   automatically add extra packages to the generated `pyproject.toml` file.
 - Take a look at the release-drafter GitHub action and see if worth using.
+- Add template GitHub workflows for CI/CD, testing, etc. CodeQL or is that too
+  much (I do use it in most of my repos)?
+- Add the `actions/stale` action to the generated project.
 
 ## Code Quality
 
