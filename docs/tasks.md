@@ -12,6 +12,12 @@ then the script name, for example:
 $ poe pre
 ```
 
+To get a list of all available tasks with a description, run:
+
+```console
+$ poe
+```
+
 You can define your own, but there are 8 specific ones provided with the script.
 
 - `pre` : Run `pre-commit run --all-files`

@@ -30,7 +30,8 @@ importance.
 - Perhaps add AUTHORS.md skeleton.
 - Add template GitHub workflows for CI/CD, testing, etc. CodeQL or is that too
   much (I do use it in most of my repos)?
-- Add a default dockerfile? Maybe a docker-compose file as well?
+- Add a default dockerfile? Maybe a docker-compose file as well- Both for this
+  project and for the generated projects?
 - Add the `actions/stale` action to the generated project.
 - Update the POE tasks to add help text to each task.
 - Automatically create the new GitHub repository from the CLI. This would
