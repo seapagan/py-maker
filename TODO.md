@@ -50,17 +50,22 @@ These are ideas that I may or may not implement. They are here for reference.
   much (I do use it in most of my repos)?
 - Add the `actions/stale` action to the generated project.
 
-## Code Quality
+## Refactoring / Code Cleanup
 
 - Refactor the `PyMaker` class as its getting a bit messy. Maybe split it into
   multiple classes with specific responsibilities.
 - Sort out the nested `if/else` statements in
   `PyMaker.get_sanitized_package_name`.
+- split the file copy and template handling functionality into it's own module
+  and have the `PyMaker` class use it.
+- split the `ExitErrors` class into an 'errors' module, add more error types if
+  needed and use them throughout the code.
 
 ## Documentation
 
 - Add usage examples and perhaps a walk-through to the documentation. Maybe
   with a YouTube video?
+- explain how to add more License templates to the 'licenses' module
 
 ## Testing
 
