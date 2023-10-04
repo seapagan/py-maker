@@ -36,6 +36,8 @@ importance.
   for this.
 - Update the `config` CLI command to enable setting/flipping individual config
   settings from the command line.
+- check for an existing GitHub repository when the user supplies the repo name
+  and ask for an alternative if it exists.
 
 ## Back Burner
 

@@ -5,10 +5,11 @@ authenticating with GitHub and performing the necessary operations.
 """
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Optional, Union
+from typing import TYPE_CHECKING, Union
 
 from github import Auth, Github
 from github.GithubException import GithubException
+from rich import print
 
 if TYPE_CHECKING:
     from github.AuthenticatedUser import AuthenticatedUser
@@ -23,7 +24,7 @@ def git_error(exc: GithubException) -> None:
     error_message = ""
     if error:
         error_message = f"({error[0].get('message')})".capitalize()
-    print(f"Error creating repository: {message} {error_message}")
+    print(f"[red]  Error: {message} {error_message}")
 
 
 class GitHub:
@@ -64,7 +65,7 @@ class GitHub:
             return None
 
     def create_repo(
-        self, repo_name: Optional[str] = None, private: bool = False
+        self, description: str = "", private: bool = False
     ) -> Union[Repository, None]:
         """Create a new repository.
 
@@ -72,16 +73,14 @@ class GitHub:
             repo_name: The name of the repository to create.
             private: Whether the repository should be private or not.
         """
-        if repo_name is None:
+        if self.repo_name is None:
             raise ValueError(  # noqa: TRY003
                 "Repository name must be provided."
             )
 
-        self.repo_name = repo_name
-
         try:
             repo = self._user.create_repo(  # type: ignore
-                repo_name, private=private
+                self.repo_name, private=private, description=description
             )
         except GithubException as exc:
             git_error(exc)
