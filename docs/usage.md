@@ -85,6 +85,12 @@ If you choose to run `poetry` automatically, this will also add a customized
 `mkdocs.yml` file and create a new default MkDocs site in the `docs` folder.
 Some useful plugins are also installed and added to the `mkdocs.yml` file.
 
+### `--github` / `--no-github`
+
+Create a GitHub repository and push the initial commit. Default is `True` unless
+`create_remote = false` is set in the config file or `--no-github` is passed on
+the command line.
+
 ### `--standalone`
 
 Generate a stand-alone script instead of a package. This will place the

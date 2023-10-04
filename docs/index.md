@@ -14,7 +14,8 @@ Pytest libraries.
 
 It will create a new directory for your project (or use the current directory),
 initialise a git repository, create a virtual environment, and install some
-basic dependencies for Testing, Linting and more.
+basic dependencies for Testing, Linting and more. Optionally, it can also
+create a GitHub repository for you and push the initial commit.
 
 Latest Version : [{{ latest-git-tag
 }}](https://pypi.org/project/pyproject-maker/){:target="_blank"}
