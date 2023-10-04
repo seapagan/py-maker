@@ -460,7 +460,14 @@ See the [bold][green]README.md[/green][/bold] file for more information.
                     )
 
         else:
-            print("\n  [blue]Info: Remote repository not created.")
+            print(
+                "\n  [blue]Info: Remote repository not created."
+                " Either you chose not to, or you did not provide a GitHub"
+                " Personal Access Token (PAT) in the settings file.\n"
+                "        See https://py-maker.seapagan.net/configuration/"
+                "#add-a-github-personal-access-token"
+                " for more details.\n"
+            )
 
     # ------------------------------------------------------------------------ #
     #             The main application loop is on the .run() method.           #
