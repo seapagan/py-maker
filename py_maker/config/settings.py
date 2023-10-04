@@ -165,7 +165,7 @@ class Settings:
     def edit_config(self) -> None:
         """Open the default editor to edit the settings file."""
         if platform.system() == "Windows":  # Windows
-            os.startfile(self.settings_file)  # nosec # type: ignore
+            os.startfile(self.settings_file)  # type: ignore # nosec
         elif platform.system() == "Darwin":  # macOS
             subprocess.call(["open", self.settings_file])  # nosec
         else:  # Linux

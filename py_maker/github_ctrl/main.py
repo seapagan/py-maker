@@ -5,7 +5,7 @@ authenticating with GitHub and performing the necessary operations.
 """
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Union
+from typing import TYPE_CHECKING, Optional, Union
 
 from github import Auth, Github
 from github.GithubException import GithubException
@@ -56,7 +56,7 @@ class GitHub:
         return self._user
 
     @property
-    def repo(self) -> Union[Repository, None]:
+    def repo(self) -> Optional[Repository]:
         """Return the GitHub repository object."""
         try:
             return self._user.get_repo(self.repo_name)
@@ -66,7 +66,7 @@ class GitHub:
 
     def create_repo(
         self, description: str = "", private: bool = False
-    ) -> Union[Repository, None]:
+    ) -> Optional[Repository]:
         """Create a new repository.
 
         Args:
