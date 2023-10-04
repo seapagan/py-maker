@@ -416,7 +416,7 @@ See the [bold][green]README.md[/green][/bold] file for more information.
     def create_remote_repo(self) -> None:
         """Create a remote repo on GitHub for this new project.
 
-        If creation is successfull then adjust the local repo to use the remote.
+        If creation is successful then adjust the local repo to use the remote.
         and push the existing local repo to the remote.
         """
         if (
@@ -441,8 +441,13 @@ See the [bold][green]README.md[/green][/bold] file for more information.
             )
             new_repo = github.create_repo(description=self.choices.description)
             if new_repo:
+                print("--> Pushing new Project to GitHub")
                 try:
-                    git_url = new_repo.ssh_url
+                    git_url = (
+                        new_repo.ssh_url
+                        if self.settings == "ssh"
+                        else new_repo.html_url
+                    )
                     local_repo = Repo(self.choices.project_dir)
                     local_repo.create_remote("origin", git_url)
                     local_repo.remote("origin").push("main")
@@ -454,7 +459,7 @@ See the [bold][green]README.md[/green][/bold] file for more information.
                     )
 
         else:
-            print("\n  [red]Warning: Remote repository not created.")
+            print("\n  [blue]Info: Remote repository not created.")
 
     # ------------------------------------------------------------------------ #
     #             The main application loop is on the .run() method.           #

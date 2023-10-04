@@ -38,6 +38,8 @@ importance.
   settings from the command line.
 - check for an existing GitHub repository when the user supplies the repo name
   and ask for an alternative if it exists.
+- look at ROI for converting the settings module to use `Pydantic` for
+  validation.
 
 ## Back Burner
 
