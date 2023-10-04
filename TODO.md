@@ -30,10 +30,6 @@ importance.
 - Perhaps add AUTHORS.md skeleton.
 - Add a default dockerfile? Maybe a docker-compose file as well- Both for this
   project and for the generated projects?
-- Automatically create the new GitHub repository from the CLI. This would
-  require the GitHub API key to be in the config file. The package
-  [`PyGithub`](https://github.com/PyGithub/PyGithub) would probably be useful
-  for this.
 - Update the `config` CLI command to enable setting/flipping individual config
   settings from the command line.
 - check for an existing GitHub repository when the user supplies the repo name
