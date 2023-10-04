@@ -423,6 +423,7 @@ See the [bold][green]README.md[/green][/bold] file for more information.
             self.options["git"]
             and self.settings.github_token
             and self.choices.repository
+            and self.options["remote"]
             and (
                 self.options["accept_defaults"]
                 or Confirm.ask(
@@ -445,7 +446,7 @@ See the [bold][green]README.md[/green][/bold] file for more information.
                 try:
                     git_url = (
                         new_repo.ssh_url
-                        if self.settings == "ssh"
+                        if self.settings.github_protocol == "ssh"
                         else new_repo.html_url
                     )
                     local_repo = Repo(self.choices.project_dir)
