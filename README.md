@@ -5,17 +5,14 @@
 Badge](https://app.codacy.com/project/badge/Grade/7c86940f816b455ab171dc8126476849)](https://app.codacy.com/gh/seapagan/py-maker/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
 [![CodeQL](https://github.com/seapagan/py-maker/actions/workflows/codeql.yml/badge.svg)](https://github.com/seapagan/py-maker/actions/workflows/codeql.yml)
 ![PyPI - License](https://img.shields.io/pypi/l/pyproject-maker)
-[![Downloads](https://static.pepy.tech/personalized-badge/pyproject-maker?period=week&units=international_system&left_color=black&right_color=green&left_text=Weekly%20Downloads)](https://pepy.tech/project/pyproject-maker)
-[![Downloads](https://static.pepy.tech/personalized-badge/pyproject-maker?period=total&units=international_system&left_color=black&right_color=green&left_text=Total%20Downloads)](https://pepy.tech/project/pyproject-maker)
+[![Weekly Downloads](https://static.pepy.tech/personalized-badge/pyproject-maker?period=week&units=international_system&left_color=black&right_color=green&left_text=Weekly%20Downloads)](https://pepy.tech/project/pyproject-maker)
+[![Total Downloads](https://static.pepy.tech/personalized-badge/pyproject-maker?period=total&units=international_system&left_color=black&right_color=green&left_text=Total%20Downloads)](https://pepy.tech/project/pyproject-maker)
 
 A fully customizable Python application to bootstrap
 [Poetry](https://python-poetry.org/)-based boilerplate for you to start
 developing your Python applications quicker! Includes linting and Pytest
-libraries.
-
-It will create a new directory for your project (or use the current directory),
-initialise a git repository, create a virtual environment, and install some
-basic dependencies for Testing, Linting and more.
+libraries, a task runner, pre-commit hooks, and optionally create a git
+repository and upload to GitHub. you can also fully customize the template used.
 
 Full documentation for this project with usage examples is available at
 <https://py-maker.seapagan.net/>
