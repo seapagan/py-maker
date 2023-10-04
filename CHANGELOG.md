@@ -1,11 +1,17 @@
 # Changelog
 
-## [Unreleased](https://github.com/seapagan/py-maker/tree/HEAD)
+## [0.8.0](https://github.com/seapagan/py-maker/tree/0.8.0) (2023-10-04)
 
-[Full Changelog](https://github.com/seapagan/py-maker/compare/v0.7.0...HEAD)
+[Full Changelog](https://github.com/seapagan/py-maker/compare/v0.7.0...0.8.0)
+
+**Implemented enhancements:**
+
+- Automatically create a GitHub repository for the new project [\#134](https://github.com/seapagan/py-maker/pull/134) ([seapagan](https://github.com/seapagan))
 
 **Dependency Updates:**
 
+- build\(deps-dev\): bump mkdocs-material from 9.4.2 to 9.4.3 [\#133](https://github.com/seapagan/py-maker/pull/133) ([dependabot[bot]](https://github.com/apps/dependabot))
+- build\(deps\): bump urllib3 from 2.0.4 to 2.0.6 [\#132](https://github.com/seapagan/py-maker/pull/132) ([dependabot[bot]](https://github.com/apps/dependabot))
 - build\(deps\): bump rich from 13.5.3 to 13.6.0 [\#128](https://github.com/seapagan/py-maker/pull/128) ([dependabot[bot]](https://github.com/apps/dependabot))
 - build\(deps-dev\): bump pylint from 2.17.6 to 2.17.7 [\#127](https://github.com/seapagan/py-maker/pull/127) ([dependabot[bot]](https://github.com/apps/dependabot))
 - build\(deps-dev\): bump types-requests from 2.31.0.6 to 2.31.0.7 [\#126](https://github.com/seapagan/py-maker/pull/126) ([dependabot[bot]](https://github.com/apps/dependabot))
