@@ -60,6 +60,14 @@ def new(
             show_default=False,
         ),
     ] = False,
+    github: Annotated[
+        Optional[bool],
+        typer.Option(
+            help="Create a remote repository on GitHub for the project "
+            "and push the initial commit.",
+            show_default=False,
+        ),
+    ] = None,
 ) -> None:
     """Create a new Python project."""
     options: Dict[str, Union[bool, None]] = {
@@ -67,6 +75,7 @@ def new(
         "test": settings.include_testing if test is None else test,
         "lint": settings.include_linters if lint is None else lint,
         "docs": settings.include_mkdocs if docs is None else docs,
+        "github": settings.create_remote if github is None else github,
         "accept_defaults": accept_defaults,
         "standalone": standalone,
         "bare": bare,

@@ -18,6 +18,7 @@ from rich import print  # pylint: disable=W0622
 from py_maker import template
 from py_maker.config.settings import Settings
 from py_maker.constants import MKDOCS_CONFIG, ExitErrors, license_names
+from py_maker.github_ctrl import GitHub
 from py_maker.helpers import (
     exists_on_pypi,
     get_current_year,
@@ -412,6 +413,62 @@ See the [bold][green]README.md[/green][/bold] file for more information.
                 """
             )
 
+    def create_remote_repo(self) -> None:
+        """Create a remote repo on GitHub for this new project.
+
+        If creation is successful then adjust the local repo to use the remote.
+        and push the existing local repo to the remote.
+        """
+        if (
+            self.options["git"]
+            and self.settings.github_token
+            and self.choices.repository
+            and self.options["github"]
+            and (
+                self.options["accept_defaults"]
+                or Confirm.ask(
+                    "\nDo you want to create a remote repository on GitHub?",
+                    default=True,
+                )
+            )
+        ):
+            print("\n--> Creating remote repository on GitHub")
+            os.chdir(self.choices.project_dir)
+            # get the repo name only from the full URL
+            repo_name = Path(self.choices.repository).name
+            github = GitHub(
+                self.settings.github_token,
+                repo_name,
+            )
+            new_repo = github.create_repo(description=self.choices.description)
+            if new_repo:
+                print("--> Pushing new Project to GitHub")
+                try:
+                    git_url = (
+                        new_repo.ssh_url
+                        if self.settings.github_protocol == "ssh"
+                        else new_repo.html_url
+                    )
+                    local_repo = Repo(self.choices.project_dir)
+                    local_repo.create_remote("origin", git_url)
+                    local_repo.remote("origin").push("main")
+                except GitError as exc:
+                    print(
+                        "\n  [red]Warning: Error creating Remote repository."
+                        " Please check the GitHub token and try again."
+                        f"\n  Error: {exc}[/red]\n"
+                    )
+
+        else:
+            print(
+                "\n  [blue]Info: Remote repository not created."
+                " Either you chose not to, or you did not provide a GitHub"
+                " Personal Access Token (PAT) in the settings file.\n"
+                "        See https://py-maker.seapagan.net/configuration/"
+                "#add-a-github-personal-access-token"
+                " for more details.\n"
+            )
+
     # ------------------------------------------------------------------------ #
     #             The main application loop is on the .run() method.           #
     # ------------------------------------------------------------------------ #
@@ -460,5 +517,7 @@ See the [bold][green]README.md[/green][/bold] file for more information.
         self.run_poetry()
         self.create_git_repo()
         self.install_precommit()
+
+        self.create_remote_repo()
 
         self.post_process()

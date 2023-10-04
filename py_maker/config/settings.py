@@ -7,7 +7,7 @@ import platform
 import subprocess  # nosec
 from dataclasses import dataclass, field
 from pathlib import Path
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, List, Literal, Optional
 
 import rtoml
 from rich import print  # pylint: disable=redefined-builtin
@@ -40,6 +40,7 @@ class Settings:
     author_email: str = ""
     github_username: Optional[str] = ""
     github_token: Optional[str] = ""
+    github_protocol: Literal["ssh", "https"] = "ssh"
     default_license: str = "None"
     use_default_template: bool = True
     use_git: bool = True
@@ -47,6 +48,7 @@ class Settings:
     include_testing: bool = True
     include_linters: bool = True
     install_pre_commit: bool = True
+    create_remote: bool = True
 
     # cant use Pathlike here as it breaks rtoml
     template_folder: str = str(settings_folder / "template")
@@ -163,7 +165,7 @@ class Settings:
     def edit_config(self) -> None:
         """Open the default editor to edit the settings file."""
         if platform.system() == "Windows":  # Windows
-            os.startfile(self.settings_file)  # nosec
+            os.startfile(self.settings_file)  # type: ignore # nosec
         elif platform.system() == "Darwin":  # macOS
             subprocess.call(["open", self.settings_file])  # nosec
         else:  # Linux

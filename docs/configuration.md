@@ -14,6 +14,7 @@ author_name = "Python User"
 default_license = "MIT"
 github_username = "githubuser" # optional
 github_token = "ghp_1234567890abcdefghij" # optional
+github_protocol = "ssh"
 include_linters = true
 include_mkdocs = true
 include_testing = true
@@ -22,6 +23,7 @@ schema_version = "1.0" # for internal use, generally don't change this
 template_folder = "/home/user/.pymaker/template"
 use_default_template = true
 use_git = true
+create_remote = true
 ```
 
 If this file does not exist, it will be created on first run. The app will ask
@@ -40,6 +42,11 @@ The following options are available for configuring Py-Maker:
 - `github_username`: The GitHub username of the author [optional].
 - `github_token`: The GitHub Personal Access Token of the author [optional]. See
   [below](#add-a-github-personal-access-token) for more information.
+- `github_protocol`: The protocol to use for GitHub, either `ssh` or `https`,
+  defaults to **`ssh`** which means that the user will need to have set up an
+  SSH key with GitHub and added it to their account. If you wish to use HTTPS,
+  you will be asked for your GitHub password every time you push to the remote
+  repository.
 - `include_linters`: Whether to include linters in the project, defaults to
   **`true`**
 - `include_mkdocs`: Whether to include MkDocs in the project, defaults to
@@ -49,11 +56,14 @@ The following options are available for configuring Py-Maker:
 - `install_pre_commit`: Whether to install pre-commit hooks, defaults to
   **`true`**
 - `schema_version`: The version of the configuration schema. **This should not
-  be modified by hand**.
+  be modified by hand**. Currently, and until version 1.0 is released, this is
+  set to "none" to indicate that the schema is not yet stable.
 - `template_folder`: The path to the template folder.
 - `use_default_template`: Whether to use the default template, defaults to
   **`true`**
 - `use_git`: Whether to use Git for version control, defaults to
+  **`true`**
+- `create_remote`: Whether to create a remote repository on GitHub, defaults to
   **`true`**
 
 All of the boolean options are set to **`true`** by default. The
@@ -105,11 +115,13 @@ you, and generate a CHANGELOG.md file. To do this, it will need a GitHub
 Personal Access Token. You can create a new token by going to [GitHub Personal
 Access Tokens](<https://github.com/settings/tokens>){:target="_blank"} and
 clicking on the "Generate new token" button. Use the 'Classic' token option
-unless you really need more control. Unless you want to use the token on Private
-repositories, you can leave all the permissions unchecked. Give it a name (for
-your reference only) and chose an expiry date. You can choose never to expire,
-but this is not recommended. Once you have created the token, copy it (it will
-only be shown once, so make sure you copy it now). Then run the command:
+unless you really need more control. **Unless you want to use the token on
+Private repositories, you should check the `public_repo` option and leave all
+the other permissions unchecked** (this tool does not yet have the option to
+create a private repository). Give it a name (for your reference only) and chose
+an expiry date. You can choose never to expire, but this is not recommended.
+Once you have created the token, copy it (it will only be shown once, so make
+sure you copy it now). Then run the command:
 
 ```console
 $ pymaker config token
