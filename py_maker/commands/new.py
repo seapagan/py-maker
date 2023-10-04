@@ -60,7 +60,7 @@ def new(
             show_default=False,
         ),
     ] = False,
-    remote: Annotated[
+    github: Annotated[
         Optional[bool],
         typer.Option(
             help="Create a remote repository on GitHub for the project "
@@ -75,7 +75,7 @@ def new(
         "test": settings.include_testing if test is None else test,
         "lint": settings.include_linters if lint is None else lint,
         "docs": settings.include_mkdocs if docs is None else docs,
-        "remote": settings.create_remote if remote is None else remote,
+        "github": settings.create_remote if github is None else github,
         "accept_defaults": accept_defaults,
         "standalone": standalone,
         "bare": bare,
