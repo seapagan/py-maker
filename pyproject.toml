@@ -74,7 +74,7 @@ tryceratops = "^2.3.2"
 
 # task runner - leave this at 0.22.1 until we can get the new version to work
 # after they changed the glob exapnsion.
-poethepoet = "0.22.1"
+poethepoet = "0.24.0"
 
 # testing
 pytest = "^7.4.0"
