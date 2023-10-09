@@ -217,12 +217,16 @@ class PyMaker:
 
         Currently just prints messages on what to do next.
         """
+        proj_loc = (
+            self.location if self.location != "." else self.choices.project_dir
+        )
         output = f"""
 --> [green]Project created successfully.[/green]
 
 [bold]Next steps:[/bold]
 
     1) Change to the project directory:
+        'cd {proj_loc}'
     2) Install the dependencies if not done (creates a virtual environment):
         'poetry install'
     3) Activate the virtual environment:
