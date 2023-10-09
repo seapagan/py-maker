@@ -74,7 +74,7 @@ tryceratops = "^2.3.2"
 
 # task runner - leave this at 0.22.1 until we can get the new version to work
 # after they changed the glob exapnsion.
-poethepoet = "0.22.1"
+poethepoet = "^0.24.0"
 
 # testing
 pytest = "^7.4.0"
@@ -106,17 +106,18 @@ types-requests = "^2.31.0.2"
 [tool.poe.tasks]
 pre.cmd = "pre-commit run --all-files"
 pre.help = "Run pre-commit checks"
-pylint.cmd = "pylint **/*.py"
+pylint.cmd = "pylint py_maker/**/*.py"
 pylint.help = "Run pylint checks"
 mypy.cmd = "mypy **/*.py"
 mypy.help = "Run mypy checks"
-flake8.cmd = "flake8 **/*.py"
+mypy.cwd = "py_maker"
+flake8.cmd = "flake8 py_maker/**/*.py"
 flake8.help = "Run flake8 checks"
-black.cmd = "black **/*.py"
+black.cmd = "black py_maker/**/*.py"
 black.help = "Check and format code with black"
-try.cmd = "tryceratops **/*.py"
+try.cmd = "tryceratops py_maker/**/*.py"
 try.help = "Run tryceratops checks"
-markdown.cmd = "pymarkdown scan **/*.md"
+markdown.cmd = "pymarkdown scan py_maker/**/[!CHANGELOG]*.md"
 markdown.help = "Run markdown checks"
 lint.sequence = ["black", "flake8", "mypy", "try", "pylint"]
 lint.help = "Run all linting checks"
