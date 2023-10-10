@@ -1,8 +1,31 @@
 # Changelog
 
-## [0.8.0](https://github.com/seapagan/py-maker/tree/0.8.0) (2023-10-04)
+## [0.9.0](https://github.com/seapagan/py-maker/tree/0.9.0) (2023-10-10)
 
-[Full Changelog](https://github.com/seapagan/py-maker/compare/v0.7.0...0.8.0)
+[Full Changelog](https://github.com/seapagan/py-maker/compare/v0.8.0...0.9.0)
+
+**Implemented enhancements:**
+
+- Migrate settings to my 'simple-toml-settings' library [\#146](https://github.com/seapagan/py-maker/pull/146) ([seapagan](https://github.com/seapagan))
+
+**Dependency Updates:**
+
+- build\(deps-dev\): bump mkdocs-material from 9.4.4 to 9.4.5 [\#145](https://github.com/seapagan/py-maker/pull/145) ([dependabot[bot]](https://github.com/apps/dependabot))
+- build\(deps-dev\): bump pylint from 2.17.7 to 3.0.1 [\#144](https://github.com/seapagan/py-maker/pull/144) ([dependabot[bot]](https://github.com/apps/dependabot))
+- build\(deps-dev\): bump faker from 19.6.2 to 19.8.0 [\#143](https://github.com/seapagan/py-maker/pull/143) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Unlock 'poethepoet' upgrades [\#142](https://github.com/seapagan/py-maker/pull/142) ([seapagan](https://github.com/seapagan))
+- build\(deps-dev\): bump pylint-pydantic from 0.2.4 to 0.3.0 [\#139](https://github.com/seapagan/py-maker/pull/139) ([dependabot[bot]](https://github.com/apps/dependabot))
+- build\(deps-dev\): bump mkdocs-material from 9.4.3 to 9.4.4 [\#138](https://github.com/seapagan/py-maker/pull/138) ([dependabot[bot]](https://github.com/apps/dependabot))
+- build\(deps-dev\): bump flake8-type-checking from 2.4.1 to 2.4.2 [\#137](https://github.com/seapagan/py-maker/pull/137) ([dependabot[bot]](https://github.com/apps/dependabot))
+- build\(deps-dev\): bump types-requests from 2.31.0.7 to 2.31.0.8 [\#136](https://github.com/seapagan/py-maker/pull/136) ([dependabot[bot]](https://github.com/apps/dependabot))
+
+**Merged pull requests:**
+
+- \[pre-commit.ci\] pre-commit autoupdate [\#141](https://github.com/seapagan/py-maker/pull/141) ([pre-commit-ci[bot]](https://github.com/apps/pre-commit-ci))
+
+## [v0.8.0](https://github.com/seapagan/py-maker/tree/v0.8.0) (2023-10-04)
+
+[Full Changelog](https://github.com/seapagan/py-maker/compare/v0.7.0...v0.8.0)
 
 **Implemented enhancements:**
 
