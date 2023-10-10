@@ -4,12 +4,11 @@ from typing import Annotated, Dict, Optional, Union
 import typer
 from rich import print  # pylint: disable=W0622
 
-from py_maker.config.settings import Settings
+from py_maker.config import settings
 from py_maker.constants import ExitErrors
 from py_maker.pymaker import PyMaker
 
 app = typer.Typer(no_args_is_help=True)
-settings = Settings()
 
 
 @app.callback(invoke_without_command=True)
