@@ -5,37 +5,23 @@ Allows reading from a settings file and writing to it.
 import os
 import platform
 import subprocess  # nosec
-from dataclasses import dataclass, field
-from pathlib import Path
-from typing import Any, Dict, List, Literal, Optional
+from typing import List, Literal, Optional
 
-import rtoml
 from rich import print  # pylint: disable=redefined-builtin
+from simple_toml_settings import TOMLSettings
 
 from py_maker.constants import license_names
 from py_maker.helpers import get_author_and_email_from_git, show_table
 from py_maker.prompt import Prompt
 
 
-@dataclass
-class Settings:
+class Settings(TOMLSettings):
     """The main settings class."""
-
-    ignore_list: List[str] = field(
-        default_factory=lambda: [
-            "settings_folder",
-            "settings_file",
-            "ignore_list",
-        ]
-    )
-    settings_folder: Path = Path.home() / ".pymaker"
-    settings_file: Path = settings_folder / "config.toml"
 
     # define our settings
     # the schema_version is used to track changes to the settings file but will
     # be unused until we have a stable release. Expect the schema layout to
     # change at any time until then!
-    schema_version: str = "none"
     author_name: str = ""
     author_email: str = ""
     github_username: Optional[str] = ""
@@ -51,58 +37,19 @@ class Settings:
     create_remote: bool = True
 
     # cant use Pathlike here as it breaks rtoml
-    template_folder: str = str(settings_folder / "template")
 
     def __post_init__(self) -> None:
-        """Create the settings folder if it doesn't exist."""
-        if not self.settings_folder.exists():
-            self.settings_folder.mkdir(parents=True)
-        if not self.settings_file.exists():
-            self.get_user_settings(missing=True)
+        """Set the settings file path."""
+        super().__post_init__()
+        self.template_folder: str = str(self.settings_folder / "template")
 
-        self.load()
+    def __post_create_file__(self):
+        """Automatically called after the settings file is created.
 
-    def get_attrs(self) -> Dict[str, str]:
-        """Return a dictionary of our setting values."""
-        return {
-            a: getattr(self, a)
-            for a in dir(self)
-            if not a.startswith("__")
-            and a not in self.ignore_list
-            and not callable(getattr(self, a))
-        }
-
-    def save(self) -> None:
-        """Save the settings to the settings file."""
-        rtoml.dump({"pymaker": self.get_attrs()}, self.settings_file)
-
-    def load(self) -> None:
-        """Load the settings from the settings file."""
-        try:
-            settings = rtoml.load(self.settings_file)
-        except FileNotFoundError:
-            self.save()
-            return
-
-        for key, value in settings["pymaker"].items():
-            setattr(self, key, value)
-
-    def get(self, key: str) -> Any:
-        """Get a setting by key."""
-        try:
-            return getattr(self, key)
-        except AttributeError:
-            return None
-
-    def set(self, key: str, value: str, autosave: bool = True) -> None:
-        """Set a setting by key and value.
-
-        If autosave is True (the default), the settings will be saved to the
-        settings file each time it is called.
+        Here, we will ask the user for default settings.
         """
-        setattr(self, key, value)
-        if autosave:
-            self.save()
+        print("here we are!!")
+        self.get_user_settings(missing=True)
 
     def get_user_settings(self, missing: bool = False) -> None:
         """Ask the user for their settings and save to the settings file.
@@ -139,10 +86,6 @@ class Settings:
         self.save()
         print("\n--> [green]Settings file saved.\n")
 
-    def list_settings(self) -> Dict[str, str]:
-        """Return a dictionary of settings."""
-        return self.get_attrs()
-
     def change_settings(self) -> None:
         """Allow the user to change settings."""
         show_table(self.list_settings())
@@ -167,7 +110,9 @@ class Settings:
         if platform.system() == "Windows":  # Windows
             os.startfile(self.settings_file)  # type: ignore # nosec
         elif platform.system() == "Darwin":  # macOS
-            subprocess.call(["open", self.settings_file])  # nosec
+            subprocess.call(
+                ["open", self.settings_folder / self.settings_file_name]
+            )  # nosec
         else:  # Linux
             # we will loop through a list of editors until we find one that
             # exists on the system.
@@ -179,7 +124,9 @@ class Settings:
             ]
             for editor in editor_list:
                 try:
-                    subprocess.call([editor, self.settings_file])  # nosec
+                    subprocess.call(
+                        [editor, self.settings_folder / self.settings_file_name]
+                    )  # nosec
                     break
                 except FileNotFoundError:
                     pass
@@ -188,3 +135,6 @@ class Settings:
                     "--> [red]No editor found. Please edit the settings file "
                     "manually.\n"
                 )
+
+
+settings = Settings("pymaker")

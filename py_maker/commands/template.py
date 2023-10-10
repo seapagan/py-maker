@@ -6,7 +6,7 @@ import typer
 from rich import print  # pylint: disable=redefined-builtin
 
 from py_maker import template
-from py_maker.config import Settings
+from py_maker.config import settings
 from py_maker.constants import ExitErrors
 from py_maker.helpers import get_file_list, header
 from py_maker.prompt import Confirm
@@ -71,7 +71,6 @@ def dump(
 
         if set_default:
             print("[green]  -> Template folder set[/green]")
-            settings = Settings()
             settings.template_folder = str(output_folder)
 
             if Confirm.ask(
@@ -97,7 +96,6 @@ def default(action: str) -> None:
     [b]disable[/b] will disable the internal template folder
     """
     header()
-    settings = Settings()
     if action == "enable":
         settings.use_default_template = True
         settings.save()
@@ -130,7 +128,6 @@ def set_template() -> None:
         default=False,
     ):
         raise typer.Exit(ExitErrors.USER_ABORT)
-    settings = Settings()
     settings.template_folder = str(Path.cwd())
     settings.save()
 
@@ -161,7 +158,6 @@ def reset_template() -> None:
     ):
         raise typer.Exit(ExitErrors.USER_ABORT)
 
-    settings = Settings()
     settings.template_folder = str(Path.home() / ".pymaker" / "template")
     settings.save()
     print(
