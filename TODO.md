@@ -36,6 +36,8 @@ importance.
   and ask for an alternative if it exists.
 - look at ROI for converting the settings module to use `Pydantic` for
   validation.
+- add option (possibly using the eventual plugin functionality) to create a
+  skeleton `typer` CLI app.
 
 ## Back Burner
 
