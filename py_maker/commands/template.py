@@ -53,7 +53,7 @@ def dump(
         file_list = get_file_list(template_source)
 
         for file in file_list:
-            with pkg_resources.as_file(template_source / file) as src:
+            with pkg_resources.as_file(template_source / file) as src:  # type: ignore # noqa
                 if src.is_dir():
                     Path(output_folder / file).mkdir(
                         parents=True, exist_ok=True

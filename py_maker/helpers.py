@@ -32,14 +32,19 @@ def get_author_and_email_from_git() -> tuple[str, str]:
     )
 
 
-def get_file_list(template_dir: Union[Traversable, Path]) -> List[str]:
-    """Return a list of files to be copied to the project directory."""
+def get_file_list(template_dir: Union[Traversable, Path]) -> List[Path]:
+    """Return a list of files to be copied to the project directory.
+
+    The root __init__.py file is excluded from the list, as it is only there so
+    that the template directory can be treated as a package.
+    """
     skip_dirs: List[str] = ["__pycache__"]
 
-    file_list: List[str] = [
-        item.relative_to(template_dir)  # type: ignore
+    file_list: List[Path] = [
+        item.relative_to(str(template_dir))
         for item in template_dir.rglob("*")  # type: ignore
         if set(item.parts).isdisjoint(skip_dirs)
+        and item.relative_to(str(template_dir)) != Path("__init__.py")
     ]
 
     return file_list

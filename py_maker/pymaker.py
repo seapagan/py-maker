@@ -102,7 +102,7 @@ class PyMaker:
     #             Copy the template files to the project directory.            #
     # ------------------------------------------------------------------------ #
     def copy_files(
-        self, template_dir: Traversable, file_list: list[str]
+        self, template_dir: Union[Traversable, Path], file_list: list[Path]
     ) -> None:
         """Copy the template files to the project directory.
 
@@ -116,7 +116,7 @@ class PyMaker:
             keep_trailing_newline=True,
         )
         for file in file_list:
-            with pkg_resources.as_file(template_dir / file) as src:
+            with pkg_resources.as_file(template_dir / file) as src:  # type: ignore # noqa
                 if src.is_dir():
                     Path(self.choices.project_dir / file).mkdir()
                 elif src.suffix == ".jinja":
@@ -147,6 +147,7 @@ class PyMaker:
             template_dir = pkg_resources.files(template)
             if self.settings.use_default_template:
                 file_list = get_file_list(template_dir)
+                print(file_list)
                 self.copy_files(template_dir, file_list)
 
             # --------- copy the custom template files if they exist --------- #
