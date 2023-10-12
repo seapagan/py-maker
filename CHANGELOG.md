@@ -1,8 +1,21 @@
 # Changelog
 
-## [0.9.0](https://github.com/seapagan/py-maker/tree/0.9.0) (2023-10-10)
+## [v0.9.1](https://github.com/seapagan/py-maker/tree/v0.9.1) (2023-10-12)
 
-[Full Changelog](https://github.com/seapagan/py-maker/compare/v0.8.0...0.9.0)
+[Full Changelog](https://github.com/seapagan/py-maker/compare/v0.9.0...v0.9.1)
+
+**Fixed bugs:**
+
+- remove extra '\_\_init\_\_.py' file [\#150](https://github.com/seapagan/py-maker/pull/150) ([seapagan](https://github.com/seapagan))
+
+**Dependency Updates:**
+
+- build\(deps-dev\): bump faker from 19.8.0 to 19.10.0 [\#149](https://github.com/seapagan/py-maker/pull/149) ([dependabot[bot]](https://github.com/apps/dependabot))
+- build\(deps-dev\): bump mypy from 1.5.1 to 1.6.0 [\#147](https://github.com/seapagan/py-maker/pull/147) ([dependabot[bot]](https://github.com/apps/dependabot))
+
+## [v0.9.0](https://github.com/seapagan/py-maker/tree/v0.9.0) (2023-10-10)
+
+[Full Changelog](https://github.com/seapagan/py-maker/compare/v0.8.0...v0.9.0)
 
 **Implemented enhancements:**
 
