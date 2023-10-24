@@ -2207,13 +2207,13 @@ files = [
 
 [[package]]
 name = "simple-toml-settings"
-version = "0.2.2"
+version = "0.3.0"
 description = "A Python library to save your settings in a TOML file."
 optional = false
 python-versions = ">=3.9,<4.0"
 files = [
-    {file = "simple_toml_settings-0.2.2-py3-none-any.whl", hash = "sha256:fd01180e9e1d9109adf101598bf6d79ee7c9142c374b1dd20d3381bf03f982e9"},
-    {file = "simple_toml_settings-0.2.2.tar.gz", hash = "sha256:63cfbfae7a797073536829b7c06260e1a7e7915b2d087f2263855fa974ec25de"},
+    {file = "simple_toml_settings-0.3.0-py3-none-any.whl", hash = "sha256:3bf63ea68dec40b570c48274fa61d175f4aa799fbc63616266b02ab6ff1e9551"},
+    {file = "simple_toml_settings-0.3.0.tar.gz", hash = "sha256:96949865acba1296b5dee3014077c1c654cbf4b694b9eb65fae8e07b4e95d800"},
 ]
 
 [package.dependencies]
@@ -2579,4 +2579,4 @@ testing = ["big-O", "jaraco.functools", "jaraco.itertools", "more-itertools", "p
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.9,<4.0"
-content-hash = "c84b280900d444b85a8087b230862d617e56f5a6a8fe229c747ed3e46ccac835"
+content-hash = "99db6048899d2c3c264c0e5595b3ec2ef5f8a733829376736e71eab6af5f8b51"
