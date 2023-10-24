@@ -73,9 +73,6 @@ pymarkdownlnt = "^0.9.12"
 mypy = "^1.4.1"
 tryceratops = "^2.3.2"
 
-# task runner - leave this at 0.22.1 until we can get the new version to work
-# after they changed the glob exapnsion.
-poethepoet = "^0.24.0"
 
 # testing
 pytest = "^7.4.0"
@@ -103,8 +100,12 @@ pygments = "^2.15.1"
 # typing stubs
 types-requests = "^2.31.0.2"
 
-# setup 'PoeThePoet' tasks
+# assorted utilities
+poethepoet = "^0.24.0"
+github-changelog-md = "^0.2.2"
+
 [tool.poe.tasks]
+# setup 'PoeThePoet' tasks
 pre.cmd = "pre-commit run --all-files"
 pre.help = "Run pre-commit checks"
 pylint.cmd = "pylint py_maker/**/*.py"
@@ -140,7 +141,7 @@ lint.help = "Run all linting checks"
 "docs:serve:all".help = "Serve documentation locally on all interfaces"
 
 # Generate a CHANGELOG.md - this needs the Ruby utility below installed.
-changelog.cmd = "github_changelog_generator -u seapagan -p py-maker"
+changelog.cmd = "github-changelog-md -r py-maker"
 changelog.help = "Generate a CHANGELOG.md file"
 
 # configure assorted tools and linters
