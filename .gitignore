@@ -214,3 +214,4 @@ pyrightconfig.json
 test-app*
 .python-version
 .github_changelog_generator
+.changelog_generator.toml
