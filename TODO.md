@@ -38,6 +38,7 @@ importance.
   validation.
 - add option (possibly using the eventual plugin functionality) to create a
   skeleton `typer` CLI app.
+- Migrate to Ruff for linting and formatting for both the app and template
 
 ## Back Burner
 
