@@ -38,7 +38,6 @@ importance.
   validation.
 - add option (possibly using the eventual plugin functionality) to create a
   skeleton `typer` CLI app.
-- Migrate to Ruff for linting and formatting for both the app and template
 
 ## Back Burner
 
@@ -63,6 +62,8 @@ These are ideas that I may or may not implement. They are here for reference.
   and have the `PyMaker` class use it.
 - split the `ExitErrors` class into an 'errors' module, add more error types if
   needed and use them throughout the code.
+- migrate to `Ruff` for all linting and formatting. This will replace Black,
+  Pylint, Flake8 and more. Do this for both the App and the generated template.
 
 ## Documentation
 
