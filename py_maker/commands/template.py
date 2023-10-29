@@ -1,6 +1,7 @@
 """Deal with template files."""
 import importlib.resources as pkg_resources
 from pathlib import Path
+from typing import TYPE_CHECKING
 
 import typer
 from rich import print  # pylint: disable=redefined-builtin
@@ -10,6 +11,9 @@ from py_maker.config import settings
 from py_maker.constants import ExitErrors
 from py_maker.helpers import get_file_list, header
 from py_maker.prompt import Confirm
+
+if TYPE_CHECKING:
+    from importlib.abc import Traversable
 
 app = typer.Typer(no_args_is_help=True)
 
@@ -35,7 +39,7 @@ def dump(
     your current directory.
     """
     header()
-    template_source = pkg_resources.files(template)
+    template_source: Traversable = pkg_resources.files(template)
 
     try:
         if not local:
@@ -51,10 +55,11 @@ def dump(
         ):
             raise typer.Exit(ExitErrors.USER_ABORT)
 
-        file_list = get_file_list(template_source)
+        file_list: list[Path] = get_file_list(template_source)
 
         for file in file_list:
-            with pkg_resources.as_file(template_source / file) as src:
+            src_path = template_source.joinpath(str(file))
+            with pkg_resources.as_file(src_path) as src:
                 if src.is_dir():
                     Path(output_folder / file).mkdir(
                         parents=True, exist_ok=True

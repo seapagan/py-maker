@@ -15,7 +15,7 @@ LICENCES: list[dict[str, str]] = [
     {"name": "EPL2", "url": "https://opensource.org/licenses/EPL-2.0"},
 ]
 
-license_names: list[str] = [license["name"] for license in LICENCES]
+license_names: list[str] = [license_dict["name"] for license_dict in LICENCES]
 
 
 class ExitErrors(IntEnum):

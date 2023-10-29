@@ -12,7 +12,7 @@ class ProjectSettings(BaseModel):
     package_name: str = ""
     author: str = ""
     email: str = ""
-    license: str = ""
+    license_name: str = ""
 
 
 class ProjectValues(ProjectSettings):
@@ -21,7 +21,7 @@ class ProjectValues(ProjectSettings):
     Extends the ProjectSettings schema.
     """
 
-    project_dir: Path = Path("")
+    project_dir: Path = Path()
     name: str = ""
     standalone: Optional[bool] = False
 

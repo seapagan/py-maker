@@ -1,4 +1,4 @@
-"""Test the helpers module.""" ""
+"""Test the helpers module."""
 from __future__ import annotations
 
 from typing import TYPE_CHECKING
@@ -49,22 +49,25 @@ def test_pretty_attrib() -> None:
 def test_get_current_year() -> None:
     """Test the get_current_year function."""
     assert get_current_year().isdigit()
-    assert len(get_current_year()) == 4
+    assert len(get_current_year()) == 4  # noqa: PLR2004
 
 
 def test_exists_on_pypi_returns_true(mocker: MockerFixture) -> None:
+    """Test the exists_on_pypi function - exists."""
     mock_get = mocker.patch.object(requests, "get")
     mock_get.return_value.status_code = 200
     assert exists_on_pypi("requests") is True
 
 
 def test_exists_on_pypi_returns_false(mocker: MockerFixture) -> None:
+    """Test the exists_on_pypi function - does not exist."""
     mock_get = mocker.patch.object(requests, "get")
     mock_get.return_value.status_code = 404
     assert exists_on_pypi("nonexistent_package") is False
 
 
 def test_exists_on_pypi_returns_false_on_timeout(mocker: MockerFixture) -> None:
+    """Test the exists_on_pypi function - timeout."""
     mock_get = mocker.patch.object(requests, "get")
     mock_get.side_effect = requests.exceptions.Timeout
     assert exists_on_pypi("nonexistent_package") is False

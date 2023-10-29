@@ -1,12 +1,20 @@
 """Tests for the constants module."""
 from py_maker import constants
 
+LICENSE_DICT_SIZE = 2
+
 
 def test_licenses() -> None:
     """Test that the licenses constant is a list of dictionaries."""
     assert isinstance(constants.LICENCES, list)
-    assert all(isinstance(license, dict) for license in constants.LICENCES)
-    assert all(len(license) == 2 for license in constants.LICENCES)
+    assert all(
+        isinstance(license_details, dict)
+        for license_details in constants.LICENCES
+    )
+    assert all(
+        len(license_details) == LICENSE_DICT_SIZE
+        for license_details in constants.LICENCES
+    )
 
 
 def test_license_names() -> None:
