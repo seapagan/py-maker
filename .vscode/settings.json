@@ -50,5 +50,15 @@
   "python.testing.unittestEnabled": false,
   "ruff.fixAll": false,
   "ruff.organizeImports": true,
-  "python.analysis.autoFormatStrings": true
+  "python.analysis.autoFormatStrings": true,
+  "files.watcherExclude": {
+    "**/.git/objects/**": true,
+    "**/.git/subtree-cache/**": true,
+    "**/node_modules/*/**": true,
+    "**/.hg/store/**": true,
+    "**/.venv/**": true,
+    "**/.mypy_cache/**": true,
+    "**/.pytest_cache/**": true,
+    "**/.ruff_cache/**": true
+  }
 }
