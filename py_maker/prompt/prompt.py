@@ -8,9 +8,8 @@ Currently only makes the choices case-insensitive.
 from typing import Any
 
 from rich.prompt import Confirm as RichConfirm
-from rich.prompt import InvalidResponse
+from rich.prompt import InvalidResponse, PromptType
 from rich.prompt import Prompt as RichPrompt
-from rich.prompt import PromptType
 
 
 class Confirm(RichConfirm):
@@ -19,7 +18,7 @@ class Confirm(RichConfirm):
     Saves importing from the Rich library.
     """
 
-    def __init__(self, *args: Any, **kwargs: Any) -> None:
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # noqa: ANN401
         """Call the original constructor."""
         super().__init__(*args, **kwargs)
 
@@ -36,7 +35,7 @@ class Prompt(RichPrompt):
         Returns:
             bool: True if choice was valid, otherwise False.
         """
-        assert self.choices is not None  # nosec
+        assert self.choices is not None  # noqa: S101
         return value.strip().lower() in [
             choice.lower() for choice in self.choices
         ]

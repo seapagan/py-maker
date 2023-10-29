@@ -9,7 +9,7 @@ from typing import TYPE_CHECKING, Optional, Union
 
 from github import Auth, Github
 from github.GithubException import GithubException
-from rich import print  # pylint: disable=W0622
+from rich import print
 
 if TYPE_CHECKING:
     from github.AuthenticatedUser import AuthenticatedUser
@@ -34,11 +34,12 @@ class GitHub:
         self,
         github_token: str,
         repo_name: str,
-    ):
+    ) -> None:
         """Initialize the GitHub class."""
         self.github_token = github_token
         if self.github_token is None:
-            raise ValueError("GitHub token must be provided.")  # noqa: TRY003
+            message = "GitHub token must be provided."
+            raise ValueError(message)
 
         self._auth = Auth.Token(self.github_token)
         self._github = Github(auth=self._auth)
@@ -65,18 +66,18 @@ class GitHub:
             return None
 
     def create_repo(
-        self, description: str = "", private: bool = False
+        self, description: str = "", *, private: bool = False
     ) -> Optional[Repository]:
         """Create a new repository.
 
         Args:
             repo_name: The name of the repository to create.
+            description: The description of the repository.
             private: Whether the repository should be private or not.
         """
         if self.repo_name is None:
-            raise ValueError(  # noqa: TRY003
-                "Repository name must be provided."
-            )
+            message = "Repository name must be provided."
+            raise ValueError(message)
 
         try:
             repo = self._user.create_repo(  # type: ignore

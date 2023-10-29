@@ -167,6 +167,7 @@ convention = "google"
   "ANN001", # annotations for fixtures are sometimes a pain for test files
 ]
 "py_maker/main.py" = ["UP007", "PLR0913"] # These cause issues in Typer Apps
+"py_maker/commands/*.py" = ["UP007", "PLR0913"] # Same as above
 
 [tool.ruff.isort]
 known-first-party = ["py_maker"]
