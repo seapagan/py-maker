@@ -108,6 +108,10 @@ lint.ignore_fail = "return_non_zero"
 lint.sequence = ["format", "ruff", "mypy", "markdown"]
 lint.help = "Run all linting checks"
 
+# testing with pytest
+test.cmd = "pytest"
+test.help = "Run all tests (pytest)"
+
 # tasks to deal with documentation
 "docs:publish".cmd = "mkdocs gh-deploy"
 "docs:publish".help = "Publish documentation to GitHub Pages"
