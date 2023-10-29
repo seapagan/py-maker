@@ -1,6 +1,6 @@
 # Changelog
 
-## [Unreleased](https://github.com/seapagan/py-maker/tree/HEAD)
+## [v0.9.3](https://github.com/seapagan/py-maker/releases/tag/v0.9.3) (2023-10-29)
 
 **Refactoring**
 
@@ -15,7 +15,7 @@
 - Build(deps-dev): bump mypy from 1.6.0 to 1.6.1 ([#168](https://github.com/seapagan/py-maker/pull/168)) by [dependabot[bot]](https://github.com/apps/dependabot)
 - Build(deps-dev): bump pylint-pytest from 1.1.2 to 1.1.3 ([#167](https://github.com/seapagan/py-maker/pull/167)) by [dependabot[bot]](https://github.com/apps/dependabot)
 
-[`Full Changelog`](https://github.com/seapagan/py-maker/compare/v0.9.2...HEAD)
+[`Full Changelog`](https://github.com/seapagan/py-maker/compare/v0.9.2...v0.9.3)
 
 ## [v0.9.2](https://github.com/seapagan/py-maker/releases/tag/v0.9.2) (2023-10-24)
 
@@ -302,15 +302,13 @@
 ## [v0.4.2](https://github.com/seapagan/py-maker/releases/tag/v0.4.2) (2023-08-10)
 
 - Added a missing runtime dep (rtoml). It must have been in my venv but not in the `pyproject.toml` 🙄
-
-[`Full Changelog`](https://github.com/seapagan/py-maker/compare/v0.4.1...v0.4.2)
+[`Full Changelog`](https://github.com/seapagan/py-maker/compare/v0.4.1...v0.4.2)
 
 ## [v0.4.1](https://github.com/seapagan/py-maker/releases/tag/v0.4.1) (2023-08-10)
 
 - Fixed bug where the first-time config file gets the wrong default template path.
 - Update the internal template `pyproject.toml` and `.pre-commit-config.yaml` to use latest dependencies
-
-[`Full Changelog`](https://github.com/seapagan/py-maker/compare/v0.4.0...v0.4.1)
+[`Full Changelog`](https://github.com/seapagan/py-maker/compare/v0.4.0...v0.4.1)
 
 ## [v0.4.0](https://github.com/seapagan/py-maker/releases/tag/v0.4.0) (2023-08-10)
 

@@ -22,7 +22,7 @@ importance.
   to be added to the generated project. This would also add a command line flag
   (ie `--django`, `--pydantic` or `--fastapi` or whatever) to use that plugin,
   and a config setting to specify using this plugin always. Plugins could be
-  built-in (provided with the package) or user-defined (in the user's
+  built-in (provided with the package) or user-defined (in the users
   `/pymaker/plugins` folder or installable via pip). Have a config setting to
   specify which plugins are enabled.
 - Include an optional `vscode` settings file in the generated project, optimized
@@ -34,9 +34,7 @@ importance.
   settings from the command line.
 - check for an existing GitHub repository when the user supplies the repo name
   and ask for an alternative if it exists.
-- look at ROI for converting the settings module to use `Pydantic` for
-  validation.
-- add option (possibly using the eventual plugin functionality) to create a
+- add option (probably using the eventual plugin functionality) to create a
   skeleton `typer` CLI app.
 - if created a new remote GitHub repo, print the GitHub URL to the console.
 
