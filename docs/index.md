@@ -31,14 +31,10 @@ Write your tests in the `tests` directory and run them with `pytest`.
 ## Linting
 
 The generated project includes
-[flake8](https://flake8.pycqa.org/en/latest/){:target="_blank"} (with several
-plugins) for linting and
-[Black](https://black.readthedocs.io/en/stable/){:target="_blank"} for
-formatting. [Mypy](http://mypy-lang.org/){:target="_blank"} is installed for
-type checking. [isort](https://pycqa.github.io/isort/){:target="_blank"},
-[Pylint](https://pylint.org/) and
-[tyrceratops](https://github.com/guilatrova/tryceratops){:target="_blank"} are
-also installed as standard.
+[Ruff](https://docs.astral.sh/ruff/){:target="_blank"} for linting and code
+style formatting. [Mypy](http://mypy-lang.org/){:target="_blank"} is installed
+for type checking. These are set quite strictly by default, but you can edit the
+tools configuration in the `pyproject.toml` file.
 
 ## Customize the generated project
 
@@ -73,6 +69,25 @@ Issues.
 The plan is to add more workflows in the future, for example running tests and
 more.
 
+## Changelog Generator
+
+Once you have at least one GitHub release, you can generate a `CHANGELOG.md` file
+automatically from this, using the included
+[github-changelog-md](https://github.com/seapagan/github-changelog-md){:target="_blank"}
+tool.
+
+You can run this manually by running the following command from inside your
+virtual environment:
+
+```console
+$ poe changelog
+```
+
+You need to have a GitHub Personal Access Token set in the config file, see the
+instructions
+[here](https://changelog.seapagan.net/installation/#setup-a-github-pat){:target="_blank"}
+for more information.
+
 ## Community related files
 
 To aid in community building, the generated project includes a
@@ -80,7 +95,8 @@ To aid in community building, the generated project includes a
 Covenant](https://www.contributor-covenant.org/){:target="_blank"} standard.
 
 Future releases will include other Community related files (for example an
-`AUTHORS` and `CONTRIBUTING` file.).
+`AUTHORS` file). There are also blank `CONTRIBUTING.md` and `CHANGELOG.md`
+files. The `CHANGELOG.md` file can be auto-generated.
 
 ## Contributing to this Project
 

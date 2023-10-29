@@ -110,18 +110,18 @@ file.
 
 ## Add a GitHub Personal Access Token
 
-In future versions, this app will be able to create a new GitHub repository for
-you, and generate a CHANGELOG.md file. To do this, it will need a GitHub
-Personal Access Token. You can create a new token by going to [GitHub Personal
-Access Tokens](<https://github.com/settings/tokens>){:target="_blank"} and
-clicking on the "Generate new token" button. Use the 'Classic' token option
-unless you really need more control. **Unless you want to use the token on
-Private repositories, you should check the `public_repo` option and leave all
-the other permissions unchecked** (this tool does not yet have the option to
-create a private repository). Give it a name (for your reference only) and chose
-an expiry date. You can choose never to expire, but this is not recommended.
-Once you have created the token, copy it (it will only be shown once, so make
-sure you copy it now). Then run the command:
+This app is able to create a new GitHub repository for you. To do this, it will
+need a GitHub Personal Access Token. You can create a new token by going to
+[GitHub Personal Access
+Tokens](<https://github.com/settings/tokens>){:target="_blank"} and clicking on
+the "Generate new token" button. Use the 'Classic' token option unless you
+really need more control. **Unless you want to use the token on Private
+repositories, you should check the `public_repo` option and leave all the other
+permissions unchecked** (this tool does not yet have the option to create a
+private repository). Give it a name (for your reference only) and chose an
+expiry date. You can choose never to expire, but this is not recommended. Once
+you have created the token, copy it (it will only be shown once, so make sure
+you copy it now). Then run the command:
 
 ```console
 $ pymaker config token
