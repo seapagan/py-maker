@@ -147,7 +147,6 @@ class PyMaker:
             template_dir = pkg_resources.files(template)
             if self.settings.use_default_template:
                 file_list = get_file_list(template_dir)
-                print(file_list)
                 self.copy_files(template_dir, file_list)
 
             # --------- copy the custom template files if they exist --------- #

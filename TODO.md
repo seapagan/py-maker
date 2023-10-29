@@ -38,6 +38,7 @@ importance.
   validation.
 - add option (possibly using the eventual plugin functionality) to create a
   skeleton `typer` CLI app.
+- if created a new remote GitHub repo, print the GitHub URL to the console.
 
 ## Back Burner
 
