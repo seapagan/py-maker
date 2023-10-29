@@ -38,6 +38,7 @@ importance.
   validation.
 - add option (possibly using the eventual plugin functionality) to create a
   skeleton `typer` CLI app.
+- if created a new remote GitHub repo, print the GitHub URL to the console.
 
 ## Back Burner
 
@@ -47,7 +48,6 @@ These are ideas that I may or may not implement. They are here for reference.
   This will be a bit lower priority and not sure if it's worth it.
 - Add some form of 'extra packages' command line option and config setting to
   automatically add extra packages to the generated `pyproject.toml` file.
-- Take a look at the release-drafter GitHub action and see if worth using.
 - Add template GitHub workflows for CI/CD, testing, etc. CodeQL or is that too
   much (I do use it in most of my repos)?
 - Add the `actions/stale` action to the generated project.
@@ -62,8 +62,6 @@ These are ideas that I may or may not implement. They are here for reference.
   and have the `PyMaker` class use it.
 - split the `ExitErrors` class into an 'errors' module, add more error types if
   needed and use them throughout the code.
-- migrate to `Ruff` for all linting and formatting. This will replace Black,
-  Pylint, Flake8 and more. Do this for both the App and the generated template.
 
 ## Documentation
 

@@ -8,7 +8,7 @@ import shutil
 import subprocess  # nosec
 import sys
 from pathlib import Path, PurePath
-from typing import TYPE_CHECKING, Dict, Union
+from typing import TYPE_CHECKING, Union
 
 from git.exc import GitError
 from git.repo import Repo
@@ -38,12 +38,12 @@ class PyMaker:
     """PyMaker class."""
 
     def __init__(
-        self, location: str, options: Dict[str, Union[bool, None]]
+        self, location: str, options: dict[str, Union[bool, None]]
     ) -> None:
         """Initialize the PyMaker class."""
         self.choices: ProjectValues = ProjectValues()
         self.location: str = location
-        self.options: Dict[str, Union[bool, None]] = options
+        self.options: dict[str, Union[bool, None]] = options
 
         # this will be updated if we run 'poetry install' later, so other stages
         # that need to know if poetry has been run can check this flag.
@@ -116,7 +116,7 @@ class PyMaker:
             keep_trailing_newline=True,
         )
         for file in file_list:
-            with pkg_resources.as_file(template_dir / file) as src:  # type: ignore # noqa
+            with pkg_resources.as_file(template_dir / file) as src:  # type: ignore
                 if src.is_dir():
                     Path(self.choices.project_dir / file).mkdir()
                 elif src.suffix == ".jinja":
@@ -147,7 +147,6 @@ class PyMaker:
             template_dir = pkg_resources.files(template)
             if self.settings.use_default_template:
                 file_list = get_file_list(template_dir)
-                print(file_list)
                 self.copy_files(template_dir, file_list)
 
             # --------- copy the custom template files if they exist --------- #
@@ -157,14 +156,14 @@ class PyMaker:
                 self.copy_files(custom_template_dir, file_list)
 
             # ---------------- generate the license file next. ------------- #
-            if self.choices.license != "None":
+            if self.choices.license_name != "None":
                 license_env = Environment(
                     loader=FileSystemLoader(str(template_dir / "../licenses")),
                     autoescape=True,
                     keep_trailing_newline=True,
                 )
                 license_template = license_env.get_template(
-                    f"{self.choices.license}.jinja"
+                    f"{self.choices.license_name}.jinja"
                 )
                 dst = self.choices.project_dir / "LICENSE.txt"
                 dst.write_text(
@@ -292,7 +291,7 @@ See the [bold][green]README.md[/green][/bold] file for more information.
         self.choices.description = ""
         self.choices.author = self.settings.author_name
         self.choices.email = self.settings.author_email
-        self.choices.license = self.settings.default_license
+        self.choices.license_name = self.settings.default_license
 
     def get_input(self) -> None:
         """Get the user input for the project."""
@@ -331,7 +330,7 @@ See the [bold][green]README.md[/green][/bold] file for more information.
         self.choices.email = Prompt.ask(
             "Author Email?", default=self.settings.author_email
         )
-        self.choices.license = Prompt.ask(
+        self.choices.license_name = Prompt.ask(
             "Application License?",
             choices=license_names,
             default=self.settings.default_license,
@@ -356,13 +355,23 @@ See the [bold][green]README.md[/green][/bold] file for more information.
             "\nShould I Run 'poetry install' now?", default=True
         ):
             os.chdir(self.choices.project_dir)
-            subprocess.run(["poetry", "install"], check=True)  # nosec
+            subprocess.run(
+                ["poetry", "install"],  # noqa: S603, S607
+                check=True,
+            )
             self.poetry_is_run = True
 
             if self.options["docs"]:
                 print("\n--> Creating MkDocs project")
-                subprocess.run(  # nosec
-                    ["poetry", "run", "mkdocs", "new", "."], check=True
+                subprocess.run(
+                    [  # noqa: S603, S607
+                        "poetry",
+                        "run",
+                        "mkdocs",
+                        "new",
+                        ".",
+                    ],
+                    check=True,
                 )
                 # now copy the custom mkdocs.yml file
                 (self.choices.project_dir / "mkdocs.yml").write_text(
@@ -392,12 +401,22 @@ See the [bold][green]README.md[/green][/bold] file for more information.
         ):
             print("\n--> Install and Update pre-commit hooks")
             os.chdir(self.choices.project_dir)
-            subprocess.run(  # nosec
-                ["poetry", "run", "pre-commit", "install"],
+            subprocess.run(
+                [  # noqa: S603, S607
+                    "poetry",
+                    "run",
+                    "pre-commit",
+                    "install",
+                ],
                 check=True,
             )
-            subprocess.run(  # nosec
-                ["poetry", "run", "pre-commit", "autoupdate"],
+            subprocess.run(
+                [  # noqa: S603, S607
+                    "poetry",
+                    "run",
+                    "pre-commit",
+                    "autoupdate",
+                ],
                 check=True,
             )
         else:
@@ -503,7 +522,7 @@ See the [bold][green]README.md[/green][/bold] file for more information.
             f"{self.choices.project_dir}\n"
         )
 
-        self.choices.standalone = True if self.options["standalone"] else False
+        self.choices.standalone = bool(self.options["standalone"])
 
         if self.options["accept_defaults"]:
             self.accept_defaults()

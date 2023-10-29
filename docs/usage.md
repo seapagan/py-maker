@@ -90,7 +90,7 @@ Some useful plugins are also installed and added to the `mkdocs.yml` file.
 Create a GitHub repository and push the initial commit. Default is `True` unless
 `create_remote = false` is set in the config file or `--no-github` is passed on
 the command line. This option needs a GitHub Personal Access Token to be set in
-the config file, see [here](/configuration/#add-a-github-personal-access-token)
+the config file, see [here](configuration.md/#add-a-github-personal-access-token)
 
 ### `--standalone`
 

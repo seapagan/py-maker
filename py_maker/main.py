@@ -19,7 +19,7 @@ app = typer.Typer(
 def main(
     version: Optional[bool] = typer.Option(
         None, "-v", "--version", is_eager=True
-    )
+    ),
 ) -> None:
     """Generate a Python project skeleton."""
     if version:
@@ -28,7 +28,7 @@ def main(
             f"\n[/green]Version: {get_app_version()}; "
             "\u00a9 Grant Ramsay 2023\n"
         )
-        raise typer.Exit()
+        raise typer.Exit
 
 
 app.add_typer(new.app, name="new", help="Create a new Python project.")

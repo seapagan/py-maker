@@ -1,13 +1,13 @@
 """Helpers for the config module."""
 from __future__ import annotations
 
+import datetime
 import re
 import shutil
 import sys
-from datetime import datetime
 from importlib import metadata, resources
 from pathlib import Path
-from typing import TYPE_CHECKING, Dict, List, Union
+from typing import TYPE_CHECKING, Union
 
 import requests
 import rtoml
@@ -21,6 +21,8 @@ from py_maker.constants import ExitErrors
 if TYPE_CHECKING:  # pragma: no cover
     from importlib.resources.abc import Traversable
 
+SUCCESS_RESPONSE = 200
+
 
 def get_author_and_email_from_git() -> tuple[str, str]:
     """Get the author name and email from git."""
@@ -32,15 +34,15 @@ def get_author_and_email_from_git() -> tuple[str, str]:
     )
 
 
-def get_file_list(template_dir: Union[Traversable, Path]) -> List[Path]:
+def get_file_list(template_dir: Union[Traversable, Path]) -> list[Path]:
     """Return a list of files to be copied to the project directory.
 
     The root __init__.py file is excluded from the list, as it is only there so
     that the template directory can be treated as a package.
     """
-    skip_dirs: List[str] = ["__pycache__"]
+    skip_dirs: list[str] = ["__pycache__"]
 
-    file_list: List[Path] = [
+    file_list: list[Path] = [
         item.relative_to(str(template_dir))
         for item in template_dir.rglob("*")  # type: ignore
         if set(item.parts).isdisjoint(skip_dirs)
@@ -73,7 +75,7 @@ def pretty_attrib(attr: str) -> str:
 
 def get_current_year() -> str:
     """Get the current year."""
-    return str(datetime.now().year)
+    return str(datetime.datetime.now(tz=datetime.timezone.utc).year)
 
 
 def header() -> None:
@@ -81,7 +83,7 @@ def header() -> None:
     print("[bold]PyMaker[/bold] - Generate a Python project skeleton.\n")
 
 
-def show_table(settings: Dict[str, str]) -> None:
+def show_table(settings: dict[str, str]) -> None:
     """Show User data in a tabulated format."""
     console = Console()
     table = Table(
@@ -112,7 +114,7 @@ def exists_on_pypi(package_name: str) -> bool:
         response = requests.get(url, timeout=5)
     except requests.exceptions.Timeout:
         return False
-    return response.status_code == 200
+    return response.status_code == SUCCESS_RESPONSE
 
 
 def get_toml_path() -> Path:

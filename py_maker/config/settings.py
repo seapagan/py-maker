@@ -5,7 +5,7 @@ Allows reading from a settings file and writing to it.
 import os
 import platform
 import subprocess  # nosec
-from typing import List, Literal, Optional
+from typing import Literal, Optional
 
 from rich import print  # pylint: disable=redefined-builtin
 from simple_toml_settings import TOMLSettings
@@ -43,7 +43,7 @@ class Settings(TOMLSettings):
         super().__post_init__()
         self.template_folder: str = str(self.settings_folder / "template")
 
-    def __post_create_file__(self):
+    def __post_create_file__(self) -> None:
         """Automatically called after the settings file is created.
 
         Here, we will ask the user for default settings.
@@ -51,7 +51,7 @@ class Settings(TOMLSettings):
         print("here we are!!")
         self.get_user_settings(missing=True)
 
-    def get_user_settings(self, missing: bool = False) -> None:
+    def get_user_settings(self, *, missing: bool = False) -> None:
         """Ask the user for their settings and save to the settings file.
 
         We read the user's name and email from git, and use that as the default,
@@ -74,7 +74,7 @@ class Settings(TOMLSettings):
             default=git_email if missing else self.author_email,
         )
         self.github_username = Prompt.ask(
-            "Github Username? \[optional]",  # noqa W605 # type: ignore
+            "Github Username? \[optional]",  # noqa: W605 # type: ignore
             default="" if missing else self.github_username,
         )
         self.default_license = Prompt.ask(
@@ -106,17 +106,24 @@ class Settings(TOMLSettings):
         self.save()
 
     def edit_config(self) -> None:
-        """Open the default editor to edit the settings file."""
+        """Open the default editor to edit the settings file.
+
+        There are a few disabled Ruff rules here since its a bit of a hack.
+        eg 'os.startfile' is not a function on Linux, but it is on Windows.
+        """
         if platform.system() == "Windows":  # Windows
-            os.startfile(self.settings_file)  # type: ignore # nosec
+            os.startfile(self.settings_file_name)  # type: ignore[attr-defined] # noqa: S606
         elif platform.system() == "Darwin":  # macOS
             subprocess.call(
-                ["open", self.settings_folder / self.settings_file_name]
-            )  # nosec
-        else:  # Linux
+                [  # noqa: S603, S607
+                    "open",
+                    self.settings_folder / self.settings_file_name,
+                ]
+            )
+        else:  # Linux or compatible
             # we will loop through a list of editors until we find one that
             # exists on the system.
-            editor_list: List[str] = [
+            editor_list: list[str] = [
                 "xdg-open",
                 "sensible-editor",
                 "nano",
@@ -125,8 +132,11 @@ class Settings(TOMLSettings):
             for editor in editor_list:
                 try:
                     subprocess.call(
-                        [editor, self.settings_folder / self.settings_file_name]
-                    )  # nosec
+                        [  # noqa: S603
+                            editor,
+                            self.settings_folder / self.settings_file_name,
+                        ]
+                    )
                     break
                 except FileNotFoundError:
                     pass

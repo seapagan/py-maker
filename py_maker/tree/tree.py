@@ -2,10 +2,12 @@
 
 Heavily influenced by the example in Rich.tree documentation.
 """
+from __future__ import annotations
+
 import os
 import pathlib
 
-from rich import print  # pylint: disable=W0622
+from rich import print  # pylint: disable=redefined-builtin
 from rich.filesize import decimal
 from rich.markup import escape
 from rich.text import Text
@@ -18,10 +20,9 @@ from rich.tree import Tree
 class Path(pathlib.Path):
     """Path class with additional methods."""
 
-    # pylint: disable-next=no-member, protected-access
-    _flavour = type(pathlib.Path())._flavour  # type: ignore
+    _flavour = type(pathlib.Path())._flavour  # type: ignore[attr-defined] # noqa: SLF001
 
-    def expand(self) -> pathlib.Path:
+    def expand(self) -> Path:
         """Fully expand and resolve the Path given environment variables."""
         return Path(os.path.expandvars(self)).expanduser().resolve()
 
@@ -31,10 +32,11 @@ class FileTree:
 
     def __init__(self, directory: Path) -> None:
         """Initialize the FileTree class."""
-        self.directory: Path = Path(directory).expand()  # type: ignore
+        self.directory: Path = directory.expand()
 
         if not self.directory.is_dir():
-            raise NotADirectoryError(f"{self.directory} is not a directory.")
+            message = f"{self.directory} is not a directory."
+            raise NotADirectoryError(message)
 
     def walk_directory(self, directory: Path, tree: Tree) -> None:
         """Recursively build a Tree with directory contents."""

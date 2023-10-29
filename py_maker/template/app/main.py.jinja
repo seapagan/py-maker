@@ -9,7 +9,7 @@ Note that if you remove the 'App' class entirely, you will need to remove the
 """
 
 
-class App:  # pylint: disable=too-few-public-methods
+class App:
     """Main application class."""
 
     def __init__(self) -> None:
@@ -17,7 +17,7 @@ class App:  # pylint: disable=too-few-public-methods
 
     def __call__(self) -> None:
         """Call the application."""
-        print("Welcome to {{ name }}!")
+        print("Welcome to {{ name }}!")  # noqa: T201
 
 
 app = App()

@@ -40,12 +40,12 @@ python = ">=3.9,<4.0"
 typer = { extras = ["all"], version = "^0.9.0" }
 jinja2 = "^3.1.2"
 gitpython = "^3.1.32"
-pydantic = "^2.1"
+pydantic = "^2.4"
 rich = "^13.4.2"
 rtoml = "^0.9.0"
 requests = "^2.31.0"
 pygithub = "^2.1.1"
-simple-toml-settings = ">=0.2,<0.4"
+simple-toml-settings = "^0.3"
 
 [build-system]
 requires = ["poetry-core"]
@@ -54,25 +54,10 @@ build-backend = "poetry.core.masonry.api"
 # Configure dev dependencies
 [tool.poetry.group.dev.dependencies]
 # linting, type-checking and security checks
-bandit = { extras = ["toml"], version = "^1.7.5" }
-black = "^23.7.0"
-flake8 = "^6.0.0"
-flake8-pydocstyle = "^0.2.2"
-flake8-pyproject = "^1.2.3"
-flake8-pytest-style = "^1.7.2"
-flake8-type-checking = "^2.4.1"
-flake8-use-pathlib = "^0.3.0"
-isort = "^5.12.0"
-pylint = ">=2.17.2,<4.0.0"
-pylint-pydantic = ">=0.2.4,<0.4.0"
-pylint-pytest = "^1.1.2"
-pep8-naming = "^0.13.3"
-pre-commit = "^3.3.3"
-pydocstyle = "^6.3.0"
-pymarkdownlnt = "^0.9.12"
 mypy = "^1.4.1"
-tryceratops = "^2.3.2"
-
+pre-commit = "^3.3.3"
+pymarkdownlnt = "^0.9.12"
+ruff = "^0.1.3"
 
 # testing
 pytest = "^7.4.0"
@@ -85,8 +70,10 @@ pytest-asyncio = "^0.21.1"
 pytest-mock = "^3.11.1"
 mock = "^5.1.0"
 faker = "^19.2.0"
+pyfakefs = "^5.2.4"
 
 # documentation
+github-changelog-md = "^0.3.0"
 mkdocs = "^1.4.3"
 mkdocs-autorefs = "^0.5.0"
 mkdocs-material = "^9.1.19"
@@ -102,33 +89,28 @@ types-requests = "^2.31.0.2"
 
 # assorted utilities
 poethepoet = "^0.24.0"
-github-changelog-md = "^0.2.2"
 
 [tool.poe.tasks]
 # setup 'PoeThePoet' tasks
 pre.cmd = "pre-commit run --all-files"
 pre.help = "Run pre-commit checks"
-pylint.cmd = "pylint py_maker/**/*.py"
-pylint.help = "Run pylint checks"
-mypy.cmd = "mypy **/*.py"
+mypy.cmd = "mypy py_maker/**/*.py tests/**/*.py --strict"
 mypy.help = "Run mypy checks"
-mypy.cwd = "py_maker"
-flake8.cmd = "flake8 py_maker/**/*.py"
-flake8.help = "Run flake8 checks"
-black.cmd = "black py_maker/**/*.py"
-black.help = "Check and format code with black"
-try.cmd = "tryceratops py_maker/**/*.py"
-try.help = "Run tryceratops checks"
-markdown.cmd = "pymarkdown scan py_maker/**/[!CHANGELOG]*.md"
+format.cmd = "ruff format ."
+format.help = "Format code with Ruff"
+ruff.cmd = "ruff check ."
+ruff.help = "Run Ruff checks"
+markdown.cmd = "pymarkdown scan  -r py_maker/**/[!CHANGELOG]*.md docs/**/*.md"
 markdown.help = "Run markdown checks"
-lint.sequence = ["black", "flake8", "mypy", "try", "pylint"]
+
+# run all linting checks in sequence. we want to run them all, even if one fails
+lint.ignore_fail = "return_non_zero"
+lint.sequence = ["format", "ruff", "mypy", "markdown"]
 lint.help = "Run all linting checks"
 
-# special MyPy task to check for missing type annotations
-# we don't want to enforce full typing yet on the 'mypy' task, but still do want
-# to check for missing annotations at intervals.
-"mypy:strict".cmd = "mypy --strict  **/*.py"
-"mypy:strict".help = "Run mypy checks with strict type checking"
+# testing with pytest
+test.cmd = "pytest"
+test.help = "Run all tests (pytest)"
 
 # tasks to deal with documentation
 "docs:publish".cmd = "mkdocs gh-deploy"
@@ -140,55 +122,59 @@ lint.help = "Run all linting checks"
 "docs:serve:all".cmd = "mkdocs serve -w TODO.md -w CHANGELOG.md -w CONTRIBUTING.md -a 0.0.0.0:9000"
 "docs:serve:all".help = "Serve documentation locally on all interfaces"
 
-# Generate a CHANGELOG.md - this needs the Ruby utility below installed.
+# Generate a CHANGELOG.md
 changelog.cmd = "github-changelog-md -r py-maker"
 changelog.help = "Generate a CHANGELOG.md file"
 
 # configure assorted tools and linters
-[tool.isort]
-profile = "black"
+[tool.pymarkdown]
+plugins.md014.enabled = false
+plugins.md046.enabled = false
 
-[tool.black]
+[tool.ruff]
 line-length = 80
-exclude = '''
-/(
-    \.git
-  | \.mypy_cache
-  | \.tox
-  | venv
-  | \.venv
-  | _build
-  | build
-  | dist
-)/
-'''
+select = ["ALL"] # we are being very strict!
+ignore = [
+  "ANN101",
+  "PGH003",
+  "FBT002",
+  "FBT003",
+  "B006",
+] # These rules are too strict even for us 😝
+extend-ignore = ["COM812", "ISC001"] # these are ignored for ruff formatting
 
-[tool.flake8]
-max-line-length = 80
-exclude = ["__init__.py", ".git"]
-extend-ignore = ["E203", "W503"]
-extend-select = ["TC", "TC1", "TRY"]
-docstring-convention = "google"
-type-checking-pydantic-enabled = true
-classmethod-decorators = ["classmethod", "validator"]
+src = ["py_maker"]
+target-version = "py39" # minimum python version supported
 
-[tool.bandit]
-exclude_dirs = []
+[tool.ruff.format]
+indent-style = "space"
+quote-style = "double"
 
-[tool.bandit.assert_used]
-skips = ['*_test.py', '*/test_*.py']
+[tool.ruff.pep8-naming]
+classmethod-decorators = ["pydantic.validator", "pydantic.root_validator"]
 
-[tool.pylint.MAIN]
-load-plugins = ["pylint_pytest", "pylint_pydantic"]
-extension-pkg-whitelist = "pydantic"
+[tool.ruff.pydocstyle]
+convention = "google"
 
-[tool.pylint.DESIGN]
-exclude-too-few-public-methods = "pydantic"
-max-attributes = 10
+[tool.ruff.extend-per-file-ignores]
+"tests/**/*.py" = [
+  "S101",   # we can (and MUST!) use 'assert' in test files.
+  "ANN001", # annotations for fixtures are sometimes a pain for test files
+]
+"py_maker/main.py" = ["UP007", "PLR0913"] # These cause issues in Typer Apps
+"py_maker/commands/*.py" = ["UP007", "PLR0913"] # Same as above
 
-[tool.pydocstyle]
-add-ignore = ["D104"]
+[tool.ruff.isort]
+known-first-party = ["py_maker"]
 
+[tool.ruff.pyupgrade]
+keep-runtime-typing = true
+
+[[tool.mypy.overrides]]
+disable_error_code = ["method-assign", "no-untyped-def", "attr-defined"]
+module = "tests.*"
+
+# Options for pytest and coverage
 [tool.pytest.ini_options]
 addopts = ["--cov", "--cov-report", "term-missing", "--cov-report", "html"]
 filterwarnings = []
@@ -197,7 +183,3 @@ mock_use_standalone_module = true
 [tool.coverage.run]
 # source = []
 omit = ["*/tests/*"]
-
-[tool.pymarkdown]
-plugins.md014.enabled = false
-plugins.md046.enabled = false
