@@ -42,12 +42,13 @@
   "python.analysis.extraPaths": [],
   "python.analysis.indexing": true,
   "python.analysis.stubPath": "/home/seapagan/stubs",
-  "python.analysis.typeCheckingMode": "basic",
+  "python.analysis.typeCheckingMode": "off", // using the mypy extension instead
   "python.languageServer": "Pylance",
   "python.pythonPath": "./.venv/bin/python",
   "python.testing.pytestArgs": ["tests"],
   "python.testing.pytestEnabled": true,
   "python.testing.unittestEnabled": false,
   "ruff.fixAll": false,
-  "ruff.organizeImports": true
+  "ruff.organizeImports": true,
+  "python.analysis.autoFormatStrings": true
 }
