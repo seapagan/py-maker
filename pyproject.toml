@@ -122,7 +122,7 @@ test.help = "Run all tests (pytest)"
 "docs:serve:all".cmd = "mkdocs serve -w TODO.md -w CHANGELOG.md -w CONTRIBUTING.md -a 0.0.0.0:9000"
 "docs:serve:all".help = "Serve documentation locally on all interfaces"
 
-# Generate a CHANGELOG.md - this needs the Ruby utility below installed.
+# Generate a CHANGELOG.md
 changelog.cmd = "github-changelog-md -r py-maker"
 changelog.help = "Generate a CHANGELOG.md file"
 
@@ -130,15 +130,6 @@ changelog.help = "Generate a CHANGELOG.md file"
 [tool.pymarkdown]
 plugins.md014.enabled = false
 plugins.md046.enabled = false
-
-[tool.pytest.ini_options]
-addopts = ["--cov", "--cov-report", "term-missing", "--cov-report", "html"]
-filterwarnings = []
-mock_use_standalone_module = true
-
-[tool.coverage.run]
-# source = []
-omit = ["*/tests/*"]
 
 [tool.ruff]
 line-length = 80
@@ -182,3 +173,13 @@ keep-runtime-typing = true
 [[tool.mypy.overrides]]
 disable_error_code = ["method-assign", "no-untyped-def", "attr-defined"]
 module = "tests.*"
+
+# Options for pytest and coverage
+[tool.pytest.ini_options]
+addopts = ["--cov", "--cov-report", "term-missing", "--cov-report", "html"]
+filterwarnings = []
+mock_use_standalone_module = true
+
+[tool.coverage.run]
+# source = []
+omit = ["*/tests/*"]
