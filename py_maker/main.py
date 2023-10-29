@@ -2,7 +2,7 @@
 from typing import Optional
 
 import typer
-from rich import print
+from rich import print  # pylint: disable=redefined-builtin
 
 from py_maker.commands import config, new, template
 from py_maker.helpers import get_app_version

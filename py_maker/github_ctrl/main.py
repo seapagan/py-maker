@@ -9,7 +9,7 @@ from typing import TYPE_CHECKING, Optional, Union
 
 from github import Auth, Github
 from github.GithubException import GithubException
-from rich import print
+from rich import print  # pylint: disable=redefined-builtin
 
 if TYPE_CHECKING:
     from github.AuthenticatedUser import AuthenticatedUser

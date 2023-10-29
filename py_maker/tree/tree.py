@@ -7,7 +7,7 @@ from __future__ import annotations
 import os
 import pathlib
 
-from rich import print
+from rich import print  # pylint: disable=redefined-builtin
 from rich.filesize import decimal
 from rich.markup import escape
 from rich.text import Text
