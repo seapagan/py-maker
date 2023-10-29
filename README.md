@@ -123,10 +123,10 @@ You can define your own, but there are 6 specific ones provided with the script.
 - `pre` : Run `pre-commit run --all-files`
 - `ruff`: Run Ruff linter on all Python files in the project.
 - `format`: Run Ruff formatter on all Python files in the project.
-- `mypy` = Run MyPy type-checker on all Python files in the project.
-- `markdown` = Run pymarkdown on all markdown files in the project.
+- `mypy`: Run MyPy type-checker on all Python files in the project.
+- `markdown`: Run pymarkdown on all markdown files in the project.
 
-- `lint` = Runs ruff, format, mypy, and markdown in sequence
+- `lint`: Runs ruff, format, mypy, and markdown in sequence
 
 These are defined in the `pyproject.toml` file in the `[tool.poe.tasks]`
 section. Take a look at this file if you want to add or remove tasks.
