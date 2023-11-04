@@ -1,6 +1,23 @@
 # Changelog
 
-## [v0.9.3](https://github.com/seapagan/py-maker/releases/tag/v0.9.3) (2023-10-29)
+## [Unreleased](https://github.com/seapagan/py-maker/tree/HEAD)
+
+**Merged Pull Requests**
+
+- [pre-commit.ci] pre-commit autoupdate ([#177](https://github.com/seapagan/py-maker/pull/177)) by [pre-commit-ci[bot]](https://github.com/apps/pre-commit-ci)
+
+**Dependency Updates**
+
+- Build(deps-dev): bump ruff from 0.1.3 to 0.1.4 ([#186](https://github.com/seapagan/py-maker/pull/186)) by [dependabot[bot]](https://github.com/apps/dependabot)
+- Build(deps-dev): bump github-changelog-md from 0.3.0 to 0.6.0 ([#185](https://github.com/seapagan/py-maker/pull/185)) by [dependabot[bot]](https://github.com/apps/dependabot)
+- Build(deps-dev): bump poethepoet from 0.24.1 to 0.24.2 ([#184](https://github.com/seapagan/py-maker/pull/184)) by [dependabot[bot]](https://github.com/apps/dependabot)
+- Build(deps): bump simple-toml-settings from 0.3.1 to 0.3.2 ([#183](https://github.com/seapagan/py-maker/pull/183)) by [dependabot[bot]](https://github.com/apps/dependabot)
+- Build(deps-dev): bump faker from 19.12.0 to 19.13.0 ([#182](https://github.com/seapagan/py-maker/pull/182)) by [dependabot[bot]](https://github.com/apps/dependabot)
+- Build(deps-dev): bump pymarkdownlnt from 0.9.13.4 to 0.9.14 ([#180](https://github.com/seapagan/py-maker/pull/180)) by [dependabot[bot]](https://github.com/apps/dependabot)
+
+[`Full Changelog`](https://github.com/seapagan/py-maker/compare/v0.9.3...HEAD)
+
+## [v0.9.3](https://github.com/seapagan/py-maker/releases/tag/v0.9.3) (October 29, 2023)
 
 **Refactoring**
 
@@ -17,7 +34,7 @@
 
 [`Full Changelog`](https://github.com/seapagan/py-maker/compare/v0.9.2...v0.9.3)
 
-## [v0.9.2](https://github.com/seapagan/py-maker/releases/tag/v0.9.2) (2023-10-24)
+## [v0.9.2](https://github.com/seapagan/py-maker/releases/tag/v0.9.2) (October 24, 2023)
 
 **Merged Pull Requests**
 
@@ -40,7 +57,7 @@
 
 [`Full Changelog`](https://github.com/seapagan/py-maker/compare/v0.9.1...v0.9.2)
 
-## [v0.9.1](https://github.com/seapagan/py-maker/releases/tag/v0.9.1) (2023-10-12)
+## [v0.9.1](https://github.com/seapagan/py-maker/releases/tag/v0.9.1) (October 12, 2023)
 
 **Bug Fixes**
 
@@ -53,14 +70,14 @@
 
 [`Full Changelog`](https://github.com/seapagan/py-maker/compare/v0.9.0...v0.9.1)
 
-## [v0.9.0](https://github.com/seapagan/py-maker/releases/tag/v0.9.0) (2023-10-10)
+## [v0.9.0](https://github.com/seapagan/py-maker/releases/tag/v0.9.0) (October 10, 2023)
 
 **Merged Pull Requests**
 
 - Unlock 'poethepoet' upgrades ([#142](https://github.com/seapagan/py-maker/pull/142)) by [seapagan](https://github.com/seapagan)
 - [pre-commit.ci] pre-commit autoupdate ([#141](https://github.com/seapagan/py-maker/pull/141)) by [pre-commit-ci[bot]](https://github.com/apps/pre-commit-ci)
 
-**Enhancements**
+**New Features**
 
 - Migrate settings to my 'simple-toml-settings' library ([#146](https://github.com/seapagan/py-maker/pull/146)) by [seapagan](https://github.com/seapagan)
 
@@ -76,13 +93,13 @@
 
 [`Full Changelog`](https://github.com/seapagan/py-maker/compare/v0.8.0...v0.9.0)
 
-## [v0.8.0](https://github.com/seapagan/py-maker/releases/tag/v0.8.0) (2023-10-04)
+## [v0.8.0](https://github.com/seapagan/py-maker/releases/tag/v0.8.0) (October 04, 2023)
 
 **Merged Pull Requests**
 
 - Add help to poe tasks ([#130](https://github.com/seapagan/py-maker/pull/130)) by [seapagan](https://github.com/seapagan)
 
-**Enhancements**
+**New Features**
 
 - Automatically create a GitHub repository for the new project ([#134](https://github.com/seapagan/py-maker/pull/134)) by [seapagan](https://github.com/seapagan)
 
@@ -101,14 +118,14 @@
 
 [`Full Changelog`](https://github.com/seapagan/py-maker/compare/v0.7.0...v0.8.0)
 
-## [v0.7.0](https://github.com/seapagan/py-maker/releases/tag/v0.7.0) (2023-10-01)
+## [v0.7.0](https://github.com/seapagan/py-maker/releases/tag/v0.7.0) (October 01, 2023)
 
 **Merged Pull Requests**
 
 - Improve typing across the package ([#115](https://github.com/seapagan/py-maker/pull/115)) by [seapagan](https://github.com/seapagan)
 - Adjust suggested git repo name ([#103](https://github.com/seapagan/py-maker/pull/103)) by [seapagan](https://github.com/seapagan)
 
-**Enhancements**
+**New Features**
 
 - Implement 'config edit' command ([#124](https://github.com/seapagan/py-maker/pull/124)) by [seapagan](https://github.com/seapagan)
 - Add '--bare' option ([#123](https://github.com/seapagan/py-maker/pull/123)) by [seapagan](https://github.com/seapagan)
@@ -134,7 +151,7 @@
 
 [`Full Changelog`](https://github.com/seapagan/py-maker/compare/v0.6.2...v0.7.0)
 
-## [v0.6.2](https://github.com/seapagan/py-maker/releases/tag/v0.6.2) (2023-09-24)
+## [v0.6.2](https://github.com/seapagan/py-maker/releases/tag/v0.6.2) (September 24, 2023)
 
 **Closed Issues**
 
@@ -150,7 +167,7 @@
 
 [`Full Changelog`](https://github.com/seapagan/py-maker/compare/v0.6.1...v0.6.2)
 
-## [v0.6.1](https://github.com/seapagan/py-maker/releases/tag/v0.6.1) (2023-09-23)
+## [v0.6.1](https://github.com/seapagan/py-maker/releases/tag/v0.6.1) (September 23, 2023)
 
 **Merged Pull Requests**
 
@@ -176,9 +193,9 @@
 
 [`Full Changelog`](https://github.com/seapagan/py-maker/compare/v0.6.0...v0.6.1)
 
-## [v0.6.0](https://github.com/seapagan/py-maker/releases/tag/v0.6.0) (2023-09-14)
+## [v0.6.0](https://github.com/seapagan/py-maker/releases/tag/v0.6.0) (September 14, 2023)
 
-**Enhancements**
+**New Features**
 
 - Auto install and update 'pre commit' ([#88](https://github.com/seapagan/py-maker/pull/88)) by [seapagan](https://github.com/seapagan)
 - Add code of conduct to project and the template ([#87](https://github.com/seapagan/py-maker/pull/87)) by [seapagan](https://github.com/seapagan)
@@ -190,14 +207,14 @@
 
 [`Full Changelog`](https://github.com/seapagan/py-maker/compare/v0.5.1...v0.6.0)
 
-## [v0.5.1](https://github.com/seapagan/py-maker/releases/tag/v0.5.1) (2023-09-12)
+## [v0.5.1](https://github.com/seapagan/py-maker/releases/tag/v0.5.1) (September 12, 2023)
 
 **Merged Pull Requests**
 
 - [pre-commit.ci] pre-commit autoupdate ([#81](https://github.com/seapagan/py-maker/pull/81)) by [pre-commit-ci[bot]](https://github.com/apps/pre-commit-ci)
 - [pre-commit.ci] pre-commit autoupdate ([#69](https://github.com/seapagan/py-maker/pull/69)) by [pre-commit-ci[bot]](https://github.com/apps/pre-commit-ci)
 
-**Enhancements**
+**New Features**
 
 - Add --version command to CLI ([#63](https://github.com/seapagan/py-maker/pull/63)) by [seapagan](https://github.com/seapagan)
 
@@ -228,9 +245,9 @@
 
 [`Full Changelog`](https://github.com/seapagan/py-maker/compare/v0.5.0...v0.5.1)
 
-## [v0.5.0](https://github.com/seapagan/py-maker/releases/tag/v0.5.0) (2023-08-31)
+## [v0.5.0](https://github.com/seapagan/py-maker/releases/tag/v0.5.0) (August 31, 2023)
 
-**Enhancements**
+**New Features**
 
 - Ask for homepage & repository if not standalone ([#61](https://github.com/seapagan/py-maker/pull/61)) by [seapagan](https://github.com/seapagan)
 - Update template toml and pre-commit deps ([#58](https://github.com/seapagan/py-maker/pull/58)) by [seapagan](https://github.com/seapagan)
@@ -262,9 +279,9 @@
 
 [`Full Changelog`](https://github.com/seapagan/py-maker/compare/v0.4.5...v0.5.0)
 
-## [v0.4.5](https://github.com/seapagan/py-maker/releases/tag/v0.4.5) (2023-08-17)
+## [v0.4.5](https://github.com/seapagan/py-maker/releases/tag/v0.4.5) (August 17, 2023)
 
-**Enhancements**
+**New Features**
 
 - Work on the TODO list. See commits for details ([#44](https://github.com/seapagan/py-maker/pull/44)) by [seapagan](https://github.com/seapagan)
 
@@ -274,9 +291,9 @@
 
 [`Full Changelog`](https://github.com/seapagan/py-maker/compare/v0.4.4...v0.4.5)
 
-## [v0.4.4](https://github.com/seapagan/py-maker/releases/tag/v0.4.4) (2023-08-15)
+## [v0.4.4](https://github.com/seapagan/py-maker/releases/tag/v0.4.4) (August 15, 2023)
 
-**Enhancements**
+**New Features**
 
 - Add mkdocs as an option ([#42](https://github.com/seapagan/py-maker/pull/42)) by [seapagan](https://github.com/seapagan)
 
@@ -287,9 +304,9 @@
 
 [`Full Changelog`](https://github.com/seapagan/py-maker/compare/v0.4.3...v0.4.4)
 
-## [v0.4.3](https://github.com/seapagan/py-maker/releases/tag/v0.4.3) (2023-08-13)
+## [v0.4.3](https://github.com/seapagan/py-maker/releases/tag/v0.4.3) (August 13, 2023)
 
-**Enhancements**
+**New Features**
 
 - Tweak linting ([#39](https://github.com/seapagan/py-maker/pull/39)) by [seapagan](https://github.com/seapagan)
 
@@ -299,20 +316,20 @@
 
 [`Full Changelog`](https://github.com/seapagan/py-maker/compare/v0.4.2...v0.4.3)
 
-## [v0.4.2](https://github.com/seapagan/py-maker/releases/tag/v0.4.2) (2023-08-10)
+## [v0.4.2](https://github.com/seapagan/py-maker/releases/tag/v0.4.2) (August 10, 2023)
 
 - Added a missing runtime dep (rtoml). It must have been in my venv but not in the `pyproject.toml` 🙄
 [`Full Changelog`](https://github.com/seapagan/py-maker/compare/v0.4.1...v0.4.2)
 
-## [v0.4.1](https://github.com/seapagan/py-maker/releases/tag/v0.4.1) (2023-08-10)
+## [v0.4.1](https://github.com/seapagan/py-maker/releases/tag/v0.4.1) (August 10, 2023)
 
 - Fixed bug where the first-time config file gets the wrong default template path.
 - Update the internal template `pyproject.toml` and `.pre-commit-config.yaml` to use latest dependencies
 [`Full Changelog`](https://github.com/seapagan/py-maker/compare/v0.4.0...v0.4.1)
 
-## [v0.4.0](https://github.com/seapagan/py-maker/releases/tag/v0.4.0) (2023-08-10)
+## [v0.4.0](https://github.com/seapagan/py-maker/releases/tag/v0.4.0) (August 10, 2023)
 
-**Enhancements**
+**New Features**
 
 - Implement custom template additions ([#31](https://github.com/seapagan/py-maker/pull/31)) by [seapagan](https://github.com/seapagan)
 
@@ -330,9 +347,9 @@
 
 [`Full Changelog`](https://github.com/seapagan/py-maker/compare/v0.3.0...v0.4.0)
 
-## [v0.3.0](https://github.com/seapagan/py-maker/releases/tag/v0.3.0) (2023-07-30)
+## [v0.3.0](https://github.com/seapagan/py-maker/releases/tag/v0.3.0) (July 30, 2023)
 
-**Enhancements**
+**New Features**
 
 - Add a configuration file ([#30](https://github.com/seapagan/py-maker/pull/30)) by [seapagan](https://github.com/seapagan)
 - Use conditional logic in templates ([#24](https://github.com/seapagan/py-maker/pull/24)) by [seapagan](https://github.com/seapagan)
@@ -350,9 +367,9 @@
 
 [`Full Changelog`](https://github.com/seapagan/py-maker/compare/v0.2.1...v0.3.0)
 
-## [v0.2.1](https://github.com/seapagan/py-maker/releases/tag/v0.2.1) (2023-07-26)
+## [v0.2.1](https://github.com/seapagan/py-maker/releases/tag/v0.2.1) (July 26, 2023)
 
-**Enhancements**
+**New Features**
 
 - Add a documentation site ([#23](https://github.com/seapagan/py-maker/pull/23)) by [seapagan](https://github.com/seapagan)
 
@@ -362,7 +379,7 @@
 
 [`Full Changelog`](https://github.com/seapagan/py-maker/compare/v0.2.0...v0.2.1)
 
-## [v0.2.0](https://github.com/seapagan/py-maker/releases/tag/v0.2.0) (2023-07-26)
+## [v0.2.0](https://github.com/seapagan/py-maker/releases/tag/v0.2.0) (July 26, 2023)
 
 **Refactoring**
 
@@ -385,13 +402,13 @@
 
 [`Full Changelog`](https://github.com/seapagan/py-maker/compare/v0.1.0...v0.2.0)
 
-## [v0.1.0](https://github.com/seapagan/py-maker/releases/tag/v0.1.0) (2023-07-06)
+## [v0.1.0](https://github.com/seapagan/py-maker/releases/tag/v0.1.0) (July 06, 2023)
 
 **Merged Pull Requests**
 
 - Add base app functionality ([#1](https://github.com/seapagan/py-maker/pull/1)) by [seapagan](https://github.com/seapagan)
 
-**Enhancements**
+**New Features**
 
 - Customize or remove the Package layout ([#5](https://github.com/seapagan/py-maker/pull/5)) by [seapagan](https://github.com/seapagan)
 
