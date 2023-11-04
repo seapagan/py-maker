@@ -48,7 +48,6 @@ class Settings(TOMLSettings):
 
         Here, we will ask the user for default settings.
         """
-        print("here we are!!")
         self.get_user_settings(missing=True)
 
     def get_user_settings(self, *, missing: bool = False) -> None:
