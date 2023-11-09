@@ -510,13 +510,13 @@ smmap = ">=3.0.1,<6"
 
 [[package]]
 name = "github-changelog-md"
-version = "0.6.0"
+version = "0.7.0"
 description = "Generate a Markdown Changelog from your Github repository."
 optional = false
 python-versions = ">=3.9,<4.0"
 files = [
-    {file = "github_changelog_md-0.6.0-py3-none-any.whl", hash = "sha256:a4cda112e5c3a087fc872eb92e7209983917c5c2b6203450efe12afb45e82c1b"},
-    {file = "github_changelog_md-0.6.0.tar.gz", hash = "sha256:ff4d08b17c54d11b0d243830dd5f681d4f33a489ad37794451f19e163048bca4"},
+    {file = "github_changelog_md-0.7.0-py3-none-any.whl", hash = "sha256:d487e218f8b24a81d0a4491991894ba3fbab4289fd6196cd2d898e05b902eaa9"},
+    {file = "github_changelog_md-0.7.0.tar.gz", hash = "sha256:ad06a899ff0b4a564ecc174fe098fe80f87b3d4e5b6ef2627a9592f3782afcc0"},
 ]
 
 [package.dependencies]
@@ -2199,4 +2199,4 @@ testing = ["big-O", "jaraco.functools", "jaraco.itertools", "more-itertools", "p
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.9,<4.0"
-content-hash = "b422f896f2232dbbc327000e537c820acb99ce13167d931b8dc030f5f0e45ccb"
+content-hash = "a6963506601896e9ecb7911ae74b0b65e49a325ffa96a1b66e02fa9bf76c08d7"
