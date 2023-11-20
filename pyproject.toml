@@ -101,7 +101,7 @@ format.cmd = "ruff format ."
 format.help = "Format code with Ruff"
 ruff.cmd = "ruff check ."
 ruff.help = "Run Ruff checks"
-markdown.cmd = "pymarkdown scan  -r py_maker/**/[!CHANGELOG]*.md docs/**/*.md"
+markdown.cmd = "pymarkdown scan  -r py_maker/**/[!CHANGELOG,!.github/]*.md docs/**/*.md"
 markdown.help = "Run markdown checks"
 
 # run all linting checks in sequence. we want to run them all, even if one fails
