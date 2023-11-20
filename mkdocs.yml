@@ -8,7 +8,13 @@ theme:
     accent: blue
   features:
     - navigation.footer
-    - navigation.expand
+    - content.code.copy
+    - content.code.annotate
+    - navigation.tracking
+    - navigation.indexes
+    - navigation.prune
+    - navigation.top
+    - toc.follow
 extra:
   social:
     - icon: fontawesome/brands/github
