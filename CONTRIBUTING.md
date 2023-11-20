@@ -68,6 +68,18 @@ You then need to activate the virtual environment:
 $ poetry shell
 ```
 
+!!! note "Using Pip"
+
+    If you prefer to use `pip` instead of `poetry`, you can install the
+    dependencies using the auto-generated `requirements-dev.txt` file:
+
+    ```console
+    $ pip install -r requirements-dev.txt
+    ```
+    However, [Poetry](https://python-poetry.org/){:target="_blank"} is the
+    recommended (and only supported) way of developing this project and is
+    tightly integrated with the code and tools.
+
 From here you can start working on the project. If you are using an IDE such as
 VSCode or PyCharm, you can set the use their Python interpreter setting to use
 the virtual environment that has just been created.
