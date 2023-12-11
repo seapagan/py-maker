@@ -38,6 +38,11 @@ importance.
   skeleton `typer` CLI app.
 - if created a new remote GitHub repo, print the GitHub URL to the console.
 
+## Bugs
+
+- the `release_text` option does not work if the `--next-release` is specified
+  and corresponds to that `release_text` version.
+
 ## Back Burner
 
 These are ideas that I may or may not implement. They are here for reference.
