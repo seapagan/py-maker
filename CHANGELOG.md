@@ -8,6 +8,11 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 ## [v0.9.4](https://github.com/seapagan/py-maker/releases/tag/v0.9.4) (December 11, 2023)
 
+
+This is a security release that fixes a vulnerability in the 'cryptography'
+package.
+
+
 **Refactoring**
 
 - Update pre commit config to use poetry-export-plugin directly ([#203](https://github.com/seapagan/py-maker/pull/203)) by [seapagan](https://github.com/seapagan)
