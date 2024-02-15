@@ -50,12 +50,13 @@ def test_template_command() -> None:
 @pytest.mark.e2e()
 def test_main_script_execution() -> None:
     """Test the main script execution simulates running the script directly."""
-    command = ["python", "py_maker/main.py"]
+    command = ["python", "main.py"]
     result = subprocess.run(
         command,  # noqa: S603
         capture_output=True,
         text=True,
         check=True,
+        cwd="./py_maker",
     )
 
     assert "Usage:" in result.stdout
