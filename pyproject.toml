@@ -180,7 +180,11 @@ module = "tests.*"
 addopts = ["--cov", "--cov-report", "term-missing", "--cov-report", "html"]
 filterwarnings = []
 mock_use_standalone_module = true
+# pythonpath = "py_maker"
 
 [tool.coverage.run]
-# source = []
 omit = ["*/tests/*"]
+source = ["py_maker"]
+
+[tool.coverage.report]
+show_missing = true
