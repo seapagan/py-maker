@@ -5,7 +5,9 @@ project since the first release.
 
 This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+
 ## [Unreleased](https://github.com/seapagan/py-maker/tree/HEAD)
+
 
 These are the changes that have been merged to the repository since the last
 release. If you want to try out these changes, you can install the latest
@@ -14,7 +16,6 @@ version from the main branch by running:
 ```console
 $ pip install git+https://github.com/seapagan/github-changelog-md
 ```
-
 or, if using poetry:
 
 ```console
@@ -23,26 +24,29 @@ $ poetry add git+https://github.com/seapagan/github-changelog-md
 
 Everything in this section will be included in the next official release.
 
+
 **Dependency Updates**
 
-- Build(deps-dev): bump ruff from 0.1.7 to 0.1.8 ([#228](https://github.com/seapagan/py-maker/pull/228)) by [dependabot[bot]](https://github.com/apps/dependabot)
-- Build(deps-dev): bump pre-commit from 3.5.0 to 3.6.0 ([#227](https://github.com/seapagan/py-maker/pull/227)) by [dependabot[bot]](https://github.com/apps/dependabot)
-- Build(deps-dev): bump mkdocs-material from 9.5.1 to 9.5.2 ([#226](https://github.com/seapagan/py-maker/pull/226)) by [dependabot[bot]](https://github.com/apps/dependabot)
-- Build(deps-dev): bump pymdown-extensions from 10.4 to 10.5 ([#225](https://github.com/seapagan/py-maker/pull/225)) by [dependabot[bot]](https://github.com/apps/dependabot)
-- Build(deps-dev): bump faker from 20.1.0 to 21.0.0 ([#224](https://github.com/seapagan/py-maker/pull/224)) by [dependabot[bot]](https://github.com/apps/dependabot)
-- Build(deps): bump github/codeql-action from 2 to 3 ([#223](https://github.com/seapagan/py-maker/pull/223)) by [dependabot[bot]](https://github.com/apps/dependabot)
-- Build(deps): bump pydantic from 2.5.1 to 2.5.2 ([#222](https://github.com/seapagan/py-maker/pull/222)) by [dependabot[bot]](https://github.com/apps/dependabot)
-- Build(deps-dev): bump pyfakefs from 5.3.1 to 5.3.2 ([#221](https://github.com/seapagan/py-maker/pull/221)) by [dependabot[bot]](https://github.com/apps/dependabot)
-- Build(deps-dev): bump pymarkdownlnt from 0.9.14 to 0.9.15 ([#220](https://github.com/seapagan/py-maker/pull/220)) by [dependabot[bot]](https://github.com/apps/dependabot)
-- Build(deps-dev): bump pytest-asyncio from 0.21.1 to 0.23.2 ([#219](https://github.com/seapagan/py-maker/pull/219)) by [dependabot[bot]](https://github.com/apps/dependabot)
-- *and 1 more dependency updates*
+- Build(deps-dev): bump pymarkdownlnt from 0.9.15 to 0.9.17 ([#265](https://github.com/seapagan/py-maker/pull/265)) by [dependabot[bot]](https://github.com/apps/dependabot)
+- Build(deps-dev): bump faker from 21.0.0 to 23.2.0 ([#264](https://github.com/seapagan/py-maker/pull/264)) by [dependabot[bot]](https://github.com/apps/dependabot)
+- Build(deps-dev): bump pymdown-extensions from 10.5 to 10.7 ([#263](https://github.com/seapagan/py-maker/pull/263)) by [dependabot[bot]](https://github.com/apps/dependabot)
+- Build(deps): bump pydantic from 2.5.2 to 2.6.1 ([#262](https://github.com/seapagan/py-maker/pull/262)) by [dependabot[bot]](https://github.com/apps/dependabot)
+- Build(deps): bump github-changelog-md from 0.8.0 to 0.8.1 ([#261](https://github.com/seapagan/py-maker/pull/261)) by [dependabot[bot]](https://github.com/apps/dependabot)
+- Build(deps-dev): bump pytest-asyncio from 0.23.2 to 0.23.5 ([#260](https://github.com/seapagan/py-maker/pull/260)) by [dependabot[bot]](https://github.com/apps/dependabot)
+- Build(deps-dev): bump pytest-sugar from 0.9.7 to 1.0.0 ([#259](https://github.com/seapagan/py-maker/pull/259)) by [dependabot[bot]](https://github.com/apps/dependabot)
+- Build(deps): bump pygithub from 2.1.1 to 2.2.0 ([#258](https://github.com/seapagan/py-maker/pull/258)) by [dependabot[bot]](https://github.com/apps/dependabot)
+- Build(deps-dev): bump types-requests from 2.31.0.10 to 2.31.0.20240125 ([#257](https://github.com/seapagan/py-maker/pull/257)) by [dependabot[bot]](https://github.com/apps/dependabot)
+- Build(deps-dev): bump pytest from 7.4.3 to 8.0.0 ([#256](https://github.com/seapagan/py-maker/pull/256)) by [dependabot[bot]](https://github.com/apps/dependabot)
+- *and 21 more dependency updates*
 
 [`Full Changelog`](https://github.com/seapagan/py-maker/compare/v0.9.4...HEAD) | [`Diff`](https://github.com/seapagan/py-maker/compare/v0.9.4...HEAD.diff) | [`Patch`](https://github.com/seapagan/py-maker/compare/v0.9.4...HEAD.patch)
 
 ## [v0.9.4](https://github.com/seapagan/py-maker/releases/tag/v0.9.4) (December 11, 2023)
 
+
 This is a security release that fixes a vulnerability in the 'cryptography'
 package.
+
 
 **Refactoring**
 
@@ -352,15 +356,13 @@ package.
 ## [v0.4.2](https://github.com/seapagan/py-maker/releases/tag/v0.4.2) (August 10, 2023)
 
 - Added a missing runtime dep (rtoml). It must have been in my venv but not in the `pyproject.toml` 🙄
-
-[`Full Changelog`](https://github.com/seapagan/py-maker/compare/v0.4.1...v0.4.2) | [`Diff`](https://github.com/seapagan/py-maker/compare/v0.4.1...v0.4.2.diff) | [`Patch`](https://github.com/seapagan/py-maker/compare/v0.4.1...v0.4.2.patch)
+[`Full Changelog`](https://github.com/seapagan/py-maker/compare/v0.4.1...v0.4.2) | [`Diff`](https://github.com/seapagan/py-maker/compare/v0.4.1...v0.4.2.diff) | [`Patch`](https://github.com/seapagan/py-maker/compare/v0.4.1...v0.4.2.patch)
 
 ## [v0.4.1](https://github.com/seapagan/py-maker/releases/tag/v0.4.1) (August 10, 2023)
 
 - Fixed bug where the first-time config file gets the wrong default template path.
 - Update the internal template `pyproject.toml` and `.pre-commit-config.yaml` to use latest dependencies
-
-[`Full Changelog`](https://github.com/seapagan/py-maker/compare/v0.4.0...v0.4.1) | [`Diff`](https://github.com/seapagan/py-maker/compare/v0.4.0...v0.4.1.diff) | [`Patch`](https://github.com/seapagan/py-maker/compare/v0.4.0...v0.4.1.patch)
+[`Full Changelog`](https://github.com/seapagan/py-maker/compare/v0.4.0...v0.4.1) | [`Diff`](https://github.com/seapagan/py-maker/compare/v0.4.0...v0.4.1.diff) | [`Patch`](https://github.com/seapagan/py-maker/compare/v0.4.0...v0.4.1.patch)
 
 ## [v0.4.0](https://github.com/seapagan/py-maker/releases/tag/v0.4.0) (August 10, 2023)
 
