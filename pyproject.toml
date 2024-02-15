@@ -134,15 +134,18 @@ plugins.md046.enabled = false
 
 [tool.ruff]
 line-length = 80
-select = ["ALL"] # we are being very strict!
-ignore = [
+lint.select = ["ALL"] # we are being very strict!
+lint.ignore = [
   "ANN101",
   "PGH003",
   "FBT002",
   "FBT003",
   "B006",
 ] # These rules are too strict even for us 😝
-extend-ignore = ["COM812", "ISC001"] # these are ignored for ruff formatting
+lint.extend-ignore = [
+  "COM812",
+  "ISC001",
+] # these are ignored for ruff formatting
 
 src = ["py_maker"]
 target-version = "py39" # minimum python version supported
@@ -151,13 +154,13 @@ target-version = "py39" # minimum python version supported
 indent-style = "space"
 quote-style = "double"
 
-[tool.ruff.pep8-naming]
+[tool.ruff.lint.pep8-naming]
 classmethod-decorators = ["pydantic.validator", "pydantic.root_validator"]
 
-[tool.ruff.pydocstyle]
+[tool.ruff.lint.pydocstyle]
 convention = "google"
 
-[tool.ruff.extend-per-file-ignores]
+[tool.ruff.lint.extend-per-file-ignores]
 "tests/**/*.py" = [
   "S101",   # we can (and MUST!) use 'assert' in test files.
   "ANN001", # annotations for fixtures are sometimes a pain for test files
@@ -165,10 +168,10 @@ convention = "google"
 "py_maker/main.py" = ["UP007", "PLR0913"] # These cause issues in Typer Apps
 "py_maker/commands/*.py" = ["UP007", "PLR0913"] # Same as above
 
-[tool.ruff.isort]
+[tool.ruff.lint.isort]
 known-first-party = ["py_maker"]
 
-[tool.ruff.pyupgrade]
+[tool.ruff.lint.pyupgrade]
 keep-runtime-typing = true
 
 [[tool.mypy.overrides]]
@@ -183,7 +186,7 @@ mock_use_standalone_module = true
 # pythonpath = "py_maker"
 
 [tool.coverage.run]
-omit = ["*/tests/*"]
+omit = ["*/tests/*", "py_maker/tree/*"]
 source = ["py_maker"]
 
 [tool.coverage.report]
