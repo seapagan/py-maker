@@ -53,6 +53,12 @@ jobs:
         run: poetry install --no-interaction --no-root
 
       # ---------------------------------------------------------------------- #
+      #                  add our project to the PYTHONPATH                     #
+      # ---------------------------------------------------------------------- #
+      - name: Add project directory to PYTHONPATH
+        run: echo "PYTHONPATH=${{ github.workspace }}/py_maker" >> $GITHUB_ENV
+
+      # ---------------------------------------------------------------------- #
       #                               run Pytest                               #
       # ---------------------------------------------------------------------- #
       - name: Test with pytest
