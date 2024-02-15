@@ -28,10 +28,17 @@ def get_author_and_email_from_git() -> tuple[str, str]:
     """Get the author name and email from git."""
     config = GitConfigParser()
 
-    return (
-        str(config.get_value("user", "name", "")),
-        str(config.get_value("user", "email", "")),
-    )
+    try:
+        author_name = str(config.get_value("user", "name", ""))
+    except KeyError:
+        author_name = ""
+
+    try:
+        author_email = str(config.get_value("user", "email", ""))
+    except KeyError:
+        author_email = ""
+
+    return author_name, author_email
 
 
 def get_file_list(template_dir: Union[Traversable, Path]) -> list[Path]:
@@ -112,7 +119,7 @@ def exists_on_pypi(package_name: str) -> bool:
     url = f"https://pypi.org/pypi/{package_name}/json"
     try:
         response = requests.get(url, timeout=5)
-    except requests.exceptions.Timeout:
+    except (requests.exceptions.Timeout, requests.exceptions.ConnectionError):
         return False
     return response.status_code == SUCCESS_RESPONSE
 
@@ -145,6 +152,9 @@ def get_app_version() -> str:
         except (KeyError, OSError) as exc:
             print(f"Problem getting the Version : {exc}")
             sys.exit(ExitErrors.OS_ERROR)
+        except rtoml.TomlParsingError as exc:
+            print(f"Invalid 'pyproject.toml' file : {exc}")
+            sys.exit(ExitErrors.TOML_ERROR)
         else:
             return version
     else:

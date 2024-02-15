@@ -32,6 +32,7 @@ class ExitErrors(IntEnum):
     USER_ABORT = 6
     OS_ERROR = 7
     INVALID_ACTION = 8
+    TOML_ERROR = 9
 
 
 MKDOCS_CONFIG = """
