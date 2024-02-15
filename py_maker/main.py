@@ -39,5 +39,14 @@ app.add_typer(
     template.app, name="template", help="Utilities for handling template files."
 )
 
-if __name__ == "__main__":
+
+def run_app() -> None:
+    """Run the main application.
+
+    Breaking it out like this for testing.
+    """
     app()
+
+
+if __name__ == "__main__":
+    run_app()
