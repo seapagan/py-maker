@@ -55,7 +55,7 @@ class Prompt(RichPrompt):
         value = value.strip()
         try:
             return_value: PromptType = self.response_type(value)  # type: ignore
-        except ValueError as exc:
+        except ValueError as exc:  # pragma: no cover
             raise InvalidResponse(self.validate_error_message) from exc
 
         if self.choices is not None:
