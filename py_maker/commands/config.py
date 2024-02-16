@@ -23,7 +23,7 @@ def change() -> None:
 
 @app.command()
 def token() -> None:
-    """Change the current configuration."""
+    """Change the current token."""
     header()
     settings.change_token()
 
