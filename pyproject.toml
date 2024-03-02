@@ -89,7 +89,7 @@ pygments = "^2.15.1"
 types-requests = "^2.31.0.2"
 
 # assorted utilities
-poethepoet = "^0.24.0"
+poethepoet = ">=0.24,<0.26"
 
 [tool.poe.tasks]
 # setup 'PoeThePoet' tasks
