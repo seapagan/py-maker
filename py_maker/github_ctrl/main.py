@@ -3,6 +3,7 @@
 This is a class to encapsulate the GitHub API and is responsible for
 authenticating with GitHub and performing the necessary operations.
 """
+
 from __future__ import annotations
 
 from typing import TYPE_CHECKING, Optional, Union

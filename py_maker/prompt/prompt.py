@@ -5,6 +5,7 @@ merged) I will use this subclass.
 
 Currently only makes the choices case-insensitive.
 """
+
 from typing import Any
 
 from rich.prompt import Confirm as RichConfirm

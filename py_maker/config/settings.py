@@ -2,6 +2,7 @@
 
 Allows reading from a settings file and writing to it.
 """
+
 import os
 import platform
 import subprocess  # nosec

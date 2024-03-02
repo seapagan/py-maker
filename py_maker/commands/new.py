@@ -1,4 +1,5 @@
 """Create a new project."""
+
 from typing import Annotated, Optional, Union
 
 import typer
