@@ -1,4 +1,5 @@
 """Deal with template files."""
+
 import importlib.resources as pkg_resources
 from pathlib import Path
 from typing import TYPE_CHECKING

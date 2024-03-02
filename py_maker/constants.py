@@ -1,4 +1,5 @@
 """Some constants needed for the rest of the App."""
+
 from enum import IntEnum
 
 LICENCES: list[dict[str, str]] = [

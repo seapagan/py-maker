@@ -1,4 +1,5 @@
 """Main application entry point."""
+
 from typing import Optional
 
 import typer

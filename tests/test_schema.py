@@ -1,4 +1,5 @@
 """Test the pydantic schemas."""
+
 from pathlib import Path
 
 import pytest

@@ -1,4 +1,5 @@
 """Show or change the Configuration."""
+
 import typer
 
 from py_maker.config import settings

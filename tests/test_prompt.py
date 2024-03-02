@@ -1,4 +1,5 @@
 """Test suite for custom prompt classes in py_maker.prompt."""
+
 import io
 
 import pytest

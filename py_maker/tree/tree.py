@@ -2,6 +2,7 @@
 
 Heavily influenced by the example in Rich.tree documentation.
 """
+
 from __future__ import annotations
 
 import os
