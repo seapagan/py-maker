@@ -23,6 +23,10 @@ repository = "{{ repository }}"
 # rename "{{ slug }}" below to change the executable name. You can also
 # add more scripts if your package offers multiple commands.
 {{ slug }} = "{{ package_name }}.main:app"
+
+{% else%}
+package-mode = false
+
 {% endif %}
 
 [tool.poetry.dependencies]
