@@ -183,7 +183,7 @@ module = "tests.*"
 addopts = ["--cov", "--cov-report", "term-missing", "--cov-report", "html"]
 filterwarnings = []
 mock_use_standalone_module = true
-# pythonpath = "py_maker"
+markers = ["e2e: mark a test as an end-to-end test."]
 
 [tool.coverage.run]
 omit = ["*/tests/*", "py_maker/tree/*"]
