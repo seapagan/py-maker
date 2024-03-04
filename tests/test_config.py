@@ -1,4 +1,5 @@
 """Test the config module."""
+
 from typing import cast
 from unittest.mock import MagicMock
 
