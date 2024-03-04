@@ -36,7 +36,10 @@ importance.
   and ask for an alternative if it exists.
 - add option (probably using the eventual plugin functionality) to create a
   skeleton `typer` CLI app.
-- if created a new remote GitHub repo, print the GitHub URL to the console.
+- if it creates a new remote GitHub repo, print the GitHub URL to the console.
+- when creating a github repo, set the `About` section to the `description`
+  field in the `pyproject.toml` file. Also can set the homepage if specified.
+  Options to add tags?
 
 ## Bugs
 
