@@ -314,23 +314,24 @@ See the [bold][green]README.md[/green][/bold] file for more information.
             self.choices.package_name = self.get_sanitized_package_name(pk_name)
             self.choices.homepage = Prompt.ask("Homepage URL?", default="")
 
-            github_username = (
-                self.settings.github_username
-                if self.settings.github_username
-                else "<your GitHub username>"
-            )
-            repo_name = (
-                sanitize(self.choices.project_dir.name)
-                if self.choices.package_name == "-"
-                else self.choices.package_name
-            )
-            self.choices.repository = Prompt.ask(
-                "Repository URL?",
-                default=(
-                    f"https://github.com/{github_username}/"
-                    f"{re.sub(r'[_.]+', '-', repo_name.lower())}"
-                ),
-            )
+        # offer to create a repo on GitHub, for both type of projects.
+        github_username = (
+            self.settings.github_username
+            if self.settings.github_username
+            else "<your GitHub username>"
+        )
+        repo_name = (
+            sanitize(self.choices.project_dir.name)
+            if self.choices.package_name == "-"
+            else self.choices.package_name
+        )
+        self.choices.repository = Prompt.ask(
+            "Repository URL?",
+            default=(
+                f"https://github.com/{github_username}/"
+                f"{re.sub(r'[_.]+', '-', repo_name.lower())}"
+            ),
+        )
 
         self.choices.description = Prompt.ask(
             "Description of the Application?",
