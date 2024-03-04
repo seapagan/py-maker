@@ -6,24 +6,7 @@ project since the first release.
 This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 
-## [Unreleased](https://github.com/seapagan/py-maker/tree/HEAD)
-
-
-These are the changes that have been merged to the repository since the last
-release. If you want to try out these changes, you can install the latest
-version from the main branch by running:
-
-```console
-$ pip install git+https://github.com/seapagan/github-changelog-md
-```
-or, if using poetry:
-
-```console
-$ poetry add git+https://github.com/seapagan/github-changelog-md
-```
-
-Everything in this section will be included in the next official release.
-
+## [v0.9.5](https://github.com/seapagan/py-maker/releases/tag/v0.9.5) (March 04, 2024)
 
 **Closed Issues**
 
@@ -64,7 +47,7 @@ Everything in this section will be included in the next official release.
 - Build(deps-dev): bump poethepoet from 0.24.4 to 0.25.0 ([#277](https://github.com/seapagan/py-maker/pull/277)) by [dependabot[bot]](https://github.com/apps/dependabot)
 - *and 35 more dependency updates*
 
-[`Full Changelog`](https://github.com/seapagan/py-maker/compare/v0.9.4...HEAD) | [`Diff`](https://github.com/seapagan/py-maker/compare/v0.9.4...HEAD.diff) | [`Patch`](https://github.com/seapagan/py-maker/compare/v0.9.4...HEAD.patch)
+[`Full Changelog`](https://github.com/seapagan/py-maker/compare/v0.9.4...v0.9.5) | [`Diff`](https://github.com/seapagan/py-maker/compare/v0.9.4...v0.9.5.diff) | [`Patch`](https://github.com/seapagan/py-maker/compare/v0.9.4...v0.9.5.patch)
 
 ## [v0.9.4](https://github.com/seapagan/py-maker/releases/tag/v0.9.4) (December 11, 2023)
 
