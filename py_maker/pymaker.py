@@ -221,6 +221,12 @@ class PyMaker:
         proj_loc = (
             self.location if self.location != "." else self.choices.project_dir
         )
+        run_cmd = (
+            f"{self.location}"
+            if not self.choices.standalone
+            else "python main.py"
+        )
+
         output = f"""
 --> [green]Project created successfully.[/green]
 
@@ -233,7 +239,7 @@ class PyMaker:
     3) Activate the virtual environment:
         'poetry shell'
     4) Run the application:
-        '{self.location}'
+        '{run_cmd}'
     5) Code!
 
 See the [bold][green]README.md[/green][/bold] file for more information.
