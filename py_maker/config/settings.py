@@ -2,6 +2,7 @@
 
 Allows reading from a settings file and writing to it.
 """
+
 import os
 import platform
 import subprocess  # nosec
@@ -73,7 +74,7 @@ class Settings(TOMLSettings):
             default=git_email if missing else self.author_email,
         )
         self.github_username = Prompt.ask(
-            "Github Username? \[optional]",  # noqa: W605 # type: ignore
+            r"Github Username? \[optional]",
             default="" if missing else self.github_username,
         )
         self.default_license = Prompt.ask(
