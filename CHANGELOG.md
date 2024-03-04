@@ -25,19 +25,44 @@ $ poetry add git+https://github.com/seapagan/github-changelog-md
 Everything in this section will be included in the next official release.
 
 
+**Closed Issues**
+
+- For standalone app, the suggested GitHub URL is wrong, it should be the same as if the app was a package ([#296](https://github.com/seapagan/py-maker/issues/296)) by [seapagan](https://github.com/seapagan)
+- Template deps need updating and template config files need a freshening ([#294](https://github.com/seapagan/py-maker/issues/294)) by [seapagan](https://github.com/seapagan)
+- Standalone app should have the ending text changed. ([#293](https://github.com/seapagan/py-maker/issues/293)) by [seapagan](https://github.com/seapagan)
+- If creating a standalone, `poetry install` should set 'package-mode=false' in the pyproject.toml ([#292](https://github.com/seapagan/py-maker/issues/292)) by [seapagan](https://github.com/seapagan)
+
+**Merged Pull Requests**
+
+- Fix formatting to new Ruff 3.0 ([#289](https://github.com/seapagan/py-maker/pull/289)) by [seapagan](https://github.com/seapagan)
+
+**New Features**
+
+- Update deps and template, freshen the template config files. ([#297](https://github.com/seapagan/py-maker/pull/297)) by [seapagan](https://github.com/seapagan)
+
+**Testing**
+
+- Continue writing tests. ([#267](https://github.com/seapagan/py-maker/pull/267)) by [seapagan](https://github.com/seapagan)
+- Add a testing stage to CI with coverage reports from codacy ([#266](https://github.com/seapagan/py-maker/pull/266)) by [seapagan](https://github.com/seapagan)
+
+**Bug Fixes**
+
+- Ask for repo name and offer to create for both type of projects ([#298](https://github.com/seapagan/py-maker/pull/298)) by [seapagan](https://github.com/seapagan)
+- Fix several issues with generating standalone projects ([#295](https://github.com/seapagan/py-maker/pull/295)) by [seapagan](https://github.com/seapagan)
+
 **Dependency Updates**
 
-- Build(deps-dev): bump pymarkdownlnt from 0.9.15 to 0.9.17 ([#265](https://github.com/seapagan/py-maker/pull/265)) by [dependabot[bot]](https://github.com/apps/dependabot)
-- Build(deps-dev): bump faker from 21.0.0 to 23.2.0 ([#264](https://github.com/seapagan/py-maker/pull/264)) by [dependabot[bot]](https://github.com/apps/dependabot)
-- Build(deps-dev): bump pymdown-extensions from 10.5 to 10.7 ([#263](https://github.com/seapagan/py-maker/pull/263)) by [dependabot[bot]](https://github.com/apps/dependabot)
-- Build(deps): bump pydantic from 2.5.2 to 2.6.1 ([#262](https://github.com/seapagan/py-maker/pull/262)) by [dependabot[bot]](https://github.com/apps/dependabot)
-- Build(deps): bump github-changelog-md from 0.8.0 to 0.8.1 ([#261](https://github.com/seapagan/py-maker/pull/261)) by [dependabot[bot]](https://github.com/apps/dependabot)
-- Build(deps-dev): bump pytest-asyncio from 0.23.2 to 0.23.5 ([#260](https://github.com/seapagan/py-maker/pull/260)) by [dependabot[bot]](https://github.com/apps/dependabot)
-- Build(deps-dev): bump pytest-sugar from 0.9.7 to 1.0.0 ([#259](https://github.com/seapagan/py-maker/pull/259)) by [dependabot[bot]](https://github.com/apps/dependabot)
-- Build(deps): bump pygithub from 2.1.1 to 2.2.0 ([#258](https://github.com/seapagan/py-maker/pull/258)) by [dependabot[bot]](https://github.com/apps/dependabot)
-- Build(deps-dev): bump types-requests from 2.31.0.10 to 2.31.0.20240125 ([#257](https://github.com/seapagan/py-maker/pull/257)) by [dependabot[bot]](https://github.com/apps/dependabot)
-- Build(deps-dev): bump pytest from 7.4.3 to 8.0.0 ([#256](https://github.com/seapagan/py-maker/pull/256)) by [dependabot[bot]](https://github.com/apps/dependabot)
-- *and 21 more dependency updates*
+- Build(deps-dev): bump pytest from 8.0.2 to 8.1.0 ([#290](https://github.com/seapagan/py-maker/pull/290)) by [dependabot[bot]](https://github.com/apps/dependabot)
+- Build(deps-dev): bump ruff from 0.2.1 to 0.3.0 ([#288](https://github.com/seapagan/py-maker/pull/288)) by [dependabot[bot]](https://github.com/apps/dependabot)
+- Build(deps-dev): bump mkdocs-autorefs from 0.5.0 to 1.0.1 ([#287](https://github.com/seapagan/py-maker/pull/287)) by [dependabot[bot]](https://github.com/apps/dependabot)
+- Build(deps-dev): bump mkdocs-material from 9.5.9 to 9.5.12 ([#286](https://github.com/seapagan/py-maker/pull/286)) by [dependabot[bot]](https://github.com/apps/dependabot)
+- Build(deps): bump rich from 13.7.0 to 13.7.1 ([#285](https://github.com/seapagan/py-maker/pull/285)) by [dependabot[bot]](https://github.com/apps/dependabot)
+- Build(deps): bump pydantic from 2.6.1 to 2.6.3 ([#284](https://github.com/seapagan/py-maker/pull/284)) by [dependabot[bot]](https://github.com/apps/dependabot)
+- Build(deps-dev): bump faker from 23.2.0 to 23.3.0 ([#282](https://github.com/seapagan/py-maker/pull/282)) by [dependabot[bot]](https://github.com/apps/dependabot)
+- Build(deps-dev): bump mkdocstrings from 0.24.0 to 0.24.1 ([#281](https://github.com/seapagan/py-maker/pull/281)) by [dependabot[bot]](https://github.com/apps/dependabot)
+- Build(deps-dev): bump pytest from 8.0.0 to 8.0.2 ([#280](https://github.com/seapagan/py-maker/pull/280)) by [dependabot[bot]](https://github.com/apps/dependabot)
+- Build(deps-dev): bump poethepoet from 0.24.4 to 0.25.0 ([#277](https://github.com/seapagan/py-maker/pull/277)) by [dependabot[bot]](https://github.com/apps/dependabot)
+- *and 35 more dependency updates*
 
 [`Full Changelog`](https://github.com/seapagan/py-maker/compare/v0.9.4...HEAD) | [`Diff`](https://github.com/seapagan/py-maker/compare/v0.9.4...HEAD.diff) | [`Patch`](https://github.com/seapagan/py-maker/compare/v0.9.4...HEAD.patch)
 
