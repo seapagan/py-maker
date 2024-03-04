@@ -1,4 +1,5 @@
 """Test the main file."""
+
 import subprocess
 
 import pytest
