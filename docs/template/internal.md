@@ -10,22 +10,19 @@ The dependency management is handled by
 
 - [PyTest](https://docs.pytest.org/en/stable/contents.html){:target="_blank"}
   for testing, along with several useful plugins.
-- The [Black](https://black.readthedocs.io/en/stable/){:target="_blank"}
-  code formatter.
-- The [Flake8](https://flake8.pycqa.org/en/latest/){:target="_blank"} linter,
-  along with a good selection of plugins. It is also set up to use the
-  `pyproject.toml` for it's configuration, and to work nicely with Black.
-- [Pylint](<https://www.pylint.org/>){:target="_blank"} and
-  [Pydocstyle](https://www.pydocstyle.org/en/stable/){:target="_blank"}
-  linters.
+- [Ruff](https://docs.astral.sh/ruff/){:target="_blank"} for linting and
+  formatting. This replaces the need for `flake8`, `black`, `isort` and more.
+  The default `pyproject.toml` contains a quite strict configuration by default,
+  but you can modify it to suit your needs.
 - [MyPy](https://mypy.readthedocs.io/en/stable/){:target="_blank"} for static
   type checking.
-- [Isort](https://pycqa.github.io/isort/){:target="_blank"} for sorting
-  imports.
 - [pre-commit](https://pre-commit.com/){:target="_blank"} for running checks
   before committing code.
 
+The `pyproject.toml` contains a useable configuration for all of these tools,
+but you can modify it to suit your needs.
+
 It also contains several tasks for running the tests, linting, formatting and
 more. These use the [Poe The
-Poet](https://poethepoet.natn.io/){:targer="_blank"} Poetry extension see [Task
+Poet](https://poethepoet.natn.io/){:target="_blank"} Poetry extension see [Task
 Runner](../tasks.md) for more information.
