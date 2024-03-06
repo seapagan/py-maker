@@ -6,6 +6,24 @@ project since the first release.
 This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 
+## [v0.10.0](https://github.com/seapagan/py-maker/releases/tag/v0.10.0) (March 06, 2024)
+
+**Closed Issues**
+
+- When missing the config file, it does not properly read the users Git username/email ([#291](https://github.com/seapagan/py-maker/issues/291)) by [seapagan](https://github.com/seapagan)
+
+**Bug Fixes**
+
+- Fix bug in post create-file hook ([#300](https://github.com/seapagan/py-maker/pull/300)) by [seapagan](https://github.com/seapagan)
+
+**Dependency Updates**
+
+- Build(deps-dev): bump mkdocs-material from 9.5.12 to 9.5.13 ([#303](https://github.com/seapagan/py-maker/pull/303)) by [dependabot[bot]](https://github.com/apps/dependabot)
+- Build(deps-dev): bump pymdown-extensions from 10.7 to 10.7.1 ([#302](https://github.com/seapagan/py-maker/pull/302)) by [dependabot[bot]](https://github.com/apps/dependabot)
+- Build(deps-dev): bump faker from 23.3.0 to 24.0.0 ([#301](https://github.com/seapagan/py-maker/pull/301)) by [dependabot[bot]](https://github.com/apps/dependabot)
+
+[`Full Changelog`](https://github.com/seapagan/py-maker/compare/v0.9.5...v0.10.0) | [`Diff`](https://github.com/seapagan/py-maker/compare/v0.9.5...v0.10.0.diff) | [`Patch`](https://github.com/seapagan/py-maker/compare/v0.9.5...v0.10.0.patch)
+
 ## [v0.9.5](https://github.com/seapagan/py-maker/releases/tag/v0.9.5) (March 04, 2024)
 
 **Closed Issues**
