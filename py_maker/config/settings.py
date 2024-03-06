@@ -44,7 +44,7 @@ class Settings(TOMLSettings):
         super().__post_init__()
         self.template_folder: str = str(self.settings_folder / "template")
 
-    def __post_create_file__(self) -> None:
+    def __post_create_hook__(self) -> None:
         """Automatically called after the settings file is created.
 
         Here, we will ask the user for default settings.
