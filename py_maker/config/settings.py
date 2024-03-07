@@ -145,6 +145,3 @@ class Settings(TOMLSettings):
                     "--> [red]No editor found. Please edit the settings file "
                     "manually.\n"
                 )
-
-
-settings = Settings("pymaker")

@@ -5,7 +5,7 @@ from typing import Annotated, Optional, Union
 import typer
 from rich import print  # pylint: disable=W0622
 
-from py_maker.config import settings
+from py_maker.config import get_settings
 from py_maker.constants import ExitErrors
 from py_maker.pymaker import PyMaker
 
@@ -70,6 +70,8 @@ def new(
     ] = None,
 ) -> None:
     """Create a new Python project."""
+    settings = get_settings()
+
     options: dict[str, Union[bool, None]] = {
         "git": settings.use_git if git is None else git,
         "test": settings.include_testing if test is None else test,
