@@ -17,7 +17,7 @@ from jinja2 import Environment, FileSystemLoader
 from rich import print  # pylint: disable=W0622
 
 from py_maker import template
-from py_maker.config import settings
+from py_maker.config import get_settings
 from py_maker.constants import MKDOCS_CONFIG, ExitErrors, license_names
 from py_maker.github_ctrl import GitHub
 from py_maker.helpers import (
@@ -53,7 +53,7 @@ class PyMaker:
 
         header()
 
-        self.settings = settings
+        self.settings = get_settings()
 
         if len(Path(self.location).parts) > 1:
             print(
