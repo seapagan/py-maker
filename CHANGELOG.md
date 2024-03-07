@@ -6,6 +6,40 @@ project since the first release.
 This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 
+## [Unreleased](https://github.com/seapagan/py-maker/tree/HEAD)
+
+
+These are the changes that have been merged to the repository since the last
+release. If you want to try out these changes, you can install the latest
+version from the main branch by running:
+
+```console
+$ pip install git+https://github.com/seapagan/github-changelog-md
+```
+or, if using poetry:
+
+```console
+$ poetry add git+https://github.com/seapagan/github-changelog-md
+```
+
+Everything in this section will be included in the next official release.
+
+
+**Refactoring**
+
+- Convert settings fie to use new `get_settings()` method ([#309](https://github.com/seapagan/py-maker/pull/309)) by [seapagan](https://github.com/seapagan)
+
+**Documentation**
+
+- Update Docs to mention previous linting changes ([#305](https://github.com/seapagan/py-maker/pull/305)) by [seapagan](https://github.com/seapagan)
+
+**Dependency Updates**
+
+- Build(deps): bump simple-toml-settings from 0.4.0 to 0.5.0 ([#307](https://github.com/seapagan/py-maker/pull/307)) by [dependabot[bot]](https://github.com/apps/dependabot)
+- Build(deps-dev): bump ruff from 0.3.0 to 0.3.1 ([#306](https://github.com/seapagan/py-maker/pull/306)) by [dependabot[bot]](https://github.com/apps/dependabot)
+
+[`Full Changelog`](https://github.com/seapagan/py-maker/compare/v0.10.0...HEAD) | [`Diff`](https://github.com/seapagan/py-maker/compare/v0.10.0...HEAD.diff) | [`Patch`](https://github.com/seapagan/py-maker/compare/v0.10.0...HEAD.patch)
+
 ## [v0.10.0](https://github.com/seapagan/py-maker/releases/tag/v0.10.0) (March 06, 2024)
 
 **Closed Issues**
