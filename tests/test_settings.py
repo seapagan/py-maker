@@ -67,6 +67,21 @@ github_token = "test_token"
         )
         return fs
 
+    @pytest.fixture()
+    def setting_file_linux(
+        self,
+        fs: FakeFilesystem,
+    ) -> FakeFilesystem:
+        """Create a settings file."""
+        fs.os = OSType.LINUX
+        config_dir = Path.home() / self.CONFIG_FOLDER
+        fs.create_dir(config_dir)
+        fs.create_file(
+            str(config_dir / self.CONGIG_FILE),
+            contents=self.FAKE_TOML,
+        )
+        return fs
+
     def test_settings(self, setting_file: FakeFilesystem) -> None:
         """Test the settings module creates properly."""
         settings = get_settings()
@@ -126,10 +141,64 @@ github_token = "test_token"
         )
 
     # ---------------------------- unfinished test --------------------------- #
-    def test_edit_config_linux(
-        self, mocker: MockerFixture, setting_file: FakeFilesystem
+    def test_edit_config_linux_first_match(
+        self, mocker: MockerFixture, setting_file_linux: FakeFilesystem
     ) -> None:
         """Test the edit config function on linux."""
+        assert setting_file_linux.is_linux
+        mocker.patch("platform.system", return_value="Linux")
+        mock_call = mocker.patch("subprocess.call")
+        settings = Settings("pymaker")
+        settings.edit_config()
+
+        mock_call.assert_called_once_with(
+            ["xdg-open", str(Path.home() / ".pymaker/config.toml")]
+        )
+
+    def test_edit_config_linux_third_match(
+        self, mocker: MockerFixture, setting_file_linux: FakeFilesystem
+    ) -> None:
+        """Test the edit config function on linux."""
+        call_count = [0]
+
+        def side_effect(_) -> int:
+            call_count[0] += 1
+            if call_count[0] <= 2:  # noqa: PLR2004
+                raise FileNotFoundError
+            return 0
+
+        assert setting_file_linux.is_linux
+        mocker.patch("platform.system", return_value="Linux")
+        mock_call = mocker.patch("subprocess.call", side_effect=side_effect)
+        settings = Settings("pymaker")
+        settings.edit_config()
+
+        assert mock_call.call_count == 3  # noqa: PLR2004
+
+    def test_edit_config_linux_no_editor(
+        self, mocker: MockerFixture, setting_file_linux: FakeFilesystem, capsys
+    ) -> None:
+        """Test the edit config function on linux when editor not found."""
+        assert setting_file_linux.is_linux
+        mocker.patch("platform.system", return_value="Linux")
+        mock_call = mocker.patch(
+            "subprocess.call", side_effect=FileNotFoundError
+        )
+        settings = Settings("pymaker")
+        settings.edit_config()
+
+        output = capsys.readouterr().out
+
+        call_args_expected = ["xdg-open", "sensible-editor", "nano", "vi"]
+        call_args_processed = [
+            call.args[0][0] for call in mock_call.call_args_list
+        ]
+
+        assert call_args_processed == call_args_expected
+        assert mock_call.call_count == 4  # noqa: PLR2004
+        assert (
+            "No editor found. Please edit the settings file manually" in output
+        )
 
     # -------------------------- end unfinished test ------------------------- #
 
