@@ -161,6 +161,7 @@ convention = "google"
 "tests/**/*.py" = [
   "S101",   # we can (and MUST!) use 'assert' in test files.
   "ANN001", # annotations for fixtures are sometimes a pain for test files
+  "ARG002", # often fixtures are not used in test files but need to be there
 ]
 "py_maker/main.py" = ["UP007", "PLR0913"] # These cause issues in Typer Apps
 "py_maker/commands/*.py" = ["UP007", "PLR0913"] # Same as above
