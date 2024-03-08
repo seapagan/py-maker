@@ -25,9 +25,13 @@ $ poetry add git+https://github.com/seapagan/github-changelog-md
 Everything in this section will be included in the next official release.
 
 
+**Testing**
+
+- Add unit tests for the `Settings` module ([#310](https://github.com/seapagan/py-maker/pull/310)) by [seapagan](https://github.com/seapagan)
+
 **Refactoring**
 
-- Convert settings fie to use new `get_settings()` method ([#309](https://github.com/seapagan/py-maker/pull/309)) by [seapagan](https://github.com/seapagan)
+- Convert settings module to use new `get_settings()` method ([#309](https://github.com/seapagan/py-maker/pull/309)) by [seapagan](https://github.com/seapagan)
 
 **Documentation**
 
