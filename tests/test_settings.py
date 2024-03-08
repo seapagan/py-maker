@@ -122,7 +122,7 @@ github_token = "test_token"
         settings.edit_config()
 
         mock_subprocess.assert_called_once_with(
-            ["open", "/home/seapagan/.pymaker/config.toml"]
+            ["open", str(Path.home() / ".pymaker/config.toml")]
         )
 
     def test_edit_config_linux(
