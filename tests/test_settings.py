@@ -125,7 +125,92 @@ github_token = "test_token"
             ["open", str(Path.home() / ".pymaker/config.toml")]
         )
 
+    # ---------------------------- unfinished test --------------------------- #
     def test_edit_config_linux(
         self, mocker: MockerFixture, setting_file: FakeFilesystem
     ) -> None:
         """Test the edit config function on linux."""
+
+    # -------------------------- end unfinished test ------------------------- #
+
+    def test_change_token(
+        self, setting_file: FakeFilesystem, mocker: MockerFixture
+    ) -> None:
+        """Test the change token function."""
+        mock_ask = mocker.patch(
+            "py_maker.config.settings.Prompt.ask", return_value="new_token"
+        )
+        settings = Settings("pymaker")
+        settings.change_token()
+        assert settings.github_token == "new_token"  # noqa: S105
+        mock_ask.assert_called_once_with("Github Token?", default="test_token")
+
+    def test_change_settings(
+        self, setting_file: FakeFilesystem, mocker: MockerFixture, capsys
+    ) -> None:
+        """Test the change settings function."""
+        mock_table = mocker.patch("py_maker.config.settings.show_table")
+        mock_get_user_settings = mocker.patch(
+            "py_maker.config.settings.Settings.get_user_settings"
+        )
+        settings = Settings("pymaker")
+        settings_list = settings.list_settings()
+
+        settings.change_settings()
+        output = capsys.readouterr().out
+
+        mock_table.assert_called_once_with(settings_list)
+        mock_get_user_settings.assert_called_once()
+        assert "Enter new settings:" in output
+
+    def test_get_user_settings_file_exists(
+        self, setting_file: FakeFilesystem, mocker: MockerFixture
+    ) -> None:
+        """Test the get user settings function."""
+        mocker.patch(
+            "py_maker.config.settings.get_author_and_email_from_git",
+            return_value=("Test User", "testuser@testing.com"),
+        )
+        mocker.patch(
+            "py_maker.config.settings.Prompt.ask",
+            side_effect=["New User", "new_user@testuser.com", "newuser", "MIT"],
+        )
+
+        settings = Settings("pymaker")
+        settings.get_user_settings(missing=False)
+
+        assert settings.author_name == "New User"
+        assert settings.author_email == "new_user@testuser.com"
+        assert settings.github_username == "newuser"
+        assert settings.default_license == "MIT"
+
+    def test_get_user_settings_no_file_exists(
+        self, fs: FakeFilesystem, mocker: MockerFixture, capsys
+    ) -> None:
+        """Test the get user settings function."""
+        mocker.patch(
+            "py_maker.config.settings.get_author_and_email_from_git",
+            return_value=("Test User", "testuser@testing.com"),
+        )
+        mocker.patch(
+            "py_maker.config.settings.Prompt.ask",
+            side_effect=["New User", "new_user@testuser.com", "newuser", "MIT"],
+        )
+        # ensure the post_create_hook does nothing
+        mocker.patch(
+            "py_maker.config.settings.Settings.__post_create_hook__",
+            return_value=None,
+        )
+        fs.create_dir(Path.home() / ".pymaker")
+
+        settings = Settings("pymaker")
+        settings.get_user_settings(missing=True)
+
+        output = capsys.readouterr().out
+
+        assert "Settings file is missing, creating now." in output
+
+        assert settings.author_name == "New User"
+        assert settings.author_email == "new_user@testuser.com"
+        assert settings.github_username == "newuser"
+        assert settings.default_license == "MIT"
