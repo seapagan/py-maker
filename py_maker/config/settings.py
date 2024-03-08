@@ -117,7 +117,7 @@ class Settings(TOMLSettings):
             subprocess.call(
                 [  # noqa: S603, S607
                     "open",
-                    self.settings_folder / self.settings_file_name,
+                    str(self.settings_folder / self.settings_file_name),
                 ]
             )
         else:  # Linux or compatible
@@ -134,7 +134,7 @@ class Settings(TOMLSettings):
                     subprocess.call(
                         [  # noqa: S603
                             editor,
-                            self.settings_folder / self.settings_file_name,
+                            str(self.settings_folder / self.settings_file_name),
                         ]
                     )
                     break
