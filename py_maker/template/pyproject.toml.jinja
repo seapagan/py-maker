@@ -8,9 +8,12 @@ license = "{{ license }}"
 
 {% if not standalone %}
 packages = [{ include = "{{ package_name }}" }]
-
+{% if homepage %}
 homepage = "{{ homepage }}"
+{%endif %}
+{% if repository %}
 repository = "{{ repository }}"
+{%endif %}
 
 [tool.poetry.urls]
 # customize the below URLs to point to your own GitHub repo. These will be

@@ -312,7 +312,8 @@ See the [bold][green]README.md[/green][/bold] file for more information.
         # for PypI uploads.
         if not self.choices.standalone:
             self.choices.package_name = self.get_sanitized_package_name(pk_name)
-            self.choices.homepage = Prompt.ask("Homepage URL?", default="")
+
+        self.choices.homepage = Prompt.ask("Homepage URL?", default=None)
 
         # offer to create a repo on GitHub, for both type of projects.
         github_username = (
