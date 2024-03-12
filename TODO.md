@@ -45,6 +45,8 @@ importance.
 
 - the `release_text` option does not work if the `--next-release` is specified
   and corresponds to that `release_text` version.
+- no validation on the URI input fields (hompage, repository) which could cause
+  Pooetry to fail to install the package.
 
 ## Back Burner
 
