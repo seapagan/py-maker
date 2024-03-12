@@ -6,28 +6,19 @@ project since the first release.
 This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 
-## [Unreleased](https://github.com/seapagan/py-maker/tree/HEAD)
+## [0.10.1](https://github.com/seapagan/py-maker/releases/tag/0.10.1) (March 12, 2024)
 
+**Closed Issues**
 
-These are the changes that have been merged to the repository since the last
-release. If you want to try out these changes, you can install the latest
-version from the main branch by running:
-
-```console
-$ pip install git+https://github.com/seapagan/github-changelog-md
-```
-or, if using poetry:
-
-```console
-$ poetry add git+https://github.com/seapagan/github-changelog-md
-```
-
-Everything in this section will be included in the next official release.
-
+- Empty string for 'homepage' in `pyproject.html` crashes Poetry ([#317](https://github.com/seapagan/py-maker/issues/317)) by [seapagan](https://github.com/seapagan)
 
 **Testing**
 
 - Add unit tests for the `Settings` module ([#310](https://github.com/seapagan/py-maker/pull/310)) by [seapagan](https://github.com/seapagan)
+
+**Bug Fixes**
+
+- Fix bug where bad homepage field crashes `poetry install` ([#318](https://github.com/seapagan/py-maker/pull/318)) by [seapagan](https://github.com/seapagan)
 
 **Refactoring**
 
@@ -39,10 +30,16 @@ Everything in this section will be included in the next official release.
 
 **Dependency Updates**
 
+- Build(deps): bump simple-toml-settings from 0.5.0 to 0.6.0 ([#316](https://github.com/seapagan/py-maker/pull/316)) by [dependabot[bot]](https://github.com/apps/dependabot)
+- Build(deps-dev): bump mypy from 1.8.0 to 1.9.0 ([#315](https://github.com/seapagan/py-maker/pull/315)) by [dependabot[bot]](https://github.com/apps/dependabot)
+- Build(deps-dev): bump types-requests from 2.31.0.20240218 to 2.31.0.20240311 ([#314](https://github.com/seapagan/py-maker/pull/314)) by [dependabot[bot]](https://github.com/apps/dependabot)
+- Build(deps-dev): bump pytest from 8.1.0 to 8.1.1 ([#313](https://github.com/seapagan/py-maker/pull/313)) by [dependabot[bot]](https://github.com/apps/dependabot)
+- Build(deps-dev): bump faker from 24.0.0 to 24.1.0 ([#312](https://github.com/seapagan/py-maker/pull/312)) by [dependabot[bot]](https://github.com/apps/dependabot)
+- Build(deps-dev): bump ruff from 0.3.1 to 0.3.2 ([#311](https://github.com/seapagan/py-maker/pull/311)) by [dependabot[bot]](https://github.com/apps/dependabot)
 - Build(deps): bump simple-toml-settings from 0.4.0 to 0.5.0 ([#307](https://github.com/seapagan/py-maker/pull/307)) by [dependabot[bot]](https://github.com/apps/dependabot)
 - Build(deps-dev): bump ruff from 0.3.0 to 0.3.1 ([#306](https://github.com/seapagan/py-maker/pull/306)) by [dependabot[bot]](https://github.com/apps/dependabot)
 
-[`Full Changelog`](https://github.com/seapagan/py-maker/compare/v0.10.0...HEAD) | [`Diff`](https://github.com/seapagan/py-maker/compare/v0.10.0...HEAD.diff) | [`Patch`](https://github.com/seapagan/py-maker/compare/v0.10.0...HEAD.patch)
+[`Full Changelog`](https://github.com/seapagan/py-maker/compare/v0.10.0...0.10.1) | [`Diff`](https://github.com/seapagan/py-maker/compare/v0.10.0...0.10.1.diff) | [`Patch`](https://github.com/seapagan/py-maker/compare/v0.10.0...0.10.1.patch)
 
 ## [v0.10.0](https://github.com/seapagan/py-maker/releases/tag/v0.10.0) (March 06, 2024)
 
