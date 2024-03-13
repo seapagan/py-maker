@@ -31,8 +31,8 @@ Now, you can start to code the meat of your application.
 ### Task Runner
 
 The task-runner [Poe the Poet](https://github.com/nat-n/poethepoet) is installed
-as a development dependency which allows us to run simple tasks (similar to npm
-`scripts`).
+as a development dependency which allows us to run simple tasks (similar to
+`npm` scripts).
 
 These are run (from within the virtual environment) using the `poe` command and
 then the script name, for example:
@@ -41,29 +41,19 @@ then the script name, for example:
 $ poe pre
 ```
 
-You can define your own, but there are 7 specific ones provided with the script.
-
-- `pre` : Run `pre-commit run --all-files`
-- `pylint`: Run Pylint on all Python files in the project.
-- `mypy` = Run MyPy type-checker on all Python files in the project.
-- `flake8` = Run Flake8 linter on all Python files in the project.
-- `black` = Run Black code formatter on all Python files in the project.
-- `try` = Run Tryceratops linter on all Python files in the project.
-
-- `lint` = Runs pylint, mypy, flake8 and black in sequence
+See the [Task Runner](https://py-maker.seapagan.net/tasks/) section in the
+documentation for more details and a list of available tasks.
 
 These are defined in the `pyproject.toml` file in the `[tool.poe.tasks]`
 section. Take a look at this file if you want to add or remove tasks.
 
 ### Linting
 
-This project includes [flake8](https://flake8.pycqa.org/en/latest/) (with
-several plugins) for linting and
-[Black](https://black.readthedocs.io/en/stable/) for formatting.
-[Mypy](http://mypy-lang.org/) is installed for type checking.
-[isort](https://pycqa.github.io/isort/),[Pylint](https://pylint.org/) and
-[tyrceratops](https://github.com/guilatrova/tryceratops) are also installed as
-standard.
+The generated project includes
+[Ruff](https://docs.astral.sh/ruff/){:target="_blank"} for linting and code
+style formatting. [Mypy](http://mypy-lang.org/){:target="_blank"} is installed
+for type checking. These are set quite strictly by default, but you can edit the
+tools configuration in the `pyproject.toml` file.
 
 ### Pre-commit
 
