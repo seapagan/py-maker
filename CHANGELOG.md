@@ -6,7 +6,29 @@ project since the first release.
 This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 
-## [0.10.1](https://github.com/seapagan/py-maker/releases/tag/0.10.1) (March 12, 2024)
+## [v0.10.2](https://github.com/seapagan/py-maker/releases/tag/v0.10.2) (March 13, 2024)
+
+**Closed Issues**
+
+- License name is missing in the generated README ([#321](https://github.com/seapagan/py-maker/issues/321)) by [seapagan](https://github.com/seapagan)
+- The templates for some generated files need updating ([#320](https://github.com/seapagan/py-maker/issues/320)) by [seapagan](https://github.com/seapagan)
+
+**New Features**
+
+- Add pytest watcher task ([#326](https://github.com/seapagan/py-maker/pull/326)) by [seapagan](https://github.com/seapagan)
+
+**Bug Fixes**
+
+- Fix some bugs in the template files and update obsolete information ([#325](https://github.com/seapagan/py-maker/pull/325)) by [seapagan](https://github.com/seapagan)
+- Fix missing license name in generated README ([#324](https://github.com/seapagan/py-maker/pull/324)) by [seapagan](https://github.com/seapagan)
+
+**Dependency Updates**
+
+- Build(deps): bump pydantic from 2.6.3 to 2.6.4 ([#323](https://github.com/seapagan/py-maker/pull/323)) by [dependabot[bot]](https://github.com/apps/dependabot)
+
+[`Full Changelog`](https://github.com/seapagan/py-maker/compare/v0.10.1...v0.10.2) | [`Diff`](https://github.com/seapagan/py-maker/compare/v0.10.1...v0.10.2.diff) | [`Patch`](https://github.com/seapagan/py-maker/compare/v0.10.1...v0.10.2.patch)
+
+## [v0.10.1](https://github.com/seapagan/py-maker/releases/tag/v0.10.1) (March 12, 2024)
 
 **Closed Issues**
 
@@ -39,7 +61,7 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 - Build(deps): bump simple-toml-settings from 0.4.0 to 0.5.0 ([#307](https://github.com/seapagan/py-maker/pull/307)) by [dependabot[bot]](https://github.com/apps/dependabot)
 - Build(deps-dev): bump ruff from 0.3.0 to 0.3.1 ([#306](https://github.com/seapagan/py-maker/pull/306)) by [dependabot[bot]](https://github.com/apps/dependabot)
 
-[`Full Changelog`](https://github.com/seapagan/py-maker/compare/v0.10.0...0.10.1) | [`Diff`](https://github.com/seapagan/py-maker/compare/v0.10.0...0.10.1.diff) | [`Patch`](https://github.com/seapagan/py-maker/compare/v0.10.0...0.10.1.patch)
+[`Full Changelog`](https://github.com/seapagan/py-maker/compare/v0.10.0...v0.10.1) | [`Diff`](https://github.com/seapagan/py-maker/compare/v0.10.0...v0.10.1.diff) | [`Patch`](https://github.com/seapagan/py-maker/compare/v0.10.0...v0.10.1.patch)
 
 ## [v0.10.0](https://github.com/seapagan/py-maker/releases/tag/v0.10.0) (March 06, 2024)
 
