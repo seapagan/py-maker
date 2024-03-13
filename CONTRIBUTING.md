@@ -136,6 +136,12 @@ There is a task set up to run tests:
 $ poe test
 ```
 
+And run a watcher to automatically re-run the tests when files change:
+
+```console
+$ poe test:watch
+```
+
 You can also run the tests manually using the following command:
 
 ```console
