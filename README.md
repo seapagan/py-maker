@@ -74,9 +74,10 @@ When it asks "Package Name?" you can choose two variants :
    <http://pypi.org>, enter a package name here. Note that underscores ("_")
    must be used as opposed to dashes ("-") to comply with Python package naming
    rules.
-2. Enter '-' to instruct the tool that you are not creating any package, just a
-   standalone app, and then the `main.py` will just be placed in the project
-   root.
+2. Enter '-' (a dash) to instruct the tool that you are not creating any
+   package, just a standalone app, and then the `main.py` will just be placed in
+   the project root. The `pyproject.toml` file will not include any package
+   information and Poetry will never try to install or publish the package.
 
 You should now change into the new directory, install dependencies and activate
 the virtual environment:
@@ -108,8 +109,8 @@ Check the documentation at <https://py-maker.seapagan.net/> for more details.
 ### Task Runner
 
 The task-runner [Poe the Poet](https://github.com/nat-n/poethepoet) is installed
-as a development dependency which allows us to run simple tasks (similar to npm
-`scripts`).
+as a development dependency which allows us to run simple tasks (similar to
+`npm` scripts).
 
 These are run (from within the virtual environment) using the `poe` command and
 then the script name, for example:
@@ -118,15 +119,8 @@ then the script name, for example:
 $ poe pre
 ```
 
-You can define your own, but there are 6 specific ones provided with the script.
-
-- `pre` : Run `pre-commit run --all-files`
-- `ruff`: Run Ruff linter on all Python files in the project.
-- `format`: Run Ruff formatter on all Python files in the project.
-- `mypy`: Run MyPy type-checker on all Python files in the project.
-- `markdown`: Run pymarkdown on all markdown files in the project.
-
-- `lint`: Runs ruff, format, mypy, and markdown in sequence
+See the [Task Runner](https://py-maker.seapagan.net/tasks/) section in the
+documentation for more details and a list of available tasks.
 
 These are defined in the `pyproject.toml` file in the `[tool.poe.tasks]`
 section. Take a look at this file if you want to add or remove tasks.
