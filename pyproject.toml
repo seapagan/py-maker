@@ -57,7 +57,7 @@ build-backend = "poetry.core.masonry.api"
 mypy = "^1.8.0"
 pre-commit = "^3.6.2"
 pymarkdownlnt = "^0.9.12"
-ruff = "^0.3.0"
+ruff = ">=0.3,<0.5"
 
 # testing
 pytest = "^8.1.0"
