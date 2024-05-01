@@ -64,5 +64,6 @@
     "**/.mypy_cache/**": true,
     "**/.pytest_cache/**": true,
     "**/.ruff_cache/**": true
-  }
+  },
+  "markdownlint.ignore": ["CHANGELOG.md"]
 }
