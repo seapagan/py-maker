@@ -36,17 +36,15 @@ importance.
   and ask for an alternative if it exists.
 - add option (probably using the eventual plugin functionality) to create a
   skeleton `typer` CLI app.
-- if it creates a new remote GitHub repo, print the GitHub URL to the console.
-- when creating a github repo, set the `About` section to the `description`
-  field in the `pyproject.toml` file. Also can set the homepage if specified.
-  Options to add tags?
+- if it creates a new remote GitHub repo, print the GitHub URL to the console,
+  offer to open it in the browser.
+- when creating a github repo, set the homepage if specified. Options to add
+  tags? Offer option to create a private repo?
 
 ## Bugs
 
-- the `release_text` option does not work if the `--next-release` is specified
-  and corresponds to that `release_text` version.
 - no validation on the URI input fields (hompage, repository) which could cause
-  Pooetry to fail to install the package.
+  Poetry to fail to install the package.
 
 ## Back Burner
 
