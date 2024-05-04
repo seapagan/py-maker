@@ -47,6 +47,8 @@ importance.
   Poetry to fail to install the package.
 - If the `.pre-commit.yaml` is updated during the install phase, the modified file
   should be added to the Git repo as a new commit.
+- The Pytest environment is set up to use `greenlet` but that is not installed as
+  a dev dependency by default, hence the tests crash.
   
 ## Back Burner
 
