@@ -45,7 +45,9 @@ importance.
 
 - no validation on the URI input fields (hompage, repository) which could cause
   Poetry to fail to install the package.
-
+- If the `.pre-commit.yaml` is updated during the install phase, the modified file
+  should be added to the Git repo as a new commit.
+  
 ## Back Burner
 
 These are ideas that I may or may not implement. They are here for reference.
