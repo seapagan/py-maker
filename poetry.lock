@@ -1895,18 +1895,18 @@ files = [
 
 [[package]]
 name = "simple-toml-settings"
-version = "0.6.0"
+version = "0.6.1"
 description = "A Python library to save your settings in a TOML file."
 optional = false
-python-versions = ">=3.9,<4.0"
+python-versions = "<4.0,>=3.9"
 files = [
-    {file = "simple_toml_settings-0.6.0-py3-none-any.whl", hash = "sha256:f08d1f1e11ec2daa1a162e8162e09b61675dc99e6515c986636042361e037846"},
-    {file = "simple_toml_settings-0.6.0.tar.gz", hash = "sha256:45aebfefa9e3fc39680e438e7dcffd2227ccc942cff08f20d93d127995d688ff"},
+    {file = "simple_toml_settings-0.6.1-py3-none-any.whl", hash = "sha256:7e9dcdfdfa3a62d968a455daced1b79f3c02db02c122898805ccc608b846d9da"},
+    {file = "simple_toml_settings-0.6.1.tar.gz", hash = "sha256:49416d2ec7dfbf1afaff58f875c23005ff8f2d3d2fc7473e9b8cfd818b01baad"},
 ]
 
 [package.dependencies]
-github-changelog-md = "0.9.2"
-rtoml = ">=0.9.0,<0.10.0"
+github-changelog-md = ">=0.9.0"
+rtoml = ">=0.9.0,<1.0.0"
 
 [[package]]
 name = "six"
