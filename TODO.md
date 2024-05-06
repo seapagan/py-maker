@@ -49,7 +49,7 @@ importance.
   should be added to the Git repo as a new commit.
 - The Pytest environment is set up to use `greenlet` but that is not installed as
   a dev dependency by default, hence the tests crash.
-  
+
 ## Back Burner
 
 These are ideas that I may or may not implement. They are here for reference.
