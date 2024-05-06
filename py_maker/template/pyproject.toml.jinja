@@ -87,13 +87,13 @@ pygments = "^2.17.2"
 pre.cmd = "pre-commit run --all-files"
 pre.help = "Run pre-commit checks"
 {% if options.lint %}
-mypy.cmd = "mypy py_maker/**/*.py tests/**/*.py --strict"
+mypy.cmd = "mypy {{ package_name }}/**/*.py tests/**/*.py --strict"
 mypy.help = "Run mypy checks"
 format.cmd = "ruff format ."
 format.help = "Format code with Ruff"
 ruff.cmd = "ruff check ."
 ruff.help = "Run Ruff checks"
-markdown.cmd = "pymarkdown scan  -r py_maker/**/[!CHANGELOG,!.github/]*.md docs/**/*.md"
+markdown.cmd = "pymarkdown scan  -r {{ package_name }}/**/[!CHANGELOG,!.github/]*.md docs/**/*.md"
 markdown.help = "Run markdown checks"
 
 # run all linting checks in sequence. we want to run them all, even if one fails
@@ -145,7 +145,7 @@ lint.extend-ignore = [
   "ISC001",
 ] # these are ignored for ruff formatting
 
-src = ["py_maker"]
+src = ["{{ package_name }}"]
 target-version = "py39" # minimum python version supported
 
 [tool.ruff.format]
