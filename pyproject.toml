@@ -60,6 +60,10 @@ pymarkdownlnt = "^0.9.12"
 ruff = ">=0.3,<0.5"
 
 # testing
+faker = ">=23.3.0"
+greenlet = "^3.0.3"
+mock = "^5.1.0"
+pyfakefs = "^5.3.5"
 pytest = "^8.1.0"
 pytest-cov = ">=4.1,<6.0"
 pytest-xdist = "^3.5.0"
@@ -68,9 +72,6 @@ pytest-randomly = "^3.15.0"
 pytest-reverse = "^1.7.0"
 pytest-mock = "^3.12.0"
 pytest-watcher = "^0.4.1"
-mock = "^5.1.0"
-faker = ">=23.3.0"
-pyfakefs = "^5.3.5"
 
 # documentation
 github-changelog-md = "^0.9.1"
