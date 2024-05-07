@@ -133,6 +133,7 @@ changelog.help = "Generate a CHANGELOG.md file"
 [tool.pymarkdown]
 plugins.md014.enabled = false
 plugins.md046.enabled = false
+extensions.front-matter.enabled = true
 
 [tool.ruff]
 line-length = 80
