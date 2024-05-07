@@ -433,6 +433,15 @@ See the [bold][green]README.md[/green][/bold] file for more information.
                 ],
                 check=True,
             )
+
+            # check if we have modified the .pre-commit-config.yaml file
+            # and if so, create a new Git commit (if using git).
+            repo = Repo(self.choices.project_dir)
+            if repo.is_dirty():
+                repo.index.add(
+                    [str(self.choices.project_dir / ".pre-commit-config.yaml")]
+                )
+                repo.index.commit("Update pre-commit hooks")
         else:
             print(
                 """\n  [red]Warning: pre-commit hooks not installed or updated.
