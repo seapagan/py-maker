@@ -37,7 +37,7 @@ pymaker = "py_maker.main:app"
 
 [tool.poetry.dependencies]
 python = ">=3.9,<4.0"
-typer = { extras = ["all"], version = "^0.9.0" }
+typer = { extras = ["all"], version = ">=0.9,<0.13" }
 jinja2 = "^3.1.3"
 gitpython = "^3.1.42"
 pydantic = "^2.6.3"
