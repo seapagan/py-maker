@@ -12,13 +12,13 @@ repos:
       - id: end-of-file-fixer
 
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.4.2
+    rev: v0.4.3
     hooks:
       - id: ruff
       - id: ruff-format
 
   - repo: https://github.com/jackdewinter/pymarkdown
-    rev: v0.9.18
+    rev: v0.9.19
     hooks:
       - id: pymarkdown
         exclude: .github/|CHANGELOG
