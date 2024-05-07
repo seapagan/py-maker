@@ -5,9 +5,59 @@ project since the first release.
 
 This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+
+## [Unreleased](https://github.com/seapagan/py-maker/tree/HEAD)
+
+
+These are the changes that have been merged to the repository since the last
+release. If you want to try out these changes, you can install the latest
+version from the main branch by running:
+
+```console
+$ pip install git+https://github.com/seapagan/github-changelog-md
+```
+or, if using poetry:
+
+```console
+$ poetry add git+https://github.com/seapagan/github-changelog-md
+```
+
+Everything in this section will be included in the next official release.
+
+
+**Closed Issues**
+
+- Several instances in the generated `pyproject.toml` still point to the `py_maker` folder. ([#387](https://github.com/seapagan/py-maker/issues/387)) by [seapagan](https://github.com/seapagan)
+- Initial update to `.pre-commit.yaml` should be added to the git repo if applicable ([#386](https://github.com/seapagan/py-maker/issues/386)) by [seapagan](https://github.com/seapagan)
+- Tests crash on a newly created project ([#385](https://github.com/seapagan/py-maker/issues/385)) by [seapagan](https://github.com/seapagan)
+
+**New Features**
+
+- Ensure a second commit is created if the pre-commit is updated ([#398](https://github.com/seapagan/py-maker/pull/398)) by [seapagan](https://github.com/seapagan)
+
+**Bug Fixes**
+
+- Fix some 'py_maker' folder references ending up in the generated projects ([#396](https://github.com/seapagan/py-maker/pull/396)) by [seapagan](https://github.com/seapagan)
+- Fix Tests crash on a newly created project ([#395](https://github.com/seapagan/py-maker/pull/395)) by [seapagan](https://github.com/seapagan)
+
+**Dependency Updates**
+
+- Update pre-commit to latest tools ([#399](https://github.com/seapagan/py-maker/pull/399)) by [seapagan](https://github.com/seapagan)
+- Build(deps-dev): bump ruff from 0.4.2 to 0.4.3 ([#394](https://github.com/seapagan/py-maker/pull/394)) by [dependabot[bot]](https://github.com/apps/dependabot)
+- Build(deps): bump simple-toml-settings from 0.6.0 to 0.6.1 ([#393](https://github.com/seapagan/py-maker/pull/393)) by [dependabot[bot]](https://github.com/apps/dependabot)
+- Build(deps-dev): bump faker from 25.0.0 to 25.0.1 ([#392](https://github.com/seapagan/py-maker/pull/392)) by [dependabot[bot]](https://github.com/apps/dependabot)
+- Build(deps-dev): bump pygments from 2.17.2 to 2.18.0 ([#391](https://github.com/seapagan/py-maker/pull/391)) by [dependabot[bot]](https://github.com/apps/dependabot)
+- Build(deps-dev): bump mkdocstrings from 0.25.0 to 0.25.1 ([#390](https://github.com/seapagan/py-maker/pull/390)) by [dependabot[bot]](https://github.com/apps/dependabot)
+- Build(deps-dev): bump mkdocs-material from 9.5.20 to 9.5.21 ([#389](https://github.com/seapagan/py-maker/pull/389)) by [dependabot[bot]](https://github.com/apps/dependabot)
+- Build(deps): bump jinja2 from 3.1.3 to 3.1.4 ([#388](https://github.com/seapagan/py-maker/pull/388)) by [dependabot[bot]](https://github.com/apps/dependabot)
+
+[`Full Changelog`](https://github.com/seapagan/py-maker/compare/v0.10.3...HEAD) | [`Diff`](https://github.com/seapagan/py-maker/compare/v0.10.3...HEAD.diff) | [`Patch`](https://github.com/seapagan/py-maker/compare/v0.10.3...HEAD.patch)
+
 ## [v0.10.3](https://github.com/seapagan/py-maker/releases/tag/v0.10.3) (May 01, 2024)
 
+
 This is a security release to fix several vulnerabilities in dependency packages.
+
 
 **Dependency Updates**
 
@@ -145,8 +195,10 @@ This is a security release to fix several vulnerabilities in dependency packages
 
 ## [v0.9.4](https://github.com/seapagan/py-maker/releases/tag/v0.9.4) (December 11, 2023)
 
+
 This is a security release that fixes a vulnerability in the 'cryptography'
 package.
+
 
 **Refactoring**
 
@@ -456,15 +508,13 @@ package.
 ## [v0.4.2](https://github.com/seapagan/py-maker/releases/tag/v0.4.2) (August 10, 2023)
 
 - Added a missing runtime dep (rtoml). It must have been in my venv but not in the `pyproject.toml` 🙄
-
-[`Full Changelog`](https://github.com/seapagan/py-maker/compare/v0.4.1...v0.4.2) | [`Diff`](https://github.com/seapagan/py-maker/compare/v0.4.1...v0.4.2.diff) | [`Patch`](https://github.com/seapagan/py-maker/compare/v0.4.1...v0.4.2.patch)
+[`Full Changelog`](https://github.com/seapagan/py-maker/compare/v0.4.1...v0.4.2) | [`Diff`](https://github.com/seapagan/py-maker/compare/v0.4.1...v0.4.2.diff) | [`Patch`](https://github.com/seapagan/py-maker/compare/v0.4.1...v0.4.2.patch)
 
 ## [v0.4.1](https://github.com/seapagan/py-maker/releases/tag/v0.4.1) (August 10, 2023)
 
 - Fixed bug where the first-time config file gets the wrong default template path.
 - Update the internal template `pyproject.toml` and `.pre-commit-config.yaml` to use latest dependencies
-
-[`Full Changelog`](https://github.com/seapagan/py-maker/compare/v0.4.0...v0.4.1) | [`Diff`](https://github.com/seapagan/py-maker/compare/v0.4.0...v0.4.1.diff) | [`Patch`](https://github.com/seapagan/py-maker/compare/v0.4.0...v0.4.1.patch)
+[`Full Changelog`](https://github.com/seapagan/py-maker/compare/v0.4.0...v0.4.1) | [`Diff`](https://github.com/seapagan/py-maker/compare/v0.4.0...v0.4.1.diff) | [`Patch`](https://github.com/seapagan/py-maker/compare/v0.4.0...v0.4.1.patch)
 
 ## [v0.4.0](https://github.com/seapagan/py-maker/releases/tag/v0.4.0) (August 10, 2023)
 
