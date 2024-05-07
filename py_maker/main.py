@@ -27,7 +27,7 @@ def main(
         print(
             "\n[green]PyMaker - Generate a Python project skeleton."
             f"\n[/green]Version: {get_app_version()}; "
-            "\u00a9 Grant Ramsay 2023\n"
+            "\u00a9 Grant Ramsay 2023-2024\n"
         )
         raise typer.Exit
 
