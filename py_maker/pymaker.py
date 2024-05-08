@@ -2,28 +2,24 @@
 
 from __future__ import annotations
 
-import importlib.resources as pkg_resources
 import os
 import re
-import shutil
 import subprocess  # nosec
 import sys
 from pathlib import Path, PurePath
-from typing import TYPE_CHECKING, Union
+from typing import Union
 
 from git.exc import GitError
 from git.repo import Repo
-from jinja2 import Environment, FileSystemLoader
 from rich import print  # pylint: disable=W0622
 
-from py_maker import template
 from py_maker.config import get_settings
 from py_maker.constants import ExitErrors, license_names
+from py_maker.copy import create_folders, generate_template
 from py_maker.github_ctrl import GitHub
 from py_maker.helpers import (
+    create_git_repo,
     exists_on_pypi,
-    get_current_year,
-    get_file_list,
     get_title,
     header,
     sanitize,
@@ -31,9 +27,6 @@ from py_maker.helpers import (
 from py_maker.poetry import poetry_install
 from py_maker.prompt import Confirm, Prompt
 from py_maker.schema import ProjectValues
-
-if TYPE_CHECKING:
-    from importlib.resources.abc import Traversable
 
 
 class PyMaker:
@@ -76,140 +69,6 @@ class PyMaker:
             print(f"{get_title(key).rjust(padding)} : [green]{value}")
 
         return Confirm.ask("\nIs this correct?", default=True)
-
-    # ------------------------------------------------------------------------ #
-    #                   create the project skeleton folders.                   #
-    # ------------------------------------------------------------------------ #
-    def create_folders(self) -> None:
-        """Create the root folder for the project."""
-        try:
-            print("--> Creating project folder ... ", end="")
-            if self.location != ".":
-                self.choices.project_dir.mkdir()
-            print("[green]Done[/green]")
-        except FileExistsError:
-            print(
-                f"\n[red]  -> Error: Directory '{self.choices.project_dir}' "
-                "already exists.\n"
-            )
-            sys.exit(ExitErrors.DIRECTORY_EXISTS)
-        except PermissionError:
-            print(
-                "\n[red]  -> Error: Permission denied creating directory "
-                f"'{self.choices.project_dir}'\n"
-            )
-            sys.exit(ExitErrors.PERMISSION_DENIED)
-
-    # ------------------------------------------------------------------------ #
-    #             Copy the template files to the project directory.            #
-    # ------------------------------------------------------------------------ #
-    def copy_files(
-        self, template_dir: Union[Traversable, Path], file_list: list[Path]
-    ) -> None:
-        """Copy the template files to the project directory.
-
-        Expand the jinja templates before copying.
-        """
-        jinja_env = Environment(
-            loader=FileSystemLoader(str(template_dir)),
-            autoescape=True,
-            trim_blocks=True,
-            lstrip_blocks=True,
-            keep_trailing_newline=True,
-        )
-        for file in file_list:
-            with pkg_resources.as_file(template_dir / file) as src:  # type: ignore
-                if src.is_dir():
-                    Path(self.choices.project_dir / file).mkdir()
-                elif src.suffix == ".jinja":
-                    jinja_template = jinja_env.get_template(str(file))
-                    dst = self.choices.project_dir / Path(file).with_suffix("")
-                    dst.write_text(
-                        jinja_template.render(
-                            self.choices.model_dump(),
-                            slug=self.choices.project_dir.name,
-                            options=self.options,
-                        )
-                    )
-                else:
-                    dst = self.choices.project_dir / file
-                    dst.write_text(src.read_text(encoding="UTF-8"))
-
-    def generate_template(self) -> None:
-        """Copy the template files to the project directory.
-
-        Any file that has the '.jinja' extension will be passed though the
-        template engine before copying. The extension will also be removed.
-
-        ie:
-        'README.md.jinja' is copied as 'README.md' after template substitution.
-        """
-        try:
-            # ---------------- copy the default template files --------------- #
-            template_dir = pkg_resources.files(template)
-            if self.settings.use_default_template:
-                file_list = get_file_list(template_dir)
-                self.copy_files(template_dir, file_list)
-
-            # --------- copy the custom template files if they exist --------- #
-            custom_template_dir = Path(self.settings.template_folder)
-            if custom_template_dir.exists():
-                file_list = get_file_list(custom_template_dir)
-                self.copy_files(custom_template_dir, file_list)
-
-            # ---------------- generate the license file next. ------------- #
-            if self.choices.license_name != "None":
-                license_env = Environment(
-                    loader=FileSystemLoader(str(template_dir / "../licenses")),
-                    autoescape=True,
-                    keep_trailing_newline=True,
-                )
-                license_template = license_env.get_template(
-                    f"{self.choices.license_name}.jinja"
-                )
-                dst = self.choices.project_dir / "LICENSE.txt"
-                dst.write_text(
-                    license_template.render(
-                        author=self.choices.author, year=get_current_year()
-                    )
-                )
-
-            # ---------- rename or delete the 'app' dir if required ---------- #
-            if not self.choices.standalone:
-                Path(self.choices.project_dir / "app").rename(
-                    self.choices.project_dir / self.choices.package_name
-                )
-            else:
-                # move the main.py into the root project folder and delete app
-                Path(self.choices.project_dir / "app" / "main.py").rename(
-                    Path(self.choices.project_dir / "main.py")
-                )
-                shutil.rmtree(self.choices.project_dir / "app")
-
-            # ----------- remove the 'test' folder if not required ----------- #
-            if not self.options["test"]:
-                shutil.rmtree(self.choices.project_dir / "tests")
-        except OSError as exc:
-            print(f"\n[red]  -> {exc}")
-            sys.exit(ExitErrors.OS_ERROR)
-
-    # ------------------------------------------------------------------------ #
-    #                create the git repository for the project.                #
-    # ------------------------------------------------------------------------ #
-    def create_git_repo(self) -> None:
-        """Create a Git repository for the project and add the first commit."""
-        if not self.options["git"]:
-            return
-        try:
-            print("\n--> Creating Git repository ... ", end="")
-            repo = Repo.init(self.choices.project_dir)
-            repo.index.add(repo.untracked_files)
-            repo.index.commit("Initial Commit")
-            print("[green]Done[/green]")
-            self.git_is_run = True
-        except GitError as exc:
-            print("Error: ", exc)
-            sys.exit(ExitErrors.GIT_ERROR)
 
     # ------------------------------------------------------------------------ #
     #                       display post-process messages                      #
@@ -524,11 +383,18 @@ See the [bold][green]README.md[/green][/bold] file for more information.
             self.options["docs"] = False
             self.options["git"] = False
 
-        self.create_folders()
-        self.generate_template()
+        # create the project skeleton folders and copy the template files.
+        create_folders(self.location, self.choices.project_dir)
+        generate_template(
+            self.choices, self.options, self.settings.template_folder
+        )
 
         self.poetry_is_run = poetry_install(self.options, self.choices)
-        self.create_git_repo()
+        self.git_is_run = (
+            create_git_repo(self.choices.project_dir)
+            if self.options["git"]
+            else False
+        )
         self.install_precommit()
 
         self.create_remote_repo()

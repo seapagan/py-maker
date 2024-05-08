@@ -13,6 +13,8 @@ from typing import TYPE_CHECKING, Union
 import requests
 import rtoml
 from git.config import GitConfigParser
+from git.exc import GitError
+from git.repo import Repo
 from rich import print  # pylint: disable=redefined-builtin
 from rich.console import Console
 from rich.table import Table
@@ -40,6 +42,21 @@ def get_author_and_email_from_git() -> tuple[str, str]:
         author_email = ""
 
     return author_name, author_email
+
+
+def create_git_repo(project_dir: Path) -> bool:
+    """Create a Git repository for the project and add the first commit."""
+    try:
+        print("\n--> Creating Git repository ... ", end="")
+        repo = Repo.init(project_dir)
+        repo.index.add(repo.untracked_files)
+        repo.index.commit("Initial Commit")
+        print("[green]Done[/green]")
+    except GitError as exc:
+        print("Error: ", exc)
+        sys.exit(ExitErrors.GIT_ERROR)
+    else:
+        return True
 
 
 def get_file_list(template_dir: Union[Traversable, Path]) -> list[Path]:
