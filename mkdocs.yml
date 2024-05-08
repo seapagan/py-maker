@@ -24,7 +24,7 @@ extra:
     - icon: fontawesome/brands/twitter
       link: https://twitter.com/gnramsay_dev
 
-copyright: © 2023 Grant Ramsay (Seapagan)
+copyright: © 2023-2024 Grant Ramsay (Seapagan)
 
 plugins:
   - search

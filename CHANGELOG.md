@@ -6,6 +6,22 @@ project since the first release.
 This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 
+## [v0.12.0](https://github.com/seapagan/py-maker/releases/tag/v0.12.0) (May 08, 2024)
+
+**New Features**
+
+- Only ask for repo name if we are creating a git repo ([#405](https://github.com/seapagan/py-maker/pull/405)) by [seapagan](https://github.com/seapagan)
+
+**Bug Fixes**
+
+- Validate urls inputed by the user ([#406](https://github.com/seapagan/py-maker/pull/406)) by [seapagan](https://github.com/seapagan)
+
+**Refactoring**
+
+- Refactor the main `Pymaker` class ([#404](https://github.com/seapagan/py-maker/pull/404)) by [seapagan](https://github.com/seapagan)
+
+[`Full Changelog`](https://github.com/seapagan/py-maker/compare/v0.11.0...v0.12.0) | [`Diff`](https://github.com/seapagan/py-maker/compare/v0.11.0...v0.12.0.diff) | [`Patch`](https://github.com/seapagan/py-maker/compare/v0.11.0...v0.12.0.patch)
+
 ## [v0.11.0](https://github.com/seapagan/py-maker/releases/tag/v0.11.0) (May 07, 2024)
 
 **Closed Issues**
