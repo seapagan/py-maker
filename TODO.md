@@ -63,12 +63,7 @@ These are ideas that I may or may not implement. They are here for reference.
 
 ## Refactoring / Code Cleanup
 
-- Refactor the `PyMaker` class as its getting a bit messy. Maybe split it into
-  multiple classes with specific responsibilities.
-- Sort out the nested `if/else` statements in
-  `PyMaker.get_sanitized_package_name`.
-- split the file copy and template handling functionality into it's own module
-  and have the `PyMaker` class use it.
+- None planned at this time.
 
 ## Documentation
 
