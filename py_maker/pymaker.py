@@ -378,10 +378,8 @@ See the [bold][green]README.md[/green][/bold] file for more information.
             self.get_input()
 
         if self.options["bare"]:
-            self.options["test"] = False
-            self.options["lint"] = False
-            self.options["docs"] = False
-            self.options["git"] = False
+            for key in ["test", "lint", "docs", "git"]:
+                self.options[key] = False
 
         # create the project skeleton folders and copy the template files.
         generator = ProjectGenerator(
