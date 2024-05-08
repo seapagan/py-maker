@@ -12,6 +12,7 @@ from typing import Union
 from git.exc import GitError
 from git.repo import Repo
 from rich import print  # pylint: disable=W0622
+from validators import url
 
 from py_maker.config import get_settings
 from py_maker.constants import ExitErrors, license_names
@@ -158,7 +159,12 @@ See the [bold][green]README.md[/green][/bold] file for more information.
         if not self.choices.standalone:
             self.choices.package_name = self.get_sanitized_package_name(pk_name)
 
-        self.choices.homepage = Prompt.ask("Homepage URL?", default=None)
+        while True:
+            homepage_choice = Prompt.ask("Homepage URL?", default=None)
+            if url(homepage_choice) or not homepage_choice:
+                self.choices.homepage = homepage_choice
+                break
+            print("[red]Error: Invalid URL. Please try again.[/red]")
 
         # offer to create a repo on GitHub, for both type of projects.
         github_username = (
@@ -173,13 +179,18 @@ See the [bold][green]README.md[/green][/bold] file for more information.
                 if self.choices.package_name == "-"
                 else self.choices.package_name
             )
-            self.choices.repository = Prompt.ask(
-                "Repository URL?",
-                default=(
-                    f"https://github.com/{github_username}/"
-                    f"{re.sub(r'[_.]+', '-', repo_name.lower())}"
-                ),
-            )
+            while True:
+                repo_choice = Prompt.ask(
+                    "Repository URL?",
+                    default=(
+                        f"https://github.com/{github_username}/"
+                        f"{re.sub(r'[_.]+', '-', repo_name.lower())}"
+                    ),
+                )
+                if url(repo_choice) or not repo_choice:
+                    self.choices.repository = repo_choice
+                    break
+                print("[red]Error: Invalid URL. Please try again.[/red]")
 
         self.choices.description = Prompt.ask(
             "Description of the Application?",
