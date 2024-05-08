@@ -22,6 +22,7 @@ from py_maker.helpers import (
     create_git_repo,
     exists_on_pypi,
     get_title,
+    get_url,
     header,
     sanitize,
 )
@@ -158,7 +159,7 @@ See the [bold][green]README.md[/green][/bold] file for more information.
         if not self.choices.standalone:
             self.choices.package_name = self.get_sanitized_package_name(pk_name)
 
-        self.choices.homepage = Prompt.ask("Homepage URL?", default=None)
+        self.choices.homepage = get_url("Homepage URL?")
 
         # offer to create a repo on GitHub, for both type of projects.
         github_username = (
@@ -173,7 +174,8 @@ See the [bold][green]README.md[/green][/bold] file for more information.
                 if self.choices.package_name == "-"
                 else self.choices.package_name
             )
-            self.choices.repository = Prompt.ask(
+
+            self.choices.repository = get_url(
                 "Repository URL?",
                 default=(
                     f"https://github.com/{github_username}/"

@@ -46,8 +46,7 @@ importance.
 
 ## Bugs
 
-- no validation on the URI input fields (hompage, repository) which could cause
-  Poetry to fail to install the package.
+- None known at this time.
 
 ## Back Burner
 

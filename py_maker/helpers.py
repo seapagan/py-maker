@@ -18,9 +18,10 @@ from git.repo import Repo
 from rich import print  # pylint: disable=redefined-builtin
 from rich.console import Console
 from rich.table import Table
+from validators import url
 
 from py_maker.constants import ExitErrors
-from py_maker.prompt.prompt import Confirm
+from py_maker.prompt.prompt import Confirm, Prompt
 
 if TYPE_CHECKING:  # pragma: no cover
     from importlib.resources.abc import Traversable
@@ -205,3 +206,24 @@ def confirm_values(choices: ProjectValues) -> bool:
         print(f"{get_title(key).rjust(padding)} : [green]{value}")
 
     return Confirm.ask("\nIs this correct?", default=True)
+
+
+def get_url(prompt: str, *, default: str = "", allow_blank: bool = True) -> str:
+    """Get and validate a URL from the user.
+
+    This will not check for existence, merely that the URL is valid. The default
+    value can be set with the 'default' parameter. The user will be prompted to
+    enter a URL until a valid one is provided. The URL must start with either
+    'http://' or 'https://'.
+
+    If 'allow_blank' is True (the default), it will allow an empty string to be
+    returned otherwise a blank string will be rejected.
+    """
+    while True:
+        choice = Prompt.ask(prompt, default=default)
+        if url(choice) or (choice.strip() == "" and allow_blank):
+            return choice.strip()
+        print(
+            "[red]Error: Invalid URL. Please try again, enter a full URL with "
+            "https:// or http://"
+        )
