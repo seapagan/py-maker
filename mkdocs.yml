@@ -17,6 +17,8 @@ theme:
     - toc.follow
 extra:
   social:
+    - icon: fontawesome/brands/python
+      link: https://pypi.org/project/pyproject-maker/
     - icon: fontawesome/brands/github
       link: https://github.com/seapagan/py-maker
     - icon: fontawesome/brands/twitter
