@@ -166,18 +166,20 @@ See the [bold][green]README.md[/green][/bold] file for more information.
             if self.settings.github_username
             else "<your GitHub username>"
         )
-        repo_name = (
-            sanitize(self.choices.project_dir.name)
-            if self.choices.package_name == "-"
-            else self.choices.package_name
-        )
-        self.choices.repository = Prompt.ask(
-            "Repository URL?",
-            default=(
-                f"https://github.com/{github_username}/"
-                f"{re.sub(r'[_.]+', '-', repo_name.lower())}"
-            ),
-        )
+
+        if self.options["git"] and not self.options["bare"]:
+            repo_name = (
+                sanitize(self.choices.project_dir.name)
+                if self.choices.package_name == "-"
+                else self.choices.package_name
+            )
+            self.choices.repository = Prompt.ask(
+                "Repository URL?",
+                default=(
+                    f"https://github.com/{github_username}/"
+                    f"{re.sub(r'[_.]+', '-', repo_name.lower())}"
+                ),
+            )
 
         self.choices.description = Prompt.ask(
             "Description of the Application?",
