@@ -155,6 +155,8 @@ ignore = [
 ] # These rules are too strict even for us 😝
 extend-ignore = ["COM812", "ISC001"] # these are ignored for ruff formatting
 
+[tool.ruff.lint.pylint]
+max-args = 6
 
 [tool.ruff.lint.pep8-naming]
 classmethod-decorators = ["pydantic.validator", "pydantic.root_validator"]

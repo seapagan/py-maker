@@ -64,7 +64,7 @@ def new(
         Optional[bool],
         typer.Option(
             help="Create a remote repository on GitHub for the project "
-            "and push the initial commit.",
+            "and push the initial commit(s).",
             show_default=False,
         ),
     ] = None,
