@@ -324,6 +324,8 @@ See the [bold][green]README.md[/green][/bold] file for more information.
                 "        See https://py-maker.seapagan.net/configuration/"
                 "#add-a-github-personal-access-token"
                 " for more details.\n"
+                "\n  Also, the remote repository will [b]not[/b] be created if "
+                "you chose the '[b]--yes[/b]' option (accept defaults).\n"
             )
 
     # ------------------------------------------------------------------------ #
