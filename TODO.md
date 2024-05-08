@@ -40,15 +40,14 @@ importance.
   offer to open it in the browser.
 - when creating a github repo, set the homepage if specified. Options to add
   tags? Offer option to create a private repo?
+- add ability to add new licences to the `licenses` module. Perhaps similar to
+  the way we modify the templates. This will need a bit of refactoring to the
+  way we handle licences.
 
 ## Bugs
 
 - no validation on the URI input fields (hompage, repository) which could cause
   Poetry to fail to install the package.
-- If the `.pre-commit.yaml` is updated during the install phase, the modified file
-  should be added to the Git repo as a new commit.
-- The Pytest environment is set up to use `greenlet` but that is not installed as
-  a dev dependency by default, hence the tests crash.
 
 ## Back Burner
 
@@ -70,8 +69,6 @@ These are ideas that I may or may not implement. They are here for reference.
   `PyMaker.get_sanitized_package_name`.
 - split the file copy and template handling functionality into it's own module
   and have the `PyMaker` class use it.
-- split the `ExitErrors` class into an 'errors' module, add more error types if
-  needed and use them throughout the code.
 
 ## Documentation
 
