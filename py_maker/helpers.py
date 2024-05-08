@@ -20,9 +20,12 @@ from rich.console import Console
 from rich.table import Table
 
 from py_maker.constants import ExitErrors
+from py_maker.prompt.prompt import Confirm
 
 if TYPE_CHECKING:  # pragma: no cover
     from importlib.resources.abc import Traversable
+
+    from py_maker.schema import ProjectValues
 
 SUCCESS_RESPONSE = 200
 
@@ -187,3 +190,18 @@ def get_app_version() -> str:
 def check_cmd_exists(cmd: str) -> bool:
     """Check if the supplied shell command exists."""
     return shutil.which(cmd) is not None
+
+
+def confirm_values(choices: ProjectValues) -> bool:
+    """Confirm the values entered by the user."""
+    print(
+        "\n[green][bold]Creating a New Python app with the below "
+        "settings :\n"
+    )
+
+    padding: int = max(len(key) for key, _ in choices) + 3
+
+    for key, value in choices:
+        print(f"{get_title(key).rjust(padding)} : [green]{value}")
+
+    return Confirm.ask("\nIs this correct?", default=True)

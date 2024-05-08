@@ -18,6 +18,7 @@ from py_maker.constants import ExitErrors, license_names
 from py_maker.copy import ProjectGenerator
 from py_maker.github_ctrl import GitHub
 from py_maker.helpers import (
+    confirm_values,
     create_git_repo,
     exists_on_pypi,
     get_title,
@@ -55,20 +56,6 @@ class PyMaker:
                 "and is relative to the current directory.\n"
             )
             sys.exit(ExitErrors.LOCATION_ERROR)
-
-    def confirm_values(self) -> bool:
-        """Confirm the values entered by the user."""
-        print(
-            "\n[green][bold]Creating a New Python app with the below "
-            "settings :\n"
-        )
-
-        padding: int = max(len(key) for key, _ in self.choices) + 3
-
-        for key, value in self.choices:
-            print(f"{get_title(key).rjust(padding)} : [green]{value}")
-
-        return Confirm.ask("\nIs this correct?", default=True)
 
     # ------------------------------------------------------------------------ #
     #                       display post-process messages                      #
@@ -210,7 +197,7 @@ See the [bold][green]README.md[/green][/bold] file for more information.
             default=self.settings.default_license,
         )
 
-        if not self.confirm_values():
+        if not confirm_values(self.choices):
             # User chose not to continue
             print("\n[red]Aborting![/red]")
             sys.exit(ExitErrors.USER_ABORT)
