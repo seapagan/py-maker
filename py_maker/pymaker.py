@@ -18,7 +18,7 @@ from rich import print  # pylint: disable=W0622
 
 from py_maker import template
 from py_maker.config import get_settings
-from py_maker.constants import MKDOCS_CONFIG, ExitErrors, license_names
+from py_maker.constants import ExitErrors, license_names
 from py_maker.github_ctrl import GitHub
 from py_maker.helpers import (
     exists_on_pypi,
@@ -28,6 +28,7 @@ from py_maker.helpers import (
     header,
     sanitize,
 )
+from py_maker.poetry import poetry_install
 from py_maker.prompt import Confirm, Prompt
 from py_maker.schema import ProjectValues
 
@@ -358,41 +359,6 @@ See the [bold][green]README.md[/green][/bold] file for more information.
         print()
 
     # ------------------------------------------------------------------------ #
-    #                     run 'poetry install' if required.                    #
-    # ------------------------------------------------------------------------ #
-    def run_poetry(self) -> None:
-        """Run poetry install if required.
-
-        We also create the MkDocs project if enabled.
-        """
-        if self.options["accept_defaults"] or Confirm.ask(
-            "\nShould I Run 'poetry install' now?", default=True
-        ):
-            os.chdir(self.choices.project_dir)
-            subprocess.run(
-                ["poetry", "install"],  # noqa: S603, S607
-                check=True,
-            )
-            self.poetry_is_run = True
-
-            if self.options["docs"]:
-                print("\n--> Creating MkDocs project")
-                subprocess.run(
-                    [  # noqa: S603, S607
-                        "poetry",
-                        "run",
-                        "mkdocs",
-                        "new",
-                        ".",
-                    ],
-                    check=True,
-                )
-                # now copy the custom mkdocs.yml file
-                (self.choices.project_dir / "mkdocs.yml").write_text(
-                    MKDOCS_CONFIG.format(name=self.choices.name)
-                )
-
-    # ------------------------------------------------------------------------ #
     #            optionally install and update the pre-commit hooks            #
     # ------------------------------------------------------------------------ #
     def install_precommit(self) -> None:
@@ -561,7 +527,7 @@ See the [bold][green]README.md[/green][/bold] file for more information.
         self.create_folders()
         self.generate_template()
 
-        self.run_poetry()
+        self.poetry_is_run = poetry_install(self.options, self.choices)
         self.create_git_repo()
         self.install_precommit()
 
