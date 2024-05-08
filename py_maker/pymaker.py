@@ -15,7 +15,7 @@ from rich import print  # pylint: disable=W0622
 
 from py_maker.config import get_settings
 from py_maker.constants import ExitErrors, license_names
-from py_maker.copy import create_folders, generate_template
+from py_maker.copy import ProjectGenerator
 from py_maker.github_ctrl import GitHub
 from py_maker.helpers import (
     create_git_repo,
@@ -384,10 +384,14 @@ See the [bold][green]README.md[/green][/bold] file for more information.
             self.options["git"] = False
 
         # create the project skeleton folders and copy the template files.
-        create_folders(self.location, self.choices.project_dir)
-        generate_template(
-            self.choices, self.options, self.settings.template_folder
+        generator = ProjectGenerator(
+            location=self.location,
+            choices=self.choices,
+            options=self.options,
+            use_default_template=self.settings.use_default_template,
+            template_folder=self.settings.template_folder,
         )
+        generator.run()
 
         self.poetry_is_run = poetry_install(self.options, self.choices)
         self.git_is_run = (
