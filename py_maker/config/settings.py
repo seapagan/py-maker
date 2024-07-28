@@ -114,8 +114,8 @@ class Settings(TOMLSettings):
         if platform.system() == "Windows":  # Windows
             os.startfile(self.settings_file_name)  # type: ignore[attr-defined] # noqa: S606
         elif platform.system() == "Darwin":  # macOS
-            subprocess.call(
-                [  # noqa: S603, S607
+            subprocess.call(  # noqa: S603
+                [  # noqa: S607
                     "open",
                     str(self.settings_folder / self.settings_file_name),
                 ]
@@ -131,8 +131,8 @@ class Settings(TOMLSettings):
             ]
             for editor in editor_list:
                 try:
-                    subprocess.call(
-                        [  # noqa: S603
+                    subprocess.call(  # noqa: S603
+                        [
                             editor,
                             str(self.settings_folder / self.settings_file_name),
                         ]
