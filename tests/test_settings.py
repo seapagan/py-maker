@@ -34,7 +34,7 @@ github_token = "test_token"
     MOCK_PLATFORM_PATH = "platform.system"
     MOCK_SUBPROCESS_PATH = "subprocess.call"
 
-    @pytest.fixture()
+    @pytest.fixture
     def setting_file(self, fs: FakeFilesystem) -> FakeFilesystem:
         """Create a settings file."""
         config_dir = Path.home() / self.CONFIG_FOLDER
@@ -45,7 +45,7 @@ github_token = "test_token"
         )
         return fs
 
-    @pytest.fixture()
+    @pytest.fixture
     def setting_file_windows(
         self, fs: FakeFilesystem, mocker
     ) -> Generator[FakeFilesystem, Any, None]:
@@ -61,7 +61,7 @@ github_token = "test_token"
         yield fs
         os.startfile = None
 
-    @pytest.fixture()
+    @pytest.fixture
     def setting_file_macos(
         self,
         fs: FakeFilesystem,
@@ -76,7 +76,7 @@ github_token = "test_token"
         )
         return fs
 
-    @pytest.fixture()
+    @pytest.fixture
     def setting_file_linux(
         self,
         fs: FakeFilesystem,

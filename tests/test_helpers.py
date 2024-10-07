@@ -23,7 +23,7 @@ from py_maker.helpers import (
 )
 
 
-@pytest.fixture()
+@pytest.fixture
 def fs_setup(fs) -> str:
     """A fixture to set up the fake file system before each test."""
     toml_content = """
