@@ -6,6 +6,36 @@ project since the first release.
 This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 
+## [v0.13.0](https://github.com/seapagan/py-maker/releases/tag/v0.13.0) (October 07, 2024)
+
+This is a security release to fix several vulnerabilities in dependency packages.
+
+We also migrate from `Poetry` to `uv` for dependency management.
+
+**Merged Pull Requests**
+
+- Lower dependabot check frequency in template to weekly ([#433](https://github.com/seapagan/py-maker/pull/433)) by [seapagan](https://github.com/seapagan)
+
+**New Features**
+
+- Migrate to using `uv` for dependency management ([#516](https://github.com/seapagan/py-maker/pull/516)) by [seapagan](https://github.com/seapagan)
+
+**Dependency Updates**
+
+- Build(deps-dev): bump pre-commit from 3.7.1 to 3.8.0 ([#470](https://github.com/seapagan/py-maker/pull/470)) by [dependabot[bot]](https://github.com/apps/dependabot)
+- Build(deps): bump simple-toml-settings from 0.6.1 to 0.7.0 ([#469](https://github.com/seapagan/py-maker/pull/469)) by [dependabot[bot]](https://github.com/apps/dependabot)
+- Update ruff and fix errors and warnings ([#468](https://github.com/seapagan/py-maker/pull/468)) by [seapagan](https://github.com/seapagan)
+- Build(deps): bump validators from 0.28.3 to 0.33.0 ([#460](https://github.com/seapagan/py-maker/pull/460)) by [dependabot[bot]](https://github.com/apps/dependabot)
+- Build(deps): bump rtoml from 0.10.0 to 0.11.0 ([#449](https://github.com/seapagan/py-maker/pull/449)) by [dependabot[bot]](https://github.com/apps/dependabot)
+- Build(deps-dev): bump github-changelog-md from 0.9.3 to 0.9.4 ([#444](https://github.com/seapagan/py-maker/pull/444)) by [dependabot[bot]](https://github.com/apps/dependabot)
+- Build(deps): bump urllib3 from 2.2.1 to 2.2.2 ([#443](https://github.com/seapagan/py-maker/pull/443)) by [dependabot[bot]](https://github.com/apps/dependabot)
+- Build(deps-dev): bump faker from 25.1.0 to 25.4.0 ([#432](https://github.com/seapagan/py-maker/pull/432)) by [dependabot[bot]](https://github.com/apps/dependabot)
+- Build(deps-dev): bump pymarkdownlnt from 0.9.19 to 0.9.20 ([#431](https://github.com/seapagan/py-maker/pull/431)) by [dependabot[bot]](https://github.com/apps/dependabot)
+- Build(deps): bump requests from 2.31.0 to 2.32.3 ([#430](https://github.com/seapagan/py-maker/pull/430)) by [dependabot[bot]](https://github.com/apps/dependabot)
+- *and 12 more dependency updates*
+
+[`Full Changelog`](https://github.com/seapagan/py-maker/compare/v0.12.0...v0.13.0) | [`Diff`](https://github.com/seapagan/py-maker/compare/v0.12.0...v0.13.0.diff) | [`Patch`](https://github.com/seapagan/py-maker/compare/v0.12.0...v0.13.0.patch)
+
 ## [v0.12.0](https://github.com/seapagan/py-maker/releases/tag/v0.12.0) (May 08, 2024)
 
 **New Features**
@@ -57,9 +87,7 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 ## [v0.10.3](https://github.com/seapagan/py-maker/releases/tag/v0.10.3) (May 01, 2024)
 
-
 This is a security release to fix several vulnerabilities in dependency packages.
-
 
 **Dependency Updates**
 
@@ -197,10 +225,8 @@ This is a security release to fix several vulnerabilities in dependency packages
 
 ## [v0.9.4](https://github.com/seapagan/py-maker/releases/tag/v0.9.4) (December 11, 2023)
 
-
 This is a security release that fixes a vulnerability in the 'cryptography'
 package.
-
 
 **Refactoring**
 
