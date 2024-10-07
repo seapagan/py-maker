@@ -23,21 +23,6 @@ from py_maker.helpers import (
 )
 
 
-@pytest.fixture()
-def fs_setup(fs) -> str:
-    """A fixture to set up the fake file system before each test."""
-    toml_content = """
-[tool.poetry]
-name = "py_maker"
-version = "1.2.3"
-description = "A sample project"
-authors = ["Author <author@example.com>"]
-    """
-    toml_path = "/fake/path/to/py_maker/pyproject.toml"
-    fs.create_file(toml_path, contents=toml_content)
-    return toml_path
-
-
 def test_get_author_and_email_from_git(mocker) -> None:
     """Test getting the username and email from Git."""
     mocker.patch(

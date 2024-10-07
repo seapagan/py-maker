@@ -1,101 +1,24 @@
 """Test the settings module."""
 
 import os
-from collections.abc import Generator
 from pathlib import Path
-from typing import Any
 
-import pytest
-from pyfakefs.fake_filesystem import FakeFilesystem, OSType
+from pyfakefs.fake_filesystem import FakeFilesystem
 from pytest_mock import MockerFixture
 
 from py_maker.config import Settings, get_settings
+
+from .conftest import CONSTANTS
 
 
 class TestSettings:
     """Test the settings module."""
 
-    FAKE_TOML = """
-[pymaker]
-author_email = "testuser@testing.com"
-author_name = "Test User"
-github_token = "test_token"
-"""
-
-    CONFIG_FOLDER = ".pymaker"
-    CONGIG_FILE = "config.toml"
-
-    TEST_USER = "Test User"
-    TEST_EMAIL = "testuser@testing.com"
-    NEW_USER = "New User"
-    NEW_EMAIL = "new_user@testuser.com"
-
-    MOCK_ASK_PATH = "py_maker.config.settings.Prompt.ask"
-    MOCK_PLATFORM_PATH = "platform.system"
-    MOCK_SUBPROCESS_PATH = "subprocess.call"
-
-    @pytest.fixture()
-    def setting_file(self, fs: FakeFilesystem) -> FakeFilesystem:
-        """Create a settings file."""
-        config_dir = Path.home() / self.CONFIG_FOLDER
-        fs.create_dir(config_dir)
-        fs.create_file(
-            str(config_dir / self.CONGIG_FILE),
-            contents=self.FAKE_TOML,
-        )
-        return fs
-
-    @pytest.fixture()
-    def setting_file_windows(
-        self, fs: FakeFilesystem, mocker
-    ) -> Generator[FakeFilesystem, Any, None]:
-        """Create a settings file."""
-        fs.os = OSType.WINDOWS
-        os.startfile = mocker.Mock()
-        config_dir = Path.home() / self.CONFIG_FOLDER
-        fs.create_dir(config_dir)
-        fs.create_file(
-            str(config_dir / self.CONGIG_FILE),
-            contents=self.FAKE_TOML,
-        )
-        yield fs
-        os.startfile = None
-
-    @pytest.fixture()
-    def setting_file_macos(
-        self,
-        fs: FakeFilesystem,
-    ) -> FakeFilesystem:
-        """Create a settings file."""
-        fs.os = OSType.MACOS
-        config_dir = Path.home() / self.CONFIG_FOLDER
-        fs.create_dir(config_dir)
-        fs.create_file(
-            str(config_dir / self.CONGIG_FILE),
-            contents=self.FAKE_TOML,
-        )
-        return fs
-
-    @pytest.fixture()
-    def setting_file_linux(
-        self,
-        fs: FakeFilesystem,
-    ) -> FakeFilesystem:
-        """Create a settings file."""
-        fs.os = OSType.LINUX
-        config_dir = Path.home() / self.CONFIG_FOLDER
-        fs.create_dir(config_dir)
-        fs.create_file(
-            str(config_dir / self.CONGIG_FILE),
-            contents=self.FAKE_TOML,
-        )
-        return fs
-
     def test_settings(self, setting_file: FakeFilesystem) -> None:
         """Test the settings module creates properly."""
         settings = get_settings()
-        assert settings.author_email == self.TEST_EMAIL
-        assert settings.author_name == self.TEST_USER
+        assert settings.author_email == CONSTANTS.TEST_EMAIL
+        assert settings.author_name == CONSTANTS.TEST_USER
 
         assert isinstance(settings, Settings)
 
@@ -129,7 +52,7 @@ github_token = "test_token"
     ) -> None:
         """Test the edit config function on windows."""
         assert setting_file_windows.is_windows_fs
-        mocker.patch(self.MOCK_PLATFORM_PATH, return_value="Windows")
+        mocker.patch(CONSTANTS.MOCK_PLATFORM_PATH, return_value="Windows")
 
         settings = Settings("pymaker")
         settings.edit_config()
@@ -140,8 +63,8 @@ github_token = "test_token"
     ) -> None:
         """Test the edit config function on macos."""
         assert setting_file_macos.is_macos
-        mocker.patch(self.MOCK_PLATFORM_PATH, return_value="Darwin")
-        mock_subprocess = mocker.patch(self.MOCK_SUBPROCESS_PATH)
+        mocker.patch(CONSTANTS.MOCK_PLATFORM_PATH, return_value="Darwin")
+        mock_subprocess = mocker.patch(CONSTANTS.MOCK_SUBPROCESS_PATH)
         settings = Settings("pymaker")
         settings.edit_config()
 
@@ -154,8 +77,8 @@ github_token = "test_token"
     ) -> None:
         """Test the edit config function on linux."""
         assert setting_file_linux.is_linux
-        mocker.patch(self.MOCK_PLATFORM_PATH, return_value="Linux")
-        mock_call = mocker.patch(self.MOCK_SUBPROCESS_PATH)
+        mocker.patch(CONSTANTS.MOCK_PLATFORM_PATH, return_value="Linux")
+        mock_call = mocker.patch(CONSTANTS.MOCK_SUBPROCESS_PATH)
         settings = Settings("pymaker")
         settings.edit_config()
 
@@ -176,9 +99,9 @@ github_token = "test_token"
             return 0
 
         assert setting_file_linux.is_linux
-        mocker.patch(self.MOCK_PLATFORM_PATH, return_value="Linux")
+        mocker.patch(CONSTANTS.MOCK_PLATFORM_PATH, return_value="Linux")
         mock_call = mocker.patch(
-            self.MOCK_SUBPROCESS_PATH, side_effect=side_effect
+            CONSTANTS.MOCK_SUBPROCESS_PATH, side_effect=side_effect
         )
         settings = Settings("pymaker")
         settings.edit_config()
@@ -190,9 +113,9 @@ github_token = "test_token"
     ) -> None:
         """Test the edit config function on linux when editor not found."""
         assert setting_file_linux.is_linux
-        mocker.patch(self.MOCK_PLATFORM_PATH, return_value="Linux")
+        mocker.patch(CONSTANTS.MOCK_PLATFORM_PATH, return_value="Linux")
         mock_call = mocker.patch(
-            self.MOCK_SUBPROCESS_PATH, side_effect=FileNotFoundError
+            CONSTANTS.MOCK_SUBPROCESS_PATH, side_effect=FileNotFoundError
         )
         settings = Settings("pymaker")
         settings.edit_config()
@@ -214,7 +137,9 @@ github_token = "test_token"
         self, setting_file: FakeFilesystem, mocker: MockerFixture
     ) -> None:
         """Test the change token function."""
-        mock_ask = mocker.patch(self.MOCK_ASK_PATH, return_value="new_token")
+        mock_ask = mocker.patch(
+            CONSTANTS.MOCK_ASK_PATH, return_value="new_token"
+        )
         settings = Settings("pymaker")
         settings.change_token()
         assert settings.github_token == "new_token"  # noqa: S105
@@ -244,18 +169,23 @@ github_token = "test_token"
         """Test the get user settings function."""
         mocker.patch(
             "py_maker.config.settings.get_author_and_email_from_git",
-            return_value=(self.TEST_USER, self.TEST_EMAIL),
+            return_value=(CONSTANTS.TEST_USER, CONSTANTS.TEST_EMAIL),
         )
         mocker.patch(
-            self.MOCK_ASK_PATH,
-            side_effect=[self.NEW_USER, self.NEW_EMAIL, "newuser", "MIT"],
+            CONSTANTS.MOCK_ASK_PATH,
+            side_effect=[
+                CONSTANTS.NEW_USER,
+                CONSTANTS.NEW_EMAIL,
+                "newuser",
+                "MIT",
+            ],
         )
 
         settings = Settings("pymaker")
         settings.get_user_settings(missing=False)
 
-        assert settings.author_name == self.NEW_USER
-        assert settings.author_email == self.NEW_EMAIL
+        assert settings.author_name == CONSTANTS.NEW_USER
+        assert settings.author_email == CONSTANTS.NEW_EMAIL
         assert settings.github_username == "newuser"
         assert settings.default_license == "MIT"
 
@@ -265,11 +195,16 @@ github_token = "test_token"
         """Test the get user settings function."""
         mocker.patch(
             "py_maker.config.settings.get_author_and_email_from_git",
-            return_value=(self.TEST_USER, self.TEST_EMAIL),
+            return_value=(CONSTANTS.TEST_USER, CONSTANTS.TEST_EMAIL),
         )
         mocker.patch(
-            self.MOCK_ASK_PATH,
-            side_effect=[self.NEW_USER, self.NEW_EMAIL, "newuser", "MIT"],
+            CONSTANTS.MOCK_ASK_PATH,
+            side_effect=[
+                CONSTANTS.NEW_USER,
+                CONSTANTS.NEW_EMAIL,
+                "newuser",
+                "MIT",
+            ],
         )
         # ensure the post_create_hook does nothing
         mocker.patch(
@@ -285,7 +220,7 @@ github_token = "test_token"
 
         assert "Settings file is missing, creating now." in output
 
-        assert settings.author_name == self.NEW_USER
-        assert settings.author_email == self.NEW_EMAIL
+        assert settings.author_name == CONSTANTS.NEW_USER
+        assert settings.author_email == CONSTANTS.NEW_EMAIL
         assert settings.github_username == "newuser"
         assert settings.default_license == "MIT"

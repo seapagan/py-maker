@@ -170,7 +170,7 @@ def get_app_version() -> str:
         # we are locally developing the package
         try:
             config = rtoml.load(toml_path)
-            version: str = config["tool"]["poetry"]["version"]
+            version: str = config["project"]["version"]
         except (KeyError, OSError) as exc:
             print(f"Problem getting the Version : {exc}")
             sys.exit(ExitErrors.OS_ERROR)

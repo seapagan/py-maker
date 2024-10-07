@@ -32,10 +32,10 @@ Mac OS X. For Windows, you can use the
 [here](https://github.com/pyenv-win/pyenv-win#installation ) for installation
 instructions.
 
-We also use [Poetry](https://python-poetry.org/) to manage our dependencies. You
-should have this installed as well. You can install Poetry by following the
-instructions on the [Poetry
-website](https://python-poetry.org/docs/#installation).
+From version `0.13.0` and forward, we use [uv](https://docs.astral.sh/uv/) to
+manage our dependencies (previously we used `Poetry`), so you should have this
+installed as well. You can install `uv` by following the instructions on the [uv
+website](https://docs.astral.sh/uv/getting-started/installation/).
 
 ## Getting Started
 
@@ -59,13 +59,13 @@ To get started, follow these steps:
 Run the following command to install the required dependencies:
 
 ```console
-$ poetry install
+$ uv sync
 ```
 
 You then need to activate the virtual environment:
 
 ```console
-$ poetry shell
+$ source .venv/bin/activate
 ```
 
 From here you can start working on the project. If you are using an IDE such as
@@ -74,16 +74,16 @@ the virtual environment that has just been created.
 
 ### Using Pip
 
-If you prefer to use `pip` instead of `poetry`, you can install the dependencies
+If you prefer to use `pip` instead of `uv`, you can install the dependencies
 using the auto-generated `requirements-dev.txt` file:
 
 ```console
 $ pip install -r requirements-dev.txt
 ```
 
-However, [Poetry](https://python-poetry.org/){:target="_blank"} is the
-recommended (and only supported) way of developing this project and is tightly
-integrated with the code and tools.
+However, [uv](https://docs.astral.sh/uv/){:target="_blank"} is the recommended
+(and only supported) way of developing this project and is tightly integrated
+with the code and tools.
 
 ## Linting
 
@@ -98,8 +98,7 @@ included `.vscode` folder has the settings for this.
 
 Please install this if you are intending to contribute to the project. It will
 check commits locally before they are pushed up to the Repo. The GitHub CI runs
-the linting checks (and in future probably MyPy as well), and will fail if there
-are any errors.
+the linting checks (and MyPy), and will fail if there are any errors.
 
 ```console
 $ pre-commit install

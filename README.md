@@ -14,6 +14,14 @@ developing your Python applications quicker! Includes linting and Pytest
 libraries, a task runner, pre-commit hooks, and optionally create a git
 repository and upload to GitHub. you can also fully customize the template used.
 
+> [!NOTE]
+>
+> I have migrated the project (and my own workflow) to use
+> [uv](https://docs.astral.sh/uv/) as my dependency management and more, so all
+> new projects I create will use that instead of Poetry. For now, I will keep
+> the Poetry support as default in this project, but I will probably add a `uv`
+> option in the future to create new projects using that instead.
+
 Full documentation for this project with usage examples is available at
 <https://py-maker.seapagan.net/>
 
