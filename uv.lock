@@ -1128,16 +1128,16 @@ crypto = [
 
 [[package]]
 name = "pymarkdownlnt"
-version = "0.9.23"
+version = "0.9.24"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "application-properties" },
     { name = "columnar" },
     { name = "typing-extensions" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/81/38/cf6de5fe40e32f15723c2fd1d3dd202d594354a8d133dc725943e29b03f6/pymarkdownlnt-0.9.23.tar.gz", hash = "sha256:c1a6c86332d25390f614160b39bcd92dd3d20b119ed0750aa3f8f9f8be94f74c", size = 375997 }
+sdist = { url = "https://files.pythonhosted.org/packages/a2/33/e778c3f023896d77ed2d780b9d4e49732f3db6e685c9bc4330d72cefd523/pymarkdownlnt-0.9.24.tar.gz", hash = "sha256:e278833532b826611fc28809cd2f72e9255de7f61e78df6a224bc663f58a79ed", size = 382491 }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/90/bb/a66fbbcf326d96b8894e2a8aac1347dafcb101ad35f6c7374c3c62b14bd6/pymarkdownlnt-0.9.23-py3-none-any.whl", hash = "sha256:86738a1792ba4504474d075f462cf6fca017077efa4848eda0846b1c75a4648e", size = 462539 },
+    { url = "https://files.pythonhosted.org/packages/62/9c/19bbcf2072cf31e88eb199844b0bbf6d578f4bfeaf82c1768c0b7888013f/pymarkdownlnt-0.9.24-py3-none-any.whl", hash = "sha256:ce86943e12ea19d5e9b3290d8322804b93663f744bb381a89ac1301ab66f95c3", size = 467807 },
 ]
 
 [[package]]
@@ -1254,7 +1254,7 @@ dev = [
     { name = "pre-commit", specifier = "==4.0.0" },
     { name = "pyfakefs", specifier = "==5.6.0" },
     { name = "pygments", specifier = "==2.18.0" },
-    { name = "pymarkdownlnt", specifier = "==0.9.23" },
+    { name = "pymarkdownlnt", specifier = "==0.9.24" },
     { name = "pymdown-extensions", specifier = "==10.11.2" },
     { name = "pytest", specifier = "==8.3.3" },
     { name = "pytest-cov", specifier = "==5.0.0" },
