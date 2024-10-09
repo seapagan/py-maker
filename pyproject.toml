@@ -37,7 +37,7 @@ dependencies = [
 [tool.uv]
 dev-dependencies = [
   "mypy == 1.11.2",
-  "pre-commit == 4.0.0",
+  "pre-commit ==4.0.1",
   "pymarkdownlnt ==0.9.24",
   "ruff == 0.6.9",
   "faker ==30.3.0",
