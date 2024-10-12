@@ -803,7 +803,7 @@ wheels = [
 
 [[package]]
 name = "mkdocstrings"
-version = "0.26.1"
+version = "0.26.2"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "click" },
@@ -817,9 +817,9 @@ dependencies = [
     { name = "pymdown-extensions" },
     { name = "typing-extensions", marker = "python_full_version < '3.10'" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/e6/bf/170ff04de72227f715d67da32950c7b8434449f3805b2ec3dd1085db4d7c/mkdocstrings-0.26.1.tar.gz", hash = "sha256:bb8b8854d6713d5348ad05b069a09f3b79edbc6a0f33a34c6821141adb03fe33", size = 92677 }
+sdist = { url = "https://files.pythonhosted.org/packages/c0/76/0475d10d27f3384df3a6ddfdf4a4fdfef83766f77cd4e327d905dc956c15/mkdocstrings-0.26.2.tar.gz", hash = "sha256:34a8b50f1e6cfd29546c6c09fbe02154adfb0b361bb758834bf56aa284ba876e", size = 92512 }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/23/cc/8ba127aaee5d1e9046b0d33fa5b3d17da95a9d705d44902792e0569257fd/mkdocstrings-0.26.1-py3-none-any.whl", hash = "sha256:29738bfb72b4608e8e55cc50fb8a54f325dc7ebd2014e4e3881a49892d5983cf", size = 29643 },
+    { url = "https://files.pythonhosted.org/packages/80/b6/4ee320d7c313da3774eff225875eb278f7e6bb26a9cd8e680b8dbc38fdea/mkdocstrings-0.26.2-py3-none-any.whl", hash = "sha256:1248f3228464f3b8d1a15bd91249ce1701fe3104ac517a5f167a0e01ca850ba5", size = 29716 },
 ]
 
 [[package]]
@@ -1247,7 +1247,7 @@ dev = [
     { name = "mkdocs-latest-git-tag-plugin", specifier = "==0.1.2" },
     { name = "mkdocs-material", specifier = "==9.5.39" },
     { name = "mkdocs-minify-plugin", specifier = "==0.8.0" },
-    { name = "mkdocstrings", specifier = "==0.26.1" },
+    { name = "mkdocstrings", specifier = "==0.26.2" },
     { name = "mock", specifier = "==5.1.0" },
     { name = "mypy", specifier = "==1.11.2" },
     { name = "poethepoet", specifier = "==0.29.0" },
