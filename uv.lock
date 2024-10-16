@@ -385,15 +385,15 @@ wheels = [
 
 [[package]]
 name = "faker"
-version = "30.3.0"
+version = "30.6.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "python-dateutil" },
     { name = "typing-extensions" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/9f/5f/54f7b76309053b4ac79060e524bb39f3828341e822d399a8c4f95e560820/faker-30.3.0.tar.gz", hash = "sha256:8760fbb34564fbb2f394345eef24aec5b8f6506b6cfcefe8195ed66dd1032bdb", size = 1797350 }
+sdist = { url = "https://files.pythonhosted.org/packages/e6/8d/50e36ea8b2bd3f24bcdd00316c8b4bab2d9f14da7be1b7d98b3d4bc5293d/faker-30.6.0.tar.gz", hash = "sha256:be0e548352c1be6f6d9c982003848a0d305868f160bb1fb7f945acffc347e676", size = 1806340 }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/b5/e6/403ba67c3d0ab4b31030f2ff22428f7a0cfe2010ce4bf9579e1ebdf808fa/Faker-30.3.0-py3-none-any.whl", hash = "sha256:e8a15fd1b0f72992b008f5ea94c70d3baa0cb51b0d5a0e899c17b1d1b23d2771", size = 1836995 },
+    { url = "https://files.pythonhosted.org/packages/8d/21/a64005857a7b209ce00e555ad38dfd27ef0aa56d2229904ea9c2e02f79ef/Faker-30.6.0-py3-none-any.whl", hash = "sha256:37b5ab951f7367ea93edb865120e9717a7a649d6a4b223f1e4a47a8a20d9e85f", size = 1844390 },
 ]
 
 [[package]]
@@ -1238,7 +1238,7 @@ requires-dist = [
 
 [package.metadata.requires-dev]
 dev = [
-    { name = "faker", specifier = "==30.3.0" },
+    { name = "faker", specifier = "==30.6.0" },
     { name = "github-changelog-md", specifier = "==0.9.5" },
     { name = "greenlet", specifier = "==3.1.1" },
     { name = "mkdocs", specifier = "==1.6.1" },
