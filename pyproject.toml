@@ -62,7 +62,7 @@ dev-dependencies = [
   "mkdocstrings == 0.26.1",
   "pymdown-extensions == 10.11.2",
   "pygments == 2.18.0",
-  "types-requests == 2.32.0.20240914",
+  "types-requests ==2.32.0.20241016",
   "poethepoet == 0.29.0",
 ]
 
