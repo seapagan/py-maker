@@ -38,7 +38,7 @@ dependencies = [
 dev-dependencies = [
   "mypy == 1.11.2",
   "pre-commit == 4.0.0",
-  "pymarkdownlnt ==0.9.24",
+  "pymarkdownlnt ==0.9.29",
   "ruff == 0.6.9",
   "faker ==30.3.0",
   "greenlet == 3.1.1",

@@ -1,4 +1,5 @@
 version = 1
+revision = 1
 requires-python = ">=3.9"
 resolution-markers = [
     "python_full_version < '3.13'",
@@ -198,7 +199,7 @@ name = "click"
 version = "8.1.7"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "colorama", marker = "platform_system == 'Windows'" },
+    { name = "colorama", marker = "sys_platform == 'win32'" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/96/d3/f04c7bfcf5c1862a2a5b845c6b2b360488cf47af55dfa79c98f6a6bf98b5/click-8.1.7.tar.gz", hash = "sha256:ca9853ad459e787e2192211578cc907e7594e294c7ccc834310722b41b9ca6de", size = 336121 }
 wheels = [
@@ -679,7 +680,7 @@ version = "1.6.1"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "click" },
-    { name = "colorama", marker = "platform_system == 'Windows'" },
+    { name = "colorama", marker = "sys_platform == 'win32'" },
     { name = "ghp-import" },
     { name = "importlib-metadata", marker = "python_full_version < '3.10'" },
     { name = "jinja2" },
@@ -1128,16 +1129,16 @@ crypto = [
 
 [[package]]
 name = "pymarkdownlnt"
-version = "0.9.24"
+version = "0.9.29"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "application-properties" },
     { name = "columnar" },
     { name = "typing-extensions" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/a2/33/e778c3f023896d77ed2d780b9d4e49732f3db6e685c9bc4330d72cefd523/pymarkdownlnt-0.9.24.tar.gz", hash = "sha256:e278833532b826611fc28809cd2f72e9255de7f61e78df6a224bc663f58a79ed", size = 382491 }
+sdist = { url = "https://files.pythonhosted.org/packages/b6/37/0fe2a78d2040cd4cbdb389d92d1cfac313e24f28848e3afb7fb6b0af5833/pymarkdownlnt-0.9.29.tar.gz", hash = "sha256:cfa37fe778fbaa11714bcc617e90f7293c628cfadce9c2ec3ea89d9b24aca086", size = 399715 }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/62/9c/19bbcf2072cf31e88eb199844b0bbf6d578f4bfeaf82c1768c0b7888013f/pymarkdownlnt-0.9.24-py3-none-any.whl", hash = "sha256:ce86943e12ea19d5e9b3290d8322804b93663f744bb381a89ac1301ab66f95c3", size = 467807 },
+    { url = "https://files.pythonhosted.org/packages/17/e6/048d91c5954c0447dedc6622388bcaf301339d8d14d31cbd7016dda012e5/pymarkdownlnt-0.9.29-py3-none-any.whl", hash = "sha256:8492992c75c94d1d6dd64a8c49c8ce63a171bffb45a2a054235440fe30ebdb34", size = 482105 },
 ]
 
 [[package]]
@@ -1254,7 +1255,7 @@ dev = [
     { name = "pre-commit", specifier = "==4.0.0" },
     { name = "pyfakefs", specifier = "==5.7.0" },
     { name = "pygments", specifier = "==2.18.0" },
-    { name = "pymarkdownlnt", specifier = "==0.9.24" },
+    { name = "pymarkdownlnt", specifier = "==0.9.29" },
     { name = "pymdown-extensions", specifier = "==10.11.2" },
     { name = "pytest", specifier = "==8.3.3" },
     { name = "pytest-cov", specifier = "==5.0.0" },
