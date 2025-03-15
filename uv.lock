@@ -1,4 +1,5 @@
 version = 1
+revision = 1
 requires-python = ">=3.9"
 resolution-markers = [
     "python_full_version < '3.13'",
@@ -198,7 +199,7 @@ name = "click"
 version = "8.1.7"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "colorama", marker = "platform_system == 'Windows'" },
+    { name = "colorama", marker = "sys_platform == 'win32'" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/96/d3/f04c7bfcf5c1862a2a5b845c6b2b360488cf47af55dfa79c98f6a6bf98b5/click-8.1.7.tar.gz", hash = "sha256:ca9853ad459e787e2192211578cc907e7594e294c7ccc834310722b41b9ca6de", size = 336121 }
 wheels = [
@@ -679,7 +680,7 @@ version = "1.6.1"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "click" },
-    { name = "colorama", marker = "platform_system == 'Windows'" },
+    { name = "colorama", marker = "sys_platform == 'win32'" },
     { name = "ghp-import" },
     { name = "importlib-metadata", marker = "python_full_version < '3.10'" },
     { name = "jinja2" },
@@ -939,16 +940,16 @@ wheels = [
 
 [[package]]
 name = "poethepoet"
-version = "0.29.0"
+version = "0.33.1"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "pastel" },
     { name = "pyyaml" },
     { name = "tomli", marker = "python_full_version < '3.11'" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/dc/7a/7144e47128022146502e179e259b312335bc1465384025eee92d4c7e16b2/poethepoet-0.29.0.tar.gz", hash = "sha256:676842302f2304a86b31ac56398dd672fae8471128d2086896393384dbafc095", size = 58619 }
+sdist = { url = "https://files.pythonhosted.org/packages/cd/1d/ec87271390cc5fafdd5996137331ad3a7ce99b715e4ee68db554d202817f/poethepoet-0.33.1.tar.gz", hash = "sha256:8775e09b64f773278b5483659ff238a708723491efadeedd1c2cbf773558cb4c", size = 62536 }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/b5/7d/871be58cc970ab4c9a541d64b77b7454d150a409c3e48b53fc9eac7a8967/poethepoet-0.29.0-py3-none-any.whl", hash = "sha256:f8dfe55006dcfb5cf31bcb1904e1262e1c642a4502fee3688cbf1bddfe5c7601", size = 76069 },
+    { url = "https://files.pythonhosted.org/packages/34/ea/c476bfec360eb6831ce46df2719f76d1132b9a87da11c302081a9def5fce/poethepoet-0.33.1-py3-none-any.whl", hash = "sha256:b86d80a81b2ca4e4ce8e8f716cc6004a1a1cdead027778bc07d1c26cb3664770", size = 83512 },
 ]
 
 [[package]]
@@ -1250,7 +1251,7 @@ dev = [
     { name = "mkdocstrings", specifier = "==0.26.1" },
     { name = "mock", specifier = "==5.1.0" },
     { name = "mypy", specifier = "==1.11.2" },
-    { name = "poethepoet", specifier = "==0.29.0" },
+    { name = "poethepoet", specifier = "==0.33.1" },
     { name = "pre-commit", specifier = "==4.0.0" },
     { name = "pyfakefs", specifier = "==5.7.0" },
     { name = "pygments", specifier = "==2.18.0" },
