@@ -196,8 +196,7 @@ def check_cmd_exists(cmd: str) -> bool:
 def confirm_values(choices: ProjectValues) -> bool:
     """Confirm the values entered by the user."""
     print(
-        "\n[green][bold]Creating a New Python app with the below "
-        "settings :\n"
+        "\n[green][bold]Creating a New Python app with the below settings :\n"
     )
 
     padding: int = max(len(key) for key, _ in choices) + 3
