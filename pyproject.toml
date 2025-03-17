@@ -55,7 +55,7 @@ dev-dependencies = [
   "github-changelog-md == 0.9.5",
   "mkdocs == 1.6.1",
   "mkdocs-autorefs == 1.2.0",
-  "mkdocs-material == 9.5.39",
+  "mkdocs-material ==9.6.9",
   "mkdocs-git-revision-date-localized-plugin == 1.2.9",
   "mkdocs-latest-git-tag-plugin == 0.1.2",
   "mkdocs-minify-plugin == 0.8.0",
