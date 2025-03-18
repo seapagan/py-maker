@@ -44,7 +44,7 @@ dev-dependencies = [
   "greenlet == 3.1.1",
   "mock == 5.1.0",
   "pyfakefs ==5.7.0",
-  "pytest == 8.3.3",
+  "pytest ==8.3.5",
   "pytest-cov == 5.0.0",
   "pytest-xdist == 3.6.1",
   "pytest-sugar == 1.0.0",
