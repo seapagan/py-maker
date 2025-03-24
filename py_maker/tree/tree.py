@@ -8,7 +8,7 @@ from __future__ import annotations
 import os
 import pathlib
 
-from rich import print  # pylint: disable=redefined-builtin
+from rich import print as rprint
 from rich.filesize import decimal
 from rich.markup import escape
 from rich.text import Text
@@ -80,4 +80,4 @@ class FileTree:
             guide_style="bright_blue",
         )
         self.walk_directory(self.directory, tree)
-        print(tree)
+        rprint(tree)

@@ -3,7 +3,7 @@
 from typing import Annotated, Optional, Union
 
 import typer
-from rich import print  # pylint: disable=W0622
+from rich import print as rprint
 
 from py_maker.config import get_settings
 from py_maker.constants import ExitErrors
@@ -84,7 +84,7 @@ def new(
     }
 
     if " " in location:
-        print("\n[red]  --> The location cannot contain spaces, [b]Aborting.")
+        rprint("\n[red]  --> The location cannot contain spaces, [b]Aborting.")
         raise typer.Exit(ExitErrors.LOCATION_ERROR)
 
     pymaker = PyMaker(location, options)

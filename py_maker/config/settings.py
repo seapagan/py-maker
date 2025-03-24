@@ -8,7 +8,7 @@ import platform
 import subprocess  # nosec
 from typing import Literal, Optional
 
-from rich import print  # pylint: disable=redefined-builtin
+from rich import print as rprint
 from simple_toml_settings import TOMLSettings
 
 from py_maker.constants import license_names
@@ -60,7 +60,7 @@ class Settings(TOMLSettings):
         git_author, git_email = get_author_and_email_from_git()
 
         if missing:
-            print(
+            rprint(
                 "--> [green]Settings file is missing, creating now. "
                 "Please confirm defaults:\n"
             )
@@ -84,20 +84,20 @@ class Settings(TOMLSettings):
         )
 
         self.save()
-        print("\n--> [green]Settings file saved.\n")
+        rprint("\n--> [green]Settings file saved.\n")
 
     def change_settings(self) -> None:
         """Allow the user to change settings."""
         show_table(self.list_settings())
 
-        print("\n--> [green]Enter new settings:\n")
+        rprint("\n--> [green]Enter new settings:\n")
         self.get_user_settings()
 
         self.save()
 
     def change_token(self) -> None:
         """Allow the user to add a GitHub PAT."""
-        print("--> [green]Enter a GitHub Personal Access Token:\n")
+        rprint("--> [green]Enter a GitHub Personal Access Token:\n")
         self.github_token = Prompt.ask(
             "Github Token?",
             default=self.github_token,
@@ -141,7 +141,7 @@ class Settings(TOMLSettings):
                 except FileNotFoundError:
                     pass
             else:
-                print(
+                rprint(
                     "--> [red]No editor found. Please edit the settings file "
                     "manually.\n"
                 )

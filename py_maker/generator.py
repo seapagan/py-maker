@@ -8,7 +8,7 @@ from pathlib import Path
 from typing import Union
 
 from jinja2 import Environment, FileSystemLoader
-from rich import print  # pylint: disable=W0622
+from rich import print as rprint
 
 from py_maker import template
 from py_maker.constants import ExitErrors
@@ -43,18 +43,18 @@ class ProjectGenerator:
     def create_folders(self) -> None:
         """Create the root folder for the project."""
         try:
-            print("--> Creating project folder ... ", end="")
+            rprint("--> Creating project folder ... ", end="")
             if self.location != ".":
                 self.choices.project_dir.mkdir()
-            print("[green]Done[/green]")
+            rprint("[green]Done[/green]")
         except FileExistsError:
-            print(
+            rprint(
                 f"\n[red]  -> Error: Directory '{self.choices.project_dir}' "
                 "already exists.\n"
             )
             sys.exit(ExitErrors.DIRECTORY_EXISTS)
         except PermissionError:
-            print(
+            rprint(
                 "\n[red]  -> Error: Permission denied creating directory "
                 f"'{self.choices.project_dir}'\n"
             )
@@ -151,5 +151,5 @@ class ProjectGenerator:
             if not self.options["test"]:
                 shutil.rmtree(self.choices.project_dir / "tests")
         except OSError as exc:
-            print(f"\n[red]  -> {exc}")
+            rprint(f"\n[red]  -> {exc}")
             sys.exit(ExitErrors.OS_ERROR)

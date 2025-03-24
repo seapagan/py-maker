@@ -4,7 +4,7 @@ import os
 import subprocess
 from typing import Union
 
-from rich import print  # pylint: disable=W0622
+from rich import print as rprint
 
 from py_maker.constants import MKDOCS_CONFIG
 from py_maker.prompt.prompt import Confirm
@@ -28,7 +28,7 @@ def poetry_install(
         )
 
         if options["docs"]:
-            print("\n--> Creating MkDocs project")
+            rprint("\n--> Creating MkDocs project")
             subprocess.run(  # noqa: S603
                 [  # noqa: S607
                     "poetry",
@@ -45,7 +45,7 @@ def poetry_install(
             )
         return True
 
-    print(
+    rprint(
         "[red]\n--> Skipping 'poetry install'. This also skips creating the "
         "MkDocs project."
     )

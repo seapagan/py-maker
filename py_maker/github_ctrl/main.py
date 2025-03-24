@@ -10,7 +10,7 @@ from typing import TYPE_CHECKING, Optional, Union
 
 from github import Auth, Github
 from github.GithubException import GithubException
-from rich import print  # pylint: disable=redefined-builtin
+from rich import print as rprint
 
 if TYPE_CHECKING:
     from github.AuthenticatedUser import AuthenticatedUser
@@ -25,7 +25,7 @@ def git_error(exc: GithubException) -> None:
     error_message = ""
     if error:
         error_message = f"({error[0].get('message')})".capitalize()
-    print(f"[red]  Error: {message} {error_message}")
+    rprint(f"[red]  Error: {message} {error_message}")
 
 
 class GitHub:
@@ -63,7 +63,7 @@ class GitHub:
         try:
             return self._user.get_repo(self.repo_name)
         except AssertionError:
-            print(f"Repository '{self.repo_name}' does not exist.")
+            rprint(f"Repository '{self.repo_name}' does not exist.")
             return None
 
     def create_repo(
