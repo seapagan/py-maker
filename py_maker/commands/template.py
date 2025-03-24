@@ -5,7 +5,7 @@ from pathlib import Path
 from typing import TYPE_CHECKING
 
 import typer
-from rich import print  # pylint: disable=redefined-builtin
+from rich import print as rprint
 
 from py_maker import template
 from py_maker.config import get_settings
@@ -70,7 +70,7 @@ def dump(
                     dst = output_folder / file
                     dst.write_text(src.read_text(encoding="utf-8"))
 
-        print(f"[green]  -> Template files dumped to:[/green] {output_folder}")
+        rprint(f"[green]  -> Template files dumped to:[/green] {output_folder}")
 
         set_default = Confirm.ask(
             f"\n[green]Set the template folder to:[/green] {output_folder}?",
@@ -78,19 +78,19 @@ def dump(
         )
 
         if set_default:
-            print("[green]  -> Template folder set[/green]")
+            rprint("[green]  -> Template folder set[/green]")
             settings.template_folder = str(output_folder)
 
             if Confirm.ask(
                 "[green]Disable the default template folder?", default=False
             ):
-                print("[green]  -> Default template folder disabled[/green]")
+                rprint("[green]  -> Default template folder disabled[/green]")
                 settings.use_default_template = False
 
             settings.save()
 
     except OSError as exc:
-        print(f"\n[red]  -> Error dumping template:[/red] {exc}")
+        rprint(f"\n[red]  -> Error dumping template:[/red] {exc}")
         raise typer.Exit(ExitErrors.OS_ERROR) from exc
 
 
@@ -108,16 +108,16 @@ def default(action: str) -> None:
     if action == "enable":
         settings.use_default_template = True
         settings.save()
-        print(
+        rprint(
             "[green]  -> Default template folder enabled:[/green] "
             f"{settings.template_folder}"
         )
     elif action == "disable":
         settings.use_default_template = False
         settings.save()
-        print("[green]  -> Default template folder disabled[/green]")
+        rprint("[green]  -> Default template folder disabled[/green]")
     else:
-        print(
+        rprint(
             f"[red]  -> Invalid action:[/red] {action}\n"
             "[red]  -> Action must be either:[/red] enable or disable"
         )
@@ -141,11 +141,11 @@ def set_template() -> None:
     settings.template_folder = str(Path.cwd())
     settings.save()
 
-    print(
+    rprint(
         "[green]  -> Template folder set to:[/green] "
         f"{settings.template_folder}"
     )
-    print(
+    rprint(
         "[yellow]  -> The 'Use Default Template' setting has not been "
         "changed.\n"
         "[yellow]     You can change this with the '[b][i]pymaker template "
@@ -171,11 +171,11 @@ def reset_template() -> None:
 
     settings.template_folder = str(Path.home() / ".pymaker" / "template")
     settings.save()
-    print(
+    rprint(
         "[green]  -> Template folder reset to:[/green] "
         f"{settings.template_folder}"
     )
-    print(
+    rprint(
         "[yellow]  -> The 'Use Default Template' setting has not been "
         "changed.\n"
         "[yellow]     You can change this with the '[b][i]pymaker template "

@@ -260,7 +260,7 @@ def test_get_current_year() -> None:
 
 def test_header(mocker) -> None:
     """Test header prints the correct header information."""
-    mock_print = mocker.patch("py_maker.helpers.print")
+    mock_print = mocker.patch("py_maker.helpers.rprint")
     header()
     mock_print.assert_called_once_with(
         "[bold]PyMaker[/bold] - Generate a Python project skeleton.\n"

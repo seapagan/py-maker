@@ -15,7 +15,7 @@ import rtoml
 from git.config import GitConfigParser
 from git.exc import GitError
 from git.repo import Repo
-from rich import print  # pylint: disable=redefined-builtin
+from rich import print as rprint
 from rich.console import Console
 from rich.table import Table
 from validators import url
@@ -51,13 +51,13 @@ def get_author_and_email_from_git() -> tuple[str, str]:
 def create_git_repo(project_dir: Path) -> bool:
     """Create a Git repository for the project and add the first commit."""
     try:
-        print("\n--> Creating Git repository ... ", end="")
+        rprint("\n--> Creating Git repository ... ", end="")
         repo = Repo.init(project_dir)
         repo.index.add(repo.untracked_files)
         repo.index.commit("Initial Commit")
-        print("[green]Done[/green]")
+        rprint("[green]Done[/green]")
     except GitError as exc:
-        print("Error: ", exc)
+        rprint("Error: ", exc)
         sys.exit(ExitErrors.GIT_ERROR)
     else:
         return True
@@ -109,7 +109,7 @@ def get_current_year() -> str:
 
 def header() -> None:
     """Print a header for the application."""
-    print("[bold]PyMaker[/bold] - Generate a Python project skeleton.\n")
+    rprint("[bold]PyMaker[/bold] - Generate a Python project skeleton.\n")
 
 
 def show_table(settings: dict[str, str]) -> None:
@@ -172,10 +172,10 @@ def get_app_version() -> str:
             config = rtoml.load(toml_path)
             version: str = config["project"]["version"]
         except (KeyError, OSError) as exc:
-            print(f"Problem getting the Version : {exc}")
+            rprint(f"Problem getting the Version : {exc}")
             sys.exit(ExitErrors.OS_ERROR)
         except rtoml.TomlParsingError as exc:
-            print(f"Invalid 'pyproject.toml' file : {exc}")
+            rprint(f"Invalid 'pyproject.toml' file : {exc}")
             sys.exit(ExitErrors.TOML_ERROR)
         else:
             return version
@@ -184,7 +184,7 @@ def get_app_version() -> str:
         try:
             return metadata.version("pyproject_maker")
         except metadata.PackageNotFoundError as exc:
-            print(f"Problem getting the Version : {exc}")
+            rprint(f"Problem getting the Version : {exc}")
             sys.exit(ExitErrors.OS_ERROR)
 
 
@@ -195,15 +195,14 @@ def check_cmd_exists(cmd: str) -> bool:
 
 def confirm_values(choices: ProjectValues) -> bool:
     """Confirm the values entered by the user."""
-    print(
-        "\n[green][bold]Creating a New Python app with the below "
-        "settings :\n"
+    rprint(
+        "\n[green][bold]Creating a New Python app with the below settings :\n"
     )
 
     padding: int = max(len(key) for key, _ in choices) + 3
 
     for key, value in choices:
-        print(f"{get_title(key).rjust(padding)} : [green]{value}")
+        rprint(f"{get_title(key).rjust(padding)} : [green]{value}")
 
     return Confirm.ask("\nIs this correct?", default=True)
 
@@ -223,7 +222,7 @@ def get_url(prompt: str, *, default: str = "", allow_blank: bool = True) -> str:
         choice = Prompt.ask(prompt, default=default)
         if url(choice) or (choice.strip() == "" and allow_blank):
             return choice.strip()
-        print(
+        rprint(
             "[red]Error: Invalid URL. Please try again, enter a full URL with "
             "https:// or http://"
         )

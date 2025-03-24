@@ -11,11 +11,11 @@ from typing import Union
 
 from git.exc import GitError
 from git.repo import Repo
-from rich import print  # pylint: disable=W0622
+from rich import print as rprint
 
 from py_maker.config import get_settings
 from py_maker.constants import ExitErrors, license_names
-from py_maker.copy import ProjectGenerator
+from py_maker.generator import ProjectGenerator
 from py_maker.github_ctrl import GitHub
 from py_maker.helpers import (
     confirm_values,
@@ -52,7 +52,7 @@ class PyMaker:
         self.settings = get_settings()
 
         if len(Path(self.location).parts) > 1:
-            print(
+            rprint(
                 "[red]  -> Error: Location must be a single directory name, "
                 "and is relative to the current directory.\n"
             )
@@ -92,7 +92,7 @@ class PyMaker:
 
 See the [bold][green]README.md[/green][/bold] file for more information.
         """
-        print(output)
+        rprint(output)
 
     # ------------------------------------------------------------------------ #
     #               get a sanitized package name from user input.              #
@@ -112,19 +112,19 @@ See the [bold][green]README.md[/green][/bold] file for more information.
                 break
 
             if re.search(r"[- .]", name):
-                print(
+                rprint(
                     "\n[red]Error: Package name cannot contain dashes, dots or "
                     "spaces. Please use Underscores if required.\n"
                 )
                 continue
 
             if exists_on_pypi(name):
-                print("\n[red]Warning: Package name already exists on PyPI.")
+                rprint("\n[red]Warning: Package name already exists on PyPI.")
                 confirm = Confirm.ask(
                     "Do you want to use it anyway?", default=False
                 )
                 if confirm:
-                    print(
+                    rprint(
                         "\n[red]Warning: Using an existing package name "
                         "will mean it [b]cannot be uploaded to PyPI.\n"
                     )
@@ -201,10 +201,10 @@ See the [bold][green]README.md[/green][/bold] file for more information.
 
         if not confirm_values(self.choices):
             # User chose not to continue
-            print("\n[red]Aborting![/red]")
+            rprint("\n[red]Aborting![/red]")
             sys.exit(ExitErrors.USER_ABORT)
 
-        print()
+        rprint()
 
     # ------------------------------------------------------------------------ #
     #            optionally install and update the pre-commit hooks            #
@@ -227,7 +227,7 @@ See the [bold][green]README.md[/green][/bold] file for more information.
                 )
             )
         ):
-            print("\n--> Install and Update pre-commit hooks")
+            rprint("\n--> Install and Update pre-commit hooks")
             os.chdir(self.choices.project_dir)
             subprocess.run(  # noqa: S603
                 [  # noqa: S607
@@ -257,7 +257,7 @@ See the [bold][green]README.md[/green][/bold] file for more information.
                 )
                 repo.index.commit("Update pre-commit hooks")
         else:
-            print(
+            rprint(
                 """\n  [red]Warning: pre-commit hooks not installed or updated.
 
 [/red]  pre-commit needs both 'poetry install' and 'git init' to be run.
@@ -293,7 +293,7 @@ See the [bold][green]README.md[/green][/bold] file for more information.
                 )
             )
         ):
-            print("\n--> Creating remote repository on GitHub")
+            rprint("\n--> Creating remote repository on GitHub")
             os.chdir(self.choices.project_dir)
             # get the repo name only from the full URL
             repo_name = Path(self.choices.repository).name
@@ -303,7 +303,7 @@ See the [bold][green]README.md[/green][/bold] file for more information.
             )
             new_repo = github.create_repo(description=self.choices.description)
             if new_repo:
-                print("--> Pushing new Project to GitHub")
+                rprint("--> Pushing new Project to GitHub")
                 try:
                     git_url = (
                         new_repo.ssh_url
@@ -314,14 +314,14 @@ See the [bold][green]README.md[/green][/bold] file for more information.
                     local_repo.create_remote("origin", git_url)
                     local_repo.remote("origin").push("main")
                 except GitError as exc:
-                    print(
+                    rprint(
                         "\n  [red]Warning: Error creating Remote repository."
                         " Please check the GitHub token and try again."
                         f"\n  Error: {exc}[/red]\n"
                     )
 
         else:
-            print(
+            rprint(
                 "\n  [blue]Info: Remote repository not created."
                 " Either you chose not to, or you did not provide a GitHub"
                 " Personal Access Token (PAT) in the settings file.\n"
@@ -346,17 +346,16 @@ See the [bold][green]README.md[/green][/bold] file for more information.
         self.choices.project_dir = Path.cwd() / self.location
 
         # ensure that the chosen location is empty.
-        if (
-            self.choices.project_dir.exists()
-            and len(os.listdir(self.choices.project_dir)) > 0
+        if self.choices.project_dir.exists() and any(
+            self.choices.project_dir.iterdir()
         ):
-            print(
+            rprint(
                 "\n[red]Error: The chosen folder is not empty. "
                 "Please specify a different location.[/red]\n"
             )
             sys.exit(ExitErrors.FOLDER_NOT_EMPTY)
 
-        print(
+        rprint(
             "[green]Creating a new project at[/green] "
             f"{self.choices.project_dir}\n"
         )

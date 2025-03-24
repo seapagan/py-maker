@@ -3,7 +3,7 @@
 from typing import Optional
 
 import typer
-from rich import print  # pylint: disable=redefined-builtin
+from rich import print as rprint
 
 from py_maker.commands import config, new, template
 from py_maker.helpers import get_app_version
@@ -24,7 +24,7 @@ def main(
 ) -> None:
     """Generate a Python project skeleton."""
     if version:
-        print(
+        rprint(
             "\n[green]PyMaker - Generate a Python project skeleton."
             f"\n[/green]Version: {get_app_version()}; "
             "\u00a9 Grant Ramsay 2023-2024\n"
