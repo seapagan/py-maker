@@ -6,6 +6,23 @@ project since the first release.
 This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 
+## [v0.13.1](https://github.com/seapagan/py-maker/releases/tag/v0.13.1) (June 07, 2025)
+
+**New Features**
+
+- Update rtoml, ruff, mypy and the pre-commit tools ([#548](https://github.com/seapagan/py-maker/pull/548)) by [seapagan](https://github.com/seapagan)
+- Update deps and fix multiple linting issues ([#543](https://github.com/seapagan/py-maker/pull/543)) by [seapagan](https://github.com/seapagan)
+
+**Dependency Updates**
+
+- Chore(deps): update astral-sh/setup-uv action to v6 ([#546](https://github.com/seapagan/py-maker/pull/546)) by [renovate[bot]](https://github.com/apps/renovate)
+- Chore(deps): update astral-sh/setup-uv action to v5 ([#544](https://github.com/seapagan/py-maker/pull/544)) by [renovate[bot]](https://github.com/apps/renovate)
+- Chore(deps): update dependency pyfakefs to v5.7.0 ([#522](https://github.com/seapagan/py-maker/pull/522)) by [renovate[bot]](https://github.com/apps/renovate)
+- Chore(deps): update dependency faker to v30.3.0 ([#520](https://github.com/seapagan/py-maker/pull/520)) by [renovate[bot]](https://github.com/apps/renovate)
+- Chore(deps): update dependency pymarkdownlnt to v0.9.24 ([#519](https://github.com/seapagan/py-maker/pull/519)) by [renovate[bot]](https://github.com/apps/renovate)
+
+[`Full Changelog`](https://github.com/seapagan/py-maker/compare/v0.13.0...v0.13.1) | [`Diff`](https://github.com/seapagan/py-maker/compare/v0.13.0...v0.13.1.diff) | [`Patch`](https://github.com/seapagan/py-maker/compare/v0.13.0...v0.13.1.patch)
+
 ## [v0.13.0](https://github.com/seapagan/py-maker/releases/tag/v0.13.0) (October 07, 2024)
 
 This is a security release to fix several vulnerabilities in dependency packages.
