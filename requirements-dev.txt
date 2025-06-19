@@ -260,7 +260,7 @@ typing-extensions==4.12.2
     #   typer
 tzdata==2025.2
     # via faker
-urllib3==2.3.0
+urllib3==2.5.0
     # via
     #   pygithub
     #   requests

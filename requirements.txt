@@ -73,7 +73,7 @@ typing-extensions==4.12.2
     #   pygithub
     #   rich
     #   typer
-urllib3==2.3.0
+urllib3==2.5.0
     # via
     #   pygithub
     #   requests
