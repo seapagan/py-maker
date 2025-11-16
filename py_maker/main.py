@@ -18,6 +18,7 @@ app = typer.Typer(
 
 @app.callback(invoke_without_command=True)
 def main(
+    *,
     version: Optional[bool] = typer.Option(
         None, "-v", "--version", is_eager=True
     ),

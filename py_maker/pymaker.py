@@ -229,7 +229,7 @@ See the [bold][green]README.md[/green][/bold] file for more information.
         ):
             rprint("\n--> Install and Update pre-commit hooks")
             os.chdir(self.choices.project_dir)
-            subprocess.run(  # noqa: S603
+            subprocess.run(
                 [  # noqa: S607
                     "poetry",
                     "run",
@@ -238,7 +238,7 @@ See the [bold][green]README.md[/green][/bold] file for more information.
                 ],
                 check=True,
             )
-            subprocess.run(  # noqa: S603
+            subprocess.run(
                 [  # noqa: S607
                     "poetry",
                     "run",
