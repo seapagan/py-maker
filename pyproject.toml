@@ -1,6 +1,6 @@
 [project]
 name = "pyproject-maker"
-version = "0.13.1"
+version = "0.13.2"
 description = "A command line app to create a Python project skeleton."
 authors = [{ name = "Grant Ramsay", email = "seapagan@gmail.com" }]
 readme = "README.md"

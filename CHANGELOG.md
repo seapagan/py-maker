@@ -6,6 +6,25 @@ project since the first release.
 This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 
+## [v0.13.2](https://github.com/seapagan/py-maker/releases/tag/v0.13.2) (November 16, 2025)
+
+**Merged Pull Requests**
+
+- Remove the 'stale' github action ([#557](https://github.com/seapagan/py-maker/pull/557)) by [seapagan](https://github.com/seapagan)
+
+**Refactoring**
+
+- Migrate to uv's own build backend from hatch ([#559](https://github.com/seapagan/py-maker/pull/559)) by [seapagan](https://github.com/seapagan)
+- Update tools, update pyproject to latest uv requirements and fix all ruff linting warnings ([#556](https://github.com/seapagan/py-maker/pull/556)) by [seapagan](https://github.com/seapagan)
+
+**Dependency Updates**
+
+- Chore(deps): update astral-sh/setup-uv action to v7 ([#555](https://github.com/seapagan/py-maker/pull/555)) by [renovate[bot]](https://github.com/apps/renovate)
+- Chore(deps): update github/codeql-action action to v4 ([#554](https://github.com/seapagan/py-maker/pull/554)) by [renovate[bot]](https://github.com/apps/renovate)
+- Chore(deps): update actions/checkout action to v5 ([#552](https://github.com/seapagan/py-maker/pull/552)) by [renovate[bot]](https://github.com/apps/renovate)
+
+[`Full Changelog`](https://github.com/seapagan/py-maker/compare/v0.13.1...v0.13.2) | [`Diff`](https://github.com/seapagan/py-maker/compare/v0.13.1...v0.13.2.diff) | [`Patch`](https://github.com/seapagan/py-maker/compare/v0.13.1...v0.13.2.patch)
+
 ## [v0.13.1](https://github.com/seapagan/py-maker/releases/tag/v0.13.1) (June 07, 2025)
 
 **New Features**
