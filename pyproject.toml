@@ -35,8 +35,8 @@ dependencies = [
   "validators >= 0.34.0",
 ]
 
-[tool.uv]
-dev-dependencies = [
+[dependency-groups]
+dev = [
   "mypy >= 1.11.2",
   "pre-commit >= 4.0.0",
   "pymarkdownlnt >=0.9.24",

@@ -22,14 +22,14 @@ def poetry_install(
         "\nShould I Run 'poetry install' now?", default=True
     ):
         os.chdir(choices.project_dir)
-        subprocess.run(  # noqa: S603
+        subprocess.run(
             ["poetry", "install"],  # noqa: S607
             check=True,
         )
 
         if options["docs"]:
             rprint("\n--> Creating MkDocs project")
-            subprocess.run(  # noqa: S603
+            subprocess.run(
                 [  # noqa: S607
                     "poetry",
                     "run",
