@@ -199,7 +199,7 @@ pymdown-extensions==10.17.1
     # via
     #   mkdocs-material
     #   mkdocstrings
-pynacl==1.6.2
+pynacl==1.6.1
     # via pygithub
 pytest==8.4.2 ; python_full_version < '3.10'
     # via
