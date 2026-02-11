@@ -40,7 +40,7 @@ coverage==7.10.7 ; python_full_version < '3.10'
     # via pytest-cov
 coverage==7.11.3 ; python_full_version >= '3.10'
     # via pytest-cov
-cryptography==46.0.5
+cryptography==46.0.3
     # via pyjwt
 csscompressor==0.9.5
     # via mkdocs-minify-plugin
