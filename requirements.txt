@@ -10,9 +10,7 @@ cffi==2.0.0 ; platform_python_implementation != 'PyPy'
     #   pynacl
 charset-normalizer==3.4.4
     # via requests
-click==8.1.8 ; python_full_version < '3.10'
-    # via typer
-click==8.3.1 ; python_full_version >= '3.10'
+click==8.3.1
     # via typer
 colorama==0.4.6 ; sys_platform == 'win32'
     # via click
@@ -26,9 +24,7 @@ idna==3.11
     # via requests
 jinja2==3.1.6
     # via pyproject-maker
-markdown-it-py==3.0.0 ; python_full_version < '3.10'
-    # via rich
-markdown-it-py==4.0.0 ; python_full_version >= '3.10'
+markdown-it-py==4.0.0
     # via rich
 markupsafe==3.0.3
     # via jinja2
@@ -56,11 +52,7 @@ rich==14.2.0
     # via
     #   pyproject-maker
     #   typer
-rtoml==0.12.0 ; python_full_version < '3.10'
-    # via
-    #   pyproject-maker
-    #   simple-toml-settings
-rtoml==0.13.0 ; python_full_version >= '3.10'
+rtoml==0.13.0
     # via
     #   pyproject-maker
     #   simple-toml-settings
@@ -75,7 +67,6 @@ typer==0.20.0
 typing-extensions==4.15.0
     # via
     #   cryptography
-    #   gitpython
     #   pydantic
     #   pydantic-core
     #   pygithub
