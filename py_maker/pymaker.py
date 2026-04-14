@@ -163,9 +163,7 @@ See the [bold][green]README.md[/green][/bold] file for more information.
 
         # offer to create a repo on GitHub, for both type of projects.
         github_username = (
-            self.settings.github_username
-            if self.settings.github_username
-            else "<your GitHub username>"
+            self.settings.github_username or "<your GitHub username>"
         )
 
         if self.options["git"] and not self.options["bare"]:

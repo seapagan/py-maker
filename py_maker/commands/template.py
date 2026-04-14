@@ -14,7 +14,7 @@ from py_maker.helpers import get_file_list, header
 from py_maker.prompt import Confirm
 
 if TYPE_CHECKING:
-    from importlib.abc import Traversable
+    from importlib.resources.abc import Traversable
 
 app = typer.Typer(no_args_is_help=True)
 
