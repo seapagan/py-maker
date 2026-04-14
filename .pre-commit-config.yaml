@@ -1,24 +1,16 @@
 ci:
   autofix_commit_msg: "[pre-commit.ci] auto fixes from pre-commit.com hooks"
 repos:
-  - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v6.0.0
+  - repo: builtin
     hooks:
       - id: check-yaml
-        args: [--unsafe]
       - id: trailing-whitespace
       - id: check-toml
       - id: check-merge-conflict
       - id: end-of-file-fixer
 
-  # - repo: https://github.com/renovatebot/pre-commit-hooks
-  #   rev: 40.46.0
-  #   hooks:
-  #     - id: renovate-config-validator
-  #       files: ^renovate\.json$
-
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.14.5
+    rev: v0.15.10
     hooks:
       - id: ruff
         args: ["--output-format=concise"]
@@ -27,16 +19,29 @@ repos:
         name: "format with ruff"
 
   - repo: https://github.com/pre-commit/mirrors-mypy
-    rev: "v1.18.2" # Use the sha / tag you want to point at
+    rev: "v1.20.1" # Use the sha / tag you want to point at
     hooks:
       - id: mypy
         name: "run mypy"
+        args: [--strict]
         additional_dependencies:
           - "types-requests"
+          - "typer"
+          - "rich"
+          - "rtoml"
+          - "pygithub"
+          - "jinja2"
+          - "pytest"
+          - "gitpython"
+          - "pydantic"
+          - "validators"
+          - "pyfakefs"
+          - "simple-toml-settings"
+          - "pytest-mock"
 
   - repo: https://github.com/astral-sh/uv-pre-commit
     # uv version.
-    rev: 0.9.9
+    rev: 0.11.6
     hooks:
       # Update the uv lockfile
       - id: uv-lock

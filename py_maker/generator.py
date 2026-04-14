@@ -77,7 +77,7 @@ class ProjectGenerator:
             keep_trailing_newline=True,
         )
         for file in file_list:
-            with pkg_resources.as_file(template_dir / file) as src:  # type: ignore
+            with pkg_resources.as_file(template_dir / file) as src:
                 if src.is_dir():
                     Path(self.choices.project_dir / file).mkdir()
                 elif src.suffix == ".jinja":

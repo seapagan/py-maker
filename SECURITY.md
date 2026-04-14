@@ -4,8 +4,8 @@
 
 | Version  | Supported          |
 | -------- | ------------------ |
-| 0.11.x   | :white_check_mark: |
-| < 0.11   | :x:                |
+| 0.13.x   | :white_check_mark: |
+| < 0.13   | :x:                |
 
 Until we reach a 1.0 milestone, we will generally only support the latest
 release of the project. If you are having issues with an older version, please
