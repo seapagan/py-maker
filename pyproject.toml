@@ -91,7 +91,7 @@ module-root = ""
 # setup 'PoeThePoet' tasks
 pre.cmd = "prek run --all-files"
 pre.help = "Run pre commit checks with 'prek'"
-mypy.cmd = "mypy py_maker/**/*.py tests/**/*.py --strict"
+mypy.cmd = "mypy . --strict"
 mypy.help = "Run mypy checks"
 format.cmd = "ruff format ."
 format.help = "Format code with Ruff"

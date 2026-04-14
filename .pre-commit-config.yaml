@@ -23,8 +23,21 @@ repos:
     hooks:
       - id: mypy
         name: "run mypy"
+        args: [--strict]
         additional_dependencies:
           - "types-requests"
+          - "typer"
+          - "rich"
+          - "rtoml"
+          - "pygithub"
+          - "jinja2"
+          - "pytest"
+          - "gitpython"
+          - "pydantic"
+          - "validators"
+          - "pyfakefs"
+          - "simple-toml-settings"
+          - "pytest-mock"
 
   - repo: https://github.com/astral-sh/uv-pre-commit
     # uv version.
