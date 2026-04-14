@@ -32,7 +32,7 @@ columnar==1.4.1
     # via pymarkdownlnt
 coverage==7.11.3
     # via pytest-cov
-cryptography==46.0.3
+cryptography==46.0.7
     # via pyjwt
 csscompressor==0.9.5
     # via mkdocs-minify-plugin
@@ -157,7 +157,7 @@ pymdown-extensions==10.17.1
     # via
     #   mkdocs-material
     #   mkdocstrings
-pynacl==1.6.1
+pynacl==1.6.2
     # via pygithub
 pytest==9.0.1
     # via
@@ -247,7 +247,7 @@ tzdata==2025.2
     # via
     #   faker
     #   mkdocs-git-revision-date-localized-plugin
-urllib3==2.5.0
+urllib3==2.6.3
     # via
     #   pygithub
     #   requests
