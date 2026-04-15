@@ -38,13 +38,13 @@ pydantic-core==2.41.5
     # via pydantic
 pygithub==2.8.1
     # via pyproject-maker
-pygments==2.19.2
+pygments==2.20.0
     # via rich
-pyjwt==2.10.1
+pyjwt==2.12.1
     # via pygithub
 pynacl==1.6.2
     # via pygithub
-requests==2.32.5
+requests==2.33.1
     # via
     #   pygithub
     #   pyproject-maker
@@ -70,6 +70,7 @@ typing-extensions==4.15.0
     #   pydantic
     #   pydantic-core
     #   pygithub
+    #   pyjwt
     #   typer
     #   typing-inspection
 typing-inspection==0.4.2

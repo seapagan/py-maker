@@ -143,23 +143,23 @@ pygithub==2.8.1
     # via
     #   github-changelog-md
     #   pyproject-maker
-pygments==2.19.2
+pygments==2.20.0
     # via
     #   mkdocs-material
     #   pytest
     #   rich
 pyjson5==2.0.0
     # via application-properties
-pyjwt==2.10.1
+pyjwt==2.12.1
     # via pygithub
 pymarkdownlnt==0.9.33
-pymdown-extensions==10.17.1
+pymdown-extensions==10.21.2
     # via
     #   mkdocs-material
     #   mkdocstrings
 pynacl==1.6.2
     # via pygithub
-pytest==9.0.1
+pytest==9.0.3
     # via
     #   pytest-cov
     #   pytest-mock
@@ -186,7 +186,7 @@ pyyaml==6.0.3
     #   pyyaml-env-tag
 pyyaml-env-tag==1.1
     # via mkdocs
-requests==2.32.5
+requests==2.33.1
     # via
     #   mkdocs-material
     #   pygithub
@@ -238,6 +238,7 @@ typing-extensions==4.15.0
     #   pydantic
     #   pydantic-core
     #   pygithub
+    #   pyjwt
     #   pymarkdownlnt
     #   typer
     #   typing-inspection
