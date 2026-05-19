@@ -54,7 +54,7 @@ gitpython==3.1.45
 greenlet==3.2.4
 htmlmin2==0.1.13
     # via mkdocs-minify-plugin
-idna==3.11
+idna==3.15
     # via requests
 iniconfig==2.3.0
     # via pytest
