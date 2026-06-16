@@ -150,7 +150,7 @@ pygments==2.20.0
     #   rich
 pyjson5==2.0.0
     # via application-properties
-pyjwt==2.12.1
+pyjwt==2.13.0
     # via pygithub
 pymarkdownlnt==0.9.33
 pymdown-extensions==10.21.2

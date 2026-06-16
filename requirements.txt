@@ -40,7 +40,7 @@ pygithub==2.8.1
     # via pyproject-maker
 pygments==2.20.0
     # via rich
-pyjwt==2.12.1
+pyjwt==2.13.0
     # via pygithub
 pynacl==1.6.2
     # via pygithub
