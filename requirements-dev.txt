@@ -46,7 +46,7 @@ ghp-import==2.1.0
 gitdb==4.0.12
     # via gitpython
 github-changelog-md==0.9.6
-gitpython==3.1.45
+gitpython==3.1.52
     # via
     #   mkdocs-git-revision-date-localized-plugin
     #   mkdocs-latest-git-tag-plugin
